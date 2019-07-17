@@ -1,0 +1,35 @@
+
+  <!-- Master Head -->
+  <header class="master-head text-white text-center">
+     <div class="container">
+      <div class="row">
+        <div class="col-xl-9 mx-auto">
+          <h1 class="mb-5">Build and manage the next level surveys for your company!</h1>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Public Surveys -->
+  <section class="packages text-center bg-light">
+    <div class="container">
+      <h2 class="mb-5">Fill any survey from our wide collection</h2>
+      <div class="row">
+        <% @surveys.each do |i| %>
+        <div class="col-lg-4">
+          <div class="mx-auto mt-5">
+            <div class="card">
+        <h5 class="card-header"> Survey Name <%= i %> </h5>
+        <div class="card-body">
+          <p class="card-text">Survey Description will be fetched here for the respective survey</p>
+          <a href="#" class="btn btn-primary">Fill it</a>
+        </div>
+      </div>
+          </div>
+        </div>
+        <% end %>
+
+      </div>
+    </div>
+  </section>
+  <%= will_paginate @surveys %>

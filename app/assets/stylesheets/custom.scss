@@ -1,0 +1,39 @@
+$base-color: #343a40;
+
+body {
+  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+}
+
+header.master-head {
+  position: relative;
+  background-color: $base-color;  
+  background: url("bg-masthead.jpg") no-repeat center center;
+  background-size: cover;
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
+
+
+header.master-head h1 {
+  font-size: 2rem;
+}
+
+.packages {
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+
+footer.footer {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
