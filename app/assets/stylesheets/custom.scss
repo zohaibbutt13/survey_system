@@ -1,5 +1,3 @@
-$base-color: #343a40;
-
 body {
   font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
@@ -15,9 +13,8 @@ h6 {
 }
 
 header.master-head {
-  position: relative;
-  background-color: $base-color;  
-  background: url("bg-masthead.jpg") no-repeat center center;
+  position: relative;  
+  background: url("bg-masterhead.jpg") no-repeat center center;
   background-size: cover;
   padding-top: 8rem;
   padding-bottom: 8rem;
@@ -29,8 +26,8 @@ header.master-head h1 {
 }
 
 .packages {
-  padding-top: 7rem;
-  padding-bottom: 7rem;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
 }
 
 footer.footer {
