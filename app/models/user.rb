@@ -4,4 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable, :trackable
+
+  belongs_to :company
+  has_one :user_setting
+  has_many :surveys
+  has_many :group_members
 end
