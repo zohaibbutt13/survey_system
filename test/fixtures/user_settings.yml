@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  emails_subscription: false
+  show_graphs: false
+  show_history: false
+
+two:
+  emails_subscription: false
+  show_graphs: false
+  show_history: false
