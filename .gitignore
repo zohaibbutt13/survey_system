@@ -16,4 +16,9 @@
 !/log/.keep
 /tmp
 
+
 /config/*.yml
+db/schema.rb
+public/system/*
+mysql2
+Gemfile.lock
