@@ -8,8 +8,10 @@ class User < ActiveRecord::Base
   belongs_to :company
   has_one :user_setting
   has_many :surveys
-  has_many :group_members
+  has_and_belongs_to_many :groups
 
   validates :first_name, presence: true, uniqueness: true, length: { maximum: 20 }
   validates :last_name, presence: true, uniqueness: true, length: { maximum: 20 }
+
+  ROLE = {admin: 'admin', supervisor: 'supervisor', member: 'member'}
 end

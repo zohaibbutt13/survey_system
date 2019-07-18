@@ -39,16 +39,6 @@ ActiveRecord::Schema.define(version: 20190717070804) do
 
   add_index "company_settings", ["company_id"], name: "index_company_settings_on_company_id", using: :btree
 
-  create_table "group_members", force: :cascade do |t|
-    t.integer  "group_id",   limit: 4
-    t.integer  "user_id",    limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-  end
-
-  add_index "group_members", ["group_id"], name: "index_group_members_on_group_id", using: :btree
-  add_index "group_members", ["user_id"], name: "index_group_members_on_user_id", using: :btree
-
   create_table "groups", force: :cascade do |t|
     t.string   "name",        limit: 255
     t.text     "description", limit: 65535
@@ -58,6 +48,14 @@ ActiveRecord::Schema.define(version: 20190717070804) do
   end
 
   add_index "groups", ["company_id"], name: "index_groups_on_company_id", using: :btree
+
+  create_table "groups_users", id: false, force: :cascade do |t|
+    t.integer "group_id", limit: 4
+    t.integer "user_id",  limit: 4
+  end
+
+  add_index "groups_users", ["group_id"], name: "index_groups_users_on_group_id", using: :btree
+  add_index "groups_users", ["user_id"], name: "index_groups_users_on_user_id", using: :btree
 
   create_table "options", force: :cascade do |t|
     t.text     "detail",      limit: 65535
@@ -139,15 +137,14 @@ ActiveRecord::Schema.define(version: 20190717070804) do
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
     t.integer  "company_id",             limit: 4
-    t.string   "f_name",                 limit: 255
-    t.string   "l_name",                 limit: 255
+    t.string   "first_name",             limit: 255
+    t.string   "last_name",              limit: 255
     t.string   "role",                   limit: 255
   end
 
   add_index "users", ["company_id"], name: "index_users_on_company_id", using: :btree
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
-
-#kjalkjdklj

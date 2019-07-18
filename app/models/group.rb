@@ -1,7 +1,7 @@
 class Group < ActiveRecord::Base
   belongs_to :company
-  has_many :group_members
+  has_and_belongs_to_many :users
 
-  validates :name, presence: true, uniqueness: true, length: { maximum: 20 }
-  validates :description, presence: true, length: { maximum: 150 }
+  validates :name, presence: true, uniqueness: true, length: { maximum: 50 }
+  validates :description, presence: true, length: { maximum: 500 }
 end
