@@ -17,7 +17,7 @@
 /tmp
 
 
-/config/*.yml
+config/*.yml
 db/schema.rb
 public/system/*
 mysql2
