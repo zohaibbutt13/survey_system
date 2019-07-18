@@ -1,36 +1,36 @@
-
-  <!-- Master Head -->
-  <header class="master-head text-white text-center">
-     <div class="container">
-      <div class="row">
-        <div class="col-xl-9 mx-auto">
-          <h1 class="mb-5">Build and manage the next level surveys for your company!</h1>
-        </div>
+<!-- Master Head -->
+<header class="master-head text-white text-center">
+   <div class="container">
+    <div class="row">
+      <div class="col-xl-9 mx-auto">
+        <h1 class="mb-5">Build and manage the next level surveys for your company!</h1>
       </div>
     </div>
-  </header>
+  </div>
+</header>
 
-  <!-- Public Surveys -->
-  <section class="packages text-center bg-light">
-    <div class="container">
-      <h2 class="mb-5">Fill any survey from our wide collection</h2>
-      <div class="row">
-        <!-- UPDATE: replace dummy i parameter with survey name and description parameters -->
-        <% @surveys.each do |i| %>
+<!-- Public Surveys -->
+<section class="packages text-center bg-light">
+  <div class="container">
+    <h2 class="mb-5">Fill any survey from our wide collection</h2>
+    <div class="row">
+      <!-- UPDATE: replace dummy i parameter with survey name and description parameters -->
+      <% @surveys.each do |i| %>
         <div class="col-lg-4">
-          <div class="mx-auto mt-5">
+          <div class="mx-auto mt-4">
             <div class="card">
-        <h5 class="card-header"> Survey Name <%= i %> </h5>
-        <div class="card-body">
-          <p class="card-text">Survey Description will be fetched here for the respective survey</p>
-          <a href="#" class="btn btn-primary">Fill it</a>
-        </div>
-      </div>
+              <h5 class="card-header"> Survey Name <%= i %> </h5>
+              <div class="card-body">
+                <p class="card-text">Survey Description will be fetched here for the respective survey</p>
+                <a href="#_" class="btn btn-primary">Fill it</a>
+              </div>
+            </div>
           </div>
         </div>
-        <% end %>
-
-      </div>
+      <% end %>
     </div>
-  </section>
-  <%= will_paginate @surveys %>
+    <div class="apple_pagination d-flex justify-content-center mt-4">
+      <%= will_paginate @surveys %>
+    </div>
+  </div>
+</section>

@@ -10,5 +10,7 @@ class HomeController < ApplicationController
   end
 
   def packages
+    # UPDATE: dummy @packages array will be replaced by packages object
+    @packages = ['Platinum', 'Gold', 'Silver']
   end
 end

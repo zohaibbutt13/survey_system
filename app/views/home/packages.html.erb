@@ -1,59 +1,12 @@
-  <!-- Packages -->
-  <section class="packages text-center bg-light">
-    <div class="container">
-      <h2 class="mb-5">Choose from one of our best packages</h2>
-      <div class="row">
-        <div class="col-lg-4">
-          <div class="mx-auto mb-5 mb-lg-0">
-            <div class="card text-center" style="width: 18rem;">
-              <div class="card-body">
-                <h5 class="card-title">Platinum</h5>
-                <p class="card-text">With this package you will get limit:</p>
-                <dl>
-                  <dt>Max Members Limit</dt>
-                  <dd>500</dd>
-                  <dt>Max Supervisors Limit</dt>
-                  <dd>50</dd>
-                </dl> 
-                <a href="#" class="btn btn-primary">Subscribe</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="mx-auto mb-5 mb-lg-0">
-            <div class="card text-center" style="width: 18rem;">
-              <div class="card-body">
-                <h5 class="card-title">Gold</h5>
-                <p class="card-text">With this package you will get:</p>
-                <dl>
-                  <dt>Max Members Limit</dt>
-                  <dd>200</dd>
-                  <dt>Max Supervisors Limit</dt>
-                  <dd>20</dd>
-                </dl> 
-                <a href="#" class="btn btn-primary">Subscribe</a>
-              </div>
-            </div> 
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="mx-auto mb-5 mb-lg-0">
-            <div class="card text-center" style="width: 18rem;">
-              <div class="card-body">
-                <h5 class="card-title">Silver</h5>
-                <p class="card-text">With this package you will get:</p>
-                <dl>
-                  <dt>Max Members Limit</dt>
-                  <dd>100</dd>
-                  <dt>Max Supervisors Limit</dt>
-                  <dd>10</dd>
-                </dl> 
-                <a href="#" class="btn btn-primary">Subscribe</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+<!-- Packages -->
+<section class="packages text-center bg-light">
+  <div class="container">
+    <h2 class="mb-5">Choose from one of our best packages</h2>
+    <div class="row">
+      <!-- UPDATE: Replace dummy name parameter with the attributes of package object -->
+      <% @packages.each do |name| %>
+      <%= render 'layouts/package', package_name: name %>
+      <% end %>
     </div>
-  </section>
+  </div>
+</section>
