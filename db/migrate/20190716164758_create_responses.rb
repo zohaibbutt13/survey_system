@@ -4,6 +4,7 @@ class CreateResponses < ActiveRecord::Migration
       t.string :answer
       t.integer :question_id
       t.belongs_to :question, index: true
+      t.belongs_to :company, index: true
 
       t.timestamps null: false
     end
