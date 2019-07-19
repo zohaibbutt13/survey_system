@@ -1,6 +1,6 @@
 require 'will_paginate/array'
 
-# Home page actions are defined in this controller
+# get home/index
 class HomeController < ApplicationController
   def index
     # UPDATE: dummy @surveys array below will be replaced by surveys object
