@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190717070804) do
+ActiveRecord::Schema.define(version: 20190719060948) do
+
+  create_table "activities", force: :cascade do |t|
+    t.integer  "company_id",     limit: 4
+    t.string   "parameters",     limit: 255
+    t.string   "action",         limit: 255
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "trackable_id",   limit: 4
+    t.string   "trackable_type", limit: 255
+    t.integer  "owner_id",       limit: 4
+  end
+
+  add_index "activities", ["trackable_type", "trackable_id"], name: "index_activities_on_trackable_type_and_trackable_id", using: :btree
 
   create_table "companies", force: :cascade do |t|
     t.string   "name",                    limit: 255

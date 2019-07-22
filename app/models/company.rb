@@ -9,6 +9,7 @@ class Company < ActiveRecord::Base
   has_many :options
   has_many :responses
   has_many :user_settings
+  has_many :activities
 
   validates :name, presence: true, uniqueness: true, length: { maximum: 30 } 
 end

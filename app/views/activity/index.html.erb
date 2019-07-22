@@ -1,0 +1,7 @@
+<ul>
+<% @activities.each do |a| %>
+  <li>
+    <p> User with id <%= a.owner_id %> has <%= a.action %> the <%= a.trackable_type %> having id <%= a.trackable_id %> </p>
+  </li>
+<% end %>
+</ul>
