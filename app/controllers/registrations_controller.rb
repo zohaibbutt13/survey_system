@@ -1,5 +1,13 @@
 class RegistrationsController < Devise::RegistrationsController
 
+   # temporary function for adding company to new user
+  def create
+  	super do
+  		resource.company = Company.find(1)
+  		resource.save
+  	end
+  end
+
   private
 
   def sign_up_params

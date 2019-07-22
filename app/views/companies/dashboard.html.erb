@@ -1,0 +1,49 @@
+<%= render 'layouts/header' %>
+
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item" id="dash">
+            <a class="nav-link active" href="#_">
+              <span data-feather="home"></span>
+              <p class="dashboard_text">Dashboard</p> 
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#_">
+              <span data-feather="users"></span>
+              <p class="dashboard_text">Employees</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <!--This linked only-->
+              <span data-feather="settings"></span>
+              <%= link_to "Company Settings", edit_company_setting_path(@companies) %>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#_">
+              <span data-feather="book-open"></span>
+              <p class="dashboard_text">Surveys</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#_">
+              <span data-feather="user-plus"></span>
+              <p class="dashboard_text">Groups</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
+<!-- Icons -->
+<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+<script>
+  feather.replace()
+</script>  
+
+<%= render 'layouts/footer' %>

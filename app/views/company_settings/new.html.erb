@@ -1,0 +1,44 @@
+<h1>Company Settings</h1>
+
+<%= form_for(@nc_settings) do |c| %>
+  
+  <div>
+    <%= c.label :enable_My_Settings_to_Superviors %>
+    <%= c.check_box :is_my_settings_sup %>
+  </div>
+
+  <div>
+    <%= c.label :enable_My_Settings_to_Members %>
+    <%= c.check_box :is_my_settings_memb %>
+  </div>    
+
+  <div>
+    <%= c.label :Is_supervisor_can_create_surveys? %>
+    <%= c.check_box :is_sup_create_surv %>
+  </div>  
+
+  <div>
+    <%= c.label :Is_supervisor_can_edit_surveys? %>
+    <%= c.check_box :is_sup_edit_surv %>
+  </div>
+
+  <div>
+    <%= c.label :max_Questions %>
+    <%= c.number_field :max_questions %>
+  </div>
+
+  <div>
+    <%= c.label :survey_Expiry_Time %>
+    <%= c.number_field :survey_expiry %>
+  </div>  
+
+  <div>
+    <%= c.label :company_id %>
+    <%= c.text_field :company_id, value: current_user.company_id, readonly: true %>
+  </div>
+
+  <div>
+    <%= c.submit "Submit Company Settings", class: "btn btn-primary" %>
+  </div>
+
+<% end %>

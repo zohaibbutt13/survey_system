@@ -1,0 +1,17 @@
+ <!-- Navigation -->
+  <nav class="navbar navbar-light bg-light static-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Surveys System</a>
+      <div class="d-flex flex-row-reverse">
+      	<div class="dropdown">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+      Admin
+    </button>
+    <div class="dropdown-menu">
+      <%= link_to "My Settings", edit_user_setting_path(current_user) %>
+      <a class="dropdown-item" href="#">Log out</a>
+    </div>
+  </div>
+      </div>
+    </div>
+  </nav>
