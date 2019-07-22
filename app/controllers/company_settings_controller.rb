@@ -1,5 +1,6 @@
 class CompanySettingsController < ApplicationController
 
+  #/company_settings/new
   def new
     @nc_settings = CompanySetting.new;
   end
@@ -8,6 +9,7 @@ class CompanySettingsController < ApplicationController
   #  @sc_settings = CompanySetting.find(params[:id]);        
   #end
 
+  #/company_settings/id/edit
   def edit
     @ec_settings = CompanySetting.find_by_company_id(params[:id]);
   end

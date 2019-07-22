@@ -4,6 +4,7 @@ class UserSettingsController < ApplicationController
 	  @user = current_user
   end
 
+  #/user_settings/new
   def new
     @u_settings = UserSetting.new;
   end
@@ -12,6 +13,7 @@ class UserSettingsController < ApplicationController
   #  @u_settings = UserSetting.find_by_user_id(@user.id);
   #end
 
+  #/user_settings/id/edit
   def edit
     @u_settings = UserSetting.find_by_user_id(params[:id]);
   end

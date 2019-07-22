@@ -40,6 +40,22 @@
     </nav>
   </div>
 </div>
+
+<!-- User Settings Graphs and History Enable and Disable-->
+
+<% @u_settings = UserSetting.find_by_user_id(current_user.id) %>
+<% if @u_settings.show_graphs %>
+  <div id="graphs">
+    <h1>Graphs</h1>
+  </div>
+<% end%>
+
+<% if @u_settings.show_history %>
+  <div id="histroy">
+    <h1 >History</h1>
+  </div>
+<% end %>
+
 <!-- Icons -->
 <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
 <script>
