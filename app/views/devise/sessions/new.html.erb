@@ -11,25 +11,24 @@
             </div>
           </div>
 
-
           <div class = "login-input-label-container">
             <div class="form-group">
               <label> Password: </label>
               <%= f.password_field :password, autocomplete: "current-password" %>
             </div>
           </div>
+    
+          <% if devise_mapping.rememberable? %>
+            <div class="field">
+              <label> Remember Me: </label>
+              <%= f.check_box :remember_me %>
+              </br>
+            </div>
+          <% end %>
 
           <div class="actions">
             <%= f.submit "Log in" , class: 'btn btn-primary' %>
           </div>
-    
-
-          <% if devise_mapping.rememberable? %>
-            <div class="field">
-            <%= f.check_box :remember_me %>
-            <label> Remeber Me: </label>
-            </div>
-          <% end %>
 
         <% end %>
       </div>
