@@ -1,1 +1,5 @@
-<%= render 'form', locals: {heading: 'Add Member', submit: 'Add', method: :post, member: @member} %>
+<h2>Add Member</h2>
+
+<%= form_for @member, url: members_path(@member), method: :post do |f| %>
+  <%= render 'form', f: f, locals: {heading: 'Add Member', submit: 'Add', method: :post, member: @member} %>
+<% end %>
