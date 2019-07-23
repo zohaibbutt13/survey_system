@@ -5,7 +5,8 @@ class CreateQuestions < ActiveRecord::Migration
       t.string :type
       t.integer :survey_id
       t.belongs_to :survey, index: true
-
+      t.belongs_to :company, index: true
+      
       t.timestamps null: false
     end
   end

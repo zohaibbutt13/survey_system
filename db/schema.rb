@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190717070804) do
+ActiveRecord::Schema.define(version: 20190722123136) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name",                    limit: 255
@@ -70,19 +70,23 @@ ActiveRecord::Schema.define(version: 20190717070804) do
     t.text     "detail",     limit: 65535
     t.string   "type",       limit: 255
     t.integer  "survey_id",  limit: 4
+    t.integer  "company_id", limit: 4
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
 
+  add_index "questions", ["company_id"], name: "index_questions_on_company_id", using: :btree
   add_index "questions", ["survey_id"], name: "index_questions_on_survey_id", using: :btree
 
   create_table "responses", force: :cascade do |t|
     t.string   "answer",      limit: 255
     t.integer  "question_id", limit: 4
+    t.integer  "company_id",  limit: 4
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
 
+  add_index "responses", ["company_id"], name: "index_responses_on_company_id", using: :btree
   add_index "responses", ["question_id"], name: "index_responses_on_question_id", using: :btree
 
   create_table "subscription_packages", force: :cascade do |t|
@@ -101,10 +105,12 @@ ActiveRecord::Schema.define(version: 20190717070804) do
     t.string   "type",        limit: 255
     t.datetime "expiry"
     t.integer  "user_id",     limit: 4
+    t.integer  "company_id",  limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
 
+  add_index "surveys", ["company_id"], name: "index_surveys_on_company_id", using: :btree
   add_index "surveys", ["user_id"], name: "index_surveys_on_user_id", using: :btree
 
   create_table "user_settings", force: :cascade do |t|
@@ -140,6 +146,7 @@ ActiveRecord::Schema.define(version: 20190717070804) do
     t.string   "first_name",             limit: 255
     t.string   "last_name",              limit: 255
     t.string   "role",                   limit: 255
+    t.string   "initial_password",       limit: 255
   end
 
   add_index "users", ["company_id"], name: "index_users_on_company_id", using: :btree

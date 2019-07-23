@@ -1,0 +1,29 @@
+<h2><%= locals[:heading] %></h2>
+
+<%= form_for locals[:member], url: members_path(locals[:member]), method: locals[:method] do |f| %>
+
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name, autofocus: true, autocomplete: "first name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name, autofocus: true, autocomplete: "last name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :role %><br />
+    <%= f.select :role, User::ROLE.reject { |key, value| key == :admin } %>
+    <br>
+  </div>
+
+  <div class="actions">
+    <%= f.submit locals[:submit] %>
+  </div>
+<% end %> 

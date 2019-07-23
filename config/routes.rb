@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
-  devise_for :users
+  root 'companies#dashboard'
+ 
+  devise_for :users, :controllers => { registrations: 'users/registrations' }
+
+  # resources :users
+  resources :groups
+  resources :companies, only: [] do
+    member do
+      get 'dashboard'
+    end
+  end
+  resources :members
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

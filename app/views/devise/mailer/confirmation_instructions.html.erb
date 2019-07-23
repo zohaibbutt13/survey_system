@@ -1,4 +1,8 @@
-<p>Welcome <%= @email %>!</p>
+<p>Welcome <%= @resource.full_name %>!</p>
+
+<% unless @resource.admin? %>
+<p> Your password is <%= @resource.initial_password %>.</p>
+<% end %>
 
 <p>You can confirm your account email through the link below:</p>
 

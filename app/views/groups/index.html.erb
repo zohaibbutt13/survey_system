@@ -1,0 +1,22 @@
+<h1>All Groups</h1>
+
+<% if can? :manage, Group %>
+  <td><%= link_to "Add new", new_group_path %></td>
+<% end %>
+
+<table>
+  <% @groups.each do |group| %>
+    <div>
+      <tr>
+        <td><%= group.name %></td>
+        <% if can? :manage, group %>
+          <td><%= link_to 'Edit', edit_group_path(group) %></td>
+          <td><%= link_to 'Delete', group, method: :delete, data: { confirm: 'You sure?' } %></td>
+        <% end %>
+      </tr>
+      <tr>
+        <td><%= group.description %></td>
+      </tr>
+    </div>
+  <% end %>
+</table>
