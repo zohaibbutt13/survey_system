@@ -1,31 +1,36 @@
 <%= render 'layouts/header' %>
 
-<% if current_user.role == "admin" %>
-  <%= render 'layouts/admin_sidebar' %>  
-<% end %>
-
-<% if current_user.role == "supervisor" %>
-  <%= render 'layouts/supervisor' %>  
-<% end %>  
-
-<!-- User Settings Graphs and History Enable and Disable-->
-<% @u_settings = UserSetting.find_by_user_id(current_user.id) %>
-<% if @u_settings.show_graphs %>
-  <div id="graphs">
-    <h1>Graphs</h1>
+<div class="row">
+  <div class="col-5">
+    <% if current_user.role == "admin" %>
+      <%= render 'layouts/admin_sidebar' %>  
+    <% end %>
+    <% if current_user.role == "supervisor" %>
+      <%= render 'layouts/supervisor' %>  
+    <% end %>  
   </div>
-<% end%>
 
-<% if @u_settings.show_history %>
-  <div id="histroy">
-    <h1 >History</h1>
+  <!-- User Settings Graphs and History Enable and Disable-->
+  <div class="col-7 p-3">
+  
+  <% if @user_settings.show_graphs %>
+    <div id="graphs">
+      <h1>Graphs</h1>
+    </div>
+  <% end %>
+
+  <% if @user_settings.show_history %>
+    <div id="histroy">
+      <h1 >History</h1>
+    </div>
+  <% end %>
   </div>
-<% end %>
+</div>  
 
 <!-- Icons -->
 <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
 <script>
-  feather.replace()
-</script>  
+  feather.replace();
+</script>
 
 <%= render 'layouts/footer' %>

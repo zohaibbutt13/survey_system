@@ -14,27 +14,25 @@
 ActiveRecord::Schema.define(version: 20190717070804) do
 
   create_table "companies", force: :cascade do |t|
-    t.string   "name",                    limit: 255
-    t.boolean  "status",                  limit: 1
+    t.string   "name",         limit: 255
+    t.boolean  "status",       limit: 1
     t.datetime "cancelled_on"
-    t.integer  "package_id",              limit: 4
-    t.integer  "subscription_package_id", limit: 4
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.integer  "package_id",   limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
-  add_index "companies", ["subscription_package_id"], name: "index_companies_on_subscription_package_id", using: :btree
+  add_index "companies", ["package_id"], name: "index_companies_on_package_id", using: :btree
 
   create_table "company_settings", force: :cascade do |t|
-    t.integer  "max_questions",       limit: 4
-    t.boolean  "is_sup_create_surv",  limit: 1
-    t.boolean  "is_sup_edit_surv",    limit: 1
-    t.boolean  "is_my_settings_sup",  limit: 1
-    t.boolean  "is_my_settings_memb", limit: 1
-    t.time     "survey_expiry"
-    t.integer  "company_id",          limit: 4
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.integer  "max_questions",                   limit: 4
+    t.boolean  "supervisors_survey_permission",   limit: 1
+    t.boolean  "supervisors_settings_permission", limit: 1
+    t.boolean  "members_settings_permission",     limit: 1
+    t.integer  "survey_expiry",                   limit: 4
+    t.integer  "company_id",                      limit: 4
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
   end
 
   add_index "company_settings", ["company_id"], name: "index_company_settings_on_company_id", using: :btree
@@ -60,10 +58,12 @@ ActiveRecord::Schema.define(version: 20190717070804) do
   create_table "options", force: :cascade do |t|
     t.text     "detail",      limit: 65535
     t.integer  "question_id", limit: 4
+    t.integer  "company_id",  limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
 
+  add_index "options", ["company_id"], name: "index_options_on_company_id", using: :btree
   add_index "options", ["question_id"], name: "index_options_on_question_id", using: :btree
 
   create_table "questions", force: :cascade do |t|

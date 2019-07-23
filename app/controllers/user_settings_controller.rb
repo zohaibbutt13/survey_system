@@ -6,29 +6,21 @@ class UserSettingsController < ApplicationController
 
   #/user_settings/new
   def new
-    @u_settings = UserSetting.new;
+    @user_settings = UserSetting.new
   end
-
-  #def index
-  #  @u_settings = UserSetting.find_by_user_id(@user.id);
-  #end
 
   #/user_settings/id/edit
   def edit
-    @u_settings = UserSetting.find_by_user_id(params[:id]);
+    @user_settings = UserSetting.find_by_user_id(params[:id])
   end
 
-  #def show
-   # @u_settings = UserSetting.find(params[:id]);
-  #end
-
   def create
-    #Need_Modify
-    @u_settings = UserSetting.new(u_params);
+    #Need_Modification
+    @user_settings = UserSetting.new(user_settings_params)
 
     respond_to do |format|
-      if @u_settings.save
-        format.html { redirect_to @u_settings, notice: 'UserSetting was successfully created.' }
+      if UserSetting.create_user_settings?(@user_settings)
+        format.html { redirect_to @user_settings, notice: 'User Settings was successfully created.' }
       else
         format.html { render :new }
       end
@@ -36,10 +28,10 @@ class UserSettingsController < ApplicationController
   end
 
   def update
-    @u_settings = UserSetting.find(params[:id]);
+    @user_settings = UserSetting.find(params[:id])
     respond_to do |format|
-      if @u_settings.update(u_params)
-        format.html { redirect_to dashboard_path, notice: 'Settings was successfully updated.' }
+      if UserSetting.update_user_settings?(@user_settings, user_settings_params)
+        format.html { redirect_to dashboard_path, notice: 'User Settings was successfully updated.' }
       else
         format.html { render :edit }
       end
@@ -47,7 +39,8 @@ class UserSettingsController < ApplicationController
   end
 
   private 
-    def u_params
+    def user_settings_params
+      #company_id and user_id areadded temporary... Will be removed
       params.require(:user_setting).permit(:emails_subscription, :show_graphs, :show_history, :company_id, :user_id)
     end
 end

@@ -3,7 +3,7 @@ class RegistrationsController < Devise::RegistrationsController
    # temporary function for adding company to new user
   def create
   	super do
-  		resource.company = Company.find(1)
+  		resource.company = Company.find(2)
   		resource.save
   	end
   end
