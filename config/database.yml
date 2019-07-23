@@ -3,12 +3,12 @@ development:
   encoding: utf8
   database: survey_system
   username: root
-  password: MyDb97.11
+  password: 
 
 test:
   adapter: mysql2
   encoding: utf8
   database: survey_system_test
   username: root
-  password: MyDb97.11
+  password: 
   
