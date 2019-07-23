@@ -14,17 +14,16 @@
   <div class="container">
     <h2 class="mb-5">Fill any survey from our wide collection</h2>
     <div class="row">
-      <% if @surveys.nil? or @surveys.empty? %>
+      <% if @surveys.blank? %>
         <h4 class="text-muted"> We will be adding public surveys soon! </h4>
       <% else %> 
-        <!-- UPDATE: replace dummy name parameter with survey name and description parameters -->
-        <% @surveys.each do |name| %>
+        <% @surveys.each do |survey| %>
           <div class="col-lg-4">
             <div class="mx-auto mt-4">
               <div class="card">
-                <h5 class="card-header"> Survey Name <%= name %> </h5>
+                <h5 class="card-header"> Survey Name <%= survey[:name] %> </h5>
                 <div class="card-body">
-                  <p class="card-text">Survey Description will be fetched here for the respective survey</p>
+                  <p class="card-text"> <%= survey[:description] %> </p>
                   <a href="#_" class="btn btn-primary">Fill it</a>
                 </div>
               </div>

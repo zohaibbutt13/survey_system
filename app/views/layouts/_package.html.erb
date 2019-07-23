@@ -3,14 +3,13 @@
   <div class="mx-auto mb-5 mb-lg-0">
     <div class="card text-center">
       <div class="card-body">
-        <h5 class="card-title"> <%= package_name %> </h5>
+        <h5 class="card-title"> <%= package[:package_name] %> </h5>
         <p class="card-text">With this package you will get limit:</p>
         <dl>
-          <!-- UPDATE: Replace hard cored values of limits --> 
           <dt>Max Members Limit</dt>
-          <dd>500</dd>
+          <dd> <%= package[:max_supervisors] %> </dd>
           <dt>Max Supervisors Limit</dt>
-          <dd>50</dd>
+          <dd> <%= package[:max_members] %> </dd>
         </dl> 
         <a href="#_" class="btn btn-primary">Subscribe</a>
       </div>
