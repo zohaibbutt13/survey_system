@@ -1,7 +1,7 @@
 require 'will_paginate/array'
 
-# get 'activity/index'
 class ActivityController < ApplicationController
+  # get activity/index
   def index
     # if @current_user.role == 'admin'
     # @activities = Activity.get_company_activity(@current_user.company_id)
