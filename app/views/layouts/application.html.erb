@@ -1,14 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SurveySystem</title>
+  <title>Survey System</title>
+  <!-- Latest compiled and minified CSS -->
+  <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" %>
+
+  <!-- jQuery library -->
+  <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" %>
+
+  <!-- Popper JS -->
+  <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" %>
+
+  <!-- Latest compiled JavaScript -->
+  <%= javascript_include_tag "https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" %>
+
+  <!-- Custom fonts for this template -->
+  <%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" %>
+  
+  <!-- application assets -->
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+  <%= render 'layouts/header' %>
+  <%= yield %>
+  <%= render 'layouts/footer' %>
 </body>
 </html>
