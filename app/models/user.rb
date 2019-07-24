@@ -15,5 +15,5 @@ class User < ActiveRecord::Base
   validates :first_name, presence: true, uniqueness: true, length: { maximum: 20 }
   validates :last_name, presence: true, uniqueness: true, length: { maximum: 20 }
 
-  ROLE = {admin: 'admin', supervisor: 'supervisor', member: 'member'}
+  ROLE = { admin: 'admin', supervisor: 'supervisor', member: 'member' }
 end

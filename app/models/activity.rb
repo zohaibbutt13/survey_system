@@ -6,28 +6,15 @@ class Activity < ActiveRecord::Base
   validates_presence_of :action, :company_id, :owner_id,
                         :trackable_id, :trackable_type
 
-  # Returns array of activities corresponding to given user_id
-  def self.get_user_activity(user_id)
-    @activities = Array[]
-    Activity.where(owner_id: user_id).find_each do |activity|
-      @activities.push(activity)
-    end
-    @activities
-  end
+  scope :user_activities, ->(user_id) { where("owner_id = ?", user_id) }
+  scope :company_activities, ->(company_id) { where("company_id = ?", company_id) }
 
-  # Returns array of activities corresponding to given company_id
-  # Response activites are displayed if response is set to true
-  def self.get_company_activity(company_id, response = false)
-    @activities = Array[]
-    if response
-      Activity.where(company_id: company_id).find_each do |activity|
-        @activities.push(activity)
-      end
-    else
-      Activity.where("company_id = company_id AND trackable_type != 'response'").find_each do |activity|
-        @activities.push(activity)
-      end
+  def self.get_user_activities(user)
+    user ||= { id: 3, role: 'admin', company_id: 1 }
+    if user[:role] == 'member' || user[:role] == 'supervisor'
+      activities = Activity.user_activities(user[:id])
+    elsif user[:role] == 'admin'
+      activities = Activity.company_activities(user[:company_id])
     end
-    @activities
   end
 end
