@@ -7,13 +7,13 @@
       <%= current_user.role %>
     </div>
     <div class="d-flex flex-row-reverse">
-    	<div class="dropdown">
+      <div class="dropdown">
         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
           <%= current_user.first_name.upcase %>
         </button>
         <div class="dropdown-menu">
-          <% if can? :edit, @user_settings %>
-            <%= link_to "My Settings", edit_user_setting_path(current_user) %>
+          <% if can? :manage, @user_settings %>
+            <%= link_to "My Settings", edit_user_setting_path(current_user.user_setting) %>
           <% end %>
           <br><%= link_to('Logout', destroy_user_session_path, method: :delete) %>
         </div>
