@@ -4,5 +4,5 @@
   <%= text_field_tag "survey[questions_attributes][#{params["question_count"]}][statement]" , nil , class: 'form-control'%>
   <div id = "statement_<%= params["question_count"] %>_option_container" >
   </div>
-  <a href = "#" data-qid = "<%= params["question_count"] %>" data-oid = "-1" class = "js-addoption">Add Option </a>
+  <a href = "#_" data-qid = "<%= params["question_count"] %>" data-oid = "-1" class = "js-addoption">Add Option </a>
 </div>

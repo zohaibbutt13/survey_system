@@ -6,6 +6,6 @@ class Survey < ActiveRecord::Base
   accepts_nested_attributes_for :options
   belongs_to :company
 
-  validates :name, presence: true, length: { maximum: 20 }
+  validates :name, presence: true, length: { maximum: 255 }
   validates :description, presence: true, length: { maximum: 150 }
 end

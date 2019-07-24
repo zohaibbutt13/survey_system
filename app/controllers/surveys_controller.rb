@@ -1,15 +1,13 @@
 class SurveysController < ApplicationController
-  protect_from_forgery with: :null_session
-
+  
   def index
     @surveys = Survey.all
-    @survey = Survey.new
   end
 
   def new
     @survey = Survey.new
     @question = @survey.questions.build
-    @option = @question.options.build
+    @option = @question.options.build 
   end
 
   def show
@@ -20,6 +18,7 @@ class SurveysController < ApplicationController
     @survey = Survey.new(survey_params)
     # @survey.questions.first.user_id = current_user.user_id
     if @survey.save
+      flash[:success] = 'Survey Created'
       redirect_to @survey
     else
       render action: :new
@@ -46,7 +45,7 @@ class SurveysController < ApplicationController
       :survey_type,
       :expiry,
       questions_attributes: [:statement, :question_type,
-        options_attributes: [:detail]]
+      options_attributes: [:detail]]
     )
   end
 end
