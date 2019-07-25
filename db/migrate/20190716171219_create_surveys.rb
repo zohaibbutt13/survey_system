@@ -8,6 +8,7 @@ class CreateSurveys < ActiveRecord::Migration
       t.string :type
       t.datetime :expiry
       t.integer :user_id, index: true
+      t.integer :company_id, index: true
 
       t.timestamps null: false
     end

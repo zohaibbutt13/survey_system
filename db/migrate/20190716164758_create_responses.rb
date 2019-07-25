@@ -3,6 +3,7 @@ class CreateResponses < ActiveRecord::Migration
     create_table :responses do |t|
       t.string :answer
       t.integer :question_id, index: true
+      t.integer :company_id, index: true
 
       t.timestamps null: false
     end
