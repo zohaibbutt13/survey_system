@@ -4,8 +4,7 @@ class CreateCompanies < ActiveRecord::Migration
       t.string :name
       t.boolean :status
       t.datetime :cancelled_on
-      t.integer :package_id
-      t.belongs_to :subscription_package, index: true
+      t.integer :subscription_package_id, index: true
 
       t.timestamps null: false
     end
