@@ -9,11 +9,10 @@ class UserSettingsController < ApplicationController
   end
 
   def create
-    #Need_Modification
-    @user_setting = UserSetting.new(user_setting_params)
     respond_to do |format|
-      if UserSetting.create_user_setting?(@user_setting)
-        format.html { redirect_to @user_setting, notice: 'User Settings was successfully created.' }
+      if @user_setting.create_user_setting?
+        flash[:user_setting_create_notice] = "User settings was successfully created."
+        format.html { redirect_to @user_setting }
       else
         format.html { render :new }
       end
@@ -23,7 +22,8 @@ class UserSettingsController < ApplicationController
   def update
     respond_to do |format|
       if @user_setting.update_user_setting?(user_setting_params)
-        format.html { redirect_to dashboard_path, notice: 'User Settings was successfully updated.' }
+        flash[:user_setting_update_notice] = "User ettings was successfully updated."
+        format.html { redirect_to dashboard_path }
       else
         format.html { render :edit }
       end

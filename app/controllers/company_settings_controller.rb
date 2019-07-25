@@ -9,11 +9,10 @@ class CompanySettingsController < ApplicationController
   end
 
   def create
-    #Need_Modification
-    @company_setting = CompanySetting.new(company_setting_params)
     respond_to do |format|
-      if CompanySetting.create_company_setting?(@company_setting)
-        format.html { redirect_to @company_setting, notice: 'Company Setting was successfully created.' }
+      if @company_setting.create_company_setting?
+        flash[:company_setting_create_notice] = "Company settings was successfully created."
+        format.html { redirect_to @company_setting }
       else
         format.html { render :new }
       end
@@ -23,7 +22,8 @@ class CompanySettingsController < ApplicationController
   def update
     respond_to do |format|
       if @company_setting.update_company_setting?(company_setting_params)
-        format.html { redirect_to dashboard_path, notice: 'Company Settings was successfully updated.' }
+        flash[:company_setting_update_notice] = "Company settings was successfully updated."
+        format.html { redirect_to dashboard_path }
       else
         format.html { render :edit }
       end
@@ -32,6 +32,6 @@ class CompanySettingsController < ApplicationController
   
   private 
     def company_setting_params
-      params.require(:company_setting).permit(:supervisors_survey_permission, :supervisors_settings_permission, :members_settings_permission, :max_questions, :survey_expiry, :company_id)
+      params.require(:company_setting).permit(:supervisors_survey_permission, :supervisors_settings_permission, :members_settings_permission, :max_questions, :survey_expiry_days)
     end
 end

@@ -4,7 +4,7 @@ class CreateUserSettings < ActiveRecord::Migration
       t.boolean :emails_subscription
       t.boolean :show_graphs
       t.boolean :show_history
-      t.integer :company_id
+      t.integer :company_id, index: true
       t.integer :user_id, index: true
 
       t.timestamps null: false
