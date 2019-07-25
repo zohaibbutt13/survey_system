@@ -4,10 +4,9 @@ module ApplicationHelper
   end
 
   def sidebar_menu
-    if current_user.admin?
-      sidebar_menu = { Menu: ['#_','home'], Employees: ['#_','users'], Surveys: ['#_','book-open'], Groups: ['#_','user-plus'] }
-    elsif current_user.supervisor?
-      sidebar_menu = { Menu: ['#_','home'], Members: ['#_','users'], Surveys: ['#_','book-open'], Groups: ['#_','user-plus'] }      
-    end
+      sidebar_menu = { Menu: { url: '#_', icon: 'home' },
+                       Employees: { url: '#_', icon: 'users' },
+                       Surveys: { url: '#_', icon: 'book-open' },
+                       Groups: { url: '#_', icon: 'user-plus' } }
   end
 end

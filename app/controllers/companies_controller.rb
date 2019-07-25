@@ -5,6 +5,6 @@ class CompaniesController < ApplicationController
   end
 
   def dashboard
-    @company_setting, @user_setting = @company.dashboard_resources(@user, @company)
+    @company_setting, @user_setting = @company.dashboard_resources(@user)
   end
 end

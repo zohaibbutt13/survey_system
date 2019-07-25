@@ -11,7 +11,7 @@ class UserSettingsController < ApplicationController
   def create
     respond_to do |format|
       if @user_setting.create_user_setting?
-        flash[:user_setting_create_notice] = "User settings was successfully created."
+        flash[:notice] = "User settings was successfully created."
         format.html { redirect_to @user_setting }
       else
         format.html { render :new }
@@ -22,7 +22,7 @@ class UserSettingsController < ApplicationController
   def update
     respond_to do |format|
       if @user_setting.update_user_setting?(user_setting_params)
-        flash[:user_setting_update_notice] = "User ettings was successfully updated."
+        flash[:notice] = "User ettings was successfully updated."
         format.html { redirect_to dashboard_path }
       else
         format.html { render :edit }
