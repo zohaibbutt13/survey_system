@@ -1,13 +1,17 @@
-<% flash.each do |key, value| %>
+<div class = "flash-margin" >
+  <% flash.each do |key, value| %>
     <% if Array === value %>
     <% value.each do |val| %>
       <div class="<%= flash_type(key) %>">
         <%= val %>
+        <button type="button" class="close" data-dismiss="alert"> &times; </button>
       </div>
     <% end %>
     <% else %>
       <div class="<%= flash_type(key) %>">
         <%= value %>
+        <button type="button" class="close" data-dismiss="alert"> &times; </button>
       </div>
     <% end %>
-<% end %>
+  <% end %>
+</div>
