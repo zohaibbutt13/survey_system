@@ -1,0 +1,4 @@
+var qid = <%= params["question_id"] %>;
+document.getElementById("survey_questions_attributes_"+qid+"_statement").value = '-1'
+var element = document.getElementById("statement_" + qid);
+element.style.display = 'none';

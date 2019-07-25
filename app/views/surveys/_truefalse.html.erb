@@ -1,4 +1,4 @@
-<div class="form-check disabled">
+<div id= "statement_<%= params["question_id"] %>_option_divid_<%= params["option_div_id"] %>">
   <%= radio_button_tag "survey[questions_attributes][#{params["question_id"]}][options_attributes][#{params["option_id"]}][detail]" , class: 'form-control' %>
 <label> True </label>
 </div>

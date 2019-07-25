@@ -1,0 +1,5 @@
+var divid = <%= params["option_div_id"] %>;
+var qid = <%= params["question_id"] %>;
+document.getElementById("survey_questions_attributes_"+qid+"_options_attributes_"+divid+"_detail").value = 'nill';
+var element = document.getElementById("statement_" + qid + "_option_divid_" + divid);
+element.style.display = 'none';

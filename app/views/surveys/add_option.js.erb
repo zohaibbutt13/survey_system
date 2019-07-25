@@ -1,4 +1,5 @@
-var val = $("#survey_questions_attributes_0_question_type").val();
+var qid = <%= params["question_id"] %>;
+var val = $("#survey_questions_attributes_" + qid + "_question_type").val();
 if (val == "Checkbox") {
   $('#statement_<%= params["question_id"] %>_option_container').append("<%= escape_javascript render(:partial => 'surveys/checkbox') %>");
 } 
@@ -7,7 +8,11 @@ else if (val == "Radio Buttons") {
 }
 else if (val == "Comment Box") {
   $('#statement_<%= params["question_id"] %>_option_container').append("<%= escape_javascript render(:partial => 'surveys/commentbox') %>");
+  var add_option_button = document.getElementById('statement_<%= params["question_id"] %>_add_option');
+  add_option_button.parentNode.removeChild(add_option_button);
 }
 else if (val == "True / False") {
   $('#statement_<%= params["question_id"] %>_option_container').append("<%= escape_javascript render(:partial => 'surveys/truefalse') %>");
+  var add_option_button = document.getElementById('statement_<%= params["question_id"] %>_add_option');
+  add_option_button.parentNode.removeChild(add_option_button);
 }

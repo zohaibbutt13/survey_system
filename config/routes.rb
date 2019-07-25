@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     collection do
       get 'add_question'
       get 'add_option'
+      get 'delete_option'
+      get 'delete_question'
     end
   end
   root 'surveys#index'

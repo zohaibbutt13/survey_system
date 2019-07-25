@@ -1,0 +1,8 @@
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+<div>
+  <h3>Edit Survey</h3>
+    <p><%= @survey.description %></p>
+    <%= render 'form' %>
+</div>
