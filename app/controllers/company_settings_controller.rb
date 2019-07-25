@@ -22,7 +22,7 @@ class CompanySettingsController < ApplicationController
 
   def update
     respond_to do |format|
-      if CompanySetting.update_company_setting?(@company_setting, company_setting_params)
+      if @company_setting.update_company_setting?(company_setting_params)
         format.html { redirect_to dashboard_path, notice: 'Company Settings was successfully updated.' }
       else
         format.html { render :edit }

@@ -1,7 +1,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-light bg-light static-top">
   <div class="container">
-    <a class="navbar-brand" href="#">Surveys System</a>
+    <a class="navbar-brand" href="#_">Surveys System</a>
     <div>
       You are logged in as
       <%= current_user.role %>
@@ -9,13 +9,24 @@
     <div class="d-flex flex-row-reverse">
       <div class="dropdown">
         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-          <%= current_user.first_name.upcase %>
+          <%= full_name %>
         </button>
         <div class="dropdown-menu">
-          <% if can? :manage, @user_settings %>
+          <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+        <span data-feather="settings"></span>    
+        </button>
+        <div class="dropdown-menu">
+          <% if can? :manage, @user_setting %>
             <%= link_to "My Settings", edit_user_setting_path(current_user.user_setting) %>
           <% end %>
-          <br><%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+          <br>
+          <% if can? :manage, @company_setting %>
+            <%= link_to "Company Settings", edit_company_setting_path(current_user.company.company_setting) %>
+          <% end %>
         </div>
       </div>
     </div>

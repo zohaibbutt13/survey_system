@@ -1,0 +1,17 @@
+<div class="container-fluid">
+  <div class="row p-3">
+    <nav class="d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <% get_sidebar_menu = sidebar_menu %>
+          <% get_sidebar_menu.each do |content,links_icons| %>
+            <li class="nav-item">
+              <span data-feather= <%= links_icons[1] %> ></span>
+              <%= link_to content, links_icons[0] %>
+            </li>
+          <%end%>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>

@@ -1,11 +1,11 @@
 class CompanySetting < ActiveRecord::Base
   belongs_to :company
 
-  def self.create_company_setting?(company_setting_object)
-    company_setting_object.save
+  def create_company_setting?
+    save
   end
 
-  def self.update_company_setting?(company_setting_object, company_setting_params)
-    company_setting_object.update(company_setting_params)
+  def update_company_setting?(company_setting_params)
+    update(company_setting_params)
   end
 end

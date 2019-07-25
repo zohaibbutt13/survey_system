@@ -10,5 +10,10 @@ class Company < ActiveRecord::Base
   has_many :responses
   has_many :user_settings
 
-  validates :name, presence: true, uniqueness: true, length: { maximum: 30 } 
+  validates :name, presence: true, uniqueness: true, length: { maximum: 30 }
+  def dashboard_resources(user,company)
+    user_setting = user.user_setting
+    company_setting = company.company_setting
+    return company_setting, user_setting
+  end 
 end
