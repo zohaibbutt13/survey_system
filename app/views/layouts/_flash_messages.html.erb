@@ -1,11 +1,13 @@
 <% flash.each do |key, value| %>
-  <% if key == 'notice' %>
-    <div class="alert alert-success"><%= value %></div>
-  <% elsif key == 'error' %>
-    <div class="alert alert-danger"><%= value %></div>
-  <% elsif key == 'warning' %>
-    <div class="alert alert-warning"><%= value %></div> 
-  <% elsif key == 'notify' %>
-    <div class="alert alert-info"><%= value %></div> 
-  <% end %>
+    <% if Array === value %>
+    <% value.each do |val| %>
+      <div class="<%= flash_type(key) %>">
+        <%= val %>
+      </div>
+    <% end %>
+    <% else %>
+      <div class="<%= flash_type(key) %>">
+        <%= value %>
+      </div>
+    <% end %>
 <% end %>
