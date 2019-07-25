@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  ROLE = {admin: 'admin', supervisor: 'supervisor', member: 'member'}
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -30,6 +32,4 @@ class User < ActiveRecord::Base
   def full_name
     "#{first_name} #{last_name}"
   end
-
-  ROLE = {admin: 'admin', supervisor: 'supervisor', member: 'member'}
 end

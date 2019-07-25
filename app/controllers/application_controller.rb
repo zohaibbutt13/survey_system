@@ -12,15 +12,11 @@ class ApplicationController < ActionController::Base
   end
 
   before_action :authenticate_user! do
-    @current_company ||= current_user.company
+    @current_company ||= current_user.company if user_signed_in?
   end
 
   def after_sign_in_path_for(resource)
     dashboard_company_path(current_user.company)
-  end
-
-  def company_employees
-    @company.users
   end
  
   def authenticate_admin!
@@ -28,4 +24,9 @@ class ApplicationController < ActionController::Base
       redirect_to dashboard_company_path(current_user.company)
     end
   end
+
+  def get_subdomain
+    request.subdomain
+  end
+  helper_method :get_subdomain
 end

@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  #root 'companies#dashboard'
- 
   devise_for :users, :controllers => { registrations: 'users/registrations' }
 
+  devise_scope :user do
+    root to: "devise/sessions#new"
+  end
+  
   # resources :users
   resources :groups
   resources :companies, only: [] do
