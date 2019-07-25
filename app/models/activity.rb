@@ -1,6 +1,6 @@
 class Activity < ActiveRecord::Base
   belongs_to :company
-  belongs_to :trackable, :polymorphic => true
+  belongs_to :trackable, polymorphic: true
   belongs_to :owner, class_name: 'User'
 
   validates_presence_of :action, :company_id, :owner_id,

@@ -7,8 +7,8 @@ class CreateSurveys < ActiveRecord::Migration
       t.string :image
       t.string :type
       t.datetime :expiry
-      t.integer :user_id
-      t.belongs_to :user, index: true
+      t.integer :user_id, index: true
+      t.integer :company_id, index: true
 
       t.timestamps null: false
     end

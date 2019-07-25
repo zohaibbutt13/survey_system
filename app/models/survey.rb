@@ -1,7 +1,7 @@
 require 'will_paginate/array'
 
 class Survey < ActiveRecord::Base
-  include Trackable
+  has_many :activities, as: :trackable
   belongs_to :user
   has_many :questions
   belongs_to :company
