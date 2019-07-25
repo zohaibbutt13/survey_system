@@ -7,14 +7,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    super do
+      resource.company = Company.new
+    end
+  end
 
   # POST /resource
   def create
     build_resource(sign_up_params)
-    resource.company = Company.find(3)
     resource.role = User::ROLE[:admin]
     resource.save
 
@@ -89,7 +90,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
 
   def sign_up_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, company_attributes: [:name])
   end
 
   def account_update_params

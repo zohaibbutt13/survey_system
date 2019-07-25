@@ -3,10 +3,9 @@ class CreateQuestions < ActiveRecord::Migration
     create_table :questions do |t|
       t.text :detail
       t.string :type
-      t.integer :survey_id
-      t.belongs_to :survey, index: true
-      t.belongs_to :company, index: true
-      
+      t.integer :survey_id, index: true
+      t.integer :company_id, index: true
+
       t.timestamps null: false
     end
   end

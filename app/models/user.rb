@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
   has_many :surveys
   has_and_belongs_to_many :groups
 
+  accepts_nested_attributes_for :company
+
   validates :first_name, presence: true, length: { maximum: 150 }
   validates :last_name, presence: true, length: { maximum: 150 }
 

@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  before_action :authenticate_user! do
+  before_action do
     @current_company ||= current_user.company if user_signed_in?
   end
 
