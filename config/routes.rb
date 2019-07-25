@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'home/index'
   get 'home/packages'
   get 'activity/index'
+  get 'home/destroy'
   devise_for :users, :controllers => { registrations: 'registrations' }
 
   # The priority is based upon order of creation: first created -> highest priority.

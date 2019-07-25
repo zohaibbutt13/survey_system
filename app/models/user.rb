@@ -12,8 +12,8 @@ class User < ActiveRecord::Base
   has_many :surveys
   has_and_belongs_to_many :groups
 
-  # validates :first_name, presence: true, uniqueness: true, length: { maximum: 20 }
-  # validates :last_name, presence: true, uniqueness: true, length: { maximum: 20 }
+  validates :first_name, presence: true, uniqueness: true, length: { maximum: 20 }
+  validates :last_name, presence: true, uniqueness: true, length: { maximum: 20 }
 
   ROLE = { admin: 'admin', supervisor: 'supervisor', member: 'member' }
 end

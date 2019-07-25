@@ -1,4 +1,5 @@
 class Activity < ActiveRecord::Base
+  serialize :parameters
   belongs_to :company
   belongs_to :trackable, polymorphic: true
   belongs_to :owner, class_name: 'User'
@@ -10,11 +11,13 @@ class Activity < ActiveRecord::Base
   scope :company_activities, ->(company_id) { where("company_id = ?", company_id) }
 
   def self.get_user_activities(user)
-    user ||= { id: 3, role: 'admin', company_id: 1 }
-    if user[:role] == 'member' || user[:role] == 'supervisor'
-      activities = Activity.user_activities(user[:id])
-    elsif user[:role] == 'admin'
-      activities = Activity.company_activities(user[:company_id])
+    if user
+      if user[:role] == 'member' || user[:role] == 'supervisor'
+        activities = Activity.user_activities(user[:id])
+      elsif user[:role] == 'admin'
+        activities = Activity.company_activities(user[:company_id])
+      end
     end
+    activities ||= []
   end
 end

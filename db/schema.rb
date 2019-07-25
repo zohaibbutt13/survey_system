@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190719060948) do
+ActiveRecord::Schema.define(version: 20190725081958) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "company_id",     limit: 4
-    t.string   "parameters",     limit: 255
+    t.text     "parameters",     limit: 65535
     t.string   "action",         limit: 255
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.integer  "trackable_id",   limit: 4
     t.string   "trackable_type", limit: 255
     t.integer  "owner_id",       limit: 4
