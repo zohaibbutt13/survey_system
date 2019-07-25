@@ -1,23 +1,18 @@
 class MembersController < ApplicationController
   load_and_authorize_resource :member, :class => 'User', :parent => false
 
-  before_action do 
-    @company = current_user.company
-  end
-
   def new
   end
 
   def index
-    
   end
 
   def create
     password = Devise.friendly_token.first(8)
-    @member.company = @company
+    @member.company = @current_company
     @member.password = @member.password_confirmation = @member.initial_password = password
     if @member.save
-      redirect_to dashboard_company_path(@company)
+      redirect_to dashboard_company_path(@current_company)
     else
       render :new
     end

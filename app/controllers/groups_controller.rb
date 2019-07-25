@@ -2,7 +2,6 @@ class GroupsController < ApplicationController
   load_and_authorize_resource
 
   before_action do
-    @company = current_user.company
     @employees = User.accessible_by(current_ability)
   end
 
@@ -10,7 +9,7 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group.company = @company
+    @group.company = @current_company
 
     if @group.save
       redirect_to groups_path

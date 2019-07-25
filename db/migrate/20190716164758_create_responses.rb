@@ -10,3 +10,4 @@ class CreateResponses < ActiveRecord::Migration
     end
   end
 end
+end

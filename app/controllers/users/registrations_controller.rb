@@ -14,7 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     build_resource(sign_up_params)
-    resource.company = Company.find(1)
+    resource.company = Company.find(3)
     resource.role = User::ROLE[:admin]
     resource.save
 

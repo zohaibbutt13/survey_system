@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'companies#dashboard'
+  #root 'companies#dashboard'
  
   devise_for :users, :controllers => { registrations: 'users/registrations' }
 
