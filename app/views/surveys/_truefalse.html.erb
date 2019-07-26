@@ -1,8 +1,6 @@
 <div id= "statement_<%= params["question_id"] %>_option_divid_<%= params["option_div_id"] %>">
-  <%= radio_button_tag "survey[questions_attributes][#{params["question_id"]}][options_attributes][#{params["option_id"]}][detail]" , class: 'form-control' %>
-<label> True </label>
-</div>
-<div class="form-check disabled">
-  <%= radio_button_tag "survey[questions_attributes][#{params["question_id"]}][options_attributes][#{params["option_id"]}][detail]" , class: 'form-control' %>
-<label> False </label>
+  <%= radio_button_tag :option, class: 'form-control' %>
+  <%= text_field_tag "survey[questions_attributes][#{params["question_id"]}][options_attributes][#{params["option_id"]}][detail]", 'True', class: 'form-control', readonly: true %> 
+  <%= radio_button_tag :option, class: 'form-control' %>
+  <%= text_field_tag "survey[questions_attributes][#{params["question_id"]}][options_attributes][#{params["option_id"]}][detail]", 'False', class: 'form-control', readonly: true %> 
 </div>
