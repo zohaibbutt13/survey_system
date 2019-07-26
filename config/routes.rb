@@ -2,7 +2,10 @@ Rails.application.routes.draw do
 
   get 'home/index'
   get 'home/packages'
+  get 'home/display_surveys'
   get 'activity/index'
+  get 'home/display_expired_surveys'
+  get 'home/display_active_surveys'
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
