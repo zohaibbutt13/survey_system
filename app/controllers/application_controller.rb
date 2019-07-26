@@ -5,4 +5,7 @@ class ApplicationController < ActionController::Base
  #  rescue_from CanCan::AccessDenied do |exception|
  #    redirect_to dashboard_path, :alert => exception.message
 	# end
+  def after_sign_in_path_for(resource)
+    dashboard_company_path(current_user.company)
+  end
 end

@@ -6,6 +6,7 @@ class UserSettingsController < ApplicationController
 
   #/user_settings/id/edit
   def edit
+    @company_setting = current_user.company.company_setting
   end
 
   def create
@@ -21,9 +22,9 @@ class UserSettingsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @user_setting.update_user_setting?(user_setting_params)
+      if @user_setting.update_user_setting(user_setting_params)
         flash[:notice] = "User ettings was successfully updated."
-        format.html { redirect_to dashboard_path }
+        format.html { redirect_to dashboard_company_path }
       else
         format.html { render :edit }
       end

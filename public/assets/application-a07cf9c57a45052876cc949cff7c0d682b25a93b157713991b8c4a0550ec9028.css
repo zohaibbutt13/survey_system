@@ -1,0 +1,108 @@
+footer.footer {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+/* line 3, /home/fatima/Sites/survey_system/app/assets/stylesheets/custom.scss */
+body {
+  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* line 7, /home/fatima/Sites/survey_system/app/assets/stylesheets/custom.scss */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+}
+
+/* line 17, /home/fatima/Sites/survey_system/app/assets/stylesheets/custom.scss */
+header.master-head {
+  position: relative;
+  background-color: #343a40;
+  background: url("bg-masthead.jpg") no-repeat center center;
+  background-size: cover;
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
+
+/* line 27, /home/fatima/Sites/survey_system/app/assets/stylesheets/custom.scss */
+header.master-head h1 {
+  font-size: 2rem;
+}
+
+/* line 31, /home/fatima/Sites/survey_system/app/assets/stylesheets/custom.scss */
+.packages {
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+
+/* line 36, /home/fatima/Sites/survey_system/app/assets/stylesheets/custom.scss */
+footer.footer {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+/* line 4, /home/fatima/Sites/survey_system/app/assets/stylesheets/home.scss */
+footer.footer {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+
+
+ */
+/* line 3, /home/fatima/Sites/survey_system/app/assets/stylesheets/custom.scss */
+body {
+  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* line 7, /home/fatima/Sites/survey_system/app/assets/stylesheets/custom.scss */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+}
+
+/* line 17, /home/fatima/Sites/survey_system/app/assets/stylesheets/custom.scss */
+header.master-head {
+  position: relative;
+  background-color: #343a40;
+  background: url("bg-masthead.jpg") no-repeat center center;
+  background-size: cover;
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
+
+/* line 27, /home/fatima/Sites/survey_system/app/assets/stylesheets/custom.scss */
+header.master-head h1 {
+  font-size: 2rem;
+}
+
+/* line 31, /home/fatima/Sites/survey_system/app/assets/stylesheets/custom.scss */
+.packages {
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+
+/* line 36, /home/fatima/Sites/survey_system/app/assets/stylesheets/custom.scss */
+footer.footer {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
