@@ -1,14 +1,14 @@
 <!-- Navigation -->
 <nav class="navbar navbar-light bg-light static-top">
   <div class="container">
-  <%if get_current_user? %>
     <a class="navbar-brand" href="#_">Surveys System</a>
     <div>
-      You are logged in as <%= current_user.role %>
+      You are logged in as
+      <%= current_user.role %>
     </div>
     <div class="d-flex flex-row-reverse">
       <div class="dropdown">
-        <button type="button" class="btn btn-primary dropdown-toggle m-1" data-toggle="dropdown">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
           <%= full_name %>
         </button>
         <div class="dropdown-menu">
@@ -16,7 +16,7 @@
         </div>
       </div>
       <div class="dropdown">
-        <button type="button" class="btn btn-primary dropdown-toggle m-1" data-toggle="dropdown">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
         <span data-feather="settings"></span>    
         </button>
         <div class="dropdown-menu">
@@ -30,19 +30,5 @@
         </div>
       </div>
     </div>
-  <% else %>
-    <div class="container">
-      <a class="navbar-brand" href="/">Survey System</a>
-      <div class="d-flex flex-row-reverse">
-        <a class="btn btn-primary" href="/users/sign_up">Register</a>
-        <a class="nav-link" href="/users/sign_in">Sign in</a>
-      </div>
-    </div>
-  <% end %>
+  </div>
 </nav>
-
-<!-- Icons -->
-<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
-<script>
-  feather.replace();
-</script>

@@ -1,13 +1,8 @@
 Rails.application.routes.draw do
+  get :dashboard, to: 'companies#dashboard'
 
-  #get 'dashboard' => 'companies#dashboard'
+  get 'dashboard' => 'companies#dashboard'
 
-  resources :companies, only: [] do
-    member do
-      get 'dashboard'
-    end
-  end
-  
   resources :company_settings
 
   resources :user_settings
@@ -17,7 +12,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'home#index'
+  # root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

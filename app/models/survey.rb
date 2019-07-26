@@ -3,6 +3,6 @@ class Survey < ActiveRecord::Base
   has_many :questions
   belongs_to :company
 
-  validates :name, presence: true, length: { maximum: 100 }
-  validates :description, presence: true, length: { maximum: 500 }
+  validates :name, presence: true, length: { maximum: 20 }
+  validates :description, presence: true, length: { maximum: 150 }
 end

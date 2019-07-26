@@ -6,7 +6,7 @@ class UserSetting < ActiveRecord::Base
     save
   end
 
-  def update_user_setting(user_setting_params)
+  def update_user_setting?(user_setting_params)
     update(user_setting_params)
   end
 end
