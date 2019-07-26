@@ -11,7 +11,7 @@ class Company < ActiveRecord::Base
   has_many :user_settings
 
   validates :name, presence: true, uniqueness: true, length: { maximum: 30 } 
-
+  validates :subdomain, presence: true, uniqueness: true, length: { maximum: 30 }
   # def create_company(Params)
   #   company = Company.new(params)
   #   company.save

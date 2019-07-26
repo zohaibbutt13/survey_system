@@ -1,5 +1,5 @@
 class CompaniesController < ApplicationController
-  # before_action :authenticate_user! do
+  before_action :authenticate_user!
   #   @user = current_user
   #   @company = @user.company
   # end
