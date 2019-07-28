@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       get 'add_option'
     end
   end
-  root 'surveys#index'
+
 
   get :dashboard, to: 'companies#dashboard'
 

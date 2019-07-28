@@ -1,4 +1,4 @@
 <div class="form-check disabled">
   <label> Comment box: </label>
-  <%= text_field_tag "survey[questions_attributes][#{params["question_id"]}][options_attributes][#{params["option_id"]}][detail]", nil , class: 'form-control' %>
+  <%= render 'options/text_field' , locals: {question_id: "#{params["question_id"]}", option_id: "#{params["option_id"]}"}%> 
 </div>

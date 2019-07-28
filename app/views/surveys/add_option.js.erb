@@ -1,4 +1,5 @@
-var val = $("#survey_questions_attributes_0_question_type").val();
+var qid = <%= params["question_id"] %>;
+var val = $("#survey_questions_attributes_"+qid+"_question_type").val();
 if (val == "Checkbox") {
   $('#statement_<%= params["question_id"] %>_option_container').append("<%= escape_javascript render(partial: 'options/checkbox') %>");
 } 
