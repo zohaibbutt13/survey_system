@@ -5,5 +5,4 @@ task add_packages: :environment do
                              max_supervisors: 50, max_members: 500)
   SubscriptionPackage.create(package_name: 'Silver Package',
                              max_supervisors: 20, max_members: 200)
-  puts 'Packages added'
 end

@@ -5,8 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable,
          :confirmable, :trackable
 
-  include Trackable
-  has_many :activities
+  has_many :activities, as: :trackable
+  has_many :activities, dependent: :destroy
   belongs_to :company
   has_one :user_setting
   has_many :surveys
