@@ -27,4 +27,8 @@ class HomeController < ApplicationController
     @surveys = Survey.get_active_surveys
     render 'display_surveys'
   end
+
+  # get home/charts
+  def charts
+  end
 end
