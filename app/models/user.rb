@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable,
          :confirmable, :trackable
 
+  has_many :activities, as: :trackable
+  has_many :activities, dependent: :destroy
   belongs_to :company
   has_one :user_setting
   has_many :surveys
@@ -13,5 +15,5 @@ class User < ActiveRecord::Base
   validates :first_name, presence: true, uniqueness: true, length: { maximum: 20 }
   validates :last_name, presence: true, uniqueness: true, length: { maximum: 20 }
 
-  ROLE = {admin: 'admin', supervisor: 'supervisor', member: 'member'}
+  ROLE = { admin: 'admin', supervisor: 'supervisor', member: 'member' }
 end
