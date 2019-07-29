@@ -32,7 +32,6 @@ gem 'rspec-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-
 group :development, :test do
   gem 'pry', '=0.10.1'
   gem 'pry-rails', '=0.3.3' 
@@ -46,4 +45,13 @@ end
 
 group :development do
   gem 'web-console' , '~> 2.0'
+end
+
+group :test do
+  gem 'pry', '=0.10.1'
+  gem 'pry-rails', '=0.3.3' 
+  gem 'mailcatcher', '=0.6.1'
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
+  gem 'devise'
 end
