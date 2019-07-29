@@ -17,25 +17,13 @@ class HomeController < ApplicationController
 
   # get home/display_surveys
   def display_surveys
-    @surveys = Survey.all
-    respond_to do |format|
-      format.html
+    if params[:filter_by] == 'expiry'
+      @surveys = Survey.get_expired_surveys
+    elsif params[:filter_by] == 'active'
+      @surveys = Survey.get_active_surveys
+    else
+      @surveys = Survey.all
     end
-  end
-
-  # get home/display_expired_surveys
-  def display_expired_surveys
-    @surveys = Survey.get_expired_surveys
-    render 'display_surveys'
-    respond_to do |format|
-      format.html
-    end
-  end
-
-  # get home/display_active_surveys
-  def display_active_surveys
-    @surveys = Survey.get_active_surveys
-    render 'display_surveys'
     respond_to do |format|
       format.html
     end

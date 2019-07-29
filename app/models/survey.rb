@@ -10,9 +10,9 @@ class Survey < ActiveRecord::Base
   validates :name, presence: true, length: { maximum: 20 }
   validates :description, presence: true, length: { maximum: 150 }
 
-  scope :public_surveys, -> { where(type: 'public') }
-  scope :expired_surveys, ->(date_time) { where('expiry < ?', date_time) }
-  scope :active_surveys, ->(date_time) { where('expiry > ?', date_time) }
+  scope :public_surveys, -> { where(survey_type: 'public') }
+  scope :expired_surveys, -> { where('expiry < ?', DateTime.now) }
+  scope :active_surveys, -> { where('expiry > ?', DateTime.now) }
 
   # Returns array of all the public surveys
   def self.get_public_surveys(page_params, per_page_limit)
@@ -20,10 +20,10 @@ class Survey < ActiveRecord::Base
   end
 
   def self.get_expired_surveys
-    Survey.expired_surveys(DateTime.now)
+    Survey.expired_surveys
   end
 
   def self.get_active_surveys
-    Survey.active_surveys(DateTime.now)
+    Survey.active_surveys
   end
 end
