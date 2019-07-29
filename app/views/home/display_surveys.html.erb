@@ -10,9 +10,9 @@
         Select
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="/home/display_expired_surveys">Expired</a>
-        <a class="dropdown-item" href="/home/display_active_surveys">Active</a>
-        <a class="dropdown-item" href="/home/display_surveys">All</a>
+        <%= link_to "Expired", {controller: "home", action: "display_surveys", filter_by: 'expiry' }, class: "dropdown-item" %>
+        <%= link_to "Active", {controller: "home", action: "display_surveys", filter_by: 'active'}, class: "dropdown-item" %>
+        <%= link_to "All", {controller: "home", action: "display_surveys", filter_by: 'all' }, class: "dropdown-item" %>
       </div>
     </div>
   </div>
@@ -36,9 +36,9 @@
           <td><%= survey.name %></td>
           <td><%= survey.description %></td>
           <td><%= survey.category %></td>
-          <td><%= survey.user.first_name + " " + survey.user.last_name %></td>
-          <td><%= survey.created_at %></td>
-          <td><%= survey.expiry %></td>
+          <td><%= survey.user.full_name %></td>
+          <td><%= survey.created_at.to_s(:long) %></td>
+          <td><%= survey.expiry.to_s(:long) %></td>
         </tr>
         <% end %>
       </tbody>

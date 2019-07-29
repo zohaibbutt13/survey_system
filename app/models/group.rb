@@ -1,5 +1,5 @@
 class Group < ActiveRecord::Base
-  include Trackable
+  has_many :activities, as: :trackable
   belongs_to :company
   has_and_belongs_to_many :users
 

@@ -1,14 +1,22 @@
 Rails.application.routes.draw do
-  get :dashboard, to: 'companies#dashboard'
+  resources :home do
+    collection do
+      get 'index'
+      get 'packages'
+      get 'display_surveys'
+      get 'charts'
+    end
+  end
 
-  get 'home/index'
-  get 'home/packages'
-  get 'home/display_surveys'
-  get 'activity/index'
-  get 'home/display_expired_surveys'
-  get 'home/display_active_surveys'
-  get 'home/charts'
+  resources :activity do
+    collection do
+      get 'index'
+    end
+  end
+
+  get :dashboard, to: 'companies#dashboard'
   devise_for :users, :controllers => { registrations: 'registrations' }
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

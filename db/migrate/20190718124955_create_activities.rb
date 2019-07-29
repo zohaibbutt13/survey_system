@@ -1,7 +1,7 @@
 class CreateActivities < ActiveRecord::Migration
   def change
     create_table :activities do |t|
-      t.integer :company, index: true
+      t.integer :company_id, index: true
       t.string :parameters
       t.string :action
 
