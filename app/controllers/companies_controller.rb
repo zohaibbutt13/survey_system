@@ -4,6 +4,9 @@ class CompaniesController < ApplicationController
     @company = @user.company
   end
 
+  #TODO after_create
+  #.................
+  
   def dashboard
     @company_setting, @user_setting = @company.dashboard_resources(@user)
   end

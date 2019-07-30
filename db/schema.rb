@@ -13,6 +13,20 @@
 
 ActiveRecord::Schema.define(version: 20190729174607) do
 
+  create_table "activities", force: :cascade do |t|
+    t.integer  "company_id",     limit: 4
+    t.text     "parameters",     limit: 65535
+    t.string   "action",         limit: 255
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "trackable_id",   limit: 4
+    t.string   "trackable_type", limit: 255
+    t.integer  "owner_id",       limit: 4
+  end
+
+  add_index "activities", ["company_id"], name: "index_activities_on_company_id", using: :btree
+  add_index "activities", ["trackable_type", "trackable_id"], name: "index_activities_on_trackable_type_and_trackable_id", using: :btree
+
   create_table "companies", force: :cascade do |t|
     t.string   "name",                    limit: 255
     t.string   "status",                  limit: 255
@@ -57,12 +71,12 @@ ActiveRecord::Schema.define(version: 20190729174607) do
   add_index "options", ["question_id"], name: "index_options_on_question_id", using: :btree
 
   create_table "questions", force: :cascade do |t|
-    t.text     "detail",     limit: 65535
-    t.string   "type",       limit: 255
-    t.integer  "survey_id",  limit: 4
-    t.integer  "company_id", limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.text     "statement",     limit: 65535
+    t.string   "question_type", limit: 255
+    t.integer  "survey_id",     limit: 4
+    t.integer  "company_id",    limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   add_index "questions", ["company_id"], name: "index_questions_on_company_id", using: :btree
@@ -92,7 +106,7 @@ ActiveRecord::Schema.define(version: 20190729174607) do
     t.text     "description", limit: 65535
     t.string   "category",    limit: 255
     t.string   "image",       limit: 255
-    t.string   "type",        limit: 255
+    t.string   "survey_type", limit: 255
     t.datetime "expiry"
     t.integer  "user_id",     limit: 4
     t.integer  "company_id",  limit: 4

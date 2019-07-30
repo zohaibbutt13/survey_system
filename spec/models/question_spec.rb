@@ -4,19 +4,19 @@ RSpec.describe Question, type: :model do
   question = Question.new
 
   it 'is valid with valid attributes' do
-    question.detail = 'What is your name'
-    question.type = 'Comment Box'
+    question.statement = 'What is your name'
+    question.question_type = 'Comment Box'
     question.survey_id = 1
     expect(question).to be_valid
   end
 
-  it 'is not valid without question detail' do
-    question.detail = nil
+  it 'is not valid without question type' do
+    question.question_type = nil
     expect(question).to_not be_valid
   end
 
-  it 'is not valid without question type' do
-    question.type = nil
+  it 'is not valid without a statement' do
+    question.statement = nil
     expect(question).to_not be_valid
   end
 

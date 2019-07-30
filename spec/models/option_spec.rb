@@ -4,7 +4,7 @@ RSpec.describe Option, type: :model do
   option = Option.new
 
   it 'is valid with valid detail' do
-    option.detail = '1'
+    option.detail = '15-20'
     option.question_id = 1
     expect(option).to be_valid
   end

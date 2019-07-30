@@ -4,7 +4,7 @@ module ApplicationHelper
   end
 
   def sidebar_menu
-      sidebar_menu = { Menu: { url: '#_', icon: 'home' },
+      sidebar_menu = { Menu: { url: dashboard_company_path(current_user), icon: 'home' },
                        Employees: { url: '#_', icon: 'users' },
                        Surveys: { url: '#_', icon: 'book-open' },
                        Groups: { url: '#_', icon: 'user-plus' } }

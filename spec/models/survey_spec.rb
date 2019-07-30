@@ -14,7 +14,7 @@ RSpec.describe Survey, type: :model do
     expect(survey).to be_valid
   end
 
-  it 'is valid with valid attributes' do
+  it 'is valid with these attributes' do
     survey.name = 'Public Survey'
     survey.description = 'This is the public survey'
     survey.category = 'guest'
