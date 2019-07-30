@@ -1,7 +1,30 @@
 Rails.application.routes.draw do
-  get :dashboard, to: 'companies#dashboard'
+  resources :surveys do
+    collection do
+      get 'add_question'
+      get 'add_option'
+    end
+  end
 
-  get 'dashboard' => 'companies#dashboard'
+  resources :home do
+    collection do
+      get 'index'
+      get 'packages'
+      get 'display_surveys'
+    end
+  end
+
+  resources :activity do
+    collection do
+      get 'index'
+    end
+  end
+
+  resources :companies, only: [] do
+    member do
+      get 'dashboard'
+    end
+  end
 
   resources :company_settings
 

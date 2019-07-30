@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable,
          :confirmable, :trackable
 
+  has_many :activities, as: :trackable
+  has_many :activities, dependent: :destroy
   belongs_to :company
   has_one :user_setting
   has_many :surveys
@@ -25,5 +27,9 @@ class User < ActiveRecord::Base
     role == User::ROLE[:member]
   end
 
-  ROLE = {admin: 'admin', supervisor: 'supervisor', member: 'member'}
+  ROLE = { admin: 'admin', supervisor: 'supervisor', member: 'member' }
+
+  def full_name
+    first_name + ' ' + last_name
+  end
 end
