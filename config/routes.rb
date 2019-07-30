@@ -7,8 +7,10 @@ Rails.application.routes.draw do
       get 'delete_option'
       get 'delete_question'
     end
+    resources :user_responses
   end
   root 'surveys#index'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
