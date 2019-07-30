@@ -11,10 +11,5 @@ class Company < ActiveRecord::Base
   has_many :user_settings, dependent: :destroy
   has_many :activities, dependent: :destroy
 
-  validates :name, presence: true, uniqueness: true, length: { maximum: 30 }
-  def dashboard_resources(user)
-    user_setting = user.user_setting
-    company_setting = user.company.company_setting
-    return company_setting, user_setting
-  end 
+  validates :name, presence: true, uniqueness: true, length: { maximum: 30 } 
 end
