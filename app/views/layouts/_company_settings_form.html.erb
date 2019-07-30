@@ -1,0 +1,33 @@
+<h1>Company Settings</h1>
+<%= form_for(@company_setting) do |c| %>
+  
+  <div class="form-group">
+    <%= c.label :allow_supervisors_to_edit_my_settings %>
+    <%= c.check_box :supervisors_settings_permission %>
+  </div>
+
+  <div class="form-group">
+    <%= c.label :allow_members_to_edit_my_settings %>
+    <%= c.check_box :members_settings_permission %>
+  </div>    
+
+  <div class="form-group">
+    <%= c.label :allow_supervisor_to_create_surveys %>
+    <%= c.check_box :supervisors_survey_permission %>
+  </div>  
+
+  <div class="form-group">
+    <%= c.label :Max_Questions %>
+    <%= c.number_field :max_questions, max: 500, min: 1 %>
+  </div>
+
+  <div class="form-group">
+    <%= c.label :survey_expiry_days %>
+    <%= c.number_field :survey_expiry_days, max: 5, min: 1 %>
+  </div>
+
+  <div class="form-group">
+    <%= c.submit class: "btn btn-primary" %>
+  </div>
+
+<% end %>

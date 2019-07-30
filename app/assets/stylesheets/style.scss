@@ -1,3 +1,22 @@
+.nav-item{
+  font-size: 1rem;
+}
+
+.dashboard_text{
+  padding-left: 0.5rem;
+  display: inline
+}
+
+.name{
+  display: inline;
+  margin-right: 1rem; 
+}
+
+.settings-name{
+  display: inline;
+  margin-right: 1rem; 
+}
+
 body {
   font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
@@ -19,7 +38,6 @@ header.master-head {
   padding-top: 8rem;
   padding-bottom: 8rem;
 }
-
 
 header.master-head h1 {
   font-size: 2rem;

@@ -4,11 +4,18 @@ require 'date'
 class Survey < ActiveRecord::Base
   has_many :activities, as: :trackable
   belongs_to :user
-  has_many :questions
+  has_many :questions, dependent: :destroy
+  has_many :options, through: :questions
+  accepts_nested_attributes_for :questions
+  accepts_nested_attributes_for :options
   belongs_to :company
 
-  validates :name, presence: true, length: { maximum: 20 }
+  validates :name, presence: true, length: { maximum: 255 }
   validates :description, presence: true, length: { maximum: 150 }
+
+  def self.save?(survey)
+    survey.save
+  end
 
   scope :public_surveys, -> { where(survey_type: 'public') }
   scope :expired_surveys, -> { where('expiry < ?', DateTime.now) }

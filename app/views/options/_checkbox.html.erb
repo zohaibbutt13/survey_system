@@ -1,0 +1,5 @@
+<div class="form-check disabled">
+  <%= check_box_tag :option , class: 'form-control' %>
+  <label> Option </label>
+  <%= render 'options/text_field' , locals: {question_id: "#{params["question_id"]}", option_id: "#{params["option_id"]}"}%> 
+</div> 
