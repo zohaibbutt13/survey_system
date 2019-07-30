@@ -16,7 +16,6 @@
 !/log/.keep
 /tmp
 
-
 config/*.yml
 db/schema.rb
 public/system/*
