@@ -9,4 +9,8 @@ module ApplicationHelper
                        Surveys: { url: '#_', icon: 'book-open' },
                        Groups: { url: '#_', icon: 'user-plus' } }
   end
+
+  def get_current_user?
+    current_user
+  end
 end

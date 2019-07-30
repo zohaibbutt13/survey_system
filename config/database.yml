@@ -20,11 +20,11 @@ test:
   encoding: utf8
   database: survey_system_test
   username: root
-  password: abc123
+  password: abc
 
 production:
   adapter: mysql2
   encoding: utf8
   database: survey_system_production
   username: root
-  password: abc123
+  password: abc

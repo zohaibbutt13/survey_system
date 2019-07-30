@@ -1,5 +1,4 @@
 class RegistrationsController < Devise::RegistrationsController
-
    # temporary function for adding company to new user
   def create
     super do
@@ -9,12 +8,13 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   private
-
   def sign_up_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:first_name, :last_name, :email, :password,
+                                 :password_confirmation, :image)
   end
 
   def account_update_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password)
+    params.require(:user).permit(:first_name, :last_name, :email, :password,
+                                 :password_confirmation, :current_password)
   end
 end

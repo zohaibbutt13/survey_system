@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190717070804) do
+ActiveRecord::Schema.define(version: 20190729174607) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name",                    limit: 255
@@ -137,6 +137,10 @@ ActiveRecord::Schema.define(version: 20190717070804) do
     t.string   "first_name",             limit: 255
     t.string   "last_name",              limit: 255
     t.string   "role",                   limit: 255
+    t.string   "image_file_name",        limit: 255
+    t.string   "image_content_type",     limit: 255
+    t.integer  "image_file_size",        limit: 4
+    t.datetime "image_updated_at"
   end
 
   add_index "users", ["company_id"], name: "index_users_on_company_id", using: :btree

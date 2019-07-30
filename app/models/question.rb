@@ -5,4 +5,5 @@ class Question < ActiveRecord::Base
   belongs_to :company
 
   validates :detail, presence: true, length: { maximum: 100 }
+  validates :type, presence: true, length: { maximum: 100 }
 end

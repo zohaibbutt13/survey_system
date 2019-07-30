@@ -6,12 +6,15 @@ class CompanySettingsController < ApplicationController
 
   #/company_settings/id/edit
   def edit
+    respond_to do |format|
+      format.html { @user_setting = current_user.user_setting }
+    end
   end
 
   def create
     respond_to do |format|
-      if @company_setting.create_company_setting?
-        flash[:notice] = "Company settings was successfully created."
+      if @company_setting.create_company_setting
+        flassh[:notice] = "Company settings was successfully created."
         format.html { redirect_to @company_setting }
       else
         format.html { render :new }
@@ -21,9 +24,9 @@ class CompanySettingsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @company_setting.update_company_setting?(company_setting_params)
+      if @company_setting.update_company_setting(company_setting_params)
         flash[:notice] = "Company settings was successfully updated."
-        format.html { redirect_to dashboard_path }
+        format.html { redirect_to dashboard_company_path }
       else
         format.html { render :edit }
       end
