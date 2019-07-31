@@ -14,9 +14,8 @@ $(document).ready(function() {
       data: { question_id: qid, option_id: oid, option_div_id: divid }
     });
   });
-});
 
-$(document).ready(function() {
+
   $('body').on('click', '.js-addquestion', function(event){
     event.preventDefault();
     var count = $(this).data("count");
@@ -28,9 +27,7 @@ $(document).ready(function() {
       data: { question_count: count }
     });
   });
-});
 
-$(document).ready(function() {
   $('body').on('click', '.js-deleteoption', function(event){
     event.preventDefault();
     var oid = $(this).data("oid");
@@ -42,9 +39,7 @@ $(document).ready(function() {
       data: { question_id: qid, option_id: oid, option_div_id: divid }
     });
   });
-});
 
-$(document).ready(function() {
   $('body').on('click', '.js-deletequestion', function(event){
     event.preventDefault();
     var qid = $(this).data("qid");

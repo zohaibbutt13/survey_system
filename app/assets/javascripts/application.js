@@ -12,8 +12,4 @@
 //
 //= require jquery
 //= require jquery_ujs
-<<<<<<< HEAD
-
-=======
->>>>>>> 779ae85a9fe2697dc62ff9dba48161ad94704a06
 //= require_tree .
