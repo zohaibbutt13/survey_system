@@ -31,6 +31,16 @@
           <input type="date" class="form-control" id="expired-before">
         </div>
 
+        <div class="form-group">
+          <label for="created-after">Created After:</label>
+          <input type="date" class="form-control" id="created-after">
+        </div>
+
+        <div class="form-group">
+          <label for="created-before">Created Before:</label>
+          <input type="date" class="form-control" id="created-before">
+        </div>
+
         <div>
           <%= link_to "Filter", {controller: "companies", action: "filter"}, class: "btn btn-primary", id: "js-filter" %>
         </div>

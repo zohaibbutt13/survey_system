@@ -7,7 +7,7 @@ class Ability
     user ||= User.new
 
     if user.admin?
-      can :manage, [User, Group], company_id: user.company_id
+      can :manage, [User, Group, Survey], company_id: user.company_id
       cannot [:destroy, :edit], user
     elsif user.supervisor?
       can :read, [User, Group], company_id: user.company_id
