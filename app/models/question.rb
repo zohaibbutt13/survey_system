@@ -5,7 +5,7 @@ class Question < ActiveRecord::Base
   has_many :answers, dependent: :destroy
   belongs_to :company
 
-  validates :statement, presence: true, length: { maximum: 100 }
+  validates :statement, presence: true, length: { maximum: 500 }
   before_save :mark_option_for_removal
 
   def mark_option_for_removal

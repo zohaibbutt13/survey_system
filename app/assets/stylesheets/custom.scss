@@ -1,0 +1,40 @@
+body {
+  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+}
+
+header.master-head {
+  position: relative;  
+  background: url("bg-masterhead.jpg") no-repeat center center;
+  background-size: cover;
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
+
+
+header.master-head h1 {
+  font-size: 2rem;
+}
+
+.packages {
+  padding-top: 5rem;
+  padding-bottom: 1rem;
+}
+
+.card {
+  width: 18rem;
+}
+
+footer.footer {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
