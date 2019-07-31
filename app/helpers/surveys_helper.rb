@@ -6,8 +6,8 @@ module SurveysHelper
       data = '<input type = "radio">'
     elsif question.question_type == 'Comment Box'
       data = '<label> Comment box: </label>'
-    elsif question_type.question_type == 'True / False'
-      data = '<input type = "radio"><br>True<input type = "radio"/>False'
+    elsif question.question_type == 'True / False'
+      data = '<input type = "radio">'
     end
     data.html_safe
   end

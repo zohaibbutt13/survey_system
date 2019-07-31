@@ -29,6 +29,7 @@ class SurveysController < ApplicationController
     if @survey.save
       redirect_to @survey
     else
+      flash[:error] = 'Incomplete information'
       render action: :new
     end
   end
@@ -43,7 +44,7 @@ class SurveysController < ApplicationController
   def update
     @survey = Survey.find(params[:id])
     if @survey.update(survey_params)
-      flash[:success] = 'Survey Updated!'
+      flash[:notice] = 'Survey Updated!'
       redirect_to @survey
     else
       flash[:error] = 'Not Updated!'

@@ -1,5 +1,5 @@
 <div>
-  <div >
+  <div>
     <%= form_for @survey, id: "form" do |f| %>
       <label> Name of Survey: </label>
       <%= f.text_field :name %>
@@ -15,19 +15,24 @@
         <% index = 0 %> 
         <%= f.fields_for :questions, id: '' do |q| %>
           <div id = "statement_<%= index %>" class="form-group">
-            <label> Question Type: </label>
-            <%= q.select :question_type, options_for_select([ "Checkbox", "Radio Buttons", "Comment Box", "True / False" ], q.object.question_type) %>
+            <% unless q.object.statement == '-1' %>
+              <label> Question Type: </label>
+              <%= q.select :question_type, options_for_select([ "Checkbox", "Radio Buttons", "Comment Box", "True / False" ], q.object.question_type) %>
               <label> Statement: </label>
-              <%= q.text_field :statement%>
-                <div id = "statement_<%= index %>_option_container" >
+              <%= q.text_field :statement %>
+              <div id = "statement_<%= index %>_option_container">
                 <% option_index = 0 %>
                 <%= q.fields_for :options, id: '' do |option| %> 
                   <div id= "statement_<%= index %>_option_divid_<%= option_index %>">
                     <%= render_option(q.object) %>
-                    <%= option.text_field :detail %> 
+                    <% if q.object.question_type == 'True / False' %>
+                      <%= text_field_tag "text", "#{option.object.detail}", class: 'form-control', readonly: true %> 
+                    <% else %>
+                      <%= option.text_field :detail %> 
+                    <% end %>
                     <% if q.object.question_type == 'Checkbox' || q.object.question_type == 'Radio Buttons' %>
                       <a href = "#" data-qid = "<%= index %>" data-oid = "<%= option_index %>"
-                      data-divid = "<%= option_index %>" class = "js-deleteoption">Delete Option </a>
+                        data-divid = "<%= option_index %>" class = "js-deleteoption">Delete Option </a>
                     <% end %>
                     <% option_index += 1 %>
                   </div> 
@@ -37,14 +42,15 @@
                     <a href = "#" data-qid = "<%= index %>" data-oid = "<%= index-1 %>" data-divid = "<%= index-1 %>" class = "js-addoption">Add Option </a>
                   </div>
                 <% end %>
-            </div>
-            <a href = "#" data-qid = "<%= index %>" class = "js-deletequestion">Delete Question </a>
+              </div>
+              <a href = "#" data-qid = "<%= index %>" class = "js-deletequestion">Delete Question </a>
+                <% index += 1 %>  
+            <% end %>  
           </div>
-          <% index += 1 %>
         <% end %>
       </div>
       <a href = "#" data-option_count = "<%= index-1 %>" data-count = "<%= index %>" class = "js-addquestion">Add Question </a>
-      <%= f.submit "Submit" %>
+      <%= f.submit locals[:submit]%>
     <% end %>    
   </div>  
 </div>

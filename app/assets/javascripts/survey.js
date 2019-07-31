@@ -15,7 +15,6 @@ $(document).ready(function() {
     });
   });
 
-
   $('body').on('click', '.js-addquestion', function(event){
     event.preventDefault();
     var count = $(this).data("count");
@@ -47,6 +46,16 @@ $(document).ready(function() {
       type: 'GET',
       url: '/surveys/delete_question',
       data: { question_id: qid }
+    });
+  });
+
+  $('body').on('click', '.js-responses', function(event){
+    event.preventDefault();
+    var sid = $(this).data("survey_id");
+      $.ajax({
+      type: 'GET',
+      url: '/surveys/'+sid+'/user_responses',
+      data: { survey_id: sid }
     });
   });
 });

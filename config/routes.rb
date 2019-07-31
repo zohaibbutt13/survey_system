@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       get 'delete_option'
       get 'delete_question'
     end
+    resources :user_responses
   end
   root 'surveys#index'
 

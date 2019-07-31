@@ -7,7 +7,7 @@ class Company < ActiveRecord::Base
   has_many :surveys
   has_many :questions
   has_many :options
-  has_many :responses
+  has_many :answers
   has_many :user_settings
 
   validates :name, presence: true, uniqueness: true, length: { maximum: 30 } 
