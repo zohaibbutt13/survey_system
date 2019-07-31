@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe UserResponsesController, type: :controller do
   it 'renders the index template' do
-    get :index, survey_id: 66
+    get :index, survey_id: survey.id
     expect(response).to render_template('index')
   end
 
@@ -15,5 +15,4 @@ RSpec.describe UserResponsesController, type: :controller do
     get :new, survey_id: 66
     expect(response).to render_template('show')
   end
-
 end

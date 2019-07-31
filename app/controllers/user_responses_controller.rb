@@ -1,7 +1,11 @@
 class UserResponsesController < ApplicationController
   def index
     @survey = Survey.find(params[:survey_id])
-    @user_responses = @survey.user_responses.find(params[:id])
+    @user_responses = @survey.user_responses
+    @response_per_page = UserResponse.response_per_page(@user_responses, params[:page], 1)
+    respond_to do |format|
+      format.js
+    end
   end
 
   def new

@@ -14,16 +14,19 @@
           <% val.options.each_with_index do |option_value, option_index| %>
             <% if (val.question_type == 'Checkbox') %>
               <%= answer.check_box :option_id, {id: "user_response_answers_attributes_#{option_index}_option_id_#{option_value.id}" , multiple: true }, "#{option_value.id}", false %>
+              <%= answer.hidden_field :detail, value: option_value.detail %>
             <% elsif (val.question_type == 'Radio Buttons') %>
               <%= answer.radio_button(:option_id, option_value.id) %>
-            <% elsif (val.question_type == 'Comment Box')%>
+              <%= answer.hidden_field :detail, value: option_value.detail %>
+            <% elsif (val.question_type == 'Comment Box') %>
               <%= answer.text_area :detail  %>
+            <% elsif (val.question_type == 'True / False') %>
+              <%= answer.radio_button(:option_id, option_value.id) %>
+              <%= answer.hidden_field :detail, value: option_value.detail %>
             <% end %>
-            <%= answer.hidden_field :detail, value: option_value.detail %>
             <%= option_value.detail %>
             <br />
           <% end %>
-        
       <% end %>
     <% end %>
     <%= f.submit "Submit"%>
