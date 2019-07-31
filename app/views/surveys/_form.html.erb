@@ -1,5 +1,5 @@
 <div>
-  <div >
+  <div>
     <%= form_for @survey, id: "form" do |f| %>
       <%= render "devise/shared/error_messages", resource: @survey %>
       <label> Name of Survey: </label>
@@ -12,22 +12,46 @@
       <%= f.select :survey_type , raw("<option>Private</option><option>Public</option>")%>  
       <label> Expiry of Survey: </label>
       <%= f.date_field :expiry %></br>
-      <label> Question Type: </label>
-      <%= f.fields_for :questions, id: '' do |q| %>
-          <div id = "survey_questions">
-            <div id = "statement_0" class="form-group">
-              <%= q.select :question_type, raw("<option>Checkbox</option><option>Radio Buttons</option>
-              <option>Comment Box</option><option>True / False</option>") %>
+      <div id = "survey_questions" >
+        <% index = 0 %> 
+        <%= f.fields_for :questions, id: '' do |q| %>
+          <div id = "statement_<%= index %>" class="form-group">
+            <% unless q.object.statement == '-1' %>
+              <label> Question Type: </label>
+              <%= q.select :question_type, options_for_select([ "Checkbox", "Radio Buttons", "Comment Box", "True / False" ], q.object.question_type) %>
               <label> Statement: </label>
               <%= q.text_field :statement %>
-              <div id = "statement_0_option_container" >
-            </div>
-            <a href = "#_" data-qid = "0" data-oid = "-1" class = "js-addoption">Add Option </a>
+              <div id = "statement_<%= index %>_option_container">
+                <% option_index = 0 %>
+                <%= q.fields_for :options, id: '' do |option| %> 
+                  <div id= "statement_<%= index %>_option_divid_<%= option_index %>">
+                    <%= render_option(q.object) %>
+                    <% if q.object.boolean? %>
+                      <%= text_field_tag "text", "#{option.object.detail}", class: 'form-control', readonly: true %> 
+                    <% else %>
+                      <%= option.text_field :detail %> 
+                    <% end %>
+                    <% if q.object.checkbox? || q.object.radiobutton? %>
+                      <a href = "#" data-qid = "<%= index %>" data-oid = "<%= option_index %>"
+                        data-divid = "<%= option_index %>" class = "js-deleteoption">Delete Option </a>
+                    <% end %>
+                    <% option_index += 1 %>
+                  </div> 
+                <% end %>
+                <% if q.object.checkbox? || q.object.radiobutton? || q.object.question_type.nil? %>
+                  <div id = "statement_<%= index %>_add_option">
+                    <a href = "#_" data-qid = "<%= index %>" data-oid = "<%= index-1 %>" data-divid = "<%= index-1 %>" class = "js-addoption">Add Option </a>
+                  </div>
+                <% end %>
+              </div>
+              <a href = "#_" data-qid = "<%= index %>" class = "js-deletequestion">Delete Question </a>
+                <% index += 1 %>  
+            <% end %>  
           </div>
-        </div>
-        <a href = "#_" data-count = "0" class = "js-addquestion">Add Question </a>
-      <% end %>
-      <%= f.submit "Submit" %>
+        <% end %>
+      </div>
+      <a href = "#_" data-option_count = "<%= index-1 %>" data-count = "<%= index %>" class = "js-addquestion">Add Question </a>
+      <%= f.submit locals[:submit]%>
     <% end %>    
   </div>  
 </div>

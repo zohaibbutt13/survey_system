@@ -7,7 +7,7 @@ class Company < ActiveRecord::Base
   has_many :surveys, dependent: :destroy
   has_many :questions, dependent: :destroy
   has_many :options, dependent: :destroy
-  has_many :responses, dependent: :destroy
+  has_many :answers, dependent: :destroy
   has_many :user_settings, dependent: :destroy
   has_many :activities, dependent: :destroy
 

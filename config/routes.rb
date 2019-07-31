@@ -21,7 +21,10 @@ Rails.application.routes.draw do
     collection do
       get 'add_question'
       get 'add_option'
+      get 'delete_option'
+      get 'delete_question'
     end
+    resources :user_responses
   end
 
   resources :home do
@@ -41,7 +44,6 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'home#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

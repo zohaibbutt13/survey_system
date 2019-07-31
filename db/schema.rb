@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190726135857) do
+ActiveRecord::Schema.define(version: 20190730064834) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "company_id",     limit: 4
@@ -27,29 +27,40 @@ ActiveRecord::Schema.define(version: 20190726135857) do
   add_index "activities", ["company_id"], name: "index_activities_on_company_id", using: :btree
   add_index "activities", ["trackable_type", "trackable_id"], name: "index_activities_on_trackable_type_and_trackable_id", using: :btree
 
+  create_table "answers", force: :cascade do |t|
+    t.integer  "question_id",      limit: 4
+    t.integer  "company_id",       limit: 4
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "user_response_id", limit: 4
+    t.integer  "option_id",        limit: 4
+    t.text     "detail",           limit: 65535
+  end
+
+  add_index "answers", ["company_id"], name: "index_answers_on_company_id", using: :btree
+  add_index "answers", ["option_id"], name: "index_answers_on_option_id", using: :btree
+  add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
+  add_index "answers", ["user_response_id"], name: "index_answers_on_user_response_id", using: :btree
+
   create_table "companies", force: :cascade do |t|
     t.string   "name",                    limit: 255
-    t.boolean  "status",                  limit: 1
+    t.string   "status",                  limit: 255
     t.datetime "cancelled_on"
-    t.integer  "package_id",              limit: 4
     t.integer  "subscription_package_id", limit: 4
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "subdomain",               limit: 255
   end
 
-  add_index "companies", ["subscription_package_id"], name: "index_companies_on_subscription_package_id", using: :btree
-
   create_table "company_settings", force: :cascade do |t|
-    t.integer  "max_questions",       limit: 4
-    t.boolean  "is_sup_create_surv",  limit: 1
-    t.boolean  "is_sup_edit_surv",    limit: 1
-    t.boolean  "is_my_settings_sup",  limit: 1
-    t.boolean  "is_my_settings_memb", limit: 1
-    t.time     "survey_expiry"
-    t.integer  "company_id",          limit: 4
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.integer  "max_questions",                   limit: 4
+    t.boolean  "supervisors_survey_permission",   limit: 1
+    t.boolean  "supervisors_settings_permission", limit: 1
+    t.boolean  "members_settings_permission",     limit: 1
+    t.integer  "survey_expiry",                   limit: 4
+    t.integer  "company_id",                      limit: 4
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
   end
 
   add_index "company_settings", ["company_id"], name: "index_company_settings_on_company_id", using: :btree
@@ -75,41 +86,32 @@ ActiveRecord::Schema.define(version: 20190726135857) do
   create_table "options", force: :cascade do |t|
     t.text     "detail",      limit: 65535
     t.integer  "question_id", limit: 4
+    t.integer  "company_id",  limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
 
+  add_index "options", ["company_id"], name: "index_options_on_company_id", using: :btree
   add_index "options", ["question_id"], name: "index_options_on_question_id", using: :btree
 
   create_table "questions", force: :cascade do |t|
-    t.text     "detail",     limit: 65535
-    t.string   "type",       limit: 255
-    t.integer  "survey_id",  limit: 4
-    t.integer  "company_id", limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.text     "statement",     limit: 65535
+    t.string   "question_type", limit: 255
+    t.integer  "survey_id",     limit: 4
+    t.integer  "company_id",    limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   add_index "questions", ["company_id"], name: "index_questions_on_company_id", using: :btree
   add_index "questions", ["survey_id"], name: "index_questions_on_survey_id", using: :btree
 
-  create_table "responses", force: :cascade do |t|
-    t.string   "answer",      limit: 255
-    t.integer  "question_id", limit: 4
-    t.integer  "company_id",  limit: 4
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-  end
-
-  add_index "responses", ["company_id"], name: "index_responses_on_company_id", using: :btree
-  add_index "responses", ["question_id"], name: "index_responses_on_question_id", using: :btree
-
   create_table "subscription_packages", force: :cascade do |t|
-    t.string   "package_name",    limit: 255
-    t.integer  "max_supervisors", limit: 4
-    t.integer  "max_members",     limit: 4
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.string   "subscription_package_name", limit: 255
+    t.integer  "max_supervisors",           limit: 4
+    t.integer  "max_members",               limit: 4
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
   create_table "surveys", force: :cascade do |t|
@@ -128,6 +130,14 @@ ActiveRecord::Schema.define(version: 20190726135857) do
   add_index "surveys", ["company_id"], name: "index_surveys_on_company_id", using: :btree
   add_index "surveys", ["user_id"], name: "index_surveys_on_user_id", using: :btree
 
+  create_table "user_responses", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "survey_id",  limit: 4
+    t.string   "email",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "user_settings", force: :cascade do |t|
     t.boolean  "emails_subscription", limit: 1
     t.boolean  "show_graphs",         limit: 1
@@ -138,6 +148,7 @@ ActiveRecord::Schema.define(version: 20190726135857) do
     t.datetime "updated_at",                    null: false
   end
 
+  add_index "user_settings", ["company_id"], name: "index_user_settings_on_company_id", using: :btree
   add_index "user_settings", ["user_id"], name: "index_user_settings_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|

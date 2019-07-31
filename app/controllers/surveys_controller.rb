@@ -3,6 +3,7 @@ class SurveysController < ApplicationController
   # GET  shows all the surveys of a company
   def index
     @surveys = Survey.all
+    @survey = Survey.new
     respond_to do |format|
       format.html
     end
@@ -12,7 +13,6 @@ class SurveysController < ApplicationController
   def new
     @survey = Survey.new
     @question = @survey.questions.build
-    @option = @question.options.build
     respond_to do |format|
       format.html
     end
@@ -28,14 +28,33 @@ class SurveysController < ApplicationController
 
   # POST creates a new survey
   def create
-    @survey = Survey.new(survey_params)
     # @survey.questions.first.user_id = current_user.user_id
-    if Survey.save?(@survey)
+    @survey = Survey.new(survey_params)
+    if @survey.save
       flash[:notice] = 'Survey Created'
       redirect_to @survey
     else
-      flash[:error] = 'Survey did not create'
+      flash[:error] = 'Incomplete information'
       render action: :new
+    
+    end
+  end
+
+  def edit
+    @survey = Survey.find(params[:id])
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def update
+    @survey = Survey.find(params[:id])
+    if @survey.update(survey_params)
+      flash[:notice] = 'Survey Updated!'
+      redirect_to @survey
+    else
+      flash[:error] = 'Not Updated!'
+      render action: :edit
     end
   end
 
@@ -53,16 +72,35 @@ class SurveysController < ApplicationController
     end
   end
 
+  def delete_option
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def delete_question
+    respond_to do |format|
+      format.js
+    end
+  end
+
   # whitelists parameters
   def survey_params
     params.require(:survey).permit(
+      :id,
       :name,
       :description,
       :category,
       :survey_type,
       :expiry,
-      questions_attributes: [:statement, :question_type,
-      options_attributes: [:detail]]
+      questions_attributes: [:id, :statement, :question_type,
+      options_attributes: [:id, :detail]]
     )
+  end
+
+  def destroy
+    @survey = Survey.find(params[:id])
+    @survey.destroy
+    redirect_to surveys_path, notice: 'Delete success'
   end
 end
