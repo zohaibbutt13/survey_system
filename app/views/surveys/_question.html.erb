@@ -1,11 +1,11 @@
 <div id = "statement_<%= params["question_count"] %>" class="form-group">
   <%= select_tag "survey[questions_attributes][#{params["question_count"]}][question_type]", raw("<option>Checkbox</option><option>Radio Buttons</option><option>Comment Box</option><option>True / False</option>") %>
-  <label> Statement: </label>
+  <label> Statement:</label>
   <%= text_field_tag "survey[questions_attributes][#{params["question_count"]}][statement]" , nil , class: 'form-control' %>
   <div id = "statement_<%= params["question_count"] %>_option_container">
   </div>
   <div id = "statement_<%= params["question_count"] %>_add_option">
     <a href = "#_" data-qid = "<%= params["question_count"] %>" data-oid = "-1" data-divid = "-1" class = "js-addoption">Add Option</a>
   </div>
-  <a href = "#" data-qid = "<%= params["question_count"] %>" class = "js-deletequestion">Delete Question</a>
+  <a href = "#_" data-qid = "<%= params["question_count"] %>" class = "js-deletequestion">Delete Question</a>
 </div>
