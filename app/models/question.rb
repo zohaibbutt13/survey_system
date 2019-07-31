@@ -8,6 +8,24 @@ class Question < ActiveRecord::Base
   validates :statement, presence: true, length: { maximum: 100 }
   before_save :mark_option_for_removal
 
+  def checkbox?
+    question_type == Question::QUESTION_TYPE[:checkbox]
+  end
+
+  def radiobutton?
+    question_type == Question::QUESTION_TYPE[:radiobutton]
+  end
+
+  def boolean?
+    question_type == Question::QUESTION_TYPE[:boolean]
+  end
+
+  def commentbox?
+    question_type == Question::QUESTION_TYPE[:commentbox]
+  end
+
+  QUESTION_TYPE = { checkbox: 'Checkbox', radiobutton: 'Radio Buttons', boolean: 'True / False', commentbox: 'Comment Box' }
+
   def mark_option_for_removal
     options.each do |option|
       option.mark_for_destruction if option.detail == 'nill'

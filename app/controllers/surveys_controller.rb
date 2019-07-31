@@ -4,15 +4,24 @@ class SurveysController < ApplicationController
   def index
     @surveys = Survey.all
     @survey = Survey.new
+    respond_to do |format|
+      format.html
+    end
   end
 
   def new
     @survey = Survey.new
     @question = @survey.questions.build
+    respond_to do |format|
+      format.html
+    end
   end
 
   def show
     @survey = Survey.find(params[:id])
+    respond_to do |format|
+      format.html
+    end
   end
 
   def create
