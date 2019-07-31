@@ -16,6 +16,6 @@ class Company < ActiveRecord::Base
   def dashboard_resources(user)
     user_setting = user.user_setting
     company_setting = user.company.company_setting
-    return [company_setting, user_setting]
+    [company_setting, user_setting]
   end 
 end
