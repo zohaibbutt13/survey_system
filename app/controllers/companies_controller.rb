@@ -2,7 +2,7 @@ class CompaniesController < ApplicationController
   before_action :authenticate_user!
 
   before_action only: [:filter, :display_surveys] do
-    @surveys = Survey.accessible_by(current_ability)
+    @surveys = Survey.all
   end
 
   def dashboard

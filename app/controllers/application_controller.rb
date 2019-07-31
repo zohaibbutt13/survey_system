@@ -21,7 +21,11 @@ class ApplicationController < ActionController::Base
 
       if @current_company == nil
         page_not_found
+      else
+        Company.current_id = @current_company.id
       end
+    else
+      Company.current_id = nil
     end
   end
 

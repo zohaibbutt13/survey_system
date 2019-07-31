@@ -10,6 +10,7 @@ class Survey < ActiveRecord::Base
   validates :name, presence: true, length: { maximum: 100 }
   validates :description, presence: true, length: { maximum: 500 }
 
+  default_scope { where(company_id: Company.current_id) }
   scope :public_surveys, -> { where(survey_type: 'public') }
   scope :expired_surveys, -> { where('expiry < ?', DateTime.now) }
   scope :active_surveys, -> { where('expiry > ?', DateTime.now) }

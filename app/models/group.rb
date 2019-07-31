@@ -1,4 +1,6 @@
 class Group < ActiveRecord::Base
+  default_scope { where(company_id: Company.current_id) }
+  
   has_many :activities, as: :trackable
   belongs_to :company
   has_and_belongs_to_many :users
@@ -12,7 +14,7 @@ class Group < ActiveRecord::Base
   validate :same_name_within_company
 
   def same_name_within_company
-    if Group.find_by(name: name, company: company) != nil
+    if Group.find_by(name: name, company: company) != nil # present
       errors.add(:name, 'group name must be unique')
     end
   end
