@@ -23,6 +23,8 @@ gem 'will_paginate', '~> 3.1.0'
 # rspec for testing
 gem 'rspec-rails'
 
+gem 'cancancan'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -31,6 +33,10 @@ gem 'rspec-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+group :development do
+  gem 'web-console', '~> 2.0'
+end
 
 group :development, :test do
   gem 'pry', '=0.10.1'
