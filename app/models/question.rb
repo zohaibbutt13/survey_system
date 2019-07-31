@@ -5,6 +5,5 @@ class Question < ActiveRecord::Base
   has_many :responses
   belongs_to :company
 
-  validates :question_type, presence: true, length: { maximum: 100 }
   validates :statement, presence: true, length: { maximum: 500 }
 end

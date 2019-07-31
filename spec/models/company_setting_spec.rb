@@ -37,11 +37,6 @@ RSpec.describe CompanySetting, type: :model do
     expect(company_setting).to be_valid
   end
 
-  it 'is not valid with survey_expiry_days more than 5' do
-    company_setting.survey_expiry_days = 6
-    expect(company_setting).to_not be_valid
-  end
-
   it 'is not valid with max_question more than 500' do
     company_setting.max_questions = 501
     expect(company_setting).to_not be_valid
