@@ -1,4 +1,22 @@
 Rails.application.routes.draw do
+
+  devise_for :users, :controllers => { registrations: 'users/registrations', sessions: 'users/sessions' }
+
+  # devise_scope :user do
+  #   root to: "devise/sessions#new"
+  # end
+  
+  # resources :users
+  resources :groups
+
+  resources :companies, only: [] do
+    member do
+      get 'dashboard'
+    end
+  end
+
+  resources :members
+
   resources :surveys do
     collection do
       get 'add_question'
@@ -8,11 +26,20 @@ Rails.application.routes.draw do
     end
     resources :user_responses
   end
-  root 'surveys#index'
 
-  get :dashboard, to: 'companies#dashboard'
+  resources :home do
+    collection do
+      get 'index'
+      get 'packages'
+      get 'display_surveys'
+    end
+  end
 
-  devise_for :users, :controllers => { registrations: 'registrations' }
+  resources :activity do
+    collection do
+      get 'index'
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

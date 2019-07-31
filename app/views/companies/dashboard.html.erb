@@ -1,0 +1,12 @@
+<h1>Companies#dashboard</h1>
+<%= get_subdomain %>
+<p>Find me in app/views/companies/dashboard.html.erb</p>
+
+<ul>
+  <%= link_to members_path do %>
+    <li>Employees</li>
+  <% end %>
+  <%= link_to groups_path do %>
+    <li>Groups</li>
+  <% end %>
+</ul>

@@ -1,6 +1,6 @@
 class SurveysController < ApplicationController
-  protect_from_forgery with: :null_session
-
+  
+  # GET  shows all the surveys of a company
   def index
     @surveys = Survey.all
     @survey = Survey.new
@@ -9,6 +9,7 @@ class SurveysController < ApplicationController
     end
   end
 
+  # GET builds a new survey object
   def new
     @survey = Survey.new
     @question = @survey.questions.build
@@ -17,6 +18,7 @@ class SurveysController < ApplicationController
     end
   end
 
+  # GET displays survey based on the given id
   def show
     @survey = Survey.find(params[:id])
     respond_to do |format|
@@ -24,13 +26,17 @@ class SurveysController < ApplicationController
     end
   end
 
+  # POST creates a new survey
   def create
+    # @survey.questions.first.user_id = current_user.user_id
     @survey = Survey.new(survey_params)
     if @survey.save
+      flash[:notice] = 'Survey Created'
       redirect_to @survey
     else
       flash[:error] = 'Incomplete information'
       render action: :new
+    
     end
   end
 
@@ -52,12 +58,14 @@ class SurveysController < ApplicationController
     end
   end
 
+  # GET adds a new question to the survey
   def add_question
     respond_to do |format|
       format.js
     end
   end
 
+  # GET adds a new option
   def add_option
     respond_to do |format|
       format.js
@@ -76,6 +84,7 @@ class SurveysController < ApplicationController
     end
   end
 
+  # whitelists parameters
   def survey_params
     params.require(:survey).permit(
       :id,

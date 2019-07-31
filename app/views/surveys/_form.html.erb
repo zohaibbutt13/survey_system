@@ -1,6 +1,7 @@
 <div>
   <div>
     <%= form_for @survey, id: "form" do |f| %>
+      <%= render "devise/shared/error_messages", resource: @survey %>
       <label> Name of Survey: </label>
       <%= f.text_field :name %>
       <label> Description of Survey: </label>
