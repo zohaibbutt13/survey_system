@@ -36,6 +36,9 @@ class SurveysController < ApplicationController
 
   def edit
     @survey = Survey.find(params[:id])
+    respond_to do |format|
+      format.html
+    end
   end
 
   def update

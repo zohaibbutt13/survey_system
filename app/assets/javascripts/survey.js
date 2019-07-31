@@ -14,9 +14,7 @@ $(document).ready(function() {
       data: { question_id: question_id_js, option_id: option_id_js, option_div_id: div_id_js }
     });
   });
-});
 
-$(document).ready(function() {
   $('body').on('click', '.js-addquestion', function(event){
     event.preventDefault();
     var count = $(this).data("count");
@@ -28,9 +26,7 @@ $(document).ready(function() {
       data: { question_count: count }
     });
   });
-});
 
-$(document).ready(function() {
   $('body').on('click', '.js-deleteoption', function(event){
     event.preventDefault();
     var option_id_js = $(this).data("oid");
@@ -42,9 +38,7 @@ $(document).ready(function() {
       data: { question_id: question_id_js, option_id: option_id_js, option_div_id: div_id_js }
     });
   });
-});
 
-$(document).ready(function() {
   $('body').on('click', '.js-deletequestion', function(event){
     event.preventDefault();
     var question_id_js = $(this).data("qid");
@@ -52,6 +46,16 @@ $(document).ready(function() {
       type: 'GET',
       url: '/surveys/delete_question',
       data: { question_id: question_id_js }
+    });
+  });
+
+  $('body').on('click', '.js-responses', function(event){
+    event.preventDefault();
+    var sid = $(this).data("survey_id");
+      $.ajax({
+      type: 'GET',
+      url: '/surveys/'+sid+'/user_responses',
+      data: { survey_id: sid }
     });
   });
 });
