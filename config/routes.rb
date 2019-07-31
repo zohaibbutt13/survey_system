@@ -6,13 +6,31 @@ Rails.application.routes.draw do
   # end
   
   # resources :users
+
+  get 'companies/filter', path: 'companies/filter'
+
   resources :groups
-  resources :companies, only: [] do
+  resources :companies do
     member do
       get 'dashboard'
+      get 'display_surveys'
     end
   end
   resources :members
+
+  resources :home do
+    collection do
+      get 'index'
+      get 'packages'
+    end
+  end
+
+  resources :activity do
+    collection do
+      get 'index'
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
