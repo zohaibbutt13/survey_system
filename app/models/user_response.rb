@@ -1,7 +1,7 @@
 class UserResponse < ActiveRecord::Base
   belongs_to :user
   belongs_to :survey
-  has_many :answers, inverse_of: :user_response
+  has_many :answers, inverse_of: :user_response, dependent: :destroy
 
   accepts_nested_attributes_for :answers
 
