@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   load_and_authorize_resource
 
-  before_action only: [:new, :edit] do
+  before_action only: [:new, :edit, :create, :update] do
     @employees = User.accessible_by(current_ability)
   end
 

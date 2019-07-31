@@ -34,15 +34,27 @@ gem 'cancancan'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+group :development do
+  gem 'web-console', '~> 2.0'
+end
+
 group :development, :test do
   gem 'pry', '=0.10.1'
   gem 'pry-rails', '=0.3.3' 
   gem "better_errors", '=2.1.1'
   gem 'mailcatcher', '=0.6.1'
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  # gem 'web-console', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'devise'
 end
 
+group :test do
+  gem 'pry', '=0.10.1'
+  gem 'pry-rails', '=0.3.3' 
+  gem 'mailcatcher', '=0.6.1'
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
+  gem 'devise'
+end

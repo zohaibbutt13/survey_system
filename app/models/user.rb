@@ -7,8 +7,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable,
          :confirmable, :trackable
 
-  # default_scope { where(company_id: current_user.company_id) }
-
+  has_many :activities, as: :trackable
+  has_many :activities, dependent: :destroy
   belongs_to :company
   has_one :user_setting
   has_many :surveys

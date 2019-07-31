@@ -9,20 +9,6 @@ RSpec.describe MembersController, type: :controller do
     end
   end
 
-  describe "GET #update" do
-    it "returns http success" do
-      get :update
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET #create" do
-    it "returns http success" do
-      get :create
-      expect(response).to have_http_status(:success)
-    end
-  end
-
   describe "GET #edit" do
     it "returns http success" do
       get :edit
@@ -30,4 +16,5 @@ RSpec.describe MembersController, type: :controller do
     end
   end
 
+  
 end

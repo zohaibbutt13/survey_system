@@ -11,8 +11,18 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  rescue_from ActionController::RoutingError do |exception|
+    render :file => "#{Rails.root}/public/404.html",  layout: false, status: :not_found
+  end
+
   before_action do
-    @current_company ||= current_user.company if user_signed_in?
+    unless request.subdomain.empty?
+      @current_company = Company.find_by_subdomain(request.subdomain)
+
+      if @current_company == nil
+        page_not_found
+      end
+    end
   end
 
   def after_sign_in_path_for(resource)
@@ -23,6 +33,10 @@ class ApplicationController < ActionController::Base
     unless current_user.admin?
       redirect_to dashboard_company_path(current_user.company)
     end
+  end
+
+  def page_not_found
+    raise ActionController::RoutingError.new('Not Found')
   end
 
   def get_subdomain
