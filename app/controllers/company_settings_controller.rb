@@ -13,7 +13,7 @@ class CompanySettingsController < ApplicationController
 
   def create
     respond_to do |format|
-      if @company_setting.create_company_setting
+      if @company_setting.save
         flassh[:notice] = "Company settings was successfully created."
         format.html { redirect_to @company_setting }
       else
@@ -24,7 +24,7 @@ class CompanySettingsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @company_setting.update_company_setting(company_setting_params)
+      if @company_setting.update(company_setting_params)
         flash[:notice] = "Company settings was successfully updated."
         format.html { redirect_to dashboard_company_path }
       else

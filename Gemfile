@@ -20,9 +20,9 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 # For pagination
 gem 'will_paginate', '~> 3.1.0'
-# rspec for testing
-gem 'rspec-rails'
-
+# custom
+gem 'faker'
+gem 'rspec-collection_matchers'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -41,6 +41,9 @@ end
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  gem 'rspec-rails'
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
   gem 'pry', '=0.10.1'
   gem 'pry-rails', '=0.3.3' 
   gem "better_errors", '=2.1.1'

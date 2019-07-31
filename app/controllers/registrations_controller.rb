@@ -3,7 +3,7 @@ class RegistrationsController < Devise::RegistrationsController
   #TODO removed after company permit in signup_params
   def create
     super do
-      resource.company = Company.find(1)
+      resource.company = Company.find(2)
       resource.save
     end
   end

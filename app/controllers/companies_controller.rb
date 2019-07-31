@@ -5,7 +5,7 @@ class CompaniesController < ApplicationController
   end
 
   #TODO after_create
-  #.................
+  #.................company_settings
   
   def dashboard
     @company_setting, @user_setting = @company.dashboard_resources(@user)

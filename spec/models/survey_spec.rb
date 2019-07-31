@@ -8,7 +8,7 @@ RSpec.describe Survey, type: :model do
     survey.description = 'This is the first survey'
     survey.category = 'Developers'
     survey.image = nil
-    survey.type = 'Private'
+    survey.survey_type = 'Private'
     survey.expiry = DateTime.now + 1.week
     survey.user_id = 1
     expect(survey).to be_valid
@@ -18,8 +18,8 @@ RSpec.describe Survey, type: :model do
     survey.name = 'Public Survey'
     survey.description = 'This is the public survey'
     survey.category = 'guest'
-    survey.image = 'nil'
-    survey.type = 'public'
+    survey.image = nil
+    survey.survey_type = 'public'
     survey.expiry = DateTime.now + 1.week
     survey.user_id = nil
     expect(survey).to be_valid
