@@ -17,6 +17,13 @@ Rails.application.routes.draw do
 
   resources :members
 
+  resources :surveys do
+    collection do
+      get 'add_question'
+      get 'add_option'
+    end
+  end
+
   resources :home do
     collection do
       get 'index'
