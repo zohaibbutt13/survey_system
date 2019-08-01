@@ -1,5 +1,8 @@
 class SurveysController < ApplicationController
   
+  before_action do
+    @groups = Group.all
+  end
   # GET  shows all the surveys of a company
   def index
     @surveys = Survey.all
@@ -12,7 +15,7 @@ class SurveysController < ApplicationController
   # GET builds a new survey object
   def new
     @survey = Survey.new
-    @question = @survey.questions.build
+    @question = @survey.questions.build 
     respond_to do |format|
       format.html
     end
@@ -93,6 +96,7 @@ class SurveysController < ApplicationController
       :category,
       :survey_type,
       :expiry,
+      :group_id,
       questions_attributes: [:id, :statement, :question_type,
       options_attributes: [:id, :detail]]
     )

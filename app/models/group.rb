@@ -2,6 +2,7 @@ class Group < ActiveRecord::Base
   has_many :activities, as: :trackable
   belongs_to :company
   has_and_belongs_to_many :users
+  has_many :surveys, dependent: :destroy, inverse_of: :group
 
   validates :name, presence: true, length: { maximum: 150 }
   validates :description, presence: true, length: { maximum: 500 }
