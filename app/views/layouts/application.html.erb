@@ -26,7 +26,14 @@
   <body>
     <%= render 'layouts/header' %>
     <%= render 'layouts/flash_messages' %>
-    <%= yield %>
+    <% if (get_current_user?) && (current_user.admin? || current_user.supervisor?) %>
+      <div class='row'>
+        <%= render 'layouts/sidebar' unless @skip_sidebar %>    
+        <%= yield %>
+      </div>
+    <% else  %>
+      <%= yield %>
+    <% end %>
     <%= render 'layouts/footer' %>
   </body>
 </html>

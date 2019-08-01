@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
       :user_id => self.id)    
   end
 
+  before_create :set_default_image
+
   ROLE = {admin: 'admin', supervisor: 'supervisor', member: 'member'}
 
   # Include default devise modules. Others available are:
@@ -30,6 +32,10 @@ class User < ActiveRecord::Base
 
   has_attached_file :image, styles: { thumb: "50x50>" }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+
+  def set_default_image
+        
+  end
 
   def admin?
     role == User::ROLE[:admin]

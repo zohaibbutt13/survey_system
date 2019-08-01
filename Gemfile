@@ -49,7 +49,7 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'faker'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'pry', '=0.10.1'
   gem 'pry-rails', '=0.3.3' 
   gem "better_errors", '=2.1.1'

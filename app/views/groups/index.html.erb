@@ -1,22 +1,24 @@
-<h1>All Groups</h1>
+<div class="col-10 p-3">
+  <h3>All Groups</h3>
 
-<% if can? :manage, Group %>
-  <td><%= link_to "Add new", new_group_path %></td>
-<% end %>
-
-<table>
-  <% @groups.each do |group| %>
-    <div>
-      <tr>
-        <td><%= group.name %></td>
-        <% if can? :manage, group %>
-          <td><%= link_to 'Edit', edit_group_path(group) %></td>
-          <td><%= link_to 'Delete', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-      <tr>
-        <td><%= group.description %></td>
-      </tr>
-    </div>
+  <% if can? :manage, Group %>
+    <td><%= link_to "Add new", new_group_path %></td>
   <% end %>
-</table>
+
+  <table>
+    <% @groups.each do |group| %>
+      <div>
+        <tr>
+          <td><%= group.name %></td>
+          <% if can? :manage, group %>
+            <td><%= link_to 'Edit', edit_group_path(group) %></td>
+            <td><%= link_to 'Delete', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        </tr>
+        <tr>
+          <td><%= group.description %></td>
+        </tr>
+      </div>
+    <% end %>
+  </table>
+</div>

@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe UserSettingsController, type: :controller do 
 
   before(:each) do
-    @user = FactoryGirl.build(:user)
+    @user = FactoryBot.build(:user)
     @user.role = User::ROLE[:admin]
     @user.save
     sign_in @user
