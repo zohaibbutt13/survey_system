@@ -1,23 +1,38 @@
 <h1> Members </h1>
 
 <% if can? :manage, User %>
-  <td><%= link_to "Create new User", new_member_path %></td>
+  <%= link_to "Create new Member", new_member_path, class: 'btn btn-outline-secondary' %>
 <% end %>
 
-<table>
-  <% @members.each do |member| %>
+<table class="table">
+  <thead>
     <tr>
-      <td><%= member.full_name %></td>
-      <% if can? :manage, member %>
-        <% unless cannot? :edit, member %>
-          <td><%= link_to 'Edit', edit_member_path(member) %></td>
-        <% end %>
-        <% if can? :destroy, member %>
-          <td><%= link_to 'Delete', member_path(member), method: :delete, data: { confirm: 'Are you sure?' } %>
-        <% end %>
-        </td>
-      <% end %>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Role</th>
+      <th scope="col">Options</th>
     </tr>
-  <% end %>
+  </thead>
+  <tbody>
+    <% @members.each.with_index(1) do |member, index| %>
+      <tr>
+        <th scope="row"><%= index %></th>
+        <td><%= member.full_name %></td>
+        <td><%= member.email %></td>
+        <td><%= member.role %></td>
+        <td>
+          <% if can? :manage, member %>
+            <% if can? :edit_in_members_view, member %>
+              <%= link_to 'Edit', edit_member_path(member) %>
+            <% end %>
+            <% if can? :destroy, member %>
+              <%= link_to 'Delete', member_path(member), method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
   

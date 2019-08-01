@@ -7,7 +7,7 @@ class Ability
       can :manage, [User, Group, Survey], company_id: user.company_id
       can :manage, UserSetting, user_id: user.id
       can :manage, CompanySetting, company_id: user.company_id
-      cannot [:destroy, :edit], user
+      cannot [:destroy, :edit_in_members_view], user
     elsif user.supervisor?
       can :manage, UserSetting, user_id: user.id if user.company.company_setting.supervisors_settings_permission?
       can :read, [User, Group], company_id: user.company_id

@@ -10,7 +10,7 @@ class MembersController < ApplicationController
   def create
     password = Devise.friendly_token.first(8)
     @member.company = @current_company
-    @member.password = @member.password_confirmation = @member.initial_password = password
+    @member.password = @member.password_confirmation = password
     if @member.save
       redirect_to dashboard_company_path(@current_company)
     else

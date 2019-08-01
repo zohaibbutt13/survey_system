@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
       :user_id => self.id)    
   end
 
-  ROLE = {admin: 'admin', supervisor: 'supervisor', member: 'member'}
+  ROLE = { admin: 'admin', supervisor: 'supervisor', member: 'member' }
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
