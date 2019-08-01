@@ -1,0 +1,8 @@
+<!-- Main Charts -->
+<div class="container">
+  <div>
+    <h3>Survey Stats</h3>
+    <%= content_tag :canvas, "", id: 'stats' %>
+    <a class="btn btn-primary my-2 mx-2" onclick="renderChart(<%= @surveys_stats %>, <%=  @surveys_stats_labels %>, 'stats', <%= GRAPH_COLORS %>)"> See Graph </a>
+  </div>
+</div>

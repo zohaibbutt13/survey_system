@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190727081637) do
+ActiveRecord::Schema.define(version: 20190730064834) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "company_id",     limit: 4
@@ -96,12 +96,10 @@ ActiveRecord::Schema.define(version: 20190727081637) do
     t.text     "statement",     limit: 65535
     t.string   "question_type", limit: 255
     t.integer  "survey_id",     limit: 4
-    t.integer  "company_id",    limit: 4
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end
 
-  add_index "questions", ["company_id"], name: "index_questions_on_company_id", using: :btree
   add_index "questions", ["survey_id"], name: "index_questions_on_survey_id", using: :btree
 
   create_table "subscription_packages", force: :cascade do |t|
@@ -120,17 +118,15 @@ ActiveRecord::Schema.define(version: 20190727081637) do
     t.string   "survey_type", limit: 255
     t.datetime "expiry"
     t.integer  "user_id",     limit: 4
-    t.integer  "company_id",  limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
 
-  add_index "surveys", ["company_id"], name: "index_surveys_on_company_id", using: :btree
   add_index "surveys", ["user_id"], name: "index_surveys_on_user_id", using: :btree
 
   create_table "user_responses", force: :cascade do |t|
-    t.integer  "users_id",   limit: 4
-    t.integer  "surveys_id", limit: 4
+    t.integer  "user_id",    limit: 4
+    t.integer  "survey_id",  limit: 4
     t.string   "email",      limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false

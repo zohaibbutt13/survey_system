@@ -29,7 +29,13 @@ class HomeController < ApplicationController
     end
   end
 
-  # get home/charts
-  def charts
+  def main_charts
+    @surveys_stats = [Survey.expired_surveys.count, Survey.active_surveys.count]
+    @surveys_stats_labels = ['Expired', 'Active']
+  end
+
+  # get home/:id/survey_charts
+  def survey_charts
+    @survey = Survey.find(params[:id])
   end
 end

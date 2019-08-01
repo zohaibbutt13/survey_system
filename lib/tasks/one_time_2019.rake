@@ -28,3 +28,39 @@ task add_surveys: :environment do
                   category: category, expiry: expiry, user_id: user_id)
   end
 end
+
+# Create user responses against survey with id 21
+# TODO: Replace the survey id according to the survey for creating its responses
+desc 'Create User Responses'
+task add_user_responses: :environment do
+  UserResponse.create(users_id: 1, surveys_id: 21, email: 'user1@abc.com')
+  UserResponse.create(users_id: 2, surveys_id: 21, email: 'user2@abc.com')
+  UserResponse.create(users_id: 3, surveys_id: 21, email: 'user3@abc.com')
+  UserResponse.create(users_id: 4, surveys_id: 21, email: 'user4@abc.com')
+end
+
+# Create answers for above created user respones
+# TODO: Make sure you already have questions & options associated with a survey
+desc 'Create Answers'
+task add_answers: :environment do
+  Answer.create(user_response_id: 1, question_id: 1, option_id: 1)
+  Answer.create(user_response_id: 1, question_id: 2, option_id: 4)
+  Answer.create(user_response_id: 1, question_id: 2, option_id: 5)
+  Answer.create(user_response_id: 1, question_id: 3, option_id: 9)
+  Answer.create(user_response_id: 1, question_id: 4, detail: 'user1')
+  Answer.create(user_response_id: 2, question_id: 1, option_id: 1)
+  Answer.create(user_response_id: 2, question_id: 2, option_id: 4)
+  Answer.create(user_response_id: 2, question_id: 2, option_id: 6)
+  Answer.create(user_response_id: 2, question_id: 3, option_id: 9)
+  Answer.create(user_response_id: 2, question_id: 4, detail: 'user2')
+  Answer.create(user_response_id: 3, question_id: 1, option_id: 2)
+  Answer.create(user_response_id: 3, question_id: 2, option_id: 4)
+  Answer.create(user_response_id: 3, question_id: 2, option_id: 7)
+  Answer.create(user_response_id: 3, question_id: 3, option_id: 9)
+  Answer.create(user_response_id: 3, question_id: 4, detail: 'user3')
+  Answer.create(user_response_id: 4, question_id: 1, option_id: 3)
+  Answer.create(user_response_id: 4, question_id: 2, option_id: 8)
+  Answer.create(user_response_id: 4, question_id: 2, option_id: 6)
+  Answer.create(user_response_id: 4, question_id: 3, option_id: 10)
+  Answer.create(user_response_id: 4, question_id: 4, detail: 'user4')
+end

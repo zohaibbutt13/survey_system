@@ -1,0 +1,32 @@
+<!-- basic html -->
+<div class="container">
+  <h1><%= @survey.name %></h1>
+  <h3 class="text-muted"><%= @survey.description %></h3>
+  <% @survey.questions.each_with_index do |question,index| %>
+    <% unless question.question_type == 'Comment Box' %>
+      <div>
+        <h3>Question: <%= question.statement %></h3>
+        <%= content_tag :canvas, "", id: question.id %>
+        <a class="btn btn-primary my-2 mx-2" onclick="renderChart(<%= question.answer_stats %>, <%=  question.options_labels %>, <%= question.id %>, <%= GRAPH_COLORS %>)"> See Graph </a>
+      </div>
+    <% else %>
+      <h3>Question: <%= question.statement %></h3>
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Responses</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% question.answers.each_with_index do |answer, index| %>
+            <tr>
+              <th scope="row"><%= index+1 %></th>
+              <td><%= answer.detail.to_s %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  <% end %>
+</div>

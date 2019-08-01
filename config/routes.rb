@@ -11,7 +11,10 @@ Rails.application.routes.draw do
       get 'index'
       get 'packages'
       get 'display_surveys'
-      get 'charts'
+      get 'main_charts'
+    end
+    member do
+      get 'survey_charts'
     end
   end
 
