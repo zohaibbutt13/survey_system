@@ -4,10 +4,10 @@
   <h3 class="text-muted"><%= @survey.description %></h3>
   <% @survey.questions.each_with_index do |question,index| %>
     <% unless question.question_type == 'Comment Box' %>
-      <div>
+      <div class='survey-chart'>
         <h3>Question: <%= question.statement %></h3>
-        <%= content_tag :canvas, "", id: question.id %>
-        <a class="btn btn-primary my-2 mx-2" onclick="renderChart(<%= question.answer_stats %>, <%=  question.options_labels %>, <%= question.id %>, <%= GRAPH_COLORS %>)"> See Graph </a>
+        <%= content_tag :canvas, "", id: question.id, data: { chart_data: question.answer_stats, chart_labels: question.options_labels, chart_type: 'pie', chart_colors: GRAPH_COLORS } %>
+        <!-- <a class="btn btn-primary my-2 mx-2" onclick="renderChart(<%= question.answer_stats %>, <%=  question.options_labels %>, <%= question.id %>, <%= GRAPH_COLORS %>)"> See Graph </a> -->
       </div>
     <% else %>
       <h3>Question: <%= question.statement %></h3>

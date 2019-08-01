@@ -33,4 +33,22 @@ class Question < ActiveRecord::Base
     end
     labels
   end
+
+  def checkbox?
+    question_type == Question::QUESTION_TYPE[:checkbox]
+  end
+
+  def radiobutton?
+    question_type == Question::QUESTION_TYPE[:radiobutton]
+  end
+
+  def boolean?
+    question_type == Question::QUESTION_TYPE[:boolean]
+  end
+
+  def commentbox?
+    question_type == Question::QUESTION_TYPE[:commentbox]
+  end
+
+  QUESTION_TYPE = { checkbox: 'Checkbox', radiobutton: 'Radio Buttons', boolean: 'True / False', commentbox: 'Comment Box' }
 end

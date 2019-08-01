@@ -1,5 +1,7 @@
-<div class="form-check disabled">
-  <%= check_box_tag :option , class: 'form-control' %>
-  <label> Option </label>
-  <%= render 'options/text_field' , locals: {question_id: "#{params["question_id"]}", option_id: "#{params["option_id"]}"}%> 
+<div id= "statement_<%= params["question_id"] %>_option_divid_<%= params["option_div_id"] %>">
+  <%= check_box_tag :option, class: 'form-control' %>
+  <label> Option</label>
+ <%= render 'options/text_field' , locals: {question_id: "#{params["question_id"]}", option_id: "#{params["option_id"]}"} %> 
+  <a href = "#_" data-qid = "<%= params["question_id"] %>" data-oid = "<%= params["option_id"] %>"
+  data-divid = "<%= params["option_div_id"] %>" class = "js-deleteoption">Delete Option</a>
 </div> 

@@ -1,0 +1,5 @@
+<h2>Edit Member</h2>
+
+<%= form_for @member, url: member_path(@member), method: :patch do |f| %>
+  <%= render 'form', f: f, locals: {submit: 'Update', member: @member} %>
+<% end %>

@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20190730064834) do
     t.integer  "subscription_package_id", limit: 4
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "subdomain",               limit: 255
   end
 
   add_index "companies", ["subscription_package_id"], name: "index_companies_on_subscription_package_id", using: :btree
@@ -165,6 +166,7 @@ ActiveRecord::Schema.define(version: 20190730064834) do
     t.string   "first_name",             limit: 255
     t.string   "last_name",              limit: 255
     t.string   "role",                   limit: 255
+    t.string   "initial_password",       limit: 255
   end
 
   add_index "users", ["company_id"], name: "index_users_on_company_id", using: :btree

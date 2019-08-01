@@ -1,0 +1,23 @@
+<h1> Members </h1>
+
+<% if can? :manage, User %>
+  <td><%= link_to "Create new User", new_member_path %></td>
+<% end %>
+
+<table>
+  <% @members.each do |member| %>
+    <tr>
+      <td><%= member.full_name %></td>
+      <% if can? :manage, member %>
+        <% unless cannot? :edit, member %>
+          <td><%= link_to 'Edit', edit_member_path(member) %></td>
+        <% end %>
+        <% if can? :destroy, member %>
+          <td><%= link_to 'Delete', member_path(member), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+  
