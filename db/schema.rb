@@ -53,14 +53,15 @@ ActiveRecord::Schema.define(version: 20190730064834) do
   add_index "companies", ["subscription_package_id"], name: "index_companies_on_subscription_package_id", using: :btree
 
   create_table "company_settings", force: :cascade do |t|
-    t.integer  "max_questions",                   limit: 4
-    t.boolean  "supervisors_survey_permission",   limit: 1
-    t.boolean  "supervisors_settings_permission", limit: 1
-    t.boolean  "members_settings_permission",     limit: 1
-    t.integer  "survey_expiry_days",              limit: 4
-    t.integer  "company_id",                      limit: 4
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.integer  "max_questions",       limit: 4
+    t.boolean  "is_sup_create_surv",  limit: 1
+    t.boolean  "is_sup_edit_surv",    limit: 1
+    t.boolean  "is_my_settings_sup",  limit: 1
+    t.boolean  "is_my_settings_memb", limit: 1
+    t.time     "survey_expiry"
+    t.integer  "company_id",          limit: 4
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   add_index "company_settings", ["company_id"], name: "index_company_settings_on_company_id", using: :btree

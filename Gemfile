@@ -40,6 +40,9 @@ gem "paperclip", "~> 6.0.0"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+group :development do
+  gem 'web-console', '~> 2.0'
+end
 
 group :development, :test do
   gem 'rspec-rails'
