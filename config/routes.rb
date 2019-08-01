@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :company_settings
+  resources :user_settings
   resources :members
 
   resources :surveys do

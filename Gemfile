@@ -21,6 +21,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 # For pagination
 gem 'will_paginate', '~> 3.1.0'
+
 # rspec for testing
 gem 'rspec-rails'
 
@@ -29,6 +30,11 @@ gem 'cancancan'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+#gem cancancan
+gem 'cancancan'
+#Paperclip
+gem "paperclip", "~> 6.0.0"
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -36,6 +42,9 @@ gem 'cancancan'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  gem 'rspec-rails'
+  gem 'faker'
+  gem 'factory_girl_rails'
   gem 'pry', '=0.10.1'
   gem 'pry-rails', '=0.3.3' 
   gem "better_errors", '=2.1.1'
@@ -46,9 +55,6 @@ group :development, :test do
   gem 'devise'
 end
 
-group :development do
-  gem 'web-console' , '~> 2.0'
-end
 
 group :test do
   gem 'pry', '=0.10.1'

@@ -2,11 +2,11 @@ require 'date'
 
 desc 'To create packages'
 task add_packages: :environment do
-  SubscriptionPackage.create(package_name: 'Platinum',
+  SubscriptionPackage.create(subscription_package_name: 'Platinum',
                              max_supervisors: 100, max_members: 1000)
-  SubscriptionPackage.create(package_name: 'Golden',
+  SubscriptionPackage.create(subscription_package_name: 'Golden',
                              max_supervisors: 50, max_members: 500)
-  SubscriptionPackage.create(package_name: 'Silver',
+  SubscriptionPackage.create(subscription_package_name: 'Silver',
                              max_supervisors: 20, max_members: 200)
 end
 
