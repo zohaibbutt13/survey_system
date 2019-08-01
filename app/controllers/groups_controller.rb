@@ -15,6 +15,7 @@ class GroupsController < ApplicationController
         flash[:notice] = "Group created successfully!"
         format.html { redirect_to groups_path }
       else
+        flash[:error] = @group.errors.messages.first[1]
         format.html { render :new }
       end
     end
@@ -25,10 +26,11 @@ class GroupsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @group.update_attributes!(group_params)
+      if @group.update_attributes(group_params)
         flash[:notice] = "Group updated successfully!"
         format.html { redirect_to groups_path }
       else
+        flash[:error] = @group.errors.messages.first[1]
         format.html { render :edit }
       end
     end
