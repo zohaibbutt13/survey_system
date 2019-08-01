@@ -10,7 +10,7 @@ class Users::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   def create
-    super do 
+    super do
       if request.subdomain != resource.company.subdomain
         sign_out resource
         redirect_to root_url
