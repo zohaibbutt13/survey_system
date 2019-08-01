@@ -6,6 +6,7 @@ class Question < ActiveRecord::Base
   belongs_to :company
 
   validates :statement, presence: true, length: { maximum: 500 }
+
   before_save :mark_option_for_removal
 
   def checkbox?

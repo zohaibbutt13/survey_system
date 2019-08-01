@@ -5,6 +5,7 @@ class Group < ActiveRecord::Base
 
   validates :name, presence: true, length: { maximum: 150 }
   validates :description, presence: true, length: { maximum: 500 }
+
   validates :users, length: {
     minimum: 1,
     message: 'A Group should have at least 1 member'

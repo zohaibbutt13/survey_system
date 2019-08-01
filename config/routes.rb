@@ -9,12 +9,15 @@ Rails.application.routes.draw do
   # resources :users
   resources :groups
 
+
   resources :companies, only: [] do
     member do
       get 'dashboard'
     end
   end
-
+  
+  resources :company_settings
+  resources :user_settings
   resources :members
 
   resources :surveys do
@@ -40,6 +43,8 @@ Rails.application.routes.draw do
       get 'index'
     end
   end
+
+  root 'home#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

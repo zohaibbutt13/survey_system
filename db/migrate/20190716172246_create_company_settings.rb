@@ -5,7 +5,7 @@ class CreateCompanySettings < ActiveRecord::Migration
       t.boolean :supervisors_survey_permission
       t.boolean :supervisors_settings_permission
       t.boolean :members_settings_permission
-      t.integer :survey_expiry
+      t.integer :survey_expiry_days
       t.integer :company_id, index: true
 
       t.timestamps null: false

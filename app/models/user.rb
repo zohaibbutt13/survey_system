@@ -1,4 +1,13 @@
 class User < ActiveRecord::Base
+  after_create do
+    UserSetting.create(
+      :emails_subscription => '1',
+      :show_graphs => '1',
+      :show_history => '1',
+      :company_id => self.company_id,
+      :user_id => self.id)    
+  end
+
   ROLE = {admin: 'admin', supervisor: 'supervisor', member: 'member'}
 
   # Include default devise modules. Others available are:
@@ -18,6 +27,9 @@ class User < ActiveRecord::Base
 
   validates :first_name, presence: true, length: { maximum: 150 }
   validates :last_name, presence: true, length: { maximum: 150 }
+
+  has_attached_file :image, styles: { thumb: "50x50>" }
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
   def admin?
     role == User::ROLE[:admin]

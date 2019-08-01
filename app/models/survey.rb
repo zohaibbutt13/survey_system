@@ -11,8 +11,9 @@ class Survey < ActiveRecord::Base
   belongs_to :company
   has_many :user_responses, dependent: :destroy, inverse_of: :survey
 
-  validates :name, presence: true, length: { maximum: 100 }
+  validates :name, presence: true, length: { maximum: 255 }
   validates :description, presence: true, length: { maximum: 500 }
+
   before_save :mark_question_for_removal
 
   scope :public_surveys, -> { where(survey_type: 'public') }
@@ -41,5 +42,4 @@ class Survey < ActiveRecord::Base
   def self.save?(survey)
     survey.save
   end
- 
 end
