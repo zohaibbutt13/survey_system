@@ -7,15 +7,10 @@ class Group < ActiveRecord::Base
 
   validates :name, presence: true, length: { maximum: 150 }
   validates :description, presence: true, length: { maximum: 500 }
+  validates_uniqueness_of :name, scope: :company_id
+
   validates :users, length: {
     minimum: 1,
     message: 'A Group should have at least 1 member'
   }
-  validate :same_name_within_company
-
-  def same_name_within_company
-    if Group.find_by(name: name, company: company) != nil # present
-      errors.add(:name, 'group name must be unique')
-    end
-  end
 end

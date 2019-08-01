@@ -1,0 +1,4 @@
+<div id= "statement_<%= params["question_id"] %>_option_divid_<%= params["option_div_id"] %>">
+  <label> Comment box:</label>
+  <%= render 'options/text_field' , locals: {question_id: "#{params["question_id"]}", option_id: "#{params["option_id"]}"} %> 
+</div>

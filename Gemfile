@@ -13,6 +13,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 # Use jquery as the JavaScript library
+
 gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
@@ -20,13 +21,16 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 # For pagination
 gem 'will_paginate', '~> 3.1.0'
-# rspec for testing
-gem 'rspec-rails'
-
-gem 'cancancan'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+
+#gem cancancan
+gem 'cancancan'
+#Paperclip
+gem "paperclip", "~> 6.0.0"
+
+gem 'devise'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -39,22 +43,14 @@ group :development do
 end
 
 group :development, :test do
+  gem 'rspec-rails'
+  gem 'faker'
+  gem 'factory_girl_rails'
   gem 'pry', '=0.10.1'
   gem 'pry-rails', '=0.3.3' 
   gem "better_errors", '=2.1.1'
   gem 'mailcatcher', '=0.6.1'
   # Access an IRB console on exception pages or by using <%= console %> in views
-  # gem 'web-console', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'devise'
-end
-
-group :test do
-  gem 'pry', '=0.10.1'
-  gem 'pry-rails', '=0.3.3' 
-  gem 'mailcatcher', '=0.6.1'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'devise'
 end

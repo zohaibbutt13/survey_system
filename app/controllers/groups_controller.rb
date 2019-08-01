@@ -2,7 +2,7 @@ class GroupsController < ApplicationController
   load_and_authorize_resource
 
   before_action only: [:new, :edit, :create, :update] do
-    @employees = User.accessible_by(current_ability)
+    @employees = User.all
   end
 
   def new
@@ -10,7 +10,7 @@ class GroupsController < ApplicationController
 
   def create
     respond_to do |format|
-      group.company = @current_company
+      @group.company = @current_company
       if @group.save
         flash[:notice] = "Group created successfully!"
         format.html { redirect_to groups_path }
@@ -25,8 +25,7 @@ class GroupsController < ApplicationController
 
   def update
     respond_to do |format|
-      @group = @group.update_attributes(group_params)
-      if @group.save
+      if @group.update_attributes!(group_params)
         flash[:notice] = "Group updated successfully!"
         format.html { redirect_to groups_path }
       else

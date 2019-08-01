@@ -1,12 +1,18 @@
-<h1>Companies#dashboard</h1>
-<%= get_subdomain %>
-<p>Find me in app/views/companies/dashboard.html.erb</p>
-
-<ul>
-  <%= link_to members_path do %>
-    <li>Employees</li>
+<div class="row">
+  <div class="col-5">
+    <%= render 'layouts/sidebar' %>    
+  </div>
+  <!-- User Settings Graphs and History Enable and Disable-->
+  <div class="col-7 p-3">
+  <% if @user_setting.show_graphs? %>
+    <div id="graphs">
+      <h1>Graphs</h1>
+    </div>
   <% end %>
-  <%= link_to groups_path do %>
-    <li>Groups</li>
+  <% if @user_setting.show_history? %>
+    <div id="histroy">
+      <h1 >History</h1>
+    </div>
   <% end %>
-</ul>
+  </div>
+</div>

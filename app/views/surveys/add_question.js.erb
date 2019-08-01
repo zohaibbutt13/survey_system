@@ -1,0 +1,14 @@
+$('#survey_questions').append("<%= escape_javascript render(:partial => 'surveys/question') %>");
+var val = $("#qtype_dropdown").val();
+if (val == "Checkbox") {
+  $('#statement_<%= params["question_count"] %>_option_container').append("<%= escape_javascript render(:partial => 'options/checkbox') %>");
+} 
+else if (val == "Radio Buttons") {
+  $('#statement_<%= params["question_count"] %>_option_container').append("<%= escape_javascript render(:partial => 'options/radioBtn') %>");
+}
+else if (val == "Comment Box") {
+  $('#statement_<%= params["question_count"] %>_option_container').append("<%= escape_javascript render(:partial => 'options/commentbox') %>");
+}
+else if (val == "True / False") {
+  $('#statement_<%= params["question_count"] %>_option_container').append("<%= escape_javascript render(:partial => 'options/truefalse') %>");
+}
