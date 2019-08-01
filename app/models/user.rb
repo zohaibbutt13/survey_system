@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
       :company_id => self.company_id,
       :user_id => self.id)    
   end
+
+  ROLE = {admin: 'admin', supervisor: 'supervisor', member: 'member'}
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -20,10 +23,11 @@ class User < ActiveRecord::Base
   has_many :surveys
   has_and_belongs_to_many :groups
 
-  validates :first_name, presence: true, uniqueness: true, length: { maximum: 20 }
-  validates :last_name, presence: true, uniqueness: true, length: { maximum: 20 }
+  accepts_nested_attributes_for :company
 
-  #Image uploading Code for Surveys
+  validates :first_name, presence: true, length: { maximum: 150 }
+  validates :last_name, presence: true, length: { maximum: 150 }
+
   has_attached_file :image, styles: { thumb: "50x50>" }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
@@ -39,9 +43,7 @@ class User < ActiveRecord::Base
     role == User::ROLE[:member]
   end
 
-  ROLE = { admin: 'admin', supervisor: 'supervisor', member: 'member' }
-
   def full_name
-    first_name + ' ' + last_name
+    "#{first_name} #{last_name}"
   end
 end

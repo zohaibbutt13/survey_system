@@ -13,6 +13,8 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 # Use jquery as the JavaScript library
+gem 'will_paginate', '~> 3.1.0'
+
 gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
@@ -20,9 +22,12 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 # For pagination
 gem 'will_paginate', '~> 3.1.0'
-# custom
-gem 'faker'
-gem 'rspec-collection_matchers'
+
+# rspec for testing
+gem 'rspec-rails'
+
+gem 'cancancan'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -31,18 +36,19 @@ gem 'cancancan'
 #Paperclip
 gem "paperclip", "~> 6.0.0"
 
-group :development do
-  gem 'web-console', '~> 2.0'
-end
 # Use Unicorn as the app server
 # gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+group :development do
+  gem 'web-console', '~> 2.0'
+end
+
 group :development, :test do
   gem 'rspec-rails'
-  gem 'database_cleaner'
+  gem 'faker'
   gem 'factory_girl_rails'
   gem 'pry', '=0.10.1'
   gem 'pry-rails', '=0.3.3' 
@@ -54,9 +60,6 @@ group :development, :test do
   gem 'devise'
 end
 
-group :development do
-  gem 'web-console' , '~> 2.0'
-end
 
 group :test do
   gem 'pry', '=0.10.1'

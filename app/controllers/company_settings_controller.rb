@@ -6,9 +6,6 @@ class CompanySettingsController < ApplicationController
 
   #/company_settings/id/edit
   def edit
-    respond_to do |format|
-      format.html { @user_setting = current_user.user_setting }
-    end
   end
 
   def create

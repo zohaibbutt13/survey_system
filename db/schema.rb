@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190729174607) do
+ActiveRecord::Schema.define(version: 20190730064834) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "company_id",     limit: 4
@@ -27,6 +27,21 @@ ActiveRecord::Schema.define(version: 20190729174607) do
   add_index "activities", ["company_id"], name: "index_activities_on_company_id", using: :btree
   add_index "activities", ["trackable_type", "trackable_id"], name: "index_activities_on_trackable_type_and_trackable_id", using: :btree
 
+  create_table "answers", force: :cascade do |t|
+    t.integer  "question_id",      limit: 4
+    t.integer  "company_id",       limit: 4
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "user_response_id", limit: 4
+    t.integer  "option_id",        limit: 4
+    t.text     "detail",           limit: 65535
+  end
+
+  add_index "answers", ["company_id"], name: "index_answers_on_company_id", using: :btree
+  add_index "answers", ["option_id"], name: "index_answers_on_option_id", using: :btree
+  add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
+  add_index "answers", ["user_response_id"], name: "index_answers_on_user_response_id", using: :btree
+
   create_table "companies", force: :cascade do |t|
     t.string   "name",                    limit: 255
     t.string   "status",                  limit: 255
@@ -34,6 +49,7 @@ ActiveRecord::Schema.define(version: 20190729174607) do
     t.integer  "subscription_package_id", limit: 4
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "subdomain",               limit: 255
   end
 
   create_table "company_settings", force: :cascade do |t|
@@ -59,6 +75,14 @@ ActiveRecord::Schema.define(version: 20190729174607) do
 
   add_index "groups", ["company_id"], name: "index_groups_on_company_id", using: :btree
 
+  create_table "groups_users", id: false, force: :cascade do |t|
+    t.integer "group_id", limit: 4
+    t.integer "user_id",  limit: 4
+  end
+
+  add_index "groups_users", ["group_id"], name: "index_groups_users_on_group_id", using: :btree
+  add_index "groups_users", ["user_id"], name: "index_groups_users_on_user_id", using: :btree
+
   create_table "options", force: :cascade do |t|
     t.text     "detail",      limit: 65535
     t.integer  "question_id", limit: 4
@@ -81,17 +105,6 @@ ActiveRecord::Schema.define(version: 20190729174607) do
 
   add_index "questions", ["company_id"], name: "index_questions_on_company_id", using: :btree
   add_index "questions", ["survey_id"], name: "index_questions_on_survey_id", using: :btree
-
-  create_table "responses", force: :cascade do |t|
-    t.string   "answer",      limit: 255
-    t.integer  "question_id", limit: 4
-    t.integer  "company_id",  limit: 4
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-  end
-
-  add_index "responses", ["company_id"], name: "index_responses_on_company_id", using: :btree
-  add_index "responses", ["question_id"], name: "index_responses_on_question_id", using: :btree
 
   create_table "subscription_packages", force: :cascade do |t|
     t.string   "subscription_package_name", limit: 255
@@ -116,6 +129,14 @@ ActiveRecord::Schema.define(version: 20190729174607) do
 
   add_index "surveys", ["company_id"], name: "index_surveys_on_company_id", using: :btree
   add_index "surveys", ["user_id"], name: "index_surveys_on_user_id", using: :btree
+
+  create_table "user_responses", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "survey_id",  limit: 4
+    t.string   "email",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "user_settings", force: :cascade do |t|
     t.boolean  "emails_subscription", limit: 1
@@ -151,6 +172,7 @@ ActiveRecord::Schema.define(version: 20190729174607) do
     t.string   "first_name",             limit: 255
     t.string   "last_name",              limit: 255
     t.string   "role",                   limit: 255
+    t.string   "initial_password",       limit: 255
     t.string   "image_file_name",        limit: 255
     t.string   "image_content_type",     limit: 255
     t.integer  "image_file_size",        limit: 4
