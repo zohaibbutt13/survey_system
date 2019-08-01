@@ -10,7 +10,8 @@ class GroupsController < ApplicationController
 
   def create
     respond_to do |format|
-      if @group.create_group(@current_company.id)
+      group.company = @current_company
+      if @group.save
         flash[:notice] = "Group created successfully!"
         format.html { redirect_to groups_path }
       else
@@ -24,7 +25,8 @@ class GroupsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @group.update_group(group_params)
+      @group = @group.update_attributes(group_params)
+      if @group.save
         flash[:notice] = "Group updated successfully!"
         format.html { redirect_to groups_path }
       else

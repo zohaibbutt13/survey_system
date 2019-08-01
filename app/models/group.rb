@@ -1,6 +1,6 @@
 class Group < ActiveRecord::Base
   default_scope { where(company_id: Company.current_id) }
-  
+
   has_many :activities, as: :trackable
   belongs_to :company
   has_and_belongs_to_many :users
@@ -17,15 +17,5 @@ class Group < ActiveRecord::Base
     if Group.find_by(name: name, company: company) != nil # present
       errors.add(:name, 'group name must be unique')
     end
-  end
-
-  def create_group(company_id)
-    company = Company.find(company_id)
-    save
-  end
-
-  def update_group(params)
-    company = Company.update_attributes(params)
-    save
   end
 end

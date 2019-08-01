@@ -8,9 +8,6 @@ class CompaniesController < ApplicationController
   def dashboard
   end
 
-  def company_settings
-  end
-
   def filter
     @surveys = @surveys.where('name LIKE ?', "%#{params[:filters][:name]}%") unless params[:filters][:name].blank?
     @surveys = @surveys.where('expiry < ?', params[:filters][:expired_before]) unless params[:filters][:expired_before].blank?

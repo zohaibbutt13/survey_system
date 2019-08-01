@@ -1,12 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'users/registrations', sessions: 'users/sessions' }
 
-  # devise_scope :user do
-  #   root to: "devise/sessions#new"
-  # end
-  
-  # resources :users
-
   get 'companies/filter', path: 'companies/filter'
 
   resources :groups
@@ -16,6 +10,7 @@ Rails.application.routes.draw do
       get 'display_surveys'
     end
   end
+  
   resources :members
 
   resources :home do
