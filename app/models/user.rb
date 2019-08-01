@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
          :confirmable, :trackable
 
   has_many :activities, as: :trackable
-  has_many :activities, dependent: :destroy
+  has_many :activities, foreign_key: :owner_id, dependent: :destroy
   belongs_to :company
   has_one :user_setting
   has_many :surveys
