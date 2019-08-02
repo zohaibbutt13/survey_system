@@ -12,6 +12,10 @@ class Group < ActiveRecord::Base
   }
   validate :same_name_within_company
 
+  after_create :create_group_activity
+  after_update :update_group_activity
+  after_destroy :destroy_group_activity
+
   def same_name_within_company
     if Group.find_by(name: name, company: company) != nil
       errors.add(:name, 'group name must be unique')
@@ -26,5 +30,17 @@ class Group < ActiveRecord::Base
   def update_group(params)
     company = Company.update_attributes(params)
     save
+  end
+
+  def create_group_activity
+    Activity.create(trackable: self, action: 'created', owner_id: self.user_id, company_id: self.company_id)
+  end
+
+  def update_group_activity
+    Activity.create(trackable: self, action: 'updated', owner_id: self.user_id, company_id: self.company_id)
+  end
+
+  def destroy_group_activity
+    Activity.create(trackable: self, action: 'deleted', owner_id: self.user_id, company_id: self.company_id)
   end
 end

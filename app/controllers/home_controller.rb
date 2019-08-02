@@ -34,10 +34,16 @@ class HomeController < ApplicationController
     @surveys_stats_labels = ['Expired', 'Active']
     @latest_surveys_labels = Survey.latest_surveys_names(3)
     @latest_surveys_responses_count = Survey.latest_surveys_responses(3)
+    respond_to do |format|
+      format.html
+    end
   end
 
   # get home/:id/survey_charts
   def survey_charts
     @survey = Survey.find(params[:id])
+    respond_to do |format|
+      format.html
+    end
   end
 end
