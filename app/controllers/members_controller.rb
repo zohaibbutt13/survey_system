@@ -5,6 +5,10 @@ class MembersController < ApplicationController
   end
 
   def index
+    respond_to do |format|
+      format.html
+      format.json { render json: @members}
+    end
   end
 
   def create
@@ -12,8 +16,10 @@ class MembersController < ApplicationController
     @member.company = @current_company
     @member.password = @member.password_confirmation = password
     if @member.save
+      flash[:notice] = "Member created successfully!"
       redirect_to dashboard_company_path(@current_company)
     else
+      flash[:error] = "#{ @member.errors.messages.first[0] } #{ @member.errors.messages.first[1][0] }"
       render :new
     end
   end
@@ -23,8 +29,10 @@ class MembersController < ApplicationController
 
   def update
     if @member.update_attributes(member_params)
+      flash[:notice] = "Member updated successfully!"
       redirect_to members_path
     else
+      flash[:error] = "#{ @member.errors.messages.first[0] } #{ @member.errors.messages.first[1][0] }"
       render :edit
     end
   end

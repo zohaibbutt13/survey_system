@@ -11,11 +11,11 @@ class GroupsController < ApplicationController
   def create
     respond_to do |format|
       @group.company = @current_company
-      if @group.save
+      if @group.save!
         flash[:notice] = "Group created successfully!"
         format.html { redirect_to groups_path }
       else
-        flash[:error] = @group.errors.messages.first[1]
+        flash[:error] = "#{ @group.errors.messages.first[0] } #{ @group.errors.messages.first[1][0] }"
         format.html { render :new }
       end
     end
@@ -30,7 +30,7 @@ class GroupsController < ApplicationController
         flash[:notice] = "Group updated successfully!"
         format.html { redirect_to groups_path }
       else
-        flash[:error] = @group.errors.messages.first[1]
+        flash[:error] = "#{ @group.errors.messages.first[0] } #{ @group.errors.messages.first[1][0] }"
         format.html { render :edit }
       end
     end

@@ -6,17 +6,16 @@ class Group < ActiveRecord::Base
   has_and_belongs_to_many :users
 
   validates :name, 
-            presence: { message: 'Name must not be blank.' },
+            presence: true,
             length: { maximum: 150,
-                      message: 'Name must not have more than 150 characters.' }
+                      message: 'must not have more than 150 characters.' }
   validates :description,
-            presence: { message: 'Name must not be blank.' },
+            presence: true,
             length: { maximum: 500, 
-                      message: 'Description must not have more than 500 characters.' } 
-  validates_uniqueness_of :name, scope: :company_id,
-                          message: 'Group name must be unique.'
+                      message: 'must not have more than 500 characters.' } 
+  validates_uniqueness_of :name, scope: :company_id
   validates :users, length: {
     minimum: 1,
-    message: 'A Group should have at least 1 member'
+    message: 'in a group must be more than 1.'
   }
 end
