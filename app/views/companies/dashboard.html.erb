@@ -1,15 +1,16 @@
-<h1>Companies#dashboard</h1>
-<%= get_subdomain %>
-<p>Find me in app/views/companies/dashboard.html.erb</p>
-
-<ul>
-  <%= link_to members_path do %>
-    <li>Employees</li>
-  <% end %>
-  <%= link_to groups_path do %>
-    <li>Groups</li>
-  <% end %>
-  <%= link_to new_survey_path do %>
-    <li>Create Survey</li>
-  <% end %>
-</ul>
+<div class = "container">
+  <h1>Welcome to your company <%= get_subdomain %></h1>
+  <ul class = "mt-4">
+    <%= link_to members_path do %>
+      <li>Employees</li>
+    <% end %>
+    <%= link_to groups_path do %>
+      <li>Groups</li>
+    <% end %>
+    <% if can? :manage, Survey %>
+      <%= link_to new_survey_path do %>
+        <li>Create Survey</li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>

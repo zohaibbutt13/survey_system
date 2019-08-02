@@ -1,11 +1,10 @@
-<h1> <%= @survey.name %> </h1>
 <div class="container">
   <h2><%= @survey.name %></h2>
   <br>
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active" data-toggle="tab" href="#home"><%= @survey.name %></a>
+      <a class="nav-link active" data-toggle="tab" href="#home">Survey</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" data-toggle="tab" href="#menu1">Responses</a>
@@ -13,17 +12,33 @@
   </ul>
 
   <!-- Tab panes -->
-  <div class="tab-content">
+  <div class="tab-content container">
     <div id="home" class="container tab-pane active"><br>
-      <h3>Create Survey</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      <%= link_to 'Edit Survey', edit_survey_path(@survey) %>
-      <%= link_to 'Delete', @survey, method: :delete, data: { confirm: 'Are you sure?' } %>
-      <%= link_to 'Fill it', new_survey_user_response_path(@survey) %>
+      <h2>Survey Preview</h2>
+      <div class= "text-left survey-box container shadow p-3 mb-5 bg-white rounded">
+        <% @survey.questions.each_with_index do |val , index| %>
+        <br>
+          <p class="font-weight-bold">Question <%= "#{index+1} : #{val.statement}" %></p>
+          <% val.options.each_with_index do |option_value, option_index| %>
+            <% if val.checkbox? %>
+                <%= check_box_tag :option, 1, false, disabled: true %>
+            <% elsif val.radiobutton? %>
+                <%= radio_button_tag "", nil, false, class: '', disabled: true %>
+            <% elsif val.commentbox? %>
+              <%= text_field_tag :option, "", class: '', readonly: true %>
+            <% elsif val.boolean? %>
+               <%= radio_button_tag "", nil, false, class: '', disabled: true %>
+            <% end %>
+            <%= option_value.detail %><br>
+          <% end %>
+        <% end %>
+        <br>
+        <%= link_to 'Edit Survey', edit_survey_path(@survey) %><br>
+        <%= link_to 'Delete', @survey, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+      </div>
     </div>
     <div id="menu1" class="container tab-pane fade"><br>
       <h3>Responses</h3>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
       <div id = "responses">
       </div>
       <a href = "#_" data-survey_id = "<%= @survey.id %>" id = "see_responses" class = "js-responses">See Responses</a>

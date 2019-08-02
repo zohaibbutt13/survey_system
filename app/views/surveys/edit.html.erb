@@ -1,5 +1,21 @@
-<div>
-  <h3>Edit Survey</h3>
-    <p><%= @survey.description %></p>
-    <%= render 'form', locals: {submit: 'Edit'} %>
-</div>
+<div class="container">
+  <h2>Edit Survey</h2>
+  <br>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#home">Survey</a>
+    </li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div id="home" class="container tab-pane active"><br>
+      <h3><%= @survey.name %></h3>
+      <p><%= @survey.description %></p>
+      <div class = "text-left survey-box container mt-3 shadow p-3 mb-5 bg-white rounded">
+        <%= render 'form', locals: {submit: 'Edit'} %>
+      </div>
+    </div>
+  </div>
+</div> 

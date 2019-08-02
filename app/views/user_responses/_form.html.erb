@@ -1,16 +1,13 @@
 <div id = "user-response">
   <%= form_for [@survey,@user_response] do |f| %>
     <%= f.hidden_field :survey_id, value: @survey.id %>
-    <label> Name of Survey: </label>
-    <p> <%= @survey.name %> </p>
-    <label> Description of Survey: </label>
-    <p> <%= @survey.description %> </p>
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %></br>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true %></br>
     <% @survey.questions.each_with_index do |val , index| %>
       <%= f.fields_for :answers do |answer| %>
       <%= answer.hidden_field :question_id, value: val.id %>
-        <p><%= val.statement %></p>
+        <br>
+        <p class="font-weight-bold">Question <%= "#{index+1} : #{val.statement}" %></p>
           <% val.options.each_with_index do |option_value, option_index| %>
             <% if (val.question_type == 'Checkbox') %>
               <%= answer.check_box :option_id, {id: "user_response_answers_attributes_#{option_index}_option_id_#{option_value.id}" , multiple: true }, "#{option_value.id}", false %>
@@ -29,6 +26,6 @@
           <% end %>
       <% end %>
     <% end %>
-    <%= f.submit "Submit"%>
+    <%= f.submit "Submit", class: "btn btn-primary mt-3"%>
   <% end %> 
 </div>

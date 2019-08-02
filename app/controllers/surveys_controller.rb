@@ -3,6 +3,7 @@ class SurveysController < ApplicationController
   before_action do
     @groups = Group.all
   end
+  
   # GET  shows all the surveys of a company
   def index
     @surveys = Survey.all
@@ -31,8 +32,8 @@ class SurveysController < ApplicationController
 
   # POST creates a new survey
   def create
-    # @survey.questions.first.user_id = current_user.user_id
-    @survey = Survey.new(survey_params)
+    @survey = current_user.surveys.new(survey_params)
+    @survey.company_id = current_user
     if @survey.save
       flash[:notice] = 'Survey Created'
       redirect_to @survey
