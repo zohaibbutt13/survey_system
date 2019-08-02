@@ -16,8 +16,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable,
          :confirmable, :trackable
 
-  has_many :activities, as: :trackable
+  default_scope { where(company_id: Company.current_id) }
+
+  
   has_many :activities, foreign_key: :owner_id, dependent: :destroy
+  has_many :activities, as: :trackable
   belongs_to :company
   has_one :user_setting
   has_many :surveys

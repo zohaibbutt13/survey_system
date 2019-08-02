@@ -21,7 +21,7 @@ test:
   database: survey_system_test
   username: root
   password: MyDb97.11
-  
+
 
 production:
   adapter: mysql2
