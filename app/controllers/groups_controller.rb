@@ -11,7 +11,7 @@ class GroupsController < ApplicationController
   def create
     respond_to do |format|
       @group.company = @current_company
-      if @group.save!
+      if @group.save
         flash[:notice] = "Group created successfully!"
         format.html { redirect_to groups_path }
       else
