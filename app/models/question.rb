@@ -15,6 +15,8 @@ class Question < ActiveRecord::Base
     end
   end
 
+  # Return an array having count for how many times each option
+  # was selected as a answer for a given question
   def answer_stats
     stats_data = []
     options.each do |option|
@@ -27,6 +29,7 @@ class Question < ActiveRecord::Base
     stats_data
   end
 
+  # Returns an array having labels of options corresponding to a question
   def options_labels
     labels = []
     options.each do |option|
