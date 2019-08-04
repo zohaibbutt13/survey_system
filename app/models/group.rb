@@ -36,7 +36,7 @@ class Group < ActiveRecord::Base
   end
 
   def group_admin_id
-    User.where(" role = ? AND company_id = ?", 'admin', company_id).first.id
+    User.where("role = ? AND company_id = ?", 'admin', company_id).first.id
   end
 
   def create_group_activity

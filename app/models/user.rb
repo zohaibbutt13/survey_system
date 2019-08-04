@@ -55,7 +55,7 @@ class User < ActiveRecord::Base
   end
 
   def admin_user_id
-    User.where(" role = ? AND company_id = ?", 'admin', company_id).first.id
+    User.where("role = ? AND company_id = ?", 'admin', company_id).first.id
   end
 
   def create_user_activity
