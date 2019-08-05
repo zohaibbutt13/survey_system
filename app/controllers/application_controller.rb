@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
   end
 
   before_action do
+    # binding.pry
     unless request.subdomain.empty?
       @current_company = Company.find_by_subdomain(request.subdomain)
 
@@ -25,7 +26,7 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    if @current_company != nil && user_signed_in?
+    if @current_company.present? && user_signed_in?
       @company_setting, @user_setting = @current_company.dashboard_resources(current_user)
     end
   end

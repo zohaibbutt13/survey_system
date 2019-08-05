@@ -8,14 +8,14 @@ class HomeController < ApplicationController
     end
   end
 
-  # get home/packages
-  def packages
-    @skip_sidebar = true
-    @packages = SubscriptionPackage.get_packages
-    respond_to do |format|
-      format.html
-    end
-  end
+  # # get home/packages
+  # def packages
+  #   @skip_sidebar = true
+  #   @packages = SubscriptionPackage.get_packages
+  #   respond_to do |format|
+  #     format.html
+  #   end
+  # end
 
   # get home/display_surveys
   def display_surveys

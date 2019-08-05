@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   resources :companies, only: [] do
     member do
       get 'dashboard'
+      get 'subscription_packages'
+      get 'update_subscription_package'
     end
   end
   

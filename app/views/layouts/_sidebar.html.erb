@@ -6,7 +6,7 @@
           <% get_sidebar_menu = sidebar_menu %>
           <% get_sidebar_menu.each do |content,value| %>
             <li class="nav-item">
-              <span data-feather= <%= value[:icon] %> ></span>
+              <i class="#_"></i>
               <%= link_to content, value[:url] %>
             </li>
           <% end %>
@@ -15,8 +15,3 @@
     </nav>
   </div>
 </div>
-
-<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
-<script>
-  feather.replace();
-</script>

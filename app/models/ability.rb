@@ -6,6 +6,8 @@ class Ability
     if user.admin?
       can :manage, UserSetting, user_id: user.id
       can :manage, CompanySetting, company_id: user.company_id
+      #TODO
+      #can :manage, SubscriptionPackage, id: user.company.subscription_package_id 
       can :manage, [User, Group], company_id: user.company_id
       cannot [:destroy, :edit], user
     elsif user.supervisor?

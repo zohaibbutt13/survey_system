@@ -8,13 +8,23 @@ class MembersController < ApplicationController
   end
 
   def create
-    password = Devise.friendly_token.first(8)
-    @member.company = @current_company
-    @member.password = @member.password_confirmation = @member.initial_password = password
-    if @member.save
-      redirect_to dashboard_company_path(@current_company)
+    #TODO
+    current_supervisors_count = User.where(role:'supervisor').count
+    current_memebers_count = User.where(role:'member').count
+    max_supervisors = current_user.company.subscription_package.max_supervisors
+    max_members = current_user.company.subscription_package.max_members   
+    if (@member.role == "supervisor" && current_supervisors_count <= max_supervisors) || (@member.role == "supervisor" && current_memebers_count <= max_members)
+      password = Devise.friendly_token.first(8)
+      @member.company = @current_company
+      @member.password = @member.password_confirmation = @member.initial_password = password
+      if @member.save
+        redirect_to dashboard_company_path(@current_company)
+      else
+        render :new
+      end
     else
-      render :new
+      flash[:error] = "Exceeds from limit."
+      redirect_to dashboard_company_path(@current_company)   
     end
   end
 

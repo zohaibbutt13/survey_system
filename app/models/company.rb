@@ -29,5 +29,4 @@ class Company < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: true, length: { maximum: 30 } 
   validates :subdomain, presence: true, uniqueness: true, length: { maximum: 30 }
-
 end
