@@ -1,4 +1,4 @@
-<div class="row justify-content-center">
+<div class="row justify-content-center table-custom-scrollbar my-2">
   <table class="table table-striped">
     <thead class="thead-dark">
       <tr>
@@ -6,7 +6,7 @@
         <th scope="col">Title</th>
         <th scope="col">Description</th>
         <th scope="col">Category</th>
-        <th scope="col">Created By</th>
+        <!-- <th scope="col">Created By</th> -->
         <th scope="col">Created on</th>
         <th scope="col">Expiry</th>
       </tr>
@@ -18,7 +18,7 @@
         <td><%= survey.name %></td>
         <td><%= survey.description %></td>
         <td><%= survey.category %></td>
-        <td><%= survey.user.full_name %></td>
+        <!-- Add td for survey.user.full_name -->
         <td><%= survey.created_at.to_s(:long) %></td>
         <td><%= survey.expiry.to_s(:long) %></td>
       </tr>

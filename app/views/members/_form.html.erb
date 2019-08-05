@@ -1,24 +1,28 @@
-<div class="field">
-  <%= f.label :first_name %><br />
-  <%= f.text_field :first_name, autofocus: true, autocomplete: "first name" %>
-</div>
+<div class=" row d-flex justify-content-center">
+  <div class="container col-12 col-lg-6 my-2">
+    <div class="field">
+      <h4 class="text-muted mt-2"><%= f.label :first_name %></h4>
+      <%= f.text_field :first_name, autofocus: true, autocomplete: "first name", class: "form-control w-100" %>
+    </div>
 
-<div class="field">
-  <%= f.label :last_name %><br />
-  <%= f.text_field :last_name, autofocus: true, autocomplete: "last name" %>
-</div>
+    <div class="field">
+      <h4 class="text-muted mt-2"><%= f.label :last_name %></h4>
+      <%= f.text_field :last_name, autofocus: true, autocomplete: "last name", class: "form-control w-100" %>
+    </div>
 
-<div class="field">
-  <%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-</div>
+    <div class="field">
+      <h4 class="text-muted mt-2"><%= f.label :email %></h4>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control w-100" %>
+    </div>
 
-<div class="field">
-  <%= f.label :role %><br />
-  <%= f.select :role, User::ROLE.reject { |key, value| key == :admin } %>
-  <br>
-</div>
+    <div class="field">
+      <h4 class="text-muted mt-2"><%= f.label :role %></h4>
+      <%= f.select :role, User::ROLE.reject { |key, value| key == :admin }, {:class =>  "form-control w-100"} %>
+      <br>
+    </div>
 
-<div class="actions">
-  <%= f.submit locals[:submit] %>
+    <div class="actions">
+      <%= f.submit locals[:submit], class: "btn custom-btn-dark mt-2 w-25 float-right" %>
+    </div>
+  </div>
 </div>

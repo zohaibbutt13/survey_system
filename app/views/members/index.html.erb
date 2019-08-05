@@ -1,23 +1,38 @@
 <h1> Members </h1>
-
 <% if can? :manage, User %>
-  <td><%= link_to "Create new User", new_member_path %></td>
+  <div class="d-flex justify-content-end mr-2">
+    <%= link_to "Create new User", new_member_path, class: 'btn custom-btn-dark '%>
+  </div>
 <% end %>
-
-<table>
-  <% @members.each do |member| %>
-    <tr>
-      <td><%= member.full_name %></td>
-      <% if can? :manage, member %>
-        <% unless cannot? :edit, member %>
-          <td><%= link_to 'Edit', edit_member_path(member) %></td>
-        <% end %>
-        <% if can? :destroy, member %>
-          <td><%= link_to 'Delete', member_path(member), method: :delete, data: { confirm: 'Are you sure?' } %>
-        <% end %>
-        </td>
+<div class="table-custom-scrollbar mt-2">
+<table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">User Name</th>
+        <th scope="col">User Role</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @members.each_with_index do |member,index| %>
+        <tr>
+          <th><%= index+1 %></th>
+          <td><%= member.full_name %></td>
+          <td><%= member.role %></td>
+          <% if can? :manage, member %>
+            <% unless cannot? :edit, member %>
+              <td><%= link_to 'Edit', edit_member_path(member) %></td>
+            <% end %>
+            <% if can? :destroy, member %>
+              <td><%= link_to 'Delete', member_path(member), method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>
+            </td>
+          <% end %>
+        </tr>
       <% end %>
-    </tr>
-  <% end %>
-</table>
+    </tbody>
+  </table>
+</div>
   

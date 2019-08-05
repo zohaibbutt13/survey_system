@@ -35,15 +35,19 @@ class Group < ActiveRecord::Base
     save
   end
 
+  def group_admin_id
+    User.where(" role = ? AND company_id = ?", 'admin', company_id).first.id
+  end
+
   def create_group_activity
-    Activity.create(trackable: self, action: 'created', owner_id: self.user_id, company_id: self.company_id)
+    Activity.create(trackable: self, action: 'created', owner_id: self.group_admin_id, company_id: self.company_id)
   end
 
   def update_group_activity
-    Activity.create(trackable: self, action: 'updated', owner_id: self.user_id, company_id: self.company_id)
+    Activity.create(trackable: self, action: 'updated', owner_id: self.group_admin_id, company_id: self.company_id)
   end
 
   def destroy_group_activity
-    Activity.create(trackable: self, action: 'deleted', owner_id: self.user_id, company_id: self.company_id)
+    Activity.create(trackable: self, action: 'deleted', owner_id: self.group_admin_id, company_id: self.company_id)
   end
 end

@@ -30,9 +30,11 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
+    <div style="min-height: 30rem">
     <%= render 'layouts/header' %>
     <%= render 'layouts/flash_messages' %>
-    <%= yield %>
+      <%= yield %>
+    </div>
     <%= render 'layouts/footer' %>
   </body>
 </html>

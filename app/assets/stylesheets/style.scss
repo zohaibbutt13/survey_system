@@ -1,5 +1,15 @@
-.nav-item{
+$primary-color-dark: #005174;
+$primary-color: #278e82;
+$primary-color-light: #b4dba9;
+$base-color: #ece9d4;
+$accent-color: #2c306a;
+
+.nav-link{
   font-size: 1rem;
+  color: white;
+  &:hover{
+    color: $primary-color-dark;
+  }
 }
 
 .dashboard_text{
@@ -19,6 +29,9 @@
 
 body {
   font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  height: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 h1,
@@ -48,11 +61,14 @@ header.master-head h1 {
   padding-bottom: 1rem;
 }
 
-
-
 footer.footer {
   padding-top: 4rem;
   padding-bottom: 4rem;
+  background-color: $primary-color;
+  color: white;
+  a {
+  color: $primary-color-light;
+  }
 }
 
 .zoom:hover {
@@ -63,6 +79,20 @@ footer.footer {
 
 .table-custom-scrollbar {
 position: relative;
-height: 25rem;
+height: 22rem;
 overflow: auto;
+}
+
+.custom-navbar {
+  background-color: $primary-color;
+}
+
+.custom-btn-dark {
+  background-color: $primary-color-dark;
+  color: white;
+  border: white;
+  &:hover{
+    background-color: $accent-color;
+    color: white;
+  }
 }

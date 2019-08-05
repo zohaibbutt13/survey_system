@@ -33,7 +33,6 @@ Rails.application.routes.draw do
     collection do
       get 'index'
       get 'packages'
-      get 'display_surveys'
       get 'main_charts'
     end
     member do

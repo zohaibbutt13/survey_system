@@ -6,6 +6,14 @@ class CompaniesController < ApplicationController
   end
 
   def dashboard
+    @surveys_stats = [Survey.expired_surveys.count, Survey.active_surveys.count]
+    @surveys_stats_labels = ['Expired', 'Active']
+    @latest_surveys_labels = Survey.latest_surveys_names(3)
+    @latest_surveys_responses_count = Survey.latest_surveys_responses(3)
+    @activities = @activities = Activity.get_user_activities(current_user).reverse
+    respond_to do |format|
+      format.html
+    end
   end
 
   def filter
