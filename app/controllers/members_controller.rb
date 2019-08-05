@@ -19,7 +19,7 @@ class MembersController < ApplicationController
       flash[:notice] = "Member created successfully!"
       redirect_to dashboard_company_path(@current_company)
     else
-      flash[:error] = "#{ @member.errors.messages.first[0] } #{ @member.errors.messages.first[1][0] }"
+      flash[:error] = @member.errors.full_messages
       render :new
     end
   end
@@ -32,7 +32,7 @@ class MembersController < ApplicationController
       flash[:notice] = "Member updated successfully!"
       redirect_to members_path
     else
-      flash[:error] = "#{ @member.errors.messages.first[0] } #{ @member.errors.messages.first[1][0] }"
+      flash[:error] = @member.errors.full_messages
       render :edit
     end
   end

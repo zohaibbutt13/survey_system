@@ -5,14 +5,10 @@ class Group < ActiveRecord::Base
   belongs_to :company
   has_and_belongs_to_many :users
 
-  validates :name, 
-            presence: true,
-            length: { maximum: 150,
-                      message: 'must not have more than 150 characters.' }
-  validates :description,
-            presence: true,
-            length: { maximum: 500, 
-                      message: 'must not have more than 500 characters.' } 
+  validates :name, presence: true,
+            length: { maximum: 150, message: 'must not have more than 150 characters.' }
+  validates :description, presence: true,
+            length: { maximum: 500, message: 'must not have more than 500 characters.' } 
   validates_uniqueness_of :name, scope: :company_id
   validates :users, length: {
     minimum: 1,
