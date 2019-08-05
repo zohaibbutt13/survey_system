@@ -42,14 +42,18 @@
                 </div>
               </div>
               <div class = "pt-3">
-                <label> Statement: </label>
+                <label> Statement *: </label>
                 <%= q.text_field :statement %>
+                <div class = "pt-3">
+                  <label> Required: </label>
+                  <%= q.check_box :required, checked: q.object.required %>
+                </div>
               </div>
               <div id = "statement_<%= index %>_option_container" class = "pt-3">
                 <% option_index = 0 %>
                 <%= q.fields_for :options, id: '' do |option| %> 
                   <div id= "statement_<%= index %>_option_divid_<%= option_index %>">
-                    <%= # render_option(q.object) %>
+                    <%#= # render_option(q.object) %>
                     <% if q.object.boolean? || q.object.commentbox? %>
                       <br><%= text_field_tag "text", "#{option.object.detail}", class: 'form-control', readonly: true %> 
                     <% else %>

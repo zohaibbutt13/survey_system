@@ -13,26 +13,26 @@
     <% end %>
     <div class = "text-left survey-box container mt-3 shadow p-3 mb-5 bg-white rounded">
       <% @survey.questions.each_with_index do |val , index| %>
-        <p><%= val.statement %></p>
+        <p class="font-weight-bold pt-3">Question <%= "#{index+1} : #{val.statement}" %></p>
         <% comments_index = 0 %>
         <% val.options.each_with_index do |option_value, option_index| %>
-          <% if val.question_type == 'Checkbox' %>
+          <% if val.checkbox? %>
             <% if selected_option_ids.include? option_value.id %>
               <%= check_box_tag :option, 1, true, disabled: true %>
             <% else %>
               <%= check_box_tag :option, 1, false, disabled: true %>
             <% end %>
-          <% elsif val.question_type == 'Radio Buttons' %>
+          <% elsif val.radiobutton? %>
             <% if selected_option_ids.include? option_value.id %>
               <%= radio_button_tag "option #{radio_button_id}", nil, true, class: '', disabled: true %>
             <% else %>
               <%= radio_button_tag "option #{radio_button_id}", nil, false, class: '', disabled: true %>
             <% end %>
             <% radio_button_id += 1 %>
-          <% elsif val.question_type == 'Comment Box'  %>
+          <% elsif val.commentbox? %>
             <%= text_field_tag :option, "#{comments_detail[comments_index]}", class: '', readonly: true %>
             <% comments_index += 1 %>
-          <% elsif val.question_type == 'True / False'  %>
+          <% elsif val.boolean? %>
             <% if selected_option_ids.include? option_value.id %>
               <%= radio_button_tag "option #{radio_button_id}", nil, true, class: '', disabled: true %>
             <% else %>
