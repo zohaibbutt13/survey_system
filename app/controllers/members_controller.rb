@@ -17,7 +17,7 @@ class MembersController < ApplicationController
     @member.password = @member.password_confirmation = password
     if @member.save
       flash[:notice] = "Member created successfully!"
-      redirect_to dashboard_company_path(@current_company)
+      redirect_to members_path
     else
       flash[:error] = "#{ @member.errors.messages.first[0] } #{ @member.errors.messages.first[1][0] }"
       render :new
@@ -38,7 +38,11 @@ class MembersController < ApplicationController
   end
 
   def destroy
-    @member.destroy
+    if @member.destroy
+      flash[:notice] = "Member destroyed successfully!"
+    else
+      flash[:error] = "Error! Please try again."
+    end
     redirect_to members_path
   end
 
