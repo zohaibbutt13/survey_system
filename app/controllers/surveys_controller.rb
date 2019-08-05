@@ -33,7 +33,7 @@ class SurveysController < ApplicationController
   # POST creates a new survey
   def create
     @survey = current_user.surveys.new(survey_params)
-    @survey.company_id = current_user
+    @survey.company_id = current_user.company_id
     if @survey.save
       flash[:notice] = 'Survey Created'
       redirect_to @survey
