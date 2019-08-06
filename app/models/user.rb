@@ -16,8 +16,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable,
          :confirmable, :trackable
 
+  default_scope { where(company_id: Company.current_id) }
+
+  
+  has_many :activities, foreign_key: :owner_id, dependent: :destroy
   has_many :activities, as: :trackable
-  has_many :activities, dependent: :destroy
   belongs_to :company
   has_one :user_setting
   has_many :surveys
@@ -31,16 +34,24 @@ class User < ActiveRecord::Base
   has_attached_file :image, styles: { thumb: "50x50>" }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
+  def self.count_of_members_and_supervisors?(current_user, member)
+    current_supervisors_count = User.where(role: ROLE[:supervisor]).count
+    current_memebers_count = User.where(role: ROLE[:member]).count
+    max_supervisors = current_user.company.subscription_package.max_supervisors
+    max_members = current_user.company.subscription_package.max_members
+    (member.supervisor? && current_supervisors_count < max_supervisors) || (member.member? && current_memebers_count < max_members)  
+  end
+
   def admin?
-    role == User::ROLE[:admin]
+    role == ROLE[:admin]
   end
 
   def supervisor?
-    role == User::ROLE[:supervisor]
+    role == ROLE[:supervisor]
   end
 
   def member?
-    role == User::ROLE[:member]
+    role == ROLE[:member]
   end
 
   def full_name

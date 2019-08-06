@@ -1,7 +1,7 @@
 <div class="col-10 p-3">
   <h3> Members </h3>
 
-  <% if can? :manage, User %>
+  <% if can? :create, User %>
     <td><%= link_to "Create new User", new_member_path %></td>
   <% end %>
 
@@ -9,7 +9,7 @@
     <% @members.each do |member| %>
       <tr>
         <td><%= member.full_name %></td>
-        <% if can? :manage, member %>
+        <% if can? :update, member %>
           <% unless cannot? :edit, member %>
             <td><%= link_to 'Edit', edit_member_path(member) %></td>
           <% end %>

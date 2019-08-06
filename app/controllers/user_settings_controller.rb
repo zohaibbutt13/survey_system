@@ -3,6 +3,9 @@ class UserSettingsController < ApplicationController
 
   #/user_settings/id/edit
   def edit
+    respond_to do |format|
+      format.html
+    end
   end
 
   def update

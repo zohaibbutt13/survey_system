@@ -6,7 +6,7 @@
           <% get_sidebar_menu = sidebar_menu %>
           <% get_sidebar_menu.each do |content,value| %>
             <li class="nav-item">
-              <i class="#_"></i>
+              <i class=<%= value[:icon] %> ></i>
               <%= link_to content, value[:url] %>
             </li>
           <% end %>
