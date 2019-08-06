@@ -16,11 +16,10 @@ class Question < ActiveRecord::Base
   end
 
   def answer_stats
-    stats_data = []
-    options.each do |option|
-      stats_data.push(option.answers.count)
-    end
-    stats_data
+    options.joins('LEFT OUTER JOIN answers on options.id = answers.option_id')
+           .select('COUNT(answers.id) AS answers_count')
+           .group('options.id')
+           .map { |option| option.answers_count }
   end
 
   def options_labels

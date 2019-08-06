@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   resources :members
 
   resources :surveys do
+    member do
+      get 'survey_charts'
+    end
     collection do
       get 'add_question'
       get 'add_option'
@@ -31,17 +34,6 @@ Rails.application.routes.draw do
     collection do
       get 'index'
       get 'packages'
-      get 'display_surveys'
-      get 'main_charts'
-    end
-    member do
-      get 'survey_charts'
-    end
-  end
-
-  resources :activity do
-    collection do
-      get 'index'
     end
   end
 

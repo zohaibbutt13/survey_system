@@ -110,4 +110,12 @@ class SurveysController < ApplicationController
     @survey.destroy
     redirect_to surveys_path, notice: 'Delete success'
   end
+
+  # get survey/:id/survey_charts
+  def survey_charts
+    @survey = Survey.find(params[:id])
+    respond_to do |format|
+      format.html
+    end
+  end
 end
