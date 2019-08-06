@@ -6,14 +6,14 @@ class SurveysController < ApplicationController
     @groups = @current_company.groups.all
   end
   
-  # GET  shows all the surveys of a company
+  # GET  /surveys
   def index
     respond_to do |format|
       format.html
     end
   end
 
-  # GET builds a new survey object
+  # GET surveys/new
   def new
     @question = @survey.questions.build 
     respond_to do |format|
@@ -21,14 +21,14 @@ class SurveysController < ApplicationController
     end
   end
 
-  # GET displays survey based on the given id
+  # GET survey/:id
   def show
     respond_to do |format|
       format.html
     end
   end
 
-  # POST creates a new survey
+  # POST /surveys
   def create
     if @survey.save
       flash[:notice] = 'Survey Created'
@@ -40,14 +40,14 @@ class SurveysController < ApplicationController
     end
   end
 
-  # edit form for a survey with given id
+  # edit surveys/:id/edit
   def edit
     respond_to do |format|
       format.html
     end
   end
 
-  # updates the survey
+  # patch surveys/:id
   def update
     if @survey.update(survey_params)
       flash[:notice] = 'Survey Updated!'
@@ -58,28 +58,28 @@ class SurveysController < ApplicationController
     end
   end
 
-  # GET adds a new question to the surveycompany_id: user.company_id
+  # GET surveys/add_question
   def add_question
     respond_to do |format|
       format.js
     end
   end
 
-  # GET adds a new option
+  # GET surveys/add_option
   def add_option
     respond_to do |format|
       format.js
     end
   end
 
-  # GET deletes an option
+  # GET surveys/delete_option
   def delete_option
     respond_to do |format|
       format.js
     end
   end
 
-  # GET deletes a question
+  # GET surveys/delete_question
   def delete_question
     respond_to do |format|
       format.js
@@ -101,7 +101,7 @@ class SurveysController < ApplicationController
     )
   end
 
-  # deletes survey
+  # delete surveys/:id
   def destroy
     @survey.destroy
     redirect_to surveys_path, notice: 'Delete success'
