@@ -12,11 +12,4 @@ module SurveysHelper
     data.html_safe
   end
 
-  def question_options
-    ['Checkbox', 'Radio Buttons', 'Comment Box', 'True / False']
-  end
-
-  def survey_type
-    ['Private', 'Public']
-  end
 end

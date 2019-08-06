@@ -1,5 +1,7 @@
 class UserResponsesController < ApplicationController
-  #list all the responses of a survey
+  # load_and_authorize_resource :survey
+  # load_and_authorize_resource :user_response, through: :survey
+  # GET list all the responses of a survey
   def index
     @survey = Survey.find(params[:survey_id])
     @user_responses = @survey.user_responses
@@ -9,20 +11,20 @@ class UserResponsesController < ApplicationController
     end
   end
 
-  # directs to the new action of user_response
+  # GET directs to the new action of user_response
   def new
     @survey = Survey.find(params[:survey_id])
     @user_response = UserResponse.new
     @answer = @user_response.answers.build
   end
 
-  # shows the response with given id
+  # GET shows the response with given id
   def show
     @survey = Survey.find(params[:survey_id])
     @user_response = @survey.user_responses.find(params[:id])
   end
 
-  # creates a new user_response
+  # POST creates a new user_response
   def create
     @survey = Survey.find(params[:survey_id])
     @user_response = UserResponse.new(response_params)
@@ -56,6 +58,7 @@ class UserResponsesController < ApplicationController
     params[:user_response][:answers_attributes] = params[:user_response][:answers_attributes].merge manipulate_answers_attributes
   end
 
+  # whitelists parameters
   def response_params
     set_response_params
     params.require(:user_response).permit(

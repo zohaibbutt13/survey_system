@@ -4,8 +4,10 @@
     <%= link_to members_path do %>
       <li>Employees</li>
     <% end %>
-    <%= link_to groups_path do %>
-      <li>Groups</li>
+    <% if can? :manage, Group %>
+      <%= link_to groups_path do %>
+        <li>Groups</li>
+      <% end %>
     <% end %>
     <% if can? :create, Survey %>
       <%= link_to new_survey_path do %>

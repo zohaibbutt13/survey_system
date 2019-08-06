@@ -3,7 +3,7 @@ class SurveysController < ApplicationController
   before_action :set_group, only: [:new, :edit, :create, :update]
 
   def set_group
-    @groups = Group.all
+    @groups = @current_company.groups.all
   end
   
   # GET  shows all the surveys of a company
@@ -30,8 +30,6 @@ class SurveysController < ApplicationController
 
   # POST creates a new survey
   def create
-    @survey = current_user.surveys.new(survey_params)
-    @survey.company_id = current_user.company_id
     if @survey.save
       flash[:notice] = 'Survey Created'
       redirect_to @survey
@@ -42,12 +40,14 @@ class SurveysController < ApplicationController
     end
   end
 
+  # edit form for a survey with given id
   def edit
     respond_to do |format|
       format.html
     end
   end
 
+  # updates the survey
   def update
     if @survey.update(survey_params)
       flash[:notice] = 'Survey Updated!'
@@ -72,12 +72,14 @@ class SurveysController < ApplicationController
     end
   end
 
+  # GET deletes an option
   def delete_option
     respond_to do |format|
       format.js
     end
   end
 
+  # GET deletes a question
   def delete_question
     respond_to do |format|
       format.js

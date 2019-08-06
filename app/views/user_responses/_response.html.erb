@@ -1,10 +1,9 @@
 <div id = "user_responses">
   <% radio_button_id = 0 %>
-  <% @response_per_page.each do |response| %>
-    <h3> <%= response.email %> </h3>
+    <h3> <%= user_response.email %> </h3>
     <% selected_option_ids = [] %>
     <% comments_detail = [] %>
-    <% response.answers.each do |answer| %>
+    <% user_response.answers.each do |answer| %>
       <% selected_option_ids << answer.option_id %>
       <% question = Question.find(answer.question_id) %>
       <% if question.question_type == 'Comment Box' %>
@@ -17,27 +16,15 @@
         <% comments_index = 0 %>
         <% question.options.each_with_index do |option, option_index| %>
           <% if question.question_type == 'Checkbox' %>
-            <% if selected_option_ids.include? option.id %>
-              <%= check_box_tag :option, 1, true, disabled: true %>
-            <% else %>
-              <%= check_box_tag :option, 1, false, disabled: true %>
-            <% end %>
+            <%= check_box_tag :option, 1, (selected_option_ids.include? option.id), disabled: true %>
           <% elsif question.question_type == 'Radio Buttons' %>
-            <% if selected_option_ids.include? option.id %>
-              <%= radio_button_tag "option #{radio_button_id}", nil, true, class: '', disabled: true %>
-            <% else %>
-              <%= radio_button_tag "option #{radio_button_id}", nil, false, class: '', disabled: true %>
-            <% end %>
+            <%= radio_button_tag "option #{radio_button_id}", nil, (selected_option_ids.include? option.id), class: '', disabled: true %>
             <% radio_button_id += 1 %>
           <% elsif question.question_type == 'Comment Box'  %>
             <%= text_field_tag :option, "#{comments_detail[comments_index]}", class: '', readonly: true %>
             <% comments_index += 1 %>
           <% elsif question.question_type == 'True / False'  %>
-            <% if selected_option_ids.include? option.id %>
-              <%= radio_button_tag "option #{radio_button_id}", nil, true, class: '', disabled: true %>
-            <% else %>
-              <%= radio_button_tag "option #{radio_button_id}", nil, false, class: '', disabled: true %>
-            <% end %>
+            <%= radio_button_tag "option #{radio_button_id}", nil,(selected_option_ids.include? option.id), class: '', disabled: true %>
           <% end %>
           <%= option.detail %>
         <% end %>
@@ -46,5 +33,4 @@
         <%= js_will_paginate @response_per_page %>
       </div>
     </div>
-  <% end %>
 </div>

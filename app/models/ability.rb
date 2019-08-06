@@ -8,9 +8,9 @@ class Ability
 
     if user.admin?
       can :manage, [User, Group], company_id: user.company_id
-      can [:create, :read, :edit, :add_question, :add_option, :delete_question, :delete_option], Survey, company_id: user.company_id
-      can [:read], UserResponse, company_id: user.company_id
-      cannot [:destroy, :edit], user
+      can [:create, :read, :edit, :update, :add_question, :add_option, :delete_question, :delete_option, :destroy], Survey, company_id: user.company_id
+      can [:read, :create], UserResponse
+      cannot [:destroy, :edit], user, company_id: user.company_id
     elsif user.supervisor?
       can :read, [User, Group], company_id: user.company_id
     elsif user.member?
