@@ -21,10 +21,10 @@
           <i class="fas fa-cog"></i>    
           </button>
           <div class="dropdown-menu">
-            <% if can? :edit, @user_setting %>
+            <% if can? :edit, current_user.user_setting %>
               <%= link_to "My Settings", edit_user_setting_path(current_user.user_setting) %><br>
             <% end %>
-            <% if can? :edit, @company_setting %>
+            <% if can? :edit, @current_company.company_setting %>
               <%= link_to "Company Settings", edit_company_setting_path(current_user.company.company_setting) %>
             <% end %>
           </div>

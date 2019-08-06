@@ -29,7 +29,7 @@
     <%= render_breadcrumbs :separator => ' / ' %>
     <% if current_user.present? && (current_user.admin? || current_user.supervisor?) %>
       <div class='row'>
-        <%= render 'layouts/sidebar' unless @skip_sidebar %>    
+        <%= render 'layouts/sidebar' %>    
       </div>
     <% end %>
     <%= yield %>
