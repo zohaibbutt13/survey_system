@@ -1,5 +1,14 @@
 class User < ActiveRecord::Base
-  ROLE = {admin: 'admin', supervisor: 'supervisor', member: 'member'}
+  after_create do
+    UserSetting.create(
+      :emails_subscription => '1',
+      :show_graphs => '1',
+      :show_history => '1',
+      :company_id => self.company_id,
+      :user_id => self.id)    
+  end
+
+  ROLE = { admin: 'admin', supervisor: 'supervisor', member: 'member' }
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -7,8 +16,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable,
          :confirmable, :trackable
 
+  default_scope { where(company_id: Company.current_id) }
+  
+  has_many :activities, foreign_key: :owner_id, dependent: :destroy
   has_many :activities, as: :trackable
-  has_many :activities, dependent: :destroy
   belongs_to :company
   has_one :user_setting
   has_many :surveys
@@ -16,19 +27,22 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :company
 
-  validates :first_name, presence: true, length: { maximum: 150 }
-  validates :last_name, presence: true, length: { maximum: 150 }
+  validates :first_name, presence: true, length: { maximum: 150, message: 'must not have more than 150 characters.' }
+  validates :last_name, presence: true, length: { maximum: 150, message: 'must not have more than 150 characters.' }
+
+  has_attached_file :image, styles: { thumb: "50x50>" }
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
   def admin?
-    role == User::ROLE[:admin]
+    role == ROLE[:admin]
   end
 
   def supervisor?
-    role == User::ROLE[:supervisor]
+    role == ROLE[:supervisor]
   end
 
   def member?
-    role == User::ROLE[:member]
+    role == ROLE[:member]
   end
 
   def full_name

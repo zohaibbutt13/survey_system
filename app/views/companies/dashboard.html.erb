@@ -1,18 +1,18 @@
-<div class = "container">
-  <h1>Welcome to your company <%= get_subdomain %></h1>
-  <ul class = "mt-4">
-    <%= link_to members_path do %>
-      <li>Employees</li>
+<div class="row">
+  <div class="col-5">
+    <%= render 'layouts/sidebar' %>    
+  </div>
+  <!-- User Settings Graphs and History Enable and Disable-->
+  <div class="col-7 p-3">
+    <% if @user_setting.show_graphs? %>
+      <div id="graphs">
+        <h1>Graphs</h1>
+      </div>
     <% end %>
-    <% if can? :manage, Group %>
-      <%= link_to groups_path do %>
-        <li>Groups</li>
-      <% end %>
+    <% if @user_setting.show_history? %>
+      <div id="histroy">
+        <h1 >History</h1>
+      </div>
     <% end %>
-    <% if can? :create, Survey %>
-      <%= link_to new_survey_path do %>
-        <li>Create Survey</li>
-      <% end %>
-    <% end %>
-  </ul>
+  </div>
 </div>

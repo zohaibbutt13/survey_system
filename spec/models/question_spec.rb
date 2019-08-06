@@ -10,6 +10,11 @@ RSpec.describe Question, type: :model do
     expect(question).to be_valid
   end
 
+  it 'is not valid without question type' do
+    question.question_type = nil
+    expect(question).to_not be_valid
+  end
+
   it 'is not valid without a statement' do
     question.statement = nil
     expect(question).to_not be_valid
