@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
       :user_id => self.id)    
   end
 
-  ROLE = {admin: 'admin', supervisor: 'supervisor', member: 'member'}
+  ROLE = { admin: 'admin', supervisor: 'supervisor', member: 'member' }
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -17,7 +17,6 @@ class User < ActiveRecord::Base
          :confirmable, :trackable
 
   default_scope { where(company_id: Company.current_id) }
-
   
   has_many :activities, foreign_key: :owner_id, dependent: :destroy
   has_many :activities, as: :trackable
@@ -28,8 +27,8 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :company
 
-  validates :first_name, presence: true, length: { maximum: 150 }
-  validates :last_name, presence: true, length: { maximum: 150 }
+  validates :first_name, presence: true, length: { maximum: 150, message: 'must not have more than 150 characters.' }
+  validates :last_name, presence: true, length: { maximum: 150, message: 'must not have more than 150 characters.' }
 
   has_attached_file :image, styles: { thumb: "50x50>" }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
