@@ -10,8 +10,7 @@ class Survey < ActiveRecord::Base
   has_many :user_responses, dependent: :destroy, inverse_of: :survey
   belongs_to :group, inverse_of: :survey
 
-  accepts_nested_attributes_for :questions
-  accepts_nested_attributes_for :options
+  accepts_nested_attributes_for :questions, :options
 
   validates :name, presence: true, length: { maximum: 100 }
   validates :description, presence: true, length: { maximum: 500 }

@@ -13,7 +13,7 @@
       <label> Expiry of Survey: </label>
       <%= f.date_field :expiry %></br>
       <label> Assign a group to survey: </label>
-      <%= f.select :group_id, options_for_select(Group.all.collect {|g| [g.name, g.id ]}, f.object.group_id ) %>
+      <%= f.select :group_id, options_for_select(@groups.collect {|g| [g.name, g.id ]}, f.object.group_id ) %>
       <div id = "survey_questions" >
         <% index = 0 %> 
         <%= f.fields_for :questions, id: '' do |q| %>

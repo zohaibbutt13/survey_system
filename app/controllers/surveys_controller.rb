@@ -1,8 +1,11 @@
 class SurveysController < ApplicationController
   
-  before_action do
-    @groups = Group.all
+  before_action :set_groups, only: [:new, :edit, :update, :create]
+
+  def set_groups
+    @groups = @current_company.groups
   end
+
   # GET  shows all the surveys of a company
   def index
     @surveys = Survey.all
