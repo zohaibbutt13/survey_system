@@ -7,7 +7,7 @@
     <%= link_to groups_path do %>
       <li>Groups</li>
     <% end %>
-    <% if can? :manage, Survey %>
+    <% if can? :create, Survey %>
       <%= link_to new_survey_path do %>
         <li>Create Survey</li>
       <% end %>

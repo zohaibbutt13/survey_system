@@ -1,13 +1,13 @@
 class SurveysController < ApplicationController
-  
-  before_action do
+  load_and_authorize_resource
+  before_action :set_group, only: [:new, :edit, :create, :update]
+
+  def set_group
     @groups = Group.all
   end
   
   # GET  shows all the surveys of a company
   def index
-    @surveys = Survey.all
-    @survey = Survey.new
     respond_to do |format|
       format.html
     end
@@ -15,7 +15,6 @@ class SurveysController < ApplicationController
 
   # GET builds a new survey object
   def new
-    @survey = Survey.new
     @question = @survey.questions.build 
     respond_to do |format|
       format.html
@@ -24,7 +23,6 @@ class SurveysController < ApplicationController
 
   # GET displays survey based on the given id
   def show
-    @survey = Survey.find(params[:id])
     respond_to do |format|
       format.html
     end
@@ -33,7 +31,7 @@ class SurveysController < ApplicationController
   # POST creates a new survey
   def create
     @survey = current_user.surveys.new(survey_params)
-    @survey.company_id = current_user
+    @survey.company_id = current_user.company_id
     if @survey.save
       flash[:notice] = 'Survey Created'
       redirect_to @survey
@@ -45,14 +43,12 @@ class SurveysController < ApplicationController
   end
 
   def edit
-    @survey = Survey.find(params[:id])
     respond_to do |format|
       format.html
     end
   end
 
   def update
-    @survey = Survey.find(params[:id])
     if @survey.update(survey_params)
       flash[:notice] = 'Survey Updated!'
       redirect_to @survey
@@ -62,7 +58,7 @@ class SurveysController < ApplicationController
     end
   end
 
-  # GET adds a new question to the survey
+  # GET adds a new question to the surveycompany_id: user.company_id
   def add_question
     respond_to do |format|
       format.js
@@ -103,8 +99,8 @@ class SurveysController < ApplicationController
     )
   end
 
+  # deletes survey
   def destroy
-    @survey = Survey.find(params[:id])
     @survey.destroy
     redirect_to surveys_path, notice: 'Delete success'
   end

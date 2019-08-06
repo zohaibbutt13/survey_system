@@ -1,4 +1,5 @@
 class UserResponsesController < ApplicationController
+  #list all the responses of a survey
   def index
     @survey = Survey.find(params[:survey_id])
     @user_responses = @survey.user_responses
@@ -8,17 +9,20 @@ class UserResponsesController < ApplicationController
     end
   end
 
+  # directs to the new action of user_response
   def new
     @survey = Survey.find(params[:survey_id])
     @user_response = UserResponse.new
     @answer = @user_response.answers.build
   end
 
+  # shows the response with given id
   def show
     @survey = Survey.find(params[:survey_id])
     @user_response = @survey.user_responses.find(params[:id])
   end
 
+  # creates a new user_response
   def create
     @survey = Survey.find(params[:survey_id])
     @user_response = UserResponse.new(response_params)
@@ -31,6 +35,7 @@ class UserResponsesController < ApplicationController
     end
   end
 
+  # set response params
   def set_response_params
     manipulate_answers_attributes = {}
     index_new_hash = params[:user_response][:answers_attributes].length

@@ -17,7 +17,7 @@
       <div class = "pt-3">
         <label> Type of Survey: </label>
         <div class = "d-flex justify-content-end">
-          <%= f.select :survey_type , raw("<option>Private</option><option>Public</option>") %> 
+          <%= f.select :survey_type , options_for_select(survey_type) %> 
         </div>
       </div> 
       <div class = "pt-3">
@@ -27,7 +27,7 @@
       <div class = "pt-3">
         <label> Assign a group to survey: </label>
         <div class = "d-flex justify-content-end">
-          <%= f.select :group_id, options_for_select(Group.all.collect {|g| [g.name, g.id ]}, f.object.group_id ) %>
+          <%= f.select :group_id, options_for_select(@groups.collect {|group| [group.name, group.id ]}, f.object.group_id ) %>
         </div>
       </div>
       <div id = "survey_questions" class = "pt-3" >
@@ -38,7 +38,7 @@
               <div class = "pt-3">
                 <label> Question Type: </label>
                 <div class = "d-flex justify-content-end">
-                  <%= q.select :question_type, options_for_select([ "Checkbox", "Radio Buttons", "Comment Box", "True / False" ], q.object.question_type) %><br>
+                  <%= q.select :question_type, options_for_select(question_options, q.object.question_type) %><br>
                 </div>
               </div>
               <div class = "pt-3">
@@ -49,25 +49,24 @@
                 <% option_index = 0 %>
                 <%= q.fields_for :options, id: '' do |option| %> 
                   <div id= "statement_<%= index %>_option_divid_<%= option_index %>">
-                    <%= # render_option(q.object) %>
-                    <% if q.object.boolean? || q.object.commentbox? %>
+                    <% if q.object.question_type == "True / False" || q.object.question_type == "Comment Box" %>
                       <br><%= text_field_tag "text", "#{option.object.detail}", class: 'form-control', readonly: true %> 
                     <% else %>
                       <br><%= option.text_field :detail %> 
                     <% end %>
-                    <% if q.object.checkbox? || q.object.radiobutton? %>
+                    <% if q.object.question_type == "Checkbox" || q.object.question_type == "Radio Buttons" %>
                       <a href = "#" data-qid = "<%= index %>" data-oid = "<%= option_index %>"
                         data-divid = "<%= option_index %>" class = "js-deleteoption">Delete Option </a>
                     <% end %>
                     <% option_index += 1 %>
                   </div> 
                 <% end %>
-                <% if q.object.checkbox? || q.object.radiobutton? || q.object.question_type.nil? %>
-                  <div id = "statement_<%= index %>_add_option">
-                    <a href = "#_" data-qid = "<%= index %>" data-oid = "<%= index-1 %>" data-divid = "<%= index-1 %>" class = "js-addoption">Add Option </a>
-                  </div>
-                <% end %>
               </div>
+              <% if q.object.question_type == "Checkbox" || q.object.question_type == "Radio Buttons" || q.object.question_type.nil? %>
+                <div id = "statement_<%= index %>_add_option">
+                  <a href = "#_" data-qid = "<%= index %>" data-oid = "<%= index-1 %>" data-divid = "<%= index-1 %>" class = "js-addoption">Add Option </a>
+                </div>
+              <% end %>
               <a href = "#_" data-qid = "<%= index %>" class = "js-deletequestion">Delete Question </a>
                 <% index += 1 %>  
             <% end %>  
