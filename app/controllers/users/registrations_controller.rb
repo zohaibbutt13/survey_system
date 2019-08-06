@@ -39,7 +39,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
 
   def sign_up_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :image, company_attributes: [:name, :subdomain])
+    params[:user][:role] = User::ROLE[:admin]
+    params[:user][:company_attributes][:subscription_package_id] = 4
+    params.require(:user).permit(:role, :first_name, :last_name, :email, :password, :password_confirmation,
+                                 :image, company_attributes: [:name, :subdomain, :subscription_package_id])
   end
 
   def account_update_params
