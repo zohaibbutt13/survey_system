@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="row d-flex justify-content-between">
+    <h1>Surveys</h1>
+    <a class="btn btn-success my-auto" href="#_">Add Survey</a>
+  </div>
+
+  <div id="accordion">
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Filter
+          </button>
+        </h5>
+      </div>
+
+      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="form-group">
+          <label for="survey-name">Name:</label>
+          <input type="text" class="form-control" id="survey-name">
+        </div>
+
+        <div class="form-group">
+          <label for="expired-after">Expired After:</label>
+          <input type="date" class="form-control" id="expired-after">
+        </div>
+
+        <div class="form-group">
+          <label for="expired-before">Expired Before:</label>
+          <input type="date" class="form-control" id="expired-before">
+        </div>
+
+        <div class="form-group">
+          <label for="created-after">Created After:</label>
+          <input type="date" class="form-control" id="created-after">
+        </div>
+
+        <div class="form-group">
+          <label for="created-before">Created Before:</label>
+          <input type="date" class="form-control" id="created-before">
+        </div>
+
+        <div>
+          <%= link_to "Filter", {controller: "companies", action: "filter"}, class: "btn btn-primary", id: "js-filter" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row d-flex justify-content-start">
+    <p class="text-muted">Show Surveys: </p>
+    <div class="dropdown mx-2 mb-2">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+        Select
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <%= link_to "Expired", {controller: "companies", action: "display_surveys", filter_by: 'expiry' }, class: "dropdown-item", remote: true %>
+        <%= link_to "Active", {controller: "companies", action: "display_surveys", filter_by: 'active'}, class: "dropdown-item", remote: true %>
+        <%= link_to "All", {controller: "companies", action: "display_surveys", filter_by: 'all' }, class: "dropdown-item", remote: true %>
+      </div>
+    </div>
+  </div>
+  
+  <div id = "surveys_list">
+    <%= render partial: 'list_surveys', locals: { surveys: @surveys} %>
+  </div>
+</div>

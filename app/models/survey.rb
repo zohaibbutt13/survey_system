@@ -15,6 +15,7 @@ class Survey < ActiveRecord::Base
 
   before_save :mark_question_for_removal
 
+  default_scope { where(company_id: Company.current_id) }
   scope :public_surveys, -> { where(survey_type: 'public') }
   scope :expired_surveys, -> { where('expiry < ?', DateTime.now) }
   scope :active_surveys, -> { where('expiry > ?', DateTime.now) }
