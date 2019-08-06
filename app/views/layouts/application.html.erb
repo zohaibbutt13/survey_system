@@ -30,11 +30,9 @@
     <% if current_user.present? && (current_user.admin? || current_user.supervisor?) %>
       <div class='row'>
         <%= render 'layouts/sidebar' unless @skip_sidebar %>    
-        <%= yield %>
       </div>
-    <% else  %>
-      <%= yield %>
     <% end %>
+    <%= yield %>
     <%= render 'layouts/footer' %>
   </body>
 </html>

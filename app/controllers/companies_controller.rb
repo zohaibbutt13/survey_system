@@ -7,6 +7,9 @@ class CompaniesController < ApplicationController
 
   def dashboard
     add_breadcrumb "Dashboard"
+    respond_to do |format|
+      format.html
+    end
   end
 
   def filter

@@ -4,6 +4,9 @@ class UserSettingsController < ApplicationController
   #/user_settings/id/edit
   def edit
     add_breadcrumb "My Settings"
+    respond_to do |format|
+      format.html
+    end
   end
 
   def update

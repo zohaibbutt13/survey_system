@@ -4,10 +4,16 @@ class MembersController < ApplicationController
   def new
     add_breadcrumb "Employees", members_path
     add_breadcrumb "New Employee"
+    respond_to do |format|
+      format.html
+    end
   end
 
   def index
     add_breadcrumb "Employees"
+    respond_to do |format|
+      format.html
+    end
   end
 
   def create
@@ -24,6 +30,9 @@ class MembersController < ApplicationController
   def edit
     add_breadcrumb "Employees", members_path
     add_breadcrumb "Update Employee"
+    respond_to do |format|
+      format.html
+    end
   end
 
   def update
