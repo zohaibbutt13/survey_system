@@ -25,6 +25,7 @@
   </head>
   <body>
     <%= render 'layouts/header' %>
+    <%= render_breadcrumbs :separator => ' / ' %>
     <%= render 'layouts/flash_messages' %>
     <% if current_user.present? && (current_user.admin? || current_user.supervisor?) %>
       <div class='row'>

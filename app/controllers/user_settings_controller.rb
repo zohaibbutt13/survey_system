@@ -1,8 +1,9 @@
 class UserSettingsController < ApplicationController
   load_and_authorize_resource
-
+  add_breadcrumb "My Settings", :edit_user_setting_path
   #/user_settings/id/edit
   def edit
+    add_breadcrumb "edit", :edit_user_setting_path
   end
 
   def update

@@ -2,11 +2,13 @@ class CompaniesController < ApplicationController
   before_action :authenticate_user! do
     @current_company = current_user.company
   end
+  add_breadcrumb "Home", :dashboard_company_path
   
   def dashboard
   end
 
   def subscription_packages
+    add_breadcrumb "Subscription Packages", :subscription_packages_company_path
     @subscription_packages = SubscriptionPackage.all
   end
 
