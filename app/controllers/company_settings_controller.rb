@@ -4,7 +4,6 @@ class CompanySettingsController < ApplicationController
   #/company_settings/id/edit
   def edit
     add_breadcrumb "Company Settings"
-    add_breadcrumb "Dashboard"
     respond_to do |format|
       format.html
     end

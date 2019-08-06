@@ -1,0 +1,25 @@
+<table class="table">
+  <tbody>
+    <tr>
+      <th scope="row">Name</th>
+      <td class="col-md-9"><%= @group.name %></td>
+    </tr>
+    <tr>
+      <th scope="row">Description</th>
+      <td class="col-md-9"><%= @group.description %></td>
+    </tr>
+    <tr>
+      <th scope="row">Members</th>
+      <td class="col-md-9">
+        <%= @group_members %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<% if can? :update, @group %>
+  <%= link_to 'Edit', edit_group_path(@group), class: 'col-md-1 btn btn-outline-secondary' %>
+<% end %>
+<% if can? :destroy, @group %>
+  <%= link_to 'Delete', @group, method: :delete, data: { confirm: 'Are you sure?' },
+  class: 'col-md-1 btn btn-outline-secondary' %>
+<% end %>

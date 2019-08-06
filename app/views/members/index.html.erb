@@ -1,24 +1,36 @@
 <div class="col-10 p-3">
   <h3> Members </h3>
 
-  <% if can? :manage, User %>
-    <td><%= link_to "Create new User", new_member_path %></td>
-  <% end %>
+<% if can? :create, User %>
+  <%= link_to "Create new Member", new_member_path, class: 'btn btn-outline-secondary' %>
+<% end %>
 
-  <table>
-    <% @members.each do |member| %>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Role</th>
+      <th scope="col">Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @members.each.with_index(1) do |member, index| %>
       <tr>
+        <th scope="row"><%= index %></th>
         <td><%= member.full_name %></td>
-        <% if can? :manage, member %>
-          <% unless cannot? :edit, member %>
-            <td><%= link_to 'Edit', edit_member_path(member) %></td>
+        <td><%= member.email %></td>
+        <td><%= member.role %></td>
+        <td>
+          <% if can? :update, member %>
+            <%= link_to 'Edit', edit_member_path(member) %>
           <% end %>
           <% if can? :destroy, member %>
-            <td><%= link_to 'Delete', member_path(member), method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to 'Delete', member_path(member), method: :delete, data: { confirm: 'Are you sure?' } %>
           <% end %>
-          </td>
-        <% end %>
+        </td>
       </tr>
     <% end %>
-  </table>
-</div>
+  </tbody>
+</table>

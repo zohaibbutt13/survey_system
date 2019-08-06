@@ -1,5 +1,11 @@
 class SurveysController < ApplicationController
   
+  before_action :set_groups, only: [:new, :edit, :update, :create]
+
+  def set_groups
+    @groups = @current_company.groups
+  end
+
   # GET  shows all the surveys of a company
   def index
     add_breadcrumb "Surveys"
@@ -15,7 +21,7 @@ class SurveysController < ApplicationController
     add_breadcrumb "Surveys", surveys_path
     add_breadcrumb "New Survey"
     @survey = Survey.new
-    @question = @survey.questions.build
+    @question = @survey.questions.build 
     respond_to do |format|
       format.html
     end
@@ -100,6 +106,7 @@ class SurveysController < ApplicationController
       :category,
       :survey_type,
       :expiry,
+      :group_id,
       questions_attributes: [:id, :statement, :question_type,
       options_attributes: [:id, :detail]]
     )
