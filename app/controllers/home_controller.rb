@@ -14,18 +14,4 @@ class HomeController < ApplicationController
       format.html
     end
   end
-
-  # get home/display_surveys
-  def display_surveys
-    if params[:filter_by] == 'expiry'
-      @surveys = Survey.get_expired_surveys
-    elsif params[:filter_by] == 'active'
-      @surveys = Survey.get_active_surveys
-    else
-      @surveys = Survey.all
-    end
-    respond_to do |format|
-      format.html
-    end
-  end
 end

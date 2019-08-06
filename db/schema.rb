@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 20190801103821) do
     t.boolean  "supervisors_survey_permission",   limit: 1
     t.boolean  "supervisors_settings_permission", limit: 1
     t.boolean  "members_settings_permission",     limit: 1
-    t.integer  "survey_expiry",                   limit: 4
+    t.integer  "survey_expiry_days",              limit: 4
     t.integer  "company_id",                      limit: 4
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
@@ -175,6 +175,10 @@ ActiveRecord::Schema.define(version: 20190801103821) do
     t.string   "last_name",              limit: 255
     t.string   "role",                   limit: 255
     t.string   "initial_password",       limit: 255
+    t.string   "image_file_name",        limit: 255
+    t.string   "image_content_type",     limit: 255
+    t.integer  "image_file_size",        limit: 4
+    t.datetime "image_updated_at"
   end
 
   add_index "users", ["company_id"], name: "index_users_on_company_id", using: :btree
