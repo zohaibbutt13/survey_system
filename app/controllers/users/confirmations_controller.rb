@@ -27,6 +27,5 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   def after_confirmation_path_for(resource_name, resource)
     sign_in resource
     dashboard_company_path(current_user.company, subdomain: resource.company.subdomain)
-    # new_session_path(resource_name, subdomain: resource.company.subdomain)
   end
 end
