@@ -40,7 +40,11 @@ class GroupsController < ApplicationController
   end
 
   def destroy
-    @group.destroy
+    if @group.destroy
+      flash[:notice] = "Group destroyed successfully!"
+    else
+      flash[:error] = "Error! Please try again."
+    end
     redirect_to groups_path
   end
 

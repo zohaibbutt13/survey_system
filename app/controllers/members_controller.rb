@@ -11,13 +11,16 @@ class MembersController < ApplicationController
     end
   end
 
+  def show
+  end
+
   def create
     password = Devise.friendly_token.first(8)
     @member.company = @current_company
     @member.password = @member.password_confirmation = password
     if @member.save
       flash[:notice] = "Member created successfully!"
-      redirect_to members_path
+      redirect_to member_path(@member)
     else
       flash[:error] = "#{ @member.errors.messages.first[0] } #{ @member.errors.messages.first[1][0] }"
       render :new
@@ -30,7 +33,7 @@ class MembersController < ApplicationController
   def update
     if @member.update_attributes(member_params)
       flash[:notice] = "Member updated successfully!"
-      redirect_to members_path
+      redirect_to member_path(@member)
     else
       flash[:error] = "#{ @member.errors.messages.first[0] } #{ @member.errors.messages.first[1][0] }"
       render :edit
