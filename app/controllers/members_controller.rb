@@ -29,7 +29,7 @@ class MembersController < ApplicationController
         flash[:notice] = "Member created successfully!"
         format.html { redirect_to member_path(@member) }
       else
-        flash[:error] = "#{ @member.errors.messages.first[0] } #{ @member.errors.messages.first[1][0] }"
+        flash[:error] = @member.errors.full_messages
         format.html { render :new }
       end
     end
@@ -47,7 +47,7 @@ class MembersController < ApplicationController
         flash[:notice] = "Member updated successfully!"
         format.html { redirect_to member_path(@member) }
       else
-        flash[:error] = "#{ @member.errors.messages.first[0] } #{ @member.errors.messages.first[1][0] }"
+        flash[:error] = @member.errors.full_messages
         format.html { render :edit }
       end
     end
