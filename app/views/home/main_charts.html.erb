@@ -1,12 +1,12 @@
 <!-- Main Charts -->
 <div class="container">
   <div class="row">
-    <div class='survey-chart col-md-6'>
+    <div class='js-survey-chart col-md-6'>
       <h3>Survey Stats</h3>
       <h2 class="text-muted">Expired Vs Active Surveys</h2>
       <%= content_tag :canvas, "", id: 'surveys_stats', data: { chart_data: @surveys_stats, chart_labels: @surveys_stats_labels, chart_type: 'pie', chart_colors: GRAPH_COLORS } %>
     </div>
-    <div class='survey-chart col-md-6'>
+    <div class='js-survey-chart col-md-6'>
       <h3>Latest Surveys</h3>
       <h2 class="text-muted">Responses of latest surveys</h2>
       <%= content_tag :canvas, "", id: 'latest_surveys', data: { chart_data: @latest_surveys_responses_count, chart_labels: @latest_surveys_labels, chart_type: 'bar', chart_label: 'Responses', chart_colors: GRAPH_COLORS } %>

@@ -18,27 +18,23 @@ class Survey < ActiveRecord::Base
   scope :public_surveys, -> { where(survey_type: 'public') }
   scope :expired_surveys, -> { where('expiry < ?', DateTime.now) }
   scope :active_surveys, -> { where('expiry > ?', DateTime.now) }
+  scope :latest_surveys, -> { order('surveys.created_at desc') }
 
   # Returns array of all the public surveys
   def self.get_public_surveys(page_params, per_page_limit)
     Survey.public_surveys.paginate(page: page_params, per_page: per_page_limit)
   end
 
-  # Returns an array having survey names
-  def self.latest_surveys_names(count)
-    survey_names = []
-    Survey.last(count).each do |survey|
-      survey_names.push(survey.name.to_s)
-    end
-    survey_names
-  end
-
   # Returns an array having surveys respones count
   def self.latest_surveys_responses(count)
     survey_responses = []
-    Survey.last(count).each do |survey|
-      survey_responses.push(survey.user_responses.count)
-    end
+    latest_surveys.limit(count)
+                  .joins('LEFT OUTER JOIN user_responses on surveys.id = user_responses.survey_id')
+                  .select('surveys.id, COUNT(user_responses.id) AS responses_count')
+                  .group('surveys.id')
+                  .each do |survey|
+                    survey_responses.push(survey.responses_count)
+                  end
     survey_responses
   end
 
