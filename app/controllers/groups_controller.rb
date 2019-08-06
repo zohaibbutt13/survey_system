@@ -6,9 +6,16 @@ class GroupsController < ApplicationController
   end
 
   def show
+    @group_members = @group.users.map(&:full_name).join(', ')
+    respond_to do |format|
+      format.html
+    end
   end
 
   def new
+    respond_to do |format|
+      format.html
+    end
   end
 
   def create
@@ -40,6 +47,9 @@ class GroupsController < ApplicationController
   end
 
   def index
+    respond_to do |format|
+      format.html
+    end
   end
 
   def destroy

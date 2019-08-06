@@ -6,8 +6,8 @@ class MembersController < ApplicationController
 
   def index
     respond_to do |format|
-      format.html
-      format.json { render json: @members}
+      format.html { @members = @members.reject { |user| user.id == current_user.id } }
+      format.json { render json: @members }
     end
   end
 
