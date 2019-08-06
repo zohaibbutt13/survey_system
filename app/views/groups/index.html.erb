@@ -1,6 +1,6 @@
 <h1>All Groups</h1>
 
-<% if can? :manage, Group %>
+<% if can? :create, Group %>
   <td><%= link_to "Add new", new_group_path, class: 'btn btn-outline-secondary' %></td>
 <% end %>
 
@@ -20,8 +20,10 @@
         <td><%= group.name %></td>
         <td><%= group.description %></td>
         <td>
-          <% if can? :manage, group %>
+          <% if can? :update, group %>
             <%= link_to 'Edit', edit_group_path(group) %>
+          <% end %>
+          <% if can? :destroy, group %>
             <%= link_to 'Delete', group, method: :delete, data: { confirm: 'Are you sure?' } %>
           <% end %>
         </td>

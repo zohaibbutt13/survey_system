@@ -17,10 +17,10 @@ class ApplicationController < ActionController::Base
   end
 
   before_action do
-    unless request.subdomain.empty?
+    if request.subdomain.present?
       @current_company = Company.find_by_subdomain(request.subdomain)
 
-      unless @current_company.present?
+      if @current_company.nil?
         page_not_found
       else
         Company.current_id = @current_company.id

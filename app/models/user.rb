@@ -27,12 +27,8 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :company
 
-  validates :first_name,
-            presence: true,
-            length: { maximum: 150, message: 'must not have more than 150 characters.' }
-  validates :last_name, 
-            presence: true,
-            length: { maximum: 150, message: 'must not have more than 150 characters.' }
+  validates :first_name, presence: true, length: { maximum: 150, message: 'must not have more than 150 characters.' }
+  validates :last_name, presence: true, length: { maximum: 150, message: 'must not have more than 150 characters.' }
 
   has_attached_file :image, styles: { thumb: "50x50>" }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
