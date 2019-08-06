@@ -34,7 +34,7 @@ class SurveysController < ApplicationController
       flash[:notice] = 'Survey Created'
       redirect_to @survey
     else
-      flash[:error] = 'Incomplete information'
+      flash[:error] = @survey.errors.full_messages
       render action: :new
     
     end
@@ -53,7 +53,7 @@ class SurveysController < ApplicationController
       flash[:notice] = 'Survey Updated!'
       redirect_to @survey
     else
-      flash[:error] = 'Not Updated!'
+      flash[:error] = @survey.errors.full_messages
       render action: :edit
     end
   end
@@ -103,7 +103,11 @@ class SurveysController < ApplicationController
 
   # delete surveys/:id
   def destroy
-    @survey.destroy
-    redirect_to surveys_path, notice: 'Delete success'
+    if @survey.destroy
+      redirect_to surveys_path, notice: 'Delete success'
+    else
+      flash[:error] = @survey.errors.full_messages
+      render action: :show
+    end
   end
 end

@@ -32,7 +32,7 @@ class UserResponsesController < ApplicationController
       flash[:notice] = 'Saved'
       redirect_to survey_user_response_path(@survey, @user_response)
     else
-      flash[:error] = 'Incomplete Information'
+      flash[:error] = @user_response.errors.full_messages
       render action: :new
     end
   end
