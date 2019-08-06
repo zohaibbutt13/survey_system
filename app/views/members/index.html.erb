@@ -22,7 +22,7 @@
         <td><%= member.email %></td>
         <td><%= member.role %></td>
         <td>
-          <% if can? :edit_in_members_view, member %>
+          <% if can? :update, member %>
             <%= link_to 'Edit', edit_member_path(member) %>
           <% end %>
           <% if can? :destroy, member %>
