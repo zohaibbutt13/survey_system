@@ -1,3 +1,4 @@
 <h1>Survey Index</h1>
-
-<%= link_to 'New Survey', new_survey_path %>
+<% if can? :create, Survey %>
+  <%= link_to 'New Survey', new_survey_path %>
+<% end %>

@@ -2,7 +2,7 @@ class Activity < ActiveRecord::Base
   serialize :parameters
   belongs_to :company
   belongs_to :trackable, polymorphic: true
-  belongs_to :owner, class_name: 'User'
+  belongs_to :owner, class_name: 'User', foreign_key: :owner_id
 
   validates_presence_of :action, :company_id, :owner_id,
                         :trackable_id, :trackable_type

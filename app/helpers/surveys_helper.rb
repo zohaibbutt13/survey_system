@@ -11,4 +11,5 @@ module SurveysHelper
     end
     data.html_safe
   end
+
 end
