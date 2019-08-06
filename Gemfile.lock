@@ -46,6 +46,10 @@ GEM
       debug_inspector (>= 0.0.1)
     builder (3.2.3)
     cancancan (3.0.1)
+    chosen-rails (1.8.7)
+      coffee-rails (>= 3.2)
+      railties (>= 3.0)
+      sass-rails (>= 3.2)
     climate_control (0.2.0)
     coderay (1.1.2)
     coffee-rails (4.1.1)
@@ -239,6 +243,7 @@ PLATFORMS
 DEPENDENCIES
   better_errors (= 2.1.1)
   cancancan
+  chosen-rails
   coffee-rails (~> 4.1.0)
   devise
   factory_girl_rails

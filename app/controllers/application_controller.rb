@@ -17,10 +17,10 @@ class ApplicationController < ActionController::Base
   end
 
   before_action do
-    unless request.subdomain.empty?
+    if request.subdomain.present?
       @current_company = Company.find_by_subdomain(request.subdomain)
 
-      if @current_company == nil
+      if @current_company.nil?
         page_not_found
       else
         Company.current_id = @current_company.id
@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
       Company.current_id = nil
     end
 
-    if @current_company != nil && user_signed_in?
+    if @current_company.present? && user_signed_in?
       @company_setting, @user_setting = @current_company.dashboard_resources(current_user)
     end
   end
