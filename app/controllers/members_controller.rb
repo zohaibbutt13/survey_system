@@ -2,6 +2,9 @@ class MembersController < ApplicationController
   load_and_authorize_resource :member, class: 'User', parent: false
 
   def new
+    respond_to do |format|
+      format.html
+    end
   end
 
   def index
@@ -12,41 +15,53 @@ class MembersController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.html
+    end
   end
 
   def create
-    password = Devise.friendly_token.first(8)
-    @member.company = @current_company
-    @member.password = @member.password_confirmation = password
-    if @member.save
-      flash[:notice] = "Member created successfully!"
-      redirect_to member_path(@member)
-    else
-      flash[:error] = "#{ @member.errors.messages.first[0] } #{ @member.errors.messages.first[1][0] }"
-      render :new
+    respond_to do |format|
+      password = Devise.friendly_token.first(8)
+      @member.company = @current_company
+      @member.password = @member.password_confirmation = password
+      if @member.save
+        flash[:notice] = "Member created successfully!"
+        format.html { redirect_to member_path(@member) }
+      else
+        flash[:error] = "#{ @member.errors.messages.first[0] } #{ @member.errors.messages.first[1][0] }"
+        format.html { render :new }
+      end
     end
   end
 
   def edit
+    respond_to do |format|
+      format.html
+    end
   end
 
   def update
-    if @member.update_attributes(member_params)
-      flash[:notice] = "Member updated successfully!"
-      redirect_to member_path(@member)
-    else
-      flash[:error] = "#{ @member.errors.messages.first[0] } #{ @member.errors.messages.first[1][0] }"
-      render :edit
+    respond_to do |format|
+      if @member.update_attributes(member_params)
+        flash[:notice] = "Member updated successfully!"
+        format.html { redirect_to member_path(@member) }
+      else
+        flash[:error] = "#{ @member.errors.messages.first[0] } #{ @member.errors.messages.first[1][0] }"
+        format.html { render :edit }
+      end
     end
   end
 
   def destroy
-    if @member.destroy
-      flash[:notice] = "Member destroyed successfully!"
-    else
-      flash[:error] = "Error! Please try again."
+    respond_to do |format|
+      if @member.destroy
+        flash[:notice] = "Member destroyed successfully!"
+      else
+        flash[:error] = "Error! Please try again."
+      end
+      format.html { redirect_to members_path }
     end
-    redirect_to members_path
   end
 
   private
