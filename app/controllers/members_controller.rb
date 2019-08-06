@@ -2,9 +2,12 @@ class MembersController < ApplicationController
   load_and_authorize_resource :member, :class => 'User', :parent => false
 
   def new
+    add_breadcrumb "Employees", members_path
+    add_breadcrumb "New Employee"
   end
 
   def index
+    add_breadcrumb "Employees"
   end
 
   def create
@@ -19,6 +22,8 @@ class MembersController < ApplicationController
   end
 
   def edit
+    add_breadcrumb "Employees", members_path
+    add_breadcrumb "Update Employee"
   end
 
   def update

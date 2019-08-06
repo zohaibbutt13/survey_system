@@ -1,9 +1,5 @@
-<div class="row">
-  <div class="col-5">
-    <%= render 'layouts/sidebar' %>    
-  </div>
+<div class="col-10">
   <!-- User Settings Graphs and History Enable and Disable-->
-  <div class="col-7 p-3">
   <% if @user_setting.show_graphs? %>
     <div id="graphs">
       <h1>Graphs</h1>
@@ -14,5 +10,4 @@
       <h1 >History</h1>
     </div>
   <% end %>
-  </div>
 </div>

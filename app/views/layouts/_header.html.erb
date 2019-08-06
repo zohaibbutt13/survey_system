@@ -1,7 +1,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-light bg-light static-top">
   <div class="container">
-    <% if get_current_user? %>
+    <% if current_user.present? %>
       <a class="navbar-brand" href= <%= dashboard_company_path(current_user) %> >Surveys System</a>
       <div>
         You are logged in as <%= current_user.role %>
@@ -10,7 +10,7 @@
         <div class="dropdown">
           <button type="button" class="btn btn-primary dropdown-toggle m-1" data-toggle="dropdown">
             <%= image_tag current_user.image.url(:thumb), class: 'zoom' %>
-            <%= full_name %>
+            <%= current_user.full_name %>
           </button>
           <div class="dropdown-menu">
             <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
@@ -18,13 +18,13 @@
         </div>
         <div class="dropdown">
           <button type="button" class="btn btn-primary dropdown-toggle m-1" data-toggle="dropdown">
-          <span data-feather="settings"></span>    
+          <i class="fas fa-cog"></i>    
           </button>
           <div class="dropdown-menu">
-            <% if can? :manage, @user_setting %>
+            <% if can? :edit, @user_setting %>
               <%= link_to "My Settings", edit_user_setting_path(current_user.user_setting) %><br>
             <% end %>
-            <% if can? :manage, @company_setting %>
+            <% if can? :edit, @company_setting %>
               <%= link_to "Company Settings", edit_company_setting_path(current_user.company.company_setting) %>
             <% end %>
           </div>
@@ -39,8 +39,3 @@
     <% end %>
   </div>
 </nav>
-<!-- Icons -->
-<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
-<script>
-  feather.replace();
-</script>

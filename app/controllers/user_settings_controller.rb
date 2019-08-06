@@ -1,22 +1,9 @@
 class UserSettingsController < ApplicationController
   load_and_authorize_resource
-  #/user_settings/new
-  def new
-  end
 
   #/user_settings/id/edit
   def edit
-  end
-
-  def create
-    respond_to do |format|
-      if @user_setting.save
-        flash[:notice] = "User settings was successfully created."
-        format.html { redirect_to @user_setting }
-      else
-        format.html { render :new }
-      end
-    end
+    add_breadcrumb "My Settings"
   end
 
   def update

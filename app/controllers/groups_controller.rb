@@ -6,6 +6,8 @@ class GroupsController < ApplicationController
   end
 
   def new
+    add_breadcrumb "Groups", groups_path
+    add_breadcrumb "New Group"
   end
 
   def create
@@ -21,6 +23,8 @@ class GroupsController < ApplicationController
   end
 
   def edit
+    add_breadcrumb "Groups", groups_path 
+    add_breadcrumb "Update Group"
   end
 
   def update
@@ -35,6 +39,7 @@ class GroupsController < ApplicationController
   end
 
   def index
+    add_breadcrumb "Groups"
   end
 
   def destroy

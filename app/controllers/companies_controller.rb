@@ -6,6 +6,7 @@ class CompaniesController < ApplicationController
   end
 
   def dashboard
+    add_breadcrumb "Dashboard"
   end
 
   def filter

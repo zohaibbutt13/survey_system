@@ -1,5 +1,7 @@
-<h2>Add Member</h2>
+<div class="col-10 p-3">
+  <h2>Add Member</h2>
 
-<%= form_for @member, url: members_path(@member), method: :post do |f| %>
-  <%= render 'form', f: f, locals: {heading: 'Add Member', submit: 'Add', method: :post, member: @member} %>
-<% end %>
+  <%= form_for @member, url: members_path(@member), method: :post do |f| %>
+    <%= render 'form', f: f, locals: {heading: 'Add Member', submit: 'Add', method: :post, member: @member} %>
+  <% end %>
+</div>

@@ -32,6 +32,7 @@ gem "paperclip", "~> 6.0.0"
 
 gem 'devise'
 
+gem "breadcrumbs_on_rails"
 # Use Unicorn as the app server
 # gem 'unicorn'
 

@@ -2,6 +2,7 @@ class SurveysController < ApplicationController
   
   # GET  shows all the surveys of a company
   def index
+    add_breadcrumb "Surveys"
     @surveys = Survey.all
     @survey = Survey.new
     respond_to do |format|
@@ -11,6 +12,8 @@ class SurveysController < ApplicationController
 
   # GET builds a new survey object
   def new
+    add_breadcrumb "Surveys", surveys_path
+    add_breadcrumb "New Survey"
     @survey = Survey.new
     @question = @survey.questions.build
     respond_to do |format|
@@ -20,6 +23,8 @@ class SurveysController < ApplicationController
 
   # GET displays survey based on the given id
   def show
+    add_breadcrumb "Surveys", surveys_path
+    add_breadcrumb "Your Survey"
     @survey = Survey.find(params[:id])
     respond_to do |format|
       format.html
@@ -41,6 +46,8 @@ class SurveysController < ApplicationController
   end
 
   def edit
+    add_breadcrumb "Surveys", surveys_path
+    add_breadcrumb "Edit Survey"
     @survey = Survey.find(params[:id])
     respond_to do |format|
       format.html
