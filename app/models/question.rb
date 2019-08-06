@@ -2,7 +2,7 @@ class Question < ActiveRecord::Base
   belongs_to :survey, inverse_of: :questions
   has_many :options, dependent: :destroy, inverse_of: :question, autosave: true
   accepts_nested_attributes_for :options
-  has_many :answers
+  has_many :answers, dependent: :destroy
   belongs_to :company
 
   validates :statement, presence: true, length: { maximum: 500 }
