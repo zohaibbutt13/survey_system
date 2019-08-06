@@ -11,7 +11,21 @@
 
 <!-- Public Surveys -->
 <section class="packages text-center bg-light">
-  <div id = "public_stuff">
-    <%= render 'public_surveys', locals: { surveys: @surveys, categories: @categories } %>
+  <div class="container">
+    <h2 class="mb-5">Fill any survey from our wide collection</h2>
+    <div class="dropdown mx-2 mb-2">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+        Filter
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <%= link_to 'All', {controller: "home", action: "filter_category", filter_by: nil }, class: "dropdown-item", remote: true %>
+        <% @categories.each do |category| %>
+          <%= link_to category, {controller: "home", action: "filter_category", filter_by: category }, class: "dropdown-item", remote: true %>
+        <% end %>
+      </div>
+    </div>
+    <div id = "public_stuff">
+      <%= render 'public_surveys', locals: { surveys: @surveys, categories: @categories } %>
+    </div>
   </div>
 </section>
