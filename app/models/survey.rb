@@ -2,6 +2,7 @@ require 'will_paginate/array'
 require 'date'
 
 class Survey < ActiveRecord::Base
+  has_many :activities, as: :trackable
   belongs_to :user
   has_many :questions, dependent: :destroy, inverse_of: :survey, autosave: true
   has_many :options, through: :questions
