@@ -2,6 +2,10 @@ require 'will_paginate/array'
 require 'date'
 
 class Survey < ActiveRecord::Base
+  CATEGORIES = ['Community', 'Customer Feedback', 'Customer Satisfaction', 'Demographics', 
+                'Education', 'Events', 'Healthcare', 'Human Resources', 'Just for Fun',
+                'Political', 'Quiz', 'Other']
+
   has_many :activities, as: :trackable
   belongs_to :user
   has_many :questions, dependent: :destroy, inverse_of: :survey, autosave: true

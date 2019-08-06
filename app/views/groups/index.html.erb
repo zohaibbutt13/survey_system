@@ -1,22 +1,36 @@
 <h1>All Groups</h1>
 
-<% if can? :manage, Group %>
-  <td><%= link_to "Add new", new_group_path %></td>
+<% if can? :create, Group %>
+  <td><%= link_to "Add new", new_group_path, class: 'btn btn-outline-secondary' %></td>
 <% end %>
 
-<table>
-  <% @groups.each do |group| %>
-    <div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @groups.each.with_index(1) do |group, index| %>
       <tr>
+        <th scope="row"><%= index %></th>
         <td><%= group.name %></td>
-        <% if can? :manage, group %>
-          <td><%= link_to 'Edit', edit_group_path(group) %></td>
-          <td><%= link_to 'Delete', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
+        <td><%= group.description %></td>
+        <td>
+          <% if can? :update, group %>
+            <%= link_to 'Edit', edit_group_path(group) %>
+          <% end %>
+          <% if can? :destroy, group %>
+            <%= link_to 'Delete', group, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </td>
       </tr>
       <tr>
-        <td><%= group.description %></td>
+       
       </tr>
-    </div>
-  <% end %>
+    <% end %>
+  </tbody>
 </table>
