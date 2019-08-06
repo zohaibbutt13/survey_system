@@ -14,8 +14,10 @@
         <h1 >History</h1>
       </div>
     <% end %>
-    <%= link_to new_survey_path do %>
-      <li>Create Survey</li>
+    <% if can? :create, Survey %>
+      <%= link_to new_survey_path do %>
+        <li>Create Survey</li>
+      <% end %>
     <% end %>
   </div>
 </div>
