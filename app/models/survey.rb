@@ -29,24 +29,16 @@ class Survey < ActiveRecord::Base
 
   # Returns an array having surveys respones count
   def self.latest_surveys_responses(count)
-    survey_responses = []
     latest_surveys.limit(count)
                   .joins('LEFT OUTER JOIN user_responses on surveys.id = user_responses.survey_id')
-                  .select('surveys.id, COUNT(user_responses.id) AS responses_count')
+                  .select('COUNT(user_responses.id) AS responses_count')
                   .group('surveys.id')
-                  .each do |survey|
-                    survey_responses.push(survey.responses_count)
-                  end
-    survey_responses
+                  .map { |survey| survey.responses_count }
   end
 
   def mark_question_for_removal
     questions.each do |question|
       question.mark_for_destruction if question.statement == '-1'
     end
-  end
-
-  def self.save?(survey)
-    survey.save
   end
 end
