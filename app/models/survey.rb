@@ -2,6 +2,10 @@ require 'will_paginate/array'
 require 'date'
 
 class Survey < ActiveRecord::Base
+  CATEGORIES = ['Community', 'Customer Feedback', 'Customer Satisfaction', 'Demographics', 
+                'Education', 'Events', 'Healthcare', 'Human Resources', 'Just for Fun',
+                'Political', 'Quiz', 'Other']
+
   has_many :activities, as: :trackable
   belongs_to :user
   has_many :questions, dependent: :destroy, inverse_of: :survey, autosave: true
@@ -22,8 +26,12 @@ class Survey < ActiveRecord::Base
   scope :active_surveys, -> { where('expiry > ?', DateTime.now) }
 
   # Returns array of all the public surveys
-  def self.get_public_surveys(page_params, per_page_limit)
-    Survey.public_surveys.paginate(page: page_params, per_page: per_page_limit)
+  def self.get_public_surveys(page_params, per_page_limit, category=nil)
+    if category.nil?
+      Survey.unscoped.public_surveys.paginate(page: page_params, per_page: per_page_limit)
+    else
+      Survey.unscoped.public_surveys.where(category: category).paginate(page: page_params, per_page: per_page_limit)
+    end
   end
 
   def self.get_expired_surveys
