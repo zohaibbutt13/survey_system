@@ -4,9 +4,7 @@
     <h3>Your current package is: <%= current_user.company.subscription_package.subscription_package_name %></h3>
     <h2 class="mb-5">Choose from one of our best packages</h2>
     <div class="row">
-      <% @subscription_packages.each do |subscription_package| %>
-        <%= render 'layouts/package', subscription_package: subscription_package %>
-      <% end %>
+      <%= render :partial => "layouts/package", collection: @subscription_packages, as: :subscription_package %>
     </div>
   </div>
 </section>
