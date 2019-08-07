@@ -3,7 +3,7 @@ class CompanySettingsController < ApplicationController
 
   #/company_settings/id/edit
   def edit
-    add_breadcrumb "Company Settings"
+    add_breadcrumb "Company Settings", edit_company_setting_path
     respond_to do |format|
       format.html
     end

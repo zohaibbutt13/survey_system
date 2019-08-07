@@ -6,7 +6,7 @@ class CompaniesController < ApplicationController
   end
 
   def dashboard
-    add_breadcrumb "Dashboard"
+    add_breadcrumb "Dashboard", dashboard_company_path
     respond_to do |format|
       format.html
     end

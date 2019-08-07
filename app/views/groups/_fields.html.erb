@@ -1,7 +1,7 @@
 <div class="col-10 p-3">
-  <h2><%= locals[:heading] %></h2>
+  <h2><%= heading %></h2>
 
-<%= form_for locals[:group] do |f| %>
+<%= form_for group do |f| %>
   <div class="form-group">
     <%= f.label :name, class: 'control-label' %><br />
     <%= f.text_field :name, class: 'col-md-2 form-control', autofocus: true, autocomplete: 'name' %>
@@ -14,10 +14,10 @@
 
   <div>
     <%= f.label :members, class: 'control-label' %><br />
-    <%= f.collection_select :user_ids, locals[:employees], :id, :full_name, {}, { multiple: true, class: 'col-md-4 form-control'} %>
+    <%= f.collection_select :user_ids, employees, :id, :full_name, {}, { multiple: true, class: 'col-md-4 form-control'} %>
   </div>
   <br />
   <div class="actions">
-    <%= f.submit locals[:submit], class: 'col-md-2 btn btn-dark' %>
+    <%= f.submit submit, class: 'col-md-2 btn btn-dark' %>
   </div>
 <% end %>
