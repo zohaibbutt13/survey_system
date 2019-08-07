@@ -15,6 +15,8 @@ class Question < ActiveRecord::Base
     end
   end
 
+  # Return an array having count for how many times each option
+  # was selected as a answer for a given question
   def answer_stats
     options.joins('LEFT OUTER JOIN answers on options.id = answers.option_id')
            .select('COUNT(answers.id) AS answers_count')
@@ -22,6 +24,7 @@ class Question < ActiveRecord::Base
            .map { |option| option.answers_count }
   end
 
+  # Returns an array having labels of options corresponding to a question
   def options_labels
     options.pluck(:detail)
   end

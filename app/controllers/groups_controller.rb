@@ -21,6 +21,7 @@ class GroupsController < ApplicationController
   def create
     respond_to do |format|
       @group.company = @current_company
+      @group.created_by_id = @current_user.id
       if @group.save
         flash[:notice] = "Group created successfully!"
         format.html { redirect_to @group }

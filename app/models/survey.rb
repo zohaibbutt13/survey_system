@@ -20,6 +20,9 @@ class Survey < ActiveRecord::Base
   validates :description, presence: true, length: { maximum: 500 }
 
   before_save :mark_question_for_removal
+  after_create :create_survey_activity
+  after_update :update_survey_activity
+  after_destroy :destroy_survey_activity
 
   default_scope { where(company_id: Company.current_id) }
   scope :public_surveys, -> { where(survey_type: 'public') }
@@ -45,5 +48,17 @@ class Survey < ActiveRecord::Base
     questions.each do |question|
       question.mark_for_destruction if question.statement == '-1'
     end
+  end
+
+  def create_survey_activity
+    Activity.create(trackable: self, action: 'created', owner_id: user_id, company_id: company_id)
+  end
+
+  def update_survey_activity
+    Activity.create(trackable: self, action: 'updated', owner_id: user_id, company_id: company_id)
+  end
+
+  def destroy_survey_activity
+    Activity.create(trackable: self, action: 'deleted', owner_id: user_id, company_id: company_id)
   end
 end
