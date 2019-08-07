@@ -10,5 +10,4 @@ class UserResponse < ActiveRecord::Base
   def self.response_per_page(user_responses, page_params, per_page_limit)
     user_responses.paginate(page: page_params, per_page: per_page_limit)
   end
-
 end

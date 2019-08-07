@@ -32,12 +32,13 @@ gem "paperclip", "~> 6.0.0"
 
 gem 'devise'
 
+gem 'chosen-rails'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
 group :development do
   gem 'web-console', '~> 2.0'
 end

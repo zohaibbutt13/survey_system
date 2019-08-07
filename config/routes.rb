@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { registrations: 'users/registrations', sessions: 'users/sessions' }
+  root 'home#index'
+  devise_for :users, :controllers => { registrations: 'users/registrations', sessions: 'users/sessions', confirmations: 'users/confirmations' }
 
   get 'companies/filter', path: 'companies/filter'
 
@@ -11,12 +12,15 @@ Rails.application.routes.draw do
       get 'display_surveys'
     end
   end
-  
+
   resources :company_settings
   resources :user_settings
   resources :members
 
   resources :surveys do
+    member do
+      get 'survey_charts'
+    end
     collection do
       get 'add_question'
       get 'add_option'
@@ -33,13 +37,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :activity do
-    collection do
-      get 'index'
-    end
-  end
-
-  root 'home#index'
+  get :dashboard, to: 'companies#dashboard'
+  # devise_for :users, :controllers => { registrations: 'registrations' }
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
