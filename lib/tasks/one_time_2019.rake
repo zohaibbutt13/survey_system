@@ -33,34 +33,34 @@ end
 # TODO: Replace the survey id according to the survey for creating its responses
 desc 'Create User Responses'
 task add_user_responses: :environment do
-  UserResponse.create(user_id: 1, survey_id: 5, email: 'user1@abc.com', company_id: 1)
-  UserResponse.create(user_id: 2, survey_id: 5, email: 'user2@abc.com', company_id: 1)
-  UserResponse.create(user_id: 3, survey_id: 5, email: 'user3@abc.com', company_id: 1)
-  UserResponse.create(user_id: 4, survey_id: 5, email: 'user4@abc.com', company_id: 1)
+  UserResponse.create(user_id: 1, survey_id: 10, email: 'user1@abc.com', company_id: 1)
+  UserResponse.create(user_id: 1, survey_id: 10, email: 'user2@abc.com', company_id: 1)
+  UserResponse.create(user_id: 1, survey_id: 10, email: 'user3@abc.com', company_id: 1)
+  UserResponse.create(user_id: 1, survey_id: 10, email: 'user4@abc.com', company_id: 1)
 end
 
 # Create answers for above created user respones
 # TODO: Make sure you already have questions & options associated with a survey
 desc 'Create Answers'
 task add_answers: :environment do
-  Answer.create(user_response_id: 1, question_id: 1, option_id: 1)
-  Answer.create(user_response_id: 1, question_id: 2, option_id: 4)
-  Answer.create(user_response_id: 1, question_id: 2, option_id: 5)
-  Answer.create(user_response_id: 1, question_id: 3, option_id: 9)
-  Answer.create(user_response_id: 1, question_id: 4, detail: 'user1')
-  Answer.create(user_response_id: 2, question_id: 1, option_id: 1)
-  Answer.create(user_response_id: 2, question_id: 2, option_id: 4)
-  Answer.create(user_response_id: 2, question_id: 2, option_id: 6)
-  Answer.create(user_response_id: 2, question_id: 3, option_id: 9)
-  Answer.create(user_response_id: 2, question_id: 4, detail: 'user2')
-  Answer.create(user_response_id: 3, question_id: 1, option_id: 2)
-  Answer.create(user_response_id: 3, question_id: 2, option_id: 4)
-  Answer.create(user_response_id: 3, question_id: 2, option_id: 7)
-  Answer.create(user_response_id: 3, question_id: 3, option_id: 9)
-  Answer.create(user_response_id: 3, question_id: 4, detail: 'user3')
-  Answer.create(user_response_id: 4, question_id: 1, option_id: 3)
-  Answer.create(user_response_id: 4, question_id: 2, option_id: 8)
-  Answer.create(user_response_id: 4, question_id: 2, option_id: 6)
-  Answer.create(user_response_id: 4, question_id: 3, option_id: 10)
-  Answer.create(user_response_id: 4, question_id: 4, detail: 'user4')
+  Answer.create(user_response_id: 9, question_id: 16, option_id: 34)
+  Answer.create(user_response_id: 9, question_id: 17, option_id: 37)
+  Answer.create(user_response_id: 9, question_id: 17, option_id: 38)
+  Answer.create(user_response_id: 9, question_id: 18, option_id: 42)
+  Answer.create(user_response_id: 9, question_id: 19, detail: 'user1')
+  Answer.create(user_response_id: 10, question_id: 16, option_id: 34)
+  Answer.create(user_response_id: 10, question_id: 17, option_id: 37)
+  Answer.create(user_response_id: 10, question_id: 17, option_id: 39)
+  Answer.create(user_response_id: 10, question_id: 18, option_id: 42)
+  Answer.create(user_response_id: 10, question_id: 19, detail: 'user2')
+  Answer.create(user_response_id: 11, question_id: 16, option_id: 35)
+  Answer.create(user_response_id: 11, question_id: 17, option_id: 37)
+  Answer.create(user_response_id: 11, question_id: 17, option_id: 40)
+  Answer.create(user_response_id: 11, question_id: 18, option_id: 42)
+  Answer.create(user_response_id: 11, question_id: 19, detail: 'user3')
+  Answer.create(user_response_id: 12, question_id: 16, option_id: 36)
+  Answer.create(user_response_id: 12, question_id: 17, option_id: 41)
+  Answer.create(user_response_id: 12, question_id: 17, option_id: 39)
+  Answer.create(user_response_id: 12, question_id: 18, option_id: 43)
+  Answer.create(user_response_id: 12, question_id: 19, detail: 'user4')
 end
