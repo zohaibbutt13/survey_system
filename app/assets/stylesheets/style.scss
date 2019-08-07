@@ -354,6 +354,119 @@ cursor: not-allowed;
 }
 // End buttons css
 
+.label-input-container {
+  .label-input-item {
+    padding-top: 10px;
+
+    label {
+      line-height: 22px;
+      padding: 9px 0;
+      margin: 0;
+    }
+
+    input, textarea {
+      padding: 9px;
+      line-height: 22px;
+    }
+
+    .add-resource-element {
+      a {
+        line-height: 42px;
+
+        img {
+          width: 25px;
+          height: 25px;
+          line-height: 42px;
+        }
+      }
+    }
+  }
+
+  .label-input-item:first-child {
+    padding-top: 0;
+  }
+
+  .label-input-item:last-child {
+    padding-bottom: 0;
+  }
+}
+
+// dialog start
+.modal {
+  top: 5% !important;
+  bottom: 5%;
+  background-color: transparent;
+  z-index: 1041;
+  padding: 0 !important;
+  overflow: hidden !important;
+
+  .modal-dialog {
+    height: 100%;
+    max-width: 40%;
+    min-width: 40%;
+    margin: 0 auto;
+  }
+
+  .modal-dialog-xl {
+    height: 100%;
+    max-width: 80%;
+    min-width: 80%;
+  }
+
+  .modal-dialog-lg {
+    height: 100%;
+    max-width: 60%;
+    min-width: 60%;
+  }
+
+  .modal-content {
+    border-radius: 7px;
+    max-height: 100%;
+    .modal-header {
+      padding: 15px 31px;
+      min-height: 60px;
+
+      .heading {
+        h3 {
+          line-height: 30px;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 1;
+          overflow: hidden;
+          word-wrap: break-word;
+          margin: 0;
+        }
+      }
+    }
+
+    .modal-body {
+      padding: 15px 31px;
+      overflow-y: auto;
+      max-height: 70vh;
+
+      .dialog-description {
+        margin: 0;
+
+        h4 {
+          margin: 0;
+        }
+      }
+
+      label {
+        margin: 0;
+      }
+    }
+
+    .modal-footer {
+      padding: 15px 31px;
+      border-bottom-right-radius: 7px;
+      border-bottom-left-radius: 7px;
+      min-height: 60px;
+      background-color: $heading-background-color;
+    }
+  }
+}
+
 .nav-link{
   font-size: 1rem;
   color: white;
