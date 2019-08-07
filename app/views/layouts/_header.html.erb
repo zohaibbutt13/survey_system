@@ -1,6 +1,6 @@
 <!-- Navigation -->
 <nav class="navbar navbar-dark custom-navbar static-top">
-  <% if get_current_user? %>
+  <% if current_user.present? %>
     <a class="navbar-brand" href="<%= dashboard_company_path(current_user) %>">Survey System</a>
     <div class="d-flex flex-row-reverse">
       <div class="dropdown text-white">
