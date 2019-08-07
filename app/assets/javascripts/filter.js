@@ -29,4 +29,24 @@ $(document).ready(function() {
       data: { filters: { survey_type: survey_type } }
     });
   });
+
+  $('#js-created-on-filter').click(function (event) {
+    event.preventDefault();
+    var created_on = $(':input[id="created-on"]').val();
+    $.ajax({
+      type: 'GET',
+      url: '/companies/filter',
+      data: { filters: { created_on: created_on } }
+    });
+  });
+
+  $('#js-created-by-filter').click(function (event) {
+    event.preventDefault();
+    var created_by = "";
+    $.ajax({
+      type: 'GET',
+      url: '/companies/filter',
+      data: { filters: { created_by: created_by } }
+    });
+  });
 });

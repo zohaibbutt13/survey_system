@@ -1,19 +1,16 @@
-<div class="modal fade" id="survey-type-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="created-on-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Survey Type</h4>
+        <h4 class="modal-title">Created on:</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body">
-        <select id="survey-type-filter">
-          <option value="Public">Public</option>
-          <option value="Private">Private</option>
-        </select>
+        <input type="date" id="created-on"/>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <%= link_to "Filter", {controller: "companies", action: "filter"}, class: "btn btn-primary", id: "js-survey-type-filter" %>
+        <%= link_to "Filter", {controller: "companies", action: "filter"}, class: "btn btn-primary", id: "js-created-on-filter" %>
       </div>
     </div>
   </div>

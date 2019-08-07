@@ -13,7 +13,7 @@
 
   <div>
     <%= f.label :members, class: 'control-label' %><br />
-    <%= f.collection_select :user_ids, locals[:employees], :id, :full_name, {}, { multiple: true, class: 'col-md-4 form-control'} %>
+    <%= f.collection_select :user_ids, employees, :id, :full_name, {}, { multiple: false, class: 'col-md-4 form-control'} %>
   </div>
   <br />
   <div class="actions">

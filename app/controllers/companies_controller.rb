@@ -19,7 +19,8 @@ class CompaniesController < ApplicationController
   def filter
     @surveys = @surveys.where('name LIKE ?', "%#{params[:filters][:name]}%") unless params[:filters][:name].blank?
     @surveys = @surveys.where('expiry < ?', params[:filters][:expired_before]) unless params[:filters][:expired_before].blank? 
-    @surveys = @surveys.where('survey_type = ?', params[:filters][:survey_type]) unless params[:filters][:survey_type].blank? 
+    @surveys = @surveys.where('survey_type = ?', params[:filters][:survey_type]) unless params[:filters][:survey_type].blank?
+    @surveys = @surveys.where('Date(created_at) = ?', params[:filters][:created_on]) unless params[:filters][:created_on].blank? 
     respond_to do |format|
       format.js
     end
@@ -32,6 +33,7 @@ class CompaniesController < ApplicationController
     elsif params[:filter_by] == 'active'
       @surveys = @surveys.active_surveys
     end
+    @employees = User.all
 
     respond_to do |format|
       format.html

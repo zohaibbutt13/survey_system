@@ -38,6 +38,9 @@ class Company < ActiveRecord::Base
     Thread.current[:tenant_id]
   end
 
+  def full_name
+    "#{current_user.first_name} #{current_user.last_name}"
+  end
   # def create_company(Params)
   #   company = Company.new(params)
   #   company.save

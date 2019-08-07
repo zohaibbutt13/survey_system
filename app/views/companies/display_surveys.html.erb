@@ -11,16 +11,21 @@
         Filters
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a href="#_" data-toggle="modal" data-target="#name-modal">Name</a><br>
+        <a href="#_" data-toggle="modal" data-target="#name-modal">Enter Name</a><br>
         <a href="#_" data-toggle="modal" data-target="#survey-type-modal">Survey Type</a><br>
         <a href="#_" data-toggle="modal" data-target="#expired-before-modal">Expired Before</a><br>
+        <a href="#_" data-toggle="modal" data-target="#created-on-modal">Created on</a><br>
+        <a href="#_" data-toggle="modal" data-target="#created-by-modal">Created By</a>
+      </div>
       </div>
     </div>
   </div>
-   
+
   <%= render partial: 'shared/filters/name_filter' %>
   <%= render partial: 'shared/filters/survey_type_filter' %>
-  <%= render partial: 'shared/filters/expired_before_filter' %>  
+  <%= render partial: 'shared/filters/expired_before_filter' %>
+  <%= render partial: 'shared/filters/created_on_filter' %>
+  <%= render partial: 'shared/filters/created_by_filter', locals: { employees: @employees} %>  
   
   <div id = "surveys_list">
     <%= render partial: 'list_surveys', locals: { surveys: @surveys} %>
