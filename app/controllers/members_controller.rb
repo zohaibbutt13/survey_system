@@ -26,7 +26,7 @@ class MembersController < ApplicationController
     @member.password = @member.password_confirmation = password
     respond_to do |format|
       if @member.save
-        flash[:notice] = "Member created successfully!"
+        flash[:notice] = I18n.t 'member_create_success'
         format.html { redirect_to member_path(@member) }
       else
         flash[:error] = @member.errors.full_messages
@@ -44,7 +44,7 @@ class MembersController < ApplicationController
   def update
     respond_to do |format|
       if @member.update_attributes(member_params)
-        flash[:notice] = "Member updated successfully!"
+        flash[:notice] = I18n.t 'member_update_success'
         format.html { redirect_to member_path(@member) }
       else
         flash[:error] = @member.errors.full_messages
@@ -55,7 +55,7 @@ class MembersController < ApplicationController
 
   def destroy
     if @member.destroy
-      flash[:notice] = "Member destroyed successfully!"
+      flash[:notice] = I18n.t 'member_destroy_success'
     else
       flash[:error] = @member.errors.full_messages
     end

@@ -1,17 +1,17 @@
-<h1> Members </h1>
+<h1><%= t('members_heading') %></h1>
 
 <% if can? :create, User %>
-  <%= link_to "Create new Member", new_member_path, class: 'btn btn-outline-secondary' %>
+  <%= link_to t('create_new_member_label'), new_member_path, class: 'btn btn-outline-secondary' %>
 <% end %>
 
 <table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Role</th>
-      <th scope="col">Options</th>
+      <th scope="col"><%= t('name') %></th>
+      <th scope="col"><%= t('email') %></th>
+      <th scope="col"><%= t('role') %></th>
+      <th scope="col"><%= t('user_role') %></th>
     </tr>
   </thead>
   <tbody>
@@ -23,10 +23,10 @@
         <td><%= member.role %></td>
         <td>
           <% if can? :update, member %>
-            <%= link_to 'Edit', edit_member_path(member) %>
+            <%= link_to t('edit_link'), edit_member_path(member) %>
           <% end %>
           <% if can? :destroy, member %>
-            <%= link_to 'Delete', member_path(member), method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to t('delete_link'), member_path(member), method: :delete, data: { confirm: t('confirmation_message') } %>
           <% end %>
         </td>
       </tr>

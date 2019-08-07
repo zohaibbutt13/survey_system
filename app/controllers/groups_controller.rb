@@ -22,7 +22,7 @@ class GroupsController < ApplicationController
     @group.company = @current_company
     respond_to do |format|
       if @group.save
-        flash[:notice] = "Group created successfully!"
+        flash[:notice] = I18n.t 'group_create_success'
         format.html { redirect_to @group }
       else
         flash[:error] = @group.errors.full_messages
@@ -37,7 +37,7 @@ class GroupsController < ApplicationController
   def update
     respond_to do |format|
       if @group.update_attributes(group_params)
-        flash[:notice] = "Group updated successfully!"
+        flash[:notice] = I18n.t 'group_update_success'
         format.html { redirect_to @group }
       else
         flash[:error] = @group.errors.full_messages
@@ -54,7 +54,7 @@ class GroupsController < ApplicationController
 
   def destroy
     if @group.destroy
-      flash[:notice] = "Group destroyed successfully!"
+      flash[:notice] = I18n.t 'group_destroy_success'
     else
       flash[:error] = @group.errors.full_messages
     end

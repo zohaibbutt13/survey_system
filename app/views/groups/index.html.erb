@@ -1,16 +1,16 @@
-<h1>All Groups</h1>
+<h1><%= t('group_index_heading') %></h1>
 
 <% if can? :create, Group %>
-  <td><%= link_to "Add new", new_group_path, class: 'btn btn-outline-secondary' %></td>
+  <td><%= link_to t('add_new_link'), new_group_path, class: 'btn btn-outline-secondary' %></td>
 <% end %>
 
 <table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">Description</th>
-      <th scope="col">Options</th>
+      <th scope="col"><%= t('name') %></th>
+      <th scope="col"><%= t('description') %></th>
+      <th scope="col"><%= t('options') %></th>
     </tr>
   </thead>
   <tbody>
@@ -21,10 +21,10 @@
         <td><%= group.description %></td>
         <td>
           <% if can? :update, group %>
-            <%= link_to 'Edit', edit_group_path(group) %>
+            <%= link_to t('edit_link'), edit_group_path(group) %>
           <% end %>
           <% if can? :destroy, group %>
-            <%= link_to 'Delete', group, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to t('delete_link'), group, method: :delete, data: { confirm: t('confirmation_message') } %>
           <% end %>
         </td>
       </tr>

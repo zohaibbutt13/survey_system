@@ -1,23 +1,23 @@
-<h1> Member Information </h1>
+<h1><%= t('show_member_heading') %></h1>
 <table class="table">
   <tbody>
     <tr>
-      <th scope="row">Name</th>
+      <th scope="row"><%= t('name') %></th>
       <td class="col-md-8"><%= @member.full_name %></td>
     </tr>
     <tr>
-      <th scope="row">Email Address</th>
+      <th scope="row"><%= t('email') %></th>
       <td class="col-md-8"><%= @member.email %></td>
     </tr>
     <tr>
-      <th scope="row">Role</th>
+      <th scope="row"><%= t('user_role') %></th>
       <td class="col-md-8"><%= @member.role %></td>
     </tr>
   </tbody>
 </table>
 <% if can? :update, @member %>
-  <%= link_to 'Edit', edit_member_path(@member), class: 'col-md-1 btn btn-outline-secondary' %>
+  <%= link_to t('edit_link'), edit_member_path(@member), class: 'col-md-1 btn btn-outline-secondary' %>
 <% end %>
 <% if can? :destroy, @member %>
-  <%= link_to 'Delete', member_path(@member), method: :delete, data: { confirm: 'Are you sure?' }, class: 'col-md-1 btn btn-outline-secondary' %>
+  <%= link_to t('delete_link'), member_path(@member), method: :delete, data: { confirm: t('confirmation_message') }, class: 'col-md-1 btn btn-outline-secondary' %>
 <% end %>
