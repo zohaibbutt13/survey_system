@@ -57,7 +57,7 @@ class GroupsController < ApplicationController
       if @group.destroy
         flash[:notice] = "Group destroyed successfully!"
       else
-        flash[:error] = "Error! Please try again."
+        flash[:error] = @group.errors.full_messages
       end
       format.html { redirect_to groups_path }
     end

@@ -54,12 +54,12 @@ class MembersController < ApplicationController
   end
 
   def destroy
+    if @member.destroy
+      flash[:notice] = "Member destroyed successfully!"
+    else
+      flash[:error] = @member.errors.full_messages
+    end
     respond_to do |format|
-      if @member.destroy
-        flash[:notice] = "Member destroyed successfully!"
-      else
-        flash[:error] = "Error! Please try again."
-      end
       format.html { redirect_to members_path }
     end
   end
