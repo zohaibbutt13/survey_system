@@ -1,4 +1,7 @@
 class UserResponsesController < ApplicationController
+  # load_and_authorize_resource :survey
+  # load_and_authorize_resource :user_response, through: :survey
+  # get surveys/:id/user_responses
   def index
     @survey = Survey.find(params[:survey_id])
     @user_responses = @survey.user_responses
@@ -8,17 +11,20 @@ class UserResponsesController < ApplicationController
     end
   end
 
+  # get surveys/:id/new
   def new
     @survey = Survey.find(params[:survey_id])
     @user_response = UserResponse.new
     @answer = @user_response.answers.build
   end
 
+  # get surveys/:survey_id/user_response/:id
   def show
     @survey = Survey.find(params[:survey_id])
     @user_response = @survey.user_responses.find(params[:id])
   end
 
+  # post surveys/:survey_id/user_responses      
   def create
     @survey = Survey.find(params[:survey_id])
     @user_response = UserResponse.new(response_params)
@@ -26,11 +32,12 @@ class UserResponsesController < ApplicationController
       flash[:notice] = 'Saved'
       redirect_to survey_user_response_path(@survey, @user_response)
     else
-      flash[:error] = 'Incomplete Information'
+      flash[:error] = @user_response.errors.full_messages
       render action: :new
     end
   end
 
+  # set response params
   def set_response_params
     manipulate_answers_attributes = {}
     index_new_hash = params[:user_response][:answers_attributes].length
@@ -51,6 +58,7 @@ class UserResponsesController < ApplicationController
     params[:user_response][:answers_attributes] = params[:user_response][:answers_attributes].merge manipulate_answers_attributes
   end
 
+  # whitelists parameters
   def response_params
     set_response_params
     params.require(:user_response).permit(

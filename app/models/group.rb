@@ -4,7 +4,7 @@ class Group < ActiveRecord::Base
   has_many :activities, as: :trackable
   belongs_to :company
   has_and_belongs_to_many :users
-  has_many :surveys, dependent: :destroy
+  has_many :surveys
 
   validates :name, presence: true,
             length: { maximum: 150, message: 'must not have more than 150 characters.' }
