@@ -9,8 +9,8 @@
         <%#= collection_select :user_ids, employees, :id, :full_name, {}, { multiple: false, class: 'col-md-4 form-control'} %>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <%= link_to "Filter", {controller: "companies", action: "filter"}, class: "btn btn-primary", id: "js-created-by-filter" %>
+        <button type="button" class="tertiary-btn" data-dismiss="modal">Close</button>
+        <%= link_to "Filter", {controller: "companies", action: "filter"}, class: "primary-btn", id: "js-created-by-filter" %>
       </div>
     </div>
   </div>
