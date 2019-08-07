@@ -21,10 +21,10 @@ class MembersController < ApplicationController
   end
 
   def create
+    password = Devise.friendly_token.first(8)
+    @member.company = @current_company
+    @member.password = @member.password_confirmation = password
     respond_to do |format|
-      password = Devise.friendly_token.first(8)
-      @member.company = @current_company
-      @member.password = @member.password_confirmation = password
       if @member.save
         flash[:notice] = "Member created successfully!"
         format.html { redirect_to member_path(@member) }
