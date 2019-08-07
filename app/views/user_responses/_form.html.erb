@@ -1,26 +1,23 @@
 <div id = "user-response">
   <%= form_for [@survey,@user_response] do |f| %>
     <%= f.hidden_field :survey_id, value: @survey.id %>
-    <label> Name of Survey: </label>
-    <p> <%= @survey.name %> </p>
-    <label> Description of Survey: </label>
-    <p> <%= @survey.description %> </p>
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %></br>
-    <% @survey.questions.each_with_index do |val , index| %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true %></br>
+    <% @survey.questions.each_with_index do |question , index| %>
       <%= f.fields_for :answers do |answer| %>
-      <%= answer.hidden_field :question_id, value: val.id %>
-        <p><%= val.statement %></p>
-          <% val.options.each_with_index do |option_value, option_index| %>
-            <% if (val.question_type == 'Checkbox') %>
+      <%= answer.hidden_field :question_id, value: question.id %>
+        <br>
+        <p class="font-weight-bold">Question <%= "#{index+1} : #{question.statement}" %></p>
+          <% question.options.each_with_index do |option_value, option_index| %>
+            <% if (question.question_type == 'Checkbox') %>
               <%= answer.check_box :option_id, {id: "user_response_answers_attributes_#{option_index}_option_id_#{option_value.id}" , multiple: true }, "#{option_value.id}", false %>
               <%= answer.hidden_field :detail, value: option_value.detail %>
-            <% elsif (val.question_type == 'Radio Buttons') %>
+            <% elsif (question.question_type == 'Radio Buttons') %>
               <%= answer.radio_button(:option_id, option_value.id) %>
               <%= answer.hidden_field :detail, value: option_value.detail %>
-            <% elsif (val.question_type == 'Comment Box') %>
+            <% elsif (question.question_type == 'Comment Box') %>
               <%= answer.text_area :detail  %>
-            <% elsif (val.question_type == 'True / False') %>
+            <% elsif (question.question_type == 'True / False') %>
               <%= answer.radio_button(:option_id, option_value.id) %>
               <%= answer.hidden_field :detail, value: option_value.detail %>
             <% end %>
@@ -29,6 +26,6 @@
           <% end %>
       <% end %>
     <% end %>
-    <%= f.submit "Submit"%>
+    <%= f.submit "Submit", class: "btn btn-primary mt-3"%>
   <% end %> 
 </div>
