@@ -53,8 +53,14 @@ class GroupsController < ApplicationController
   end
 
   def destroy
-    @group.destroy
-    redirect_to groups_path
+    respond_to do |format|
+      if @group.destroy
+        flash[:notice] = "Group destroyed successfully!"
+      else
+        flash[:error] = @group.errors.full_messages
+      end
+      format.html { redirect_to groups_path }
+    end
   end
 
   def group_params
