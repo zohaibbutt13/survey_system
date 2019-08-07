@@ -6,6 +6,14 @@ class CompaniesController < ApplicationController
   end
 
   def dashboard
+    @activities = @current_company.activities.get_user_activities(current_user)
+    @surveys_stats = [@current_company.surveys.expired_surveys.count,
+                      @current_company.surveys.active_surveys.count]
+    @latest_surveys_labels = @current_company.surveys.latest_surveys.limit(3).pluck(:name)
+    @latest_surveys_responses_count = @current_company.surveys.latest_surveys_responses(3)
+    respond_to do |format|
+      format.html
+    end
   end
 
   def filter
