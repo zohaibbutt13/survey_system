@@ -2,15 +2,15 @@
   <table class="table table-bordered table-striped mb-0">
     <thead>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">Activity</th>
-        <th scope="col">Time</th>
+        <th scope="col"><%= t 'serial_num_label' %></th>
+        <th scope="col"><%= t 'activity_history.activity_label' %></th>
+        <th scope="col"><%= t 'activity_history.time_label' %></th>
       </tr>
     </thead>
     <tbody>
-      <% @activities.each_with_index do |activity, index| %>
+      <% user_activities.each.with_index(1) do |activity, index| %>
         <tr>
-          <th scope="row"><%= index + 1%></th>
+          <td scope="row"><b><%= index %></b></td>
           <td>
             <p> 
               <%= activity.owner.full_name %> has <%= activity.action %> a <%= activity.trackable_type %> 

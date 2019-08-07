@@ -4,14 +4,14 @@
     <div class="card text-center">
       <div class="card-body">
         <h5 class="card-title"> <%= package.subscription_package_name %> </h5>
-        <p class="card-text">With this package you will get limit:</p>
+        <p class="card-text"><%= t 'package.description_label' %></p>
         <dl>
-          <dt>Max Members Limit</dt>
+          <dt><%= t 'package.max_supervisors_label' %></dt>
           <dd> <%= package.max_supervisors %> </dd>
-          <dt>Max Supervisors Limit</dt>
+          <dt><%= t 'package.max_members_label' %></dt>
           <dd> <%= package.max_members %> </dd>
         </dl> 
-        <a href="#_" class="btn btn-primary">Subscribe</a>
+        <a href="#_" class="btn btn-primary"><%= t 'package.subscribe_label' %></a>
       </div>
     </div>
   </div>

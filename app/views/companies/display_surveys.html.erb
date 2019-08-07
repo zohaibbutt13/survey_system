@@ -17,31 +17,31 @@
       <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
         <div class="form-group">
           <label for="survey-name">Name:</label>
-          <input type="text" class="form-control" id="survey-name">
+          <input type="text" class="col-md-3 form-control" id="survey-name">
         </div>
 
         <div class="form-group">
           <label for="expired-after">Expired After:</label>
-          <input type="date" class="form-control" id="expired-after">
+          <input type="date" class="col-md-3 form-control" id="expired-after">
         </div>
 
         <div class="form-group">
           <label for="expired-before">Expired Before:</label>
-          <input type="date" class="form-control" id="expired-before">
+          <input type="date" class="col-md-3 form-control" id="expired-before">
         </div>
 
         <div class="form-group">
           <label for="created-after">Created After:</label>
-          <input type="date" class="form-control" id="created-after">
+          <input type="date" class="col-md-3 form-control" id="created-after">
         </div>
 
         <div class="form-group">
           <label for="created-before">Created Before:</label>
-          <input type="date" class="form-control" id="created-before">
+          <input type="date" class="col-md-3 form-control" id="created-before">
         </div>
 
         <div>
-          <%= link_to "Filter", {controller: "companies", action: "filter"}, class: "btn btn-primary", id: "js-filter" %>
+          <%= link_to "Filter", {controller: "companies", action: "filter"}, class: "col-md-3 btn btn-outline-secondary", id: "js-filter" %>
         </div>
       </div>
     </div>

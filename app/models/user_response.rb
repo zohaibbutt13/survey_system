@@ -16,6 +16,6 @@ class UserResponse < ActiveRecord::Base
   end
 
   def create_response_activity
-    Activity.create(trackable: self, action: 'created', owner_id: self.user_id, company_id: self.company_id)
+    Activity.create(trackable: self, action: 'created', owner_id: user_id, company_id: company_id)
   end
 end

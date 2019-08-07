@@ -1,8 +1,23 @@
 $primary-color-dark: #005174;
 $primary-color: #278e82;
 $primary-color-light: #b4dba9;
+$secondary-color: #FFFFFF;
 $base-color: #ece9d4;
 $accent-color: #2c306a;
+
+
+
+$link-color: #505050;
+$link-hover-color: $primary-color;
+
+
+$primary-border-color: #E0E7EE;
+$breadcrumb-color: #A1A1A1;
+
+
+$font-size: 10px;
+$body-text-size: 1.4rem;
+$breadcrumb-size: 1.2rem;
 
 .nav-link{
   font-size: 1rem;
@@ -27,10 +42,12 @@ $accent-color: #2c306a;
   margin-right: 1rem; 
 }
 
+html {
+  font-size: $font-size;
+}
+
 body {
   font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  height: 100%;
-  max-width: 100%;
   overflow-x: hidden;
 }
 
@@ -61,13 +78,32 @@ header.master-head h1 {
   padding-bottom: 1rem;
 }
 
-footer.footer {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
-  background-color: $primary-color;
-  color: white;
+footer {
+  height: 50px;
+  padding: 5px 30px;
+  background-color: $secondary-color;
+  margin-top: 20px;
+
   a {
-  color: $primary-color-light;
+    text-decoration: none;
+    color: $link-color;
+    padding: 0 8px;
+    border-right: 1px solid $primary-border-color;
+    font-size: $breadcrumb-size;
+  }
+
+  a:last-child {
+    border: none;
+  }
+
+  a:hover {
+    text-decoration: none;
+    color: $link-hover-color;
+  }
+
+  p {
+    font-size: $font-size;
+    color: $breadcrumb-color;
   }
 }
 
@@ -78,13 +114,14 @@ footer.footer {
 }
 
 .table-custom-scrollbar {
-position: relative;
-height: 22rem;
-overflow: auto;
+  position: relative;
+  height: 22rem;
+  overflow: auto;
 }
 
 .custom-navbar {
   background-color: $primary-color;
+  padding: 5px 30px;
 }
 
 .custom-btn-dark {

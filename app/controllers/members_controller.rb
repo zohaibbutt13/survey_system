@@ -1,37 +1,67 @@
 class MembersController < ApplicationController
-  load_and_authorize_resource :member, :class => 'User', :parent => false
+  load_and_authorize_resource :member, class: 'User', parent: false
 
   def new
+    respond_to do |format|
+      format.html
+    end
   end
 
   def index
+    respond_to do |format|
+      format.html { @members = @members.reject { |user| user.id == current_user.id } }
+      format.json { render json: @members }
+    end
+  end
+
+  def show
+    respond_to do |format|
+      format.html
+    end
   end
 
   def create
     password = Devise.friendly_token.first(8)
     @member.company = @current_company
-    @member.password = @member.password_confirmation = @member.initial_password = password
-    if @member.save
-      redirect_to dashboard_company_path(@current_company)
-    else
-      render :new
+    @member.password = @member.password_confirmation = password
+    respond_to do |format|
+      if @member.save
+        flash[:notice] = "Member created successfully!"
+        format.html { redirect_to member_path(@member) }
+      else
+        flash[:error] = @member.errors.full_messages
+        format.html { render :new }
+      end
     end
   end
 
   def edit
+    respond_to do |format|
+      format.html
+    end
   end
 
   def update
-    if @member.update_attributes(member_params)
-      redirect_to members_path
-    else
-      render :edit
+    respond_to do |format|
+      if @member.update_attributes(member_params)
+        flash[:notice] = "Member updated successfully!"
+        format.html { redirect_to member_path(@member) }
+      else
+        flash[:error] = @member.errors.full_messages
+        format.html { render :edit }
+      end
     end
   end
 
   def destroy
-    @member.destroy
-    redirect_to members_path
+    if @member.destroy
+      flash[:notice] = "Member destroyed successfully!"
+    else
+      flash[:error] = @member.errors.full_messages
+    end
+    respond_to do |format|
+      format.html { redirect_to members_path }
+    end
   end
 
   private

@@ -1,4 +1,4 @@
-<div class="container table-custom-scrollbar">
+<div class="table-custom-scrollbar my-2">
   <table class="table table-bordered table-striped mb-0">
     <thead>
       <tr>

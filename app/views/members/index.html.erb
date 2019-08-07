@@ -1,38 +1,34 @@
 <h1> Members </h1>
-<% if can? :manage, User %>
-  <div class="d-flex justify-content-end mr-2">
-    <%= link_to "Create new User", new_member_path, class: 'btn custom-btn-dark '%>
-  </div>
+<% if can? :create, User %>
+  <%= link_to "Create new Member", new_member_path, class: 'btn btn-outline-secondary' %>
 <% end %>
-<div class="table-custom-scrollbar mt-2">
-<table class="table table-striped">
-    <thead class="thead-dark">
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Role</th>
+      <th scope="col">Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @members.each.with_index(1) do |member, index| %>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">User Name</th>
-        <th scope="col">User Role</th>
-        <th scope="col">Edit</th>
-        <th scope="col">Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @members.each_with_index do |member,index| %>
-        <tr>
-          <th><%= index+1 %></th>
-          <td><%= member.full_name %></td>
-          <td><%= member.role %></td>
-          <% if can? :manage, member %>
-            <% unless cannot? :edit, member %>
-              <td><%= link_to 'Edit', edit_member_path(member) %></td>
-            <% end %>
-            <% if can? :destroy, member %>
-              <td><%= link_to 'Delete', member_path(member), method: :delete, data: { confirm: 'Are you sure?' } %>
-            <% end %>
-            </td>
+        <th scope="row"><%= index %></th>
+        <td><%= member.full_name %></td>
+        <td><%= member.email %></td>
+        <td><%= member.role %></td>
+        <td>
+          <% if can? :update, member %>
+            <%= link_to 'Edit', edit_member_path(member) %>
           <% end %>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
-  
+          <% if can? :destroy, member %>
+            <%= link_to 'Delete', member_path(member), method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

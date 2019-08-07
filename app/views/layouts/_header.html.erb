@@ -1,32 +1,35 @@
 <!-- Navigation -->
 <nav class="navbar navbar-dark custom-navbar static-top">
-  <div class="container">
-    <a class="navbar-brand" href="/">Survey System</a>
-    <% if get_current_user? %>
-      <div class="d-flex flex-row-reverse">
-        <div class="dropdown text-white">
-          <a data-toggle="dropdown">
-            <b><%= full_name %></b> 
-            <span class="badge badge-pill badge-secondary"><%= current_user.role %></span>
-            <%= image_tag current_user.image.url(:thumb), class: 'rounded-circle z-depth-0 mx-2' %>
-          </a>
-          <div class="dropdown-menu">
-            <%= link_to "My Dashboard", dashboard_company_path(current_user), class: "dropdown-item" %>
-            <% if can? :manage, @user_setting %>
-              <%= link_to "My Settings", edit_user_setting_path(current_user.user_setting), class: "dropdown-item" %>
-            <% end %>
-            <% if can? :manage, @company_setting %>
-              <%= link_to "Company Settings", edit_company_setting_path(current_user.company.company_setting), class: "dropdown-item" %>
-            <% end %>
-              <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-          </div>
+  <% if get_current_user? %>
+    <a class="navbar-brand" href="<%= dashboard_company_path(current_user) %>">Survey System</a>
+    <div class="d-flex flex-row-reverse">
+      <div class="dropdown text-white">
+        <a data-toggle="dropdown">
+          <b><%= full_name %></b> 
+          <span class="badge badge-pill badge-secondary"><%= current_user.role %></span>
+          <%= image_tag current_user.image.url(:thumb), class: 'rounded-circle z-depth-0 mx-2' %>
+        </a>
+        <div class="dropdown-menu">
+          <%= link_to "My Dashboard", dashboard_company_path(current_user), class: "dropdown-item" %>
+          <% if can? :manage, @user_setting %>
+            <%= link_to t('header.my_settings_label'), edit_user_setting_path(current_user.user_setting), class: "dropdown-item" %>
+          <% end %>
+          <% if can? :manage, @company_setting %>
+            <%= link_to t('header.company_settings_label'), edit_company_setting_path(current_user.company.company_setting), class: "dropdown-item" %>
+          <% end %>
+          <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "dropdown-item" %>
         </div>
       </div>
-    <% else %>  
-      <div class="d-flex flex-row-reverse text-muted">
-        <a class="btn btn-primary custom-btn-dark" href="/users/sign_up">Register</a>
-        <a class="nav-link" href="/users/sign_in"><b> Sign in </b></a>
-      </div> 
-    <% end %>
-  </div>
+    </div>
+  <% else %>  
+    <div class="w-100 d-flex justify-content-between text-muted">
+      <div>
+        <a class="navbar-brand" href="\">Survey System</a>
+      </div>
+      <div class="d-flex justify-content-end">
+        <a class="btn btn-primary" href="/users/sign_up"><%= t 'header.register_label' %></a>
+        <a class="nav-link" href="/users/sign_in"><b><%= t 'header.sign_in_label' %></b></a>
+      </div>
+    </div> 
+  <% end %>
 </nav>

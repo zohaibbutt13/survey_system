@@ -1,5 +1,1 @@
-<div>
-  <h3>Edit Survey</h3>
-    <p><%= @survey.description %></p>
-    <%= render 'form', locals: {submit: 'Edit'} %>
-</div>
+<%= render 'form', locals: {submit: 'Edit', heading: 'Edit Survey', subheading: "#{@survey.name}"} %>

@@ -11,8 +11,9 @@
  * file per style scope.
  *
  *= require_tree .
+ *= require chosen
  *= require_self
  */
 .flash-margin{
- padding-top: 20px;
+ padding-top: 15px;
 }
