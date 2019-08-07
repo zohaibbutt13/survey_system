@@ -7,17 +7,19 @@ class Users::SessionsController < Devise::SessionsController
   # def new
   #   super
   # end
-
-  # POST /resource/sign_in
   def create
-    super do
-      if request.subdomain != resource.company.subdomain
-        sign_out resource
-        redirect_to root_url
-        return
-      end
-    end
+    super
   end
+  # POST /resource/sign_in
+  # def create
+  #   super do
+  #     if request.subdomain != resource.company.subdomain
+  #       sign_out resource
+  #       redirect_to root_url
+  #       return
+  #     end
+  #   end
+  # end
 
   # DELETE /resource/sign_out
   # def destroy

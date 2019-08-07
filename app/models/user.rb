@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
       :user_id => self.id)    
   end
 
-  ROLE = {admin: 'admin', supervisor: 'supervisor', member: 'member'}
+  ROLE = { admin: 'admin', supervisor: 'supervisor', member: 'member' }
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -17,7 +17,6 @@ class User < ActiveRecord::Base
          :confirmable, :trackable
 
   default_scope { where(company_id: Company.current_id) }
-
   
   has_many :activities, foreign_key: :owner_id, dependent: :destroy
   has_many :activities, as: :trackable
@@ -28,8 +27,8 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :company
 
-  validates :first_name, presence: true, length: { maximum: 150 }
-  validates :last_name, presence: true, length: { maximum: 150 }
+  validates :first_name, presence: true, length: { maximum: 150, message: 'must not have more than 150 characters.' }
+  validates :last_name, presence: true, length: { maximum: 150, message: 'must not have more than 150 characters.' }
 
   after_create :create_user_activity
   after_update :update_user_activity
@@ -39,15 +38,15 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
   def admin?
-    role == User::ROLE[:admin]
+    role == ROLE[:admin]
   end
 
   def supervisor?
-    role == User::ROLE[:supervisor]
+    role == ROLE[:supervisor]
   end
 
   def member?
-    role == User::ROLE[:member]
+    role == ROLE[:member]
   end
 
   def full_name
@@ -55,21 +54,21 @@ class User < ActiveRecord::Base
   end
 
   def admin_user_id
-    User.where(" role = ? AND company_id = ?", 'admin', company_id).first.id
+    company.users.find_by(role: 'admin').id
   end
 
   def create_user_activity
-    Activity.create(trackable: self, action: 'created', owner_id: admin_user_id,
-                    company_id: company_id)
+    # Admin is created only at time of registration so activity is not created
+    unless admin?
+      Activity.create(trackable: self, action: 'created', owner_id: admin_user_id, company_id: company_id)
+    end
   end
 
   def update_user_activity
-    Activity.create(trackable: self, action: 'updated', owner_id: admin_user_id,
-                    company_id: company_id)
+    Activity.create(trackable: self, action: 'updated', owner_id: admin_user_id, company_id: company_id)
   end
 
   def destroy_user_activity
-    Activity.create(trackable: self, action: 'deleted', owner_id: admin_user_id,
-                    company_id: company_id)
+    Activity.create(trackable: self, action: 'deleted', owner_id: admin_user_id, company_id: company_id)
   end
 end

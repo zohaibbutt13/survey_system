@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $('.survey-chart').find('canvas').each(function(){
+  $('.js-survey-chart').find('canvas').each(function(){
     var canvas_id = $(this).attr('id');
     var chart_data = $('#' + canvas_id).data('chart-data');
     var chart_labels = $('#' + canvas_id).data('chart-labels');

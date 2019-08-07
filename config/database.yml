@@ -10,7 +10,7 @@ development:
   encoding: utf8
   database: survey_system
   username: root
-  password: MyDb97.11
+  password: test
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -20,12 +20,11 @@ test:
   encoding: utf8
   database: survey_system_test
   username: root
-  password: MyDb97.11
-
+  password: test
 
 production:
   adapter: mysql2
   encoding: utf8
   database: survey_system_production
   username: root
-  password: MyDb97.11
+  password: test
