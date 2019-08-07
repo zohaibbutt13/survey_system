@@ -14,29 +14,29 @@ desc 'To create surveys'
 task add_surveys: :environment do
   surveys_list = [
     ['public', 'Customer', 'Customer feedback survey', 'feedback',
-     DateTime.new(2019, 7, 26), 4],
+     DateTime.new(2019, 7, 26), 1, 1],
     ['private', 'Leader', 'New lead selection survey', 'lead',
-     DateTime.new(2019, 7, 27), 4],
+     DateTime.new(2019, 7, 27), 1, 1],
     ['private', 'Party', 'Party attendants survey', 'attend',
-     DateTime.new(2019, 7, 30), 4],
+     DateTime.new(2019, 8, 5), 1, 1],
     ['public', 'Restaurant', 'feedback survey', 'feedback',
-     DateTime.new(2019, 8, 1), 4]
+     DateTime.new(2019, 8, 6), 1, 1]
   ]
   # Creating surveys
-  surveys_list.each do |type, name, description, category, expiry, user_id|
+  surveys_list.each do |type, name, description, category, expiry, user_id, company_id|
     Survey.create(survey_type: type, name: name, description: description,
-                  category: category, expiry: expiry, user_id: user_id)
+                  category: category, expiry: expiry, user_id: user_id, company_id: company_id)
   end
 end
 
-# Create user responses against survey with id 21
+# Create user responses for survey having id 1
 # TODO: Replace the survey id according to the survey for creating its responses
 desc 'Create User Responses'
 task add_user_responses: :environment do
-  UserResponse.create(users_id: 1, surveys_id: 21, email: 'user1@abc.com')
-  UserResponse.create(users_id: 2, surveys_id: 21, email: 'user2@abc.com')
-  UserResponse.create(users_id: 3, surveys_id: 21, email: 'user3@abc.com')
-  UserResponse.create(users_id: 4, surveys_id: 21, email: 'user4@abc.com')
+  UserResponse.create(user_id: 1, survey_id: 5, email: 'user1@abc.com', company_id: 1)
+  UserResponse.create(user_id: 2, survey_id: 5, email: 'user2@abc.com', company_id: 1)
+  UserResponse.create(user_id: 3, survey_id: 5, email: 'user3@abc.com', company_id: 1)
+  UserResponse.create(user_id: 4, survey_id: 5, email: 'user4@abc.com', company_id: 1)
 end
 
 # Create answers for above created user respones

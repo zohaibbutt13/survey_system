@@ -3,6 +3,7 @@ class Company < ActiveRecord::Base
   has_one :company_setting, dependent: :destroy
   has_many :groups, dependent: :destroy
   has_many :users, dependent: :destroy
+  has_many :user_responses, dependent: :destroy
   has_many :group_members, dependent: :destroy
   has_many :surveys, dependent: :destroy
   has_many :questions, dependent: :destroy
