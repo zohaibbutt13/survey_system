@@ -5,16 +5,16 @@
   <% @survey.questions.each.with_index(1) do |question,index| %>
     <% unless question.question_type == 'Comment Box' %>
       <div class='js-survey-chart'>
-        <h3>Question <%= index %>: <%= question.statement %></h3>
-        <%= content_tag :canvas, "", id: question.id, data: { chart_data: question.answer_stats, chart_labels: question.options_labels, chart_type: 'pie', chart_colors: GRAPH_COLORS }, class: 'container col-12 col-md-8' %>
+        <h3><%= t 'question_label' %> <%= index %>: <%= question.statement %></h3>
+        <%= content_tag :canvas, "", id: question.id, data: { chart_data: question.answer_stats, chart_labels: question.options_labels, chart_type: 'pie', chart_colors: GRAPH_COLORS }, class: 'container col-12 col-md-7' %>
       </div>
     <% else %>
-      <h3>Question: <%= question.statement %></h3>
+      <h3><%= t 'question_label' %> <%= index %>: <%= question.statement %></h3>
       <table class="table table-striped">
         <thead class="thead-dark">
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">Responses</th>
+            <th scope="col"><%= t 'serial_num_label' %></th>
+            <th scope="col"><%= t 'responses_label' %></th>
           </tr>
         </thead>
         <tbody>
