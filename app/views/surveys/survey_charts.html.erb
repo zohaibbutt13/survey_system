@@ -2,11 +2,11 @@
 <div class="container">
   <h1><%= @survey.name %></h1>
   <h3 class="text-muted"><%= @survey.description %></h3>
-  <% @survey.questions.each_with_index(1) do |question,index| %>
+  <% @survey.questions.each.with_index(1) do |question,index| %>
     <% unless question.question_type == 'Comment Box' %>
       <div class='js-survey-chart'>
         <h3>Question <%= index %>: <%= question.statement %></h3>
-        <%= content_tag :canvas, "", id: question.id, data: { chart_data: question.answer_stats, chart_labels: question.options_labels, chart_type: 'pie', chart_colors: GRAPH_COLORS } %>
+        <%= content_tag :canvas, "", id: question.id, data: { chart_data: question.answer_stats, chart_labels: question.options_labels, chart_type: 'pie', chart_colors: GRAPH_COLORS }, class: 'container col-6' %>
       </div>
     <% else %>
       <h3>Question: <%= question.statement %></h3>
@@ -18,7 +18,7 @@
           </tr>
         </thead>
         <tbody>
-          <% question.answers.each_with_index(1) do |answer, index| %>
+          <% question.answers.each.with_index(1) do |answer, index| %>
             <tr>
               <td scope="row"><b><%= index %></b></td>
               <td><%= answer.detail.to_s %></td>

@@ -7,7 +7,7 @@ class Ability
       can [:read, :create, :update, :destroy], [User, Group], company_id: user.company_id
       can :manage, UserSetting, user_id: user.id
       can :manage, CompanySetting, company_id: user.company_id
-      can [:read, :create, :update, :destroy, :edit, :new, :add_question, :add_option, :delete_question, :delete_option], Survey, company_id: user.company_id
+      can [:read, :create, :update, :destroy, :edit, :new, :add_question, :add_option, :delete_question, :delete_option, :survey_charts], Survey, company_id: user.company_id
       can [:read, :create], UserResponse
       cannot [:destroy], user
     elsif user.supervisor?

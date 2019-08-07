@@ -113,7 +113,7 @@ class SurveysController < ApplicationController
 
   # get survey/:id/survey_charts
   def survey_charts
-    @survey = Survey.find(params[:id])
+    @survey.questions.includes(:answers)
     respond_to do |format|
       format.html
     end
