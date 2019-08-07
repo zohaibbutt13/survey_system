@@ -9,6 +9,23 @@ class Question < ActiveRecord::Base
 
   before_save :mark_option_for_removal
 
+  def mark_option_for_removal
+    options.each do |option|
+      option.mark_for_destruction if option.detail.nil?
+    end
+  end
+
+  def answer_stats
+    options.joins('LEFT OUTER JOIN answers on options.id = answers.option_id')
+           .select('COUNT(answers.id) AS answers_count')
+           .group('options.id')
+           .map { |option| option.answers_count }
+  end
+
+  def options_labels
+    options.pluck(:detail)
+  end
+
   def checkbox?
     question_type == Question::QUESTION_TYPE[:checkbox]
   end
@@ -26,10 +43,4 @@ class Question < ActiveRecord::Base
   end
 
   QUESTION_TYPE = { checkbox: 'Checkbox', radiobutton: 'Radio Buttons', boolean: 'True / False', commentbox: 'Comment Box' }
-
-  def mark_option_for_removal
-    options.each do |option|
-      option.mark_for_destruction if option.detail == 'nill'
-    end
-  end
 end

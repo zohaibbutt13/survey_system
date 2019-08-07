@@ -110,4 +110,12 @@ class SurveysController < ApplicationController
       render action: :show
     end
   end
+
+  # get survey/:id/survey_charts
+  def survey_charts
+    @survey.questions.includes(:answers)
+    respond_to do |format|
+      format.html
+    end
+  end
 end
