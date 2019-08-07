@@ -54,24 +54,21 @@ class User < ActiveRecord::Base
   end
 
   def admin_user_id
-    User.where("role = ? AND company_id = ?", 'admin', company_id).first.id
+    company.users.find_by(role: 'admin').id
   end
 
   def create_user_activity
     # Admin is created only at time of registration so activity is not created
     unless admin?
-      Activity.create(trackable: self, action: 'created', owner_id: admin_user_id,
-                    company_id: company_id)
+      Activity.create(trackable: self, action: 'created', owner_id: admin_user_id, company_id: company_id)
     end
   end
 
   def update_user_activity
-    Activity.create(trackable: self, action: 'updated', owner_id: admin_user_id,
-                    company_id: company_id)
+    Activity.create(trackable: self, action: 'updated', owner_id: admin_user_id, company_id: company_id)
   end
 
   def destroy_user_activity
-    Activity.create(trackable: self, action: 'deleted', owner_id: admin_user_id,
-                    company_id: company_id)
+    Activity.create(trackable: self, action: 'deleted', owner_id: admin_user_id, company_id: company_id)
   end
 end
