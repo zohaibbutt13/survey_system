@@ -9,7 +9,6 @@ class HomeController < ApplicationController
   end
 
   def filter_category
-
     @categories = Survey::CATEGORIES
     @surveys = Survey.get_public_surveys(params[:page], PER_PAGE_SURVEYS, params[:filter_by])
     respond_to do |format|

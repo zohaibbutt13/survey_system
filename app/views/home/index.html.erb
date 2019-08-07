@@ -18,14 +18,14 @@
         Filter
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <%= link_to 'All', {controller: "home", action: "filter_category", filter_by: nil }, class: "dropdown-item", remote: true %>
+        <%= link_to 'All', filter_category_home_index_path(filter_by: nil), class: "dropdown-item", remote: true %>
         <% @categories.each do |category| %>
-          <%= link_to category, {controller: "home", action: "filter_category", filter_by: category }, class: "dropdown-item", remote: true %>
+          <%= link_to category, filter_category_home_index_path(filter_by: category), class: "dropdown-item", remote: true %>
         <% end %>
       </div>
     </div>
-    <div id = "public_stuff">
-      <%= render 'public_surveys', locals: { surveys: @surveys, categories: @categories } %>
+    <div id = "public_surveys_container">
+      <%= render partial: 'public_surveys', locals: { surveys: @surveys, categories: @categories } %>
     </div>
   </div>
 </section>

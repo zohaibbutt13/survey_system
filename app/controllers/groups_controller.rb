@@ -9,13 +9,13 @@ class GroupsController < ApplicationController
   end
 
   def create
+    @group.company = @current_company
     respond_to do |format|
-      @group.company = @current_company
       if @group.save
         flash[:notice] = "Group created successfully!"
         format.html { redirect_to groups_path }
       else
-        flash[:error] = "#{ @group.errors.messages.first[0] } #{ @group.errors.messages.first[1][0] }"
+        flash[:error] = @group.errors.full_messages
         format.html { render :new }
       end
     end
@@ -30,7 +30,7 @@ class GroupsController < ApplicationController
         flash[:notice] = "Group updated successfully!"
         format.html { redirect_to groups_path }
       else
-        flash[:error] = "#{ @group.errors.messages.first[0] } #{ @group.errors.messages.first[1][0] }"
+        flash[:error] = @group.errors.full_messages
         format.html { render :edit }
       end
     end
@@ -43,9 +43,11 @@ class GroupsController < ApplicationController
     if @group.destroy
       flash[:notice] = "Group destroyed successfully!"
     else
-      flash[:error] = "Error! Please try again."
+      flash[:error] = @group.errors.full_messages
     end
-    redirect_to groups_path
+    respond_to do |format|
+      format.html { redirect_to groups_path }
+    end
   end
 
   def group_params
