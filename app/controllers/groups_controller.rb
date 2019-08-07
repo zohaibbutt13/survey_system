@@ -5,7 +5,17 @@ class GroupsController < ApplicationController
     @employees = User.all
   end
 
+  def show
+    @group_members = @group.users.map(&:full_name).join(', ')
+    respond_to do |format|
+      format.html
+    end
+  end
+
   def new
+    respond_to do |format|
+      format.html
+    end
   end
 
   def create
@@ -13,7 +23,7 @@ class GroupsController < ApplicationController
     respond_to do |format|
       if @group.save
         flash[:notice] = "Group created successfully!"
-        format.html { redirect_to groups_path }
+        format.html { redirect_to @group }
       else
         flash[:error] = @group.errors.full_messages
         format.html { render :new }
@@ -28,7 +38,7 @@ class GroupsController < ApplicationController
     respond_to do |format|
       if @group.update_attributes(group_params)
         flash[:notice] = "Group updated successfully!"
-        format.html { redirect_to groups_path }
+        format.html { redirect_to @group }
       else
         flash[:error] = @group.errors.full_messages
         format.html { render :edit }
@@ -37,6 +47,9 @@ class GroupsController < ApplicationController
   end
 
   def index
+    respond_to do |format|
+      format.html
+    end
   end
 
   def destroy

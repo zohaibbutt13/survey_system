@@ -1,7 +1,6 @@
-<div id= "statement_<%= params["question_id"] %>_option_divid_<%= params["option_div_id"] %>">
-  <%= radio_button_tag :option,nil, class: 'form-control' %>
+<div id= "statement_<%= params["question_id"] %>_option_divid_<%= params["option_div_id"] %>" class = "pt-3">
   <label> Option</label>
-  <%= render 'options/text_field' , locals: {question_id: "#{params["question_id"]}", option_id: "#{params["option_id"]}"} %> 
+  <%= render 'options/text_field' , locals: {question_id: "#{params["question_id"]}", option_id: "#{params["option_id"]}", required: true, readonly: false} %> 
   <a href = "#_" data-qid = "<%= params["question_id"] %>" data-oid = "<%= params["option_id"] %>"
   data-divid = "<%= params["option_div_id"] %>" class = "js-deleteoption">Delete Option</a>
 </div>

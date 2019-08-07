@@ -1,0 +1,36 @@
+<div id = "user_responses">
+  <% radio_button_id = 0 %>
+    <h3> <%= user_response.email %> </h3>
+    <% selected_option_ids = [] %>
+    <% comments_detail = [] %>
+    <% user_response.answers.each do |answer| %>
+      <% selected_option_ids << answer.option_id %>
+      <% question = Question.find(answer.question_id) %>
+      <% if question.question_type == 'Comment Box' %>
+        <% comments_detail << answer.detail %>
+      <% end %>
+    <% end %>
+    <div class = "text-left survey-box container mt-3 shadow p-3 mb-5 bg-white rounded">
+      <% @survey.questions.each_with_index do |question , index| %>
+        <p><%= question.statement %></p>
+        <% comments_index = 0 %>
+        <% question.options.each_with_index do |option, option_index| %>
+          <% if question.question_type == 'Checkbox' %>
+            <%= check_box_tag :option, 1, (selected_option_ids.include? option.id), disabled: true %>
+          <% elsif question.question_type == 'Radio Buttons' %>
+            <%= radio_button_tag "option #{radio_button_id}", nil, (selected_option_ids.include? option.id), class: '', disabled: true %>
+            <% radio_button_id += 1 %>
+          <% elsif question.question_type == 'Comment Box'  %>
+            <%= text_field_tag :option, "#{comments_detail[comments_index]}", class: '', readonly: true %>
+            <% comments_index += 1 %>
+          <% elsif question.question_type == 'True / False'  %>
+            <%= radio_button_tag "option #{radio_button_id}", nil,(selected_option_ids.include? option.id), class: '', disabled: true %>
+          <% end %>
+          <%= option.detail %>
+        <% end %>
+      <% end %>
+      <div class="apple_pagination d-flex justify-content-center mt-4">
+        <%= js_will_paginate @response_per_page %>
+      </div>
+    </div>
+</div>

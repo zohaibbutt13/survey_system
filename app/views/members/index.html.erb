@@ -1,6 +1,6 @@
 <h1> Members </h1>
 
-<% if can? :manage, User %>
+<% if can? :create, User %>
   <%= link_to "Create new Member", new_member_path, class: 'btn btn-outline-secondary' %>
 <% end %>
 
@@ -22,13 +22,11 @@
         <td><%= member.email %></td>
         <td><%= member.role %></td>
         <td>
-          <% if can? :manage, member %>
-            <% if can? :edit_in_members_view, member %>
-              <%= link_to 'Edit', edit_member_path(member) %>
-            <% end %>
-            <% if can? :destroy, member %>
-              <%= link_to 'Delete', member_path(member), method: :delete, data: { confirm: 'Are you sure?' } %>
-            <% end %>
+          <% if can? :update, member %>
+            <%= link_to 'Edit', edit_member_path(member) %>
+          <% end %>
+          <% if can? :destroy, member %>
+            <%= link_to 'Delete', member_path(member), method: :delete, data: { confirm: 'Are you sure?' } %>
           <% end %>
         </td>
       </tr>

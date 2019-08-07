@@ -10,10 +10,11 @@ class Survey < ActiveRecord::Base
   belongs_to :user
   has_many :questions, dependent: :destroy, inverse_of: :survey, autosave: true
   has_many :options, through: :questions
-  accepts_nested_attributes_for :questions
-  accepts_nested_attributes_for :options
   belongs_to :company
   has_many :user_responses, dependent: :destroy, inverse_of: :survey
+  belongs_to :group, inverse_of: :survey
+
+  accepts_nested_attributes_for :questions, :options
 
   validates :name, presence: true, length: { maximum: 255 }
   validates :description, presence: true, length: { maximum: 500 }
