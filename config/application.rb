@@ -25,14 +25,13 @@ module SurveySystem
 
     # Settings for sending emails
     ActionMailer::Base.smtp_settings = {
-
       :address => 'smtp.gmail.com',
       :domain => 'mail.google.com',
       :port => 587,
       :user_name => 'sevenvals123@gmail.com', #ENV['GMAIL_USERNAME'],
       :password => 'abcd1234@', #ENV['GMAIL_PASSWORD'],
       :authentication => 'login',
-      :enable_starttls_auto => true      
+      :enable_starttls_auto => true
     }
   end
 end

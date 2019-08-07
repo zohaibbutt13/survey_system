@@ -22,7 +22,6 @@ test:
   username: root
   password: MyDb97.11
 
-
 production:
   adapter: mysql2
   encoding: utf8

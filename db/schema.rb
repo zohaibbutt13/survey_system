@@ -125,9 +125,11 @@ ActiveRecord::Schema.define(version: 20190801125340) do
     t.integer  "company_id",  limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.integer  "group_id",    limit: 4
   end
 
   add_index "surveys", ["company_id"], name: "index_surveys_on_company_id", using: :btree
+  add_index "surveys", ["group_id"], name: "index_surveys_on_group_id", using: :btree
   add_index "surveys", ["user_id"], name: "index_surveys_on_user_id", using: :btree
 
   create_table "user_responses", force: :cascade do |t|

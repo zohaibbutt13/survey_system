@@ -32,6 +32,8 @@ gem "paperclip", "~> 6.0.0"
 
 gem 'devise'
 
+gem 'chosen-rails'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
