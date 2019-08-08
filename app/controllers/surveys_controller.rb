@@ -30,6 +30,7 @@ class SurveysController < ApplicationController
 
   # POST /surveys
   def create
+    @survey.user_id = @current_user.id
     if @survey.save
       flash[:notice] = 'Survey Created'
       redirect_to @survey
@@ -108,6 +109,14 @@ class SurveysController < ApplicationController
     else
       flash[:error] = @survey.errors.full_messages
       render action: :show
+    end
+  end
+
+  # get survey/:id/survey_charts
+  def survey_charts
+    @survey.questions.includes(:answers)
+    respond_to do |format|
+      format.html
     end
   end
 end
