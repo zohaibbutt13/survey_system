@@ -1,15 +1,15 @@
 <table class="table">
   <tbody>
     <tr>
-      <th scope="row"><%= t('name') %></th>
+      <th scope="row"><%= t('groups.name') %></th>
       <td class="col-md-9"><%= @group.name %></td>
     </tr>
     <tr>
-      <th scope="row"><%= t('description') %></th>
+      <th scope="row"><%= t('groups.description') %></th>
       <td class="col-md-9"><%= @group.description %></td>
     </tr>
     <tr>
-      <th scope="row"><%= t('members') %></th>
+      <th scope="row"><%= t('groups.members') %></th>
       <td class="col-md-9">
         <%= @group_members %>
       </td>
@@ -17,8 +17,8 @@
   </tbody>
 </table>
 <% if can? :update, @group %>
-  <%= link_to t('edit_link'), edit_group_path(@group), class: 'col-md-1 btn btn-outline-secondary' %>
+  <%= link_to t('links.edit_link'), edit_group_path(@group), class: 'col-md-1 btn btn-outline-secondary' %>
 <% end %>
 <% if can? :destroy, @group %>
-  <%= link_to t('delete_link'), @group, method: :delete, data: { confirm: t('confirmation_message') }, class: 'col-md-1 btn btn-outline-secondary' %>
+  <%= link_to t('links.delete_link'), @group, method: :delete, data: { confirm: t('links.confirmation_message') }, class: 'col-md-1 btn btn-outline-secondary' %>
 <% end %>

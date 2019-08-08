@@ -1,16 +1,16 @@
-<h1><%= t('group_index_heading') %></h1>
+<h1><%= t('groups.group_index_heading') %></h1>
 
 <% if can? :create, Group %>
-  <td><%= link_to t('add_new_link'), new_group_path, class: 'btn btn-outline-secondary' %></td>
+  <td><%= link_to t('links.add_new_link'), new_group_path, class: 'btn btn-outline-secondary' %></td>
 <% end %>
 
 <table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col"><%= t('name') %></th>
-      <th scope="col"><%= t('description') %></th>
-      <th scope="col"><%= t('options') %></th>
+      <th scope="col"><%= t('groups.name') %></th>
+      <th scope="col"><%= t('groups.description') %></th>
+      <th scope="col"><%= t('groups.options') %></th>
     </tr>
   </thead>
   <tbody>
@@ -21,10 +21,10 @@
         <td><%= group.description %></td>
         <td>
           <% if can? :update, group %>
-            <%= link_to t('edit_link'), edit_group_path(group) %>
+            <%= link_to t('links.edit_link'), edit_group_path(group) %>
           <% end %>
           <% if can? :destroy, group %>
-            <%= link_to t('delete_link'), group, method: :delete, data: { confirm: t('confirmation_message') } %>
+            <%= link_to t('links.delete_link'), group, method: :delete, data: { confirm: t('links.confirmation_message') } %>
           <% end %>
         </td>
       </tr>

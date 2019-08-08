@@ -7,7 +7,7 @@ module ApplicationHelper
   def sidebar_menu
       sidebar_menu = { Menu: { url: dashboard_company_path(current_user), icon: 'home' },
                        Employees: { url: members_path, icon: 'users' },
-                       Surveys: { url: surveys_path, icon: 'book-open' },
+                       Surveys: { url: display_surveys_company_path, icon: 'book-open' },
                        Groups: { url: groups_path, icon: 'user-plus' } }
   end
 

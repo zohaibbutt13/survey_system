@@ -1,23 +1,23 @@
-<h1><%= t('show_member_heading') %></h1>
+<h1><%= t('users.show_member_heading') %></h1>
 <table class="table">
   <tbody>
     <tr>
-      <th scope="row"><%= t('name') %></th>
+      <th scope="row"><%= t('users.name') %></th>
       <td class="col-md-8"><%= @member.full_name %></td>
     </tr>
     <tr>
-      <th scope="row"><%= t('email') %></th>
+      <th scope="row"><%= t('users.email') %></th>
       <td class="col-md-8"><%= @member.email %></td>
     </tr>
     <tr>
-      <th scope="row"><%= t('user_role') %></th>
+      <th scope="row"><%= t('users.user_role') %></th>
       <td class="col-md-8"><%= @member.role %></td>
     </tr>
   </tbody>
 </table>
 <% if can? :update, @member %>
-  <%= link_to t('edit_link'), edit_member_path(@member), class: 'col-md-1 btn btn-outline-secondary' %>
+  <%= link_to t('links.edit_link'), edit_member_path(@member), class: 'col-md-1 btn btn-outline-secondary' %>
 <% end %>
 <% if can? :destroy, @member %>
-  <%= link_to t('delete_link'), member_path(@member), method: :delete, data: { confirm: t('confirmation_message') }, class: 'col-md-1 btn btn-outline-secondary' %>
+  <%= link_to t('links.delete_link'), member_path(@member), method: :delete, data: { confirm: t('links.confirmation_message') }, class: 'col-md-1 btn btn-outline-secondary' %>
 <% end %>

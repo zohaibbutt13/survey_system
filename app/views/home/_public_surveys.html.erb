@@ -1,6 +1,6 @@
 <div class="row">
   <% if surveys.blank? %>
-    <h4 class="text-muted"><%= t('no_public_surveys_available') %></h4>
+    <h4 class="text-muted"><%= t('home.no_public_surveys_available') %></h4>
   <% else %> 
     <% surveys.each do |survey| %>
       <div class="col-lg-4">
@@ -9,7 +9,7 @@
             <h5 class="card-header"><%= survey.name %></h5>
             <div class="card-body">
               <p class="card-text"><%= survey.description %></p>
-              <a href="#_" class="btn btn-primary"><%= t('take_survey') %></a>
+              <a href="#_" class="btn btn-primary"><%= t('home.take_survey') %></a>
             </div>
           </div>
         </div>
