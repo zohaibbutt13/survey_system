@@ -17,16 +17,35 @@ class MembersController < ApplicationController
     end
   end
 
-  def create
-    password = Devise.friendly_token.first(8)
-    @member.company = @current_company
-    @member.password = @member.password_confirmation = password
-    if @member.save
-      flash[:notice] = "Member created successfully!"
-      redirect_to dashboard_company_path(@current_company)
+  def create  
+    if User.count_of_members_and_supervisors?(current_user.company, @member)
+      password = Devise.friendly_token.first(8)
+      @member.company = @current_company
+      @member.password = @member.password_confirmation = password
+      respond_to do |format|
+        if @member.save
+          flash[:notice] = "Member created successfully!"
+          format.html { redirect_to member_path(@member) }
+        else
+          flash[:error] = @member.errors.full_messages
+          format.html { render :new }
+        end
+      end
     else
-      flash[:error] = @member.errors.full_messages
-      render :new
+      flash[:error] = I18n.t(:excced_limit_label)
+      redirect_to dashboard_company_path(@current_company)
+    end
+  end   
+
+  def show
+    respond_to do |format|
+      if @member.save
+        flash[:notice] = I18n.t 'users.member_create_success'
+        format.html { redirect_to member_path(@member) }
+      else
+        flash[:error] = @member.errors.full_messages
+        format.html { render :new }
+      end
     end
   end
 
@@ -39,18 +58,26 @@ class MembersController < ApplicationController
   end
 
   def update
-    if @member.update_attributes(member_params)
-      flash[:notice] = "Member updated successfully!"
-      redirect_to members_path
-    else
-      flash[:error] = @member.errors.full_messages
-      render :edit
+    respond_to do |format|
+      if @member.update_attributes(member_params)
+        flash[:notice] = I18n.t 'users.member_update_success'
+        format.html { redirect_to member_path(@member) }
+      else
+        flash[:error] = @member.errors.full_messages
+        format.html { render :edit }
+      end
     end
   end
 
   def destroy
-    @member.destroy
-    redirect_to members_path
+    if @member.destroy
+      flash[:notice] = I18n.t 'users.member_destroy_success'
+    else
+      flash[:error] = @member.errors.full_messages
+    end
+    respond_to do |format|
+      format.html { redirect_to members_path }
+    end
   end
 
   private

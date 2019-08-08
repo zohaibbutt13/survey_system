@@ -1,0 +1,24 @@
+<div class="table-custom-scrollbar my-2">
+  <table class="table table-bordered table-striped mb-0">
+    <thead>
+      <tr>
+        <th scope="col"><%= t 'serial_num_label' %></th>
+        <th scope="col"><%= t 'activity_history.activity_label' %></th>
+        <th scope="col"><%= t 'activity_history.time_label' %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% user_activities.each.with_index(1) do |activity, index| %>
+        <tr>
+          <td scope="row"><b><%= index %></b></td>
+          <td>
+            <p> 
+              <%= activity.owner.full_name %> has <%= activity.action %> a <%= activity.trackable_type %> 
+            </p>
+          </td>
+          <td><%= activity.created_at.to_s(:long) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

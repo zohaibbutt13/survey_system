@@ -2,17 +2,17 @@
 <%= form_for member, url: url, method: method do |f| %>
   <div class="field">
     <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, autofocus: true, autocomplete: "first name" %>
+    <%= f.text_field :first_name, autofocus: true, autocomplete: t('users.first_name') %>
   </div>
 
   <div class="field">
     <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, autofocus: true, autocomplete: "last name" %>
+    <%= f.text_field :last_name, autofocus: true, autocomplete: t('users.last_name') %>
   </div>
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: t('users.email') %>
   </div>
 
   <div class="field">
@@ -22,6 +22,6 @@
   </div>
 
   <div class="actions">
-    <%= f.submit submit %>
+    <%= f.submit submit, class: 'primary-btn' %>
   </div>
 <% end %>

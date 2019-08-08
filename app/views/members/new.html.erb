@@ -1,3 +1,3 @@
 <div class="col-10 p-3">
-  <%= render partial:'form', locals: {heading: 'Add Member', submit: 'Add', method: :post, member: @member, url: members_path(@member)} %>
+  <%= render partial: 'form', locals: {heading: t('users.add_member_heading'), submit: t('users.add_button_label'), method: :post, member: @member, url: members_path(@member)} %>
 </div>

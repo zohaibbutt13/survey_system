@@ -1,13 +1,20 @@
-<div class="col-10">
+<div class="row">
+  <div class="col-lg-3">
+    <%= render 'layouts/sidebar' %>    
+  </div>
   <!-- User Settings Graphs and History Enable and Disable-->
+  <div class="col-lg-9">
   <% if @user_setting.show_graphs? %>
-    <div id="graphs">
-      <h1>Graphs</h1>
+    <div id="graphs" class="my-2">
+      <h1><%= t 'dashboard.graphs_label' %></h1>
+      <%= render partial: 'layouts/main_charts', locals: { stats_data: @surveys_stats, stats_labels: @surveys_stats_labels, latest_surveys_labels: @latest_surveys_labels, latest_surveys: @latest_surveys_responses_count } %>
     </div>
   <% end %>
   <% if @user_setting.show_history? %>
-    <div id="histroy">
-      <h1 >History</h1>
+    <div id="histroy" class="my-2">
+      <h1 ><%= t 'dashboard.history_label' %></h1>
+      <%= render partial: 'layouts/activity_history', locals: { user_activities: @activities } %>
     </div>
   <% end %>
+  </div>
 </div>
