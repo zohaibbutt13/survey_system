@@ -52,6 +52,7 @@ en:
     subscribe_label: "Subscribe"
     current_package_label: "Your current Package is: "
     package_choose_label: "Choose from one of our best packages"
+    subscription_package_update_label: "Subscription Package is successfully updated."
 
   footer:
     home_label: "Home"
@@ -76,3 +77,8 @@ en:
     user_settings_update_success: "User settings is successfully updated."
     user_settings_update_fail: "User settings was not updated."  
     user_settings_heading: "User Settings"
+    supervisors_settings_permission_label: "Can supervisor change my settings?"
+    supervisors_survey_permission_label: "Can supervisor create surveys?"
+    members_settings_permission_label: "Can members change my settings?"
+  users:
+    excced_limit_label: "Exceeds from limit."  

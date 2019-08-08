@@ -15,7 +15,7 @@ class MembersController < ApplicationController
   end
 
   def create  
-    if User.count_of_members_and_supervisors?(current_user, @member)
+    if User.count_of_members_and_supervisors?(current_user.company, @member)
       password = Devise.friendly_token.first(8)
       @member.company = @current_company
       @member.password = @member.password_confirmation = password
@@ -29,7 +29,7 @@ class MembersController < ApplicationController
         end
       end
     else
-      flash[:error] = "Exceeds from limit."
+      flash[:error] = I18n.t(:excced_limit_label)
       redirect_to dashboard_company_path(@current_company)
     end
   end   

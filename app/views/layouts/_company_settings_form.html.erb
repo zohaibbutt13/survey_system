@@ -3,17 +3,17 @@
   <%= form_for(@company_setting) do |c| %>
     
     <div class="form-group">
-      <%= c.label :allow_supervisors_to_edit_my_settings %>
+      <%= c.label :allow_supervisors_to_edit_my_settings, t('user_settings.supervisors_settings_permission_label') %>
       <%= c.check_box :supervisors_settings_permission %>
     </div>
 
     <div class="form-group">
-      <%= c.label :allow_members_to_edit_my_settings %>
+      <%= c.label :allow_members_to_edit_my_settings, t('user_settings.members_settings_permission_label') %>
       <%= c.check_box :members_settings_permission %>
     </div>    
 
     <div class="form-group">
-      <%= c.label :allow_supervisor_to_create_surveys %>
+      <%= c.label :allow_supervisor_to_create_surveys, t('user_settings.supervisors_survey_permission_label') %>
       <%= c.check_box :supervisors_survey_permission %>
     </div>  
 

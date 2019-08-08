@@ -14,7 +14,7 @@ class UserSettingsController < ApplicationController
         flash[:notice] = I18n.t 'user_settings.user_settings_update_success'
         format.html { redirect_to dashboard_company_path }
       else
-        flash[:error] = I18n.t 'user_settings.user_settings_update_fail'
+        flash[:error] = @user_setting.errors.full_messages
         format.html { render :edit }
       end
     end

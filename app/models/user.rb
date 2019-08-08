@@ -37,12 +37,12 @@ class User < ActiveRecord::Base
   has_attached_file :image, styles: { thumb: "50x50>" }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
-  def self.count_of_members_and_supervisors?(current_user, member)
-    current_supervisors_count = User.where(role: ROLE[:supervisor]).count
-    current_memebers_count = User.where(role: ROLE[:member]).count
-    max_supervisors = current_user.company.subscription_package.max_supervisors
-    max_members = current_user.company.subscription_package.max_members
-    (member.supervisor? && current_supervisors_count < max_supervisors) || (member.member? && current_memebers_count < max_members)  
+  def self.count_of_members_and_supervisors?(company, user)
+    current_supervisors_count = company.users.where(role: ROLE[:supervisor]).count
+    current_members_count = company.users.where(role: ROLE[:member]).count
+    max_supervisors = company.subscription_package.max_supervisors
+    max_members = company.subscription_package.max_members
+    (user.supervisor? && current_supervisors_count < max_supervisors) || (user.member? && current_members_count < max_members)  
   end
 
   def admin?

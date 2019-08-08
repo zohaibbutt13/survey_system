@@ -17,6 +17,7 @@ class CompaniesController < ApplicationController
   end
 
   def subscription_packages
+    add_breadcrumb "Subscription Packages", subscription_packages_company_path
     @subscription_packages = SubscriptionPackage.first(3)
     respond_to do |format|
       format.html
@@ -27,11 +28,11 @@ class CompaniesController < ApplicationController
     @current_company.subscription_package_id = params[:id]
     if @current_company.save
       respond_to do |format|
-        flash[:notice] = "Subscription Package is successfully updated."  
+        flash[:notice] = I18n.t(:subscription_package_update_label)  
         format.html { redirect_to dashboard_company_path }
       end
     else
-      flash[:error] = "Subscription Package is not updated."
+      flash[:error] = @current_company.errors.full_messages
       format.html { redirect_to subscription_packages_company_path(current_user) }
     end
   end
