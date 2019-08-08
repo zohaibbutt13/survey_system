@@ -30,6 +30,10 @@ class User < ActiveRecord::Base
   validates :first_name, presence: true, length: { maximum: 150, message: 'must not have more than 150 characters.' }
   validates :last_name, presence: true, length: { maximum: 150, message: 'must not have more than 150 characters.' }
 
+  after_create :create_user_activity
+  after_update :update_user_activity
+  after_destroy :destroy_user_activity
+
   has_attached_file :image, styles: { thumb: "50x50>" }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
@@ -55,5 +59,24 @@ class User < ActiveRecord::Base
 
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  def admin_user_id
+    company.users.find_by(role: 'admin').id
+  end
+
+  def create_user_activity
+    # Admin is created only at time of registration so activity is not created
+    unless admin?
+      Activity.create(trackable: self, action: 'created', owner_id: admin_user_id, company_id: company_id)
+    end
+  end
+
+  def update_user_activity
+    Activity.create(trackable: self, action: 'updated', owner_id: admin_user_id, company_id: company_id)
+  end
+
+  def destroy_user_activity
+    Activity.create(trackable: self, action: 'deleted', owner_id: admin_user_id, company_id: company_id)
   end
 end

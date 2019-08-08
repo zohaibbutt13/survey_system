@@ -1,11 +1,6 @@
 <div class="col-10">
-  <h3>User Settings</h3>
+  <h3><%= t 'user_settings.user_settings_heading' %></h3>
   <%= form_for(@user_setting) do |u| %>
-
-    <div>
-      <%= u.label :enable_emails_subscription %>
-      <%= u.check_box :emails_subscription %>
-    </div>
 
     <div>
       <%= u.label :show_graphs %>

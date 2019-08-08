@@ -11,10 +11,10 @@ class CompanySettingsController < ApplicationController
   def update
     respond_to do |format|
       if @company_setting.update(company_setting_params)
-        flash[:notice] = "Company settings was successfully updated."
+        flash[:notice] = I18n.t 'company_settings.company_settings_update_success'
         format.html { redirect_to dashboard_company_path }
       else
-        flash[:error] = "Company settings was not updated."
+        flash[:error] = I18n.t 'company_settings.company_settings_update_fail'
         format.html { render :edit }
       end
     end

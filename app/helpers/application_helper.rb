@@ -1,10 +1,14 @@
 module ApplicationHelper
 
+  def full_name
+    "#{current_user.first_name} #{current_user.last_name}"
+  end
+
   def sidebar_menu
-      sidebar_menu = { Home: { url: dashboard_company_path(current_user), icon: '#_' },
-                       Employees: { url: members_path, icon: '#_' },
-                       Surveys: { url: '#_', icon: '#_' },
-                       Groups: { url: groups_path, icon: '#_' } }
+      sidebar_menu = { Menu: { url: dashboard_company_path(current_user), icon: 'home' },
+                       Employees: { url: members_path, icon: 'users' },
+                       Surveys: { url: display_surveys_company_path, icon: 'book-open' },
+                       Groups: { url: groups_path, icon: 'user-plus' } }
   end
 
   def flash_type(key)

@@ -20,4 +20,59 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  surveys_system_label: "Surveys System"
+  serial_num_label: "#"
+  question_label: "Question"
+  responses_label: "Responses"
+  title_label: "Title"
+  description_label: "Description"
+  category_label: "Category"
+  created_by_label: "Created By"
+  created_on_label: "Created On"
+  expiry_label: "Expiry"
+
+  dashboard:
+    graphs_label: "Graphs"
+    history_label: "History"
+
+  main_charts:
+    surveys_stats_label: "Surveys Stats"
+    surveys_stats_description: "Expired Vs Active Surveys"
+    latest_surveys_label: "Latest Surveys"
+    latest_surveys_description: "Responses of latest surveys"
+
+  activity_history:
+    activity_label: "Activity"
+    time_label: "Time"
+
+  package:
+    description_label: "With this package you will get:"
+    max_members_label: "Max Members Limit"
+    max_supervisors_label: "Max Supervisors Limit"
+    subscribe_label: "Subscribe"
+    current_package_label: "Your current Package is: "
+    package_choose_label: "Choose from one of our best packages"
+
+  footer:
+    home_label: "Home"
+    about_label: "About"
+    packages_label: "Packages"
+    license_description: "Surveys System 2019. All Rights Reserved."
+
+  header:
+    register_label: "Register"
+    sign_in_label: "Sign In"
+    log_out_label: "Log Out"
+    my_settings_label: "My Settings"
+    company_settings_label: "Company Settings"
+    logged_in_role_description: "You are logged in as "
+
+  company_settings:
+    company_settings_update_success: "Company settings is successfully updated."
+    company_settings_update_fail: "Company settings was not updated."
+    company_settings_heading: "Company Settings"
+
+  user_settings:
+    user_settings_update_success: "User settings is successfully updated."
+    user_settings_update_fail: "User settings was not updated."  
+    user_settings_heading: "User Settings"

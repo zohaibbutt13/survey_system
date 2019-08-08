@@ -1,5 +1,478 @@
-.nav-item{
+$primary-color:                     #006FC8; // navbar background color
+$primary-hover-color:               #00559A;
+$primary-border-color:              #E0E7EE; // all borders, seperators etc
+$primary-border-disabled-color:     #B2D4EE;
+$primary-background-disabled-color: #F7F7F7;
+$secondary-color:                   #FFFFFF; // body background
+$secondary-border-color:            #CCCCCC; // detail items in dialog table border
+$secondary-border-disabled-color:   #DDDDDD;
+$tertiary-color:                    #525F7E; // side menu background, heading color
+$breadcrumb-color:                  #A1A1A1;
+$heading-background-color:          #FAFCFE; // page heading bg, modal footer, table header
+$body-text-color:                   #505050;
+$label-text-color:                  #7C7C7C;
+
+// Button Colors
+$primary-button-background-default-color:  $primary-color;
+$primary-button-background-hover-color:    $primary-hover-color;
+$primary-button-background-disabled-color: $primary-border-disabled-color;
+$primary-button-border-default-color:      $primary-color;
+$primary-button-border-hover-color:        $primary-hover-color;
+$primary-button-border-disabled-color:     $primary-border-disabled-color;
+$primary-button-text-default-color:        $secondary-color;
+$primary-button-text-hover-color:          $secondary-color;
+$primary-button-text-disabled-color:       $secondary-color;
+
+$secondary-button-background-default-color:  $secondary-color;
+$secondary-button-background-hover-color:    $secondary-color;
+$secondary-button-background-disabled-color: $secondary-color;
+$secondary-button-border-default-color:      $primary-color;
+$secondary-button-border-hover-color:        $primary-hover-color;
+$secondary-button-border-disabled-color:     $primary-border-disabled-color;
+$secondary-button-text-default-color:        $primary-color;
+$secondary-button-text-hover-color:          $primary-hover-color;
+$secondary-button-text-disabled-color:       $primary-border-disabled-color;
+
+$tertiary-button-background-default-color:  $secondary-color;
+$tertiary-button-background-hover-color:    $secondary-color;
+$tertiary-button-background-focus-color:    $secondary-color;
+$tertiary-button-background-disabled-color: $primary-background-disabled-color;
+$tertiary-button-border-default-color:      $secondary-border-color;
+$tertiary-button-border-hover-color:        $breadcrumb-color;
+$tertiary-button-border-focus-color:        $primary-color;
+$tertiary-button-border-disabled-color:     $secondary-border-disabled-color;
+$tertiary-button-text-default-color:        $label-text-color;
+$tertiary-button-text-hover-color:          $body-text-color;
+$tertiary-button-text-focus-color:          $primary-color;
+$tertiary-button-text-disabled-color:       $secondary-border-color;
+// End button colors
+
+// start dropdown colors
+$dropdown-background-color:          $secondary-color;
+$dropdown-border-default-color:      $secondary-border-color;
+$dropdown-text-default-color:        $tertiary-color;
+$dropdown-border-hover-color:        $breadcrumb-color;
+$dropdown-text-hover-color:          $tertiary-color;
+$dropdown-border-focus-color:        $primary-color;
+$dropdown-text-focus-color:          $tertiary-color;
+$dropdown-background-disabled-color: $primary-background-disabled-color;
+$dropdown-border-disabled-color:     $secondary-border-disabled-color;
+$dropdown-text-disabled-color:       $breadcrumb-color;
+
+$dropdown-item-background-default-color:  $secondary-color;
+$dropdown-item-background-hover-color:    #F2F8FC;
+$dropdown-item-background-disabled-color: $primary-background-disabled-color;
+$dropdown-item-background-active-color:   #E6F1F9;
+// end dropdown colors
+
+// start input fields
+$label-text-color:                $label-text-color;
+$input-background-default-color:  $secondary-color;
+$input-border-default-color:      $secondary-border-color;
+$input-text-default-color:        $tertiary-color;
+$input-background-hover-color:    $secondary-color;
+$input-border-hover-color:        $breadcrumb-color;
+$input-text-hover-color:          $tertiary-color;
+$input-background-focus-color:    $secondary-color;
+$input-border-focus-color:        $primary-color;
+$input-text-focus-color:          $tertiary-color;
+$input-background-disabled-color: $primary-background-disabled-color;
+$input-border-disabled-color:     $secondary-border-disabled-color;
+$input-text-disabled-color:       $breadcrumb-color;
+// end input fields
+
+$heading-text-color: $tertiary-color;
+$navbar-hover-color: $primary-hover-color;
+$link-color:         $primary-color;
+$link-hover-color:   $primary-hover-color;
+
+// weights start
+$h1-weight: 700;
+$h2-weight: 500;
+$h3-weight: 500;
+$h4-weight: 500;
+$h5-weight: 500;
+$h6-weight: 700;
+$body-text-weight: 400;
+$body-bold-text-weight: 500;
+$link-weight: 300;
+$breadcrumbs-weight: 500;
+$subtext-weight: 300;
+$subtext-bold-weight: 500;
+$setting-side-bar-nav-text-weight: 600;
+// weights end
+
+// font-sizes start
+$text-size: 10px;
+$h1-size: 3.0rem;
+$h2-size: 2.4rem;
+$h3-size: 2.0rem;
+$h4-size: 1.8rem;
+$h5-size: 1.6rem;
+$h6-size: 1.4rem;
+$nav-text-size: 1.5rem;
+$body-text-size: 1.3rem;
+$link-size: 1.3rem;
+$breadcrumbs-size: 1.2rem;
+$subtext-size: 1.2rem;
+$placeholder-size: 1.3rem;
+$small-text-size: 1.1rem;
+// font sizes end
+
+// border radius start
+$primary-radius: 4px;
+$half-radius: 50%;
+// border radius end
+
+// min width start
+$btn-large-min-width: 150px;
+$btn-medium-min-width: 120px;
+$btn-small-min-width: 80px;
+// min width end
+
+html {
+  font-size: $text-size;
+}
+
+body {
+  min-width: 1100px;
+  // overflow: hidden;
+  overflow-x: auto;
+
+  ::-webkit-scrollbar {
+  width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+  background: #F6F9FC;
+  border-radius: $primary-radius;
+  }
+  ::-webkit-scrollbar-thumb {
+  background: #bec0c4;
+  border-radius: 100px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+  background: #7C838F; 
+  }
+
+  h2 {
+  color: $tertiary-color;
+  font-size: $h2-size;
+  font-weight: $h2-weight;
+  }
+
+  h3 {
+  color: $tertiary-color;
+  font-size: $h3-size;
+  font-weight: $h3-weight;
+  }
+
+  h4 {
+  color: $tertiary-color;
+  font-size: $h4-size;
+  font-weight: $h4-weight;
+  }
+
+  p {
+  font-size: $body-text-size;
+  color: $body-text-color;
+  letter-spacing: 1px;
+  font-weight: $body-text-weight;
+  }
+
+  b {
+  font-size: $body-text-size;
+  color: $body-text-color;
+  letter-spacing: 1px;
+  font-weight: $body-bold-text-weight;
+  }
+
+  label {
+  font-size: $body-text-size;
+  color: $body-text-color;
+  letter-spacing: 1px;
+  font-weight: $body-text-weight;
+  }
+
+  label:hover {
+  cursor: pointer;
+  }
+
+  small {
+  font-size: $subtext-size;
+  letter-spacing: 1px;
+  font-weight: $subtext-weight;
+  }
+  strong {
+  font-size: $body-text-size;
+  color: $body-text-color;
+  letter-spacing: 1px;
+  font-weight: $body-bold-text-weight;
+  }
+  a {
+  font-size: $link-size;
+  color: $link-color;
+  letter-spacing: 1px;
+  font-weight: $link-weight; 
+  }
+
+  a:hover {
+  color: $link-hover-color;
+  }
+
+  input, textarea {
+  background-color: $input-background-default-color;
+  border: 1px solid $input-border-default-color;
+  color: $input-text-default-color;
+  outline: none !important;
+  box-shadow: none !important;
+  padding: 8px 12px;
+  border-radius: $primary-radius;
+  font-size: $body-text-size;
+  }
+
+  input:hover, textarea:hover {
+  background-color: $input-background-hover-color;
+  border: 1px solid $input-border-hover-color;
+  color: $input-text-hover-color;
+  }
+
+  input:focus, textarea:focus {
+  background-color: $input-background-focus-color;
+  border: 1px solid $input-border-focus-color;
+  color: $input-text-focus-color;
+  }
+
+  input:disabled, textarea:disabled {
+  background-color: $input-background-disabled-color;
+  border: 1px solid $input-border-disabled-color;
+  color: $input-text-disabled-color;
+  }
+
+  .disabled-link {
+  pointer-events: none;
+  }
+}
+
+// start button css
+.primary-btn {
+display: block;
+text-decoration: none !important;
+height: 42px;
+font-size: $body-text-size;
+width: auto;
+padding: 6px 18px;
+line-height: 28px;
+background-color: $primary-button-background-default-color !important;
+border: 1px solid $primary-button-border-default-color !important;
+color: $primary-button-text-default-color !important;
+border-radius: 4px;
+min-width: $btn-medium-min-width;
+text-align: center;
+}
+
+.primary-btn:hover {
+background-color: $primary-button-background-hover-color !important;
+border: 1px solid $primary-button-border-hover-color !important;
+border-radius: 4px;
+cursor: pointer;
+color: $primary-button-text-hover-color !important;
+text-decoration: none;
+}
+
+.primary-btn:disabled {
+background-color: $primary-button-background-disabled-color !important;
+border: 1px solid $primary-button-border-disabled-color !important;
+color: $primary-button-text-disabled-color !important;
+cursor: not-allowed;
+}
+
+.secondary-btn {
+display: block;
+text-decoration: none !important;
+height: 42px;
+font-size: $body-text-size;
+width: auto;
+line-height: 28px;
+padding: 6px 18px;
+border: 1px solid $secondary-button-border-default-color !important;
+color: $secondary-button-text-default-color !important;
+background-color: $secondary-button-background-default-color !important;
+border-radius: 4px;
+font-size: $body-text-size;
+min-width: $btn-medium-min-width;
+text-align: center;
+}
+
+.secondary-btn:hover {
+color: $secondary-button-text-hover-color !important;
+background-color: $secondary-button-background-hover-color !important;
+border: 1px solid $secondary-button-border-hover-color !important;
+cursor: pointer;
+}
+
+.secondary-btn:disabled {
+background-color: $secondary-button-background-disabled-color;
+border: 1px solid $secondary-button-border-disabled-color;
+color: $secondary-button-text-disabled-color;
+cursor: not-allowed;
+}
+
+.tertiary-btn{
+display: block;
+text-decoration: none !important;
+height: 42px;
+font-size: $body-text-size;
+line-height: 28px;
+padding: 6px 18px;
+border: 1px solid $tertiary-button-border-default-color;
+color: $tertiary-button-text-default-color;
+background-color: $tertiary-button-background-default-color;
+border-radius: 4px;
+min-width: $btn-medium-min-width;
+text-align: center;
+}
+
+.tertiary-btn:hover {
+border: 1px solid $tertiary-button-border-hover-color;
+color: $tertiary-button-text-hover-color;
+background-color: $tertiary-button-background-hover-color;
+cursor: pointer;
+}
+
+.tertiary-btn:focus {
+border: 1px solid $tertiary-button-border-focus-color;
+color: $tertiary-button-text-focus-color;
+background-color: $tertiary-button-background-focus-color;
+cursor: pointer;
+}
+
+.tertiary-btn:disabled {
+background-color: $tertiary-button-background-disabled-color;
+border: 1px solid $tertiary-button-border-disabled-color;
+color: $tertiary-button-text-disabled-color;
+cursor: not-allowed;
+}
+// End buttons css
+
+.label-input-container {
+  .label-input-item {
+    padding-top: 10px;
+
+    label {
+      line-height: 22px;
+      padding: 9px 0;
+      margin: 0;
+    }
+
+    input, textarea {
+      padding: 9px;
+      line-height: 22px;
+    }
+
+    .add-resource-element {
+      a {
+        line-height: 42px;
+
+        img {
+          width: 25px;
+          height: 25px;
+          line-height: 42px;
+        }
+      }
+    }
+  }
+
+  .label-input-item:first-child {
+    padding-top: 0;
+  }
+
+  .label-input-item:last-child {
+    padding-bottom: 0;
+  }
+}
+
+// dialog start
+.modal {
+  top: 5% !important;
+  bottom: 5%;
+  background-color: transparent;
+  z-index: 1041;
+  padding: 0 !important;
+  overflow: hidden !important;
+
+  .modal-dialog {
+    height: 100%;
+    max-width: 40%;
+    min-width: 40%;
+    margin: 0 auto;
+  }
+
+  .modal-dialog-xl {
+    height: 100%;
+    max-width: 80%;
+    min-width: 80%;
+  }
+
+  .modal-dialog-lg {
+    height: 100%;
+    max-width: 60%;
+    min-width: 60%;
+  }
+
+  .modal-content {
+    border-radius: 7px;
+    max-height: 100%;
+    .modal-header {
+      padding: 15px 31px;
+      min-height: 60px;
+
+      .heading {
+        h3 {
+          line-height: 30px;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 1;
+          overflow: hidden;
+          word-wrap: break-word;
+          margin: 0;
+        }
+      }
+    }
+
+    .modal-body {
+      padding: 15px 31px;
+      overflow-y: auto;
+      max-height: 70vh;
+
+      .dialog-description {
+        margin: 0;
+
+        h4 {
+          margin: 0;
+        }
+      }
+
+      label {
+        margin: 0;
+      }
+    }
+
+    .modal-footer {
+      padding: 15px 31px;
+      border-bottom-right-radius: 7px;
+      border-bottom-left-radius: 7px;
+      min-height: 60px;
+      background-color: $heading-background-color;
+    }
+  }
+}
+
+.nav-link{
   font-size: 1rem;
+  color: white;
+  &:hover{
+    color: $primary-color;
+  }
 }
 
 .dashboard_text{
@@ -17,19 +490,6 @@
   margin-right: 1rem; 
 }
 
-body {
-  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: 700;
-}
 
 header.master-head {
   position: relative;  
@@ -48,16 +508,48 @@ header.master-head h1 {
   padding-bottom: 1rem;
 }
 
+footer {
+  height: 50px;
+  padding: 5px 30px;
+  background-color: $secondary-color;
+  margin-top: 20px;
 
+  a {
+    text-decoration: none;
+    color: $link-color;
+    padding: 0 8px;
+    border-right: 1px solid $primary-border-color;
+    font-size: $breadcrumbs-size;
+  }
 
-footer.footer {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
-  bottom: 0;
+  a:last-child {
+    border: none;
+  }
+
+  a:hover {
+    text-decoration: none;
+    color: $link-hover-color;
+  }
+
+  p {
+    font-size: $text-size;
+    color: $breadcrumb-color;
+  }
 }
 
 .zoom:hover {
   -ms-transform: scale(1.5);
   -webkit-transform: scale(2.5);
   transform: scale(2.5); 
+}
+
+.table-custom-scrollbar {
+  position: relative;
+  height: 22rem;
+  overflow: auto;
+}
+
+.custom-navbar {
+  background-color: $primary-color;
+  padding: 5px 30px;
 }

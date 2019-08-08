@@ -11,10 +11,10 @@ class UserSettingsController < ApplicationController
   def update
     respond_to do |format|
       if @user_setting.update(user_setting_params)
-        flash[:notice] = "User settings was successfully updated."
+        flash[:notice] = I18n.t 'user_settings.user_settings_update_success'
         format.html { redirect_to dashboard_company_path }
       else
-        flash[:error] = "User settings not updated."
+        flash[:error] = I18n.t 'user_settings.user_settings_update_fail'
         format.html { render :edit }
       end
     end

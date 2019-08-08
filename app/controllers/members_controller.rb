@@ -19,16 +19,24 @@ class MembersController < ApplicationController
       password = Devise.friendly_token.first(8)
       @member.company = @current_company
       @member.password = @member.password_confirmation = password
-      if @member.save
-        flash[:notice] = "Member created successfully!"
-        redirect_to dashboard_company_path(@current_company)
-      else
-        flash[:error] = @member.errors.full_messages
-        render :new
+      respond_to do |format|
+        if @member.save
+          flash[:notice] = "Member created successfully!"
+          format.html { redirect_to member_path(@member) }
+        else
+          flash[:error] = @member.errors.full_messages
+          format.html { render :new }
+        end
       end
     else
       flash[:error] = "Exceeds from limit."
-      redirect_to dashboard_company_path(@current_company)   
+      redirect_to dashboard_company_path(@current_company)
+    end
+  end   
+
+  def show
+    respond_to do |format|
+      format.html
     end
   end
 
@@ -39,18 +47,26 @@ class MembersController < ApplicationController
   end
 
   def update
-    if @member.update_attributes(member_params)
-      flash[:notice] = "Member updated successfully!"
-      redirect_to members_path
-    else
-      flash[:error] = @member.errors.full_messages
-      render :edit
+    respond_to do |format|
+      if @member.update_attributes(member_params)
+        flash[:notice] = "Member updated successfully!"
+        format.html { redirect_to member_path(@member) }
+      else
+        flash[:error] = @member.errors.full_messages
+        format.html { render :edit }
+      end
     end
   end
 
   def destroy
-    @member.destroy
-    redirect_to members_path
+    if @member.destroy
+      flash[:notice] = "Member destroyed successfully!"
+    else
+      flash[:error] = @member.errors.full_messages
+    end
+    respond_to do |format|
+      format.html { redirect_to members_path }
+    end
   end
 
   private
