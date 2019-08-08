@@ -41,21 +41,21 @@
     <!-- for logged in user -->
     <% else %>
       <div class="w-100 h-100">
-        <%= render 'layouts/header' %>
+        <%= render partial:'layouts/header' %>
         <div class="row no-gutters h-100 w-100 p-0">
           <div class="sidebar-style float-left h-100 col-4 col-md-2">
             <div>
-              <%= render 'layouts/sidebar' %>  
+              <%= render partial:'layouts/sidebar' %>  
             </div>
           </div>
           <div id="main" class="main-style my-auto float-left overflow-auto col col-md-10">
             <div class="d-flex align-items-start flex-column">
               <div class="w-100">
-                <%= render 'layouts/flash_messages' %>
+                <%= render partial:'layouts/flash_messages' %>
                 <%= yield %>
               </div>
               <div class="mt-auto w-100">
-                <%= render 'layouts/footer' %>
+                <%= render partial:'layouts/footer' %>
               </div>
             </div>
           </div>
