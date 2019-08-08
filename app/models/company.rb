@@ -44,4 +44,3 @@ class Company < ActiveRecord::Base
   #   company.save
   # end
 end
-

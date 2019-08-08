@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :companies do
     member do
       get 'dashboard'
+      get 'subscription_packages'
+      get 'update_subscription_package'
       get 'display_surveys'
     end
   end

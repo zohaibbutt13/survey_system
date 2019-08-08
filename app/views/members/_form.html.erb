@@ -17,7 +17,6 @@
     </div>
 
     <div class="label-input-item">
-      
       <%= f.label :role %><br />
       <%= f.select :role, User::ROLE.reject { |key, value| key == :admin }, {}, { class: "primary-btn dropdown-toggle"} %>
     </div>

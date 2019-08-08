@@ -2,28 +2,42 @@ class MembersController < ApplicationController
   load_and_authorize_resource :member, class: 'User', parent: false
 
   def new
+    add_breadcrumb "Employees", members_path
+    add_breadcrumb "New Employee", new_member_path
     respond_to do |format|
       format.html
     end
   end
 
   def index
+    add_breadcrumb "Employees", members_path
     respond_to do |format|
       format.html { @members = @members.reject { |user| user.id == current_user.id } }
       format.json { render json: @members }
     end
   end
 
-  def show
-    respond_to do |format|
-      format.html
+  def create  
+    if User.count_of_members_and_supervisors?(current_user.company, @member)
+      password = Devise.friendly_token.first(8)
+      @member.company = @current_company
+      @member.password = @member.password_confirmation = password
+      respond_to do |format|
+        if @member.save
+          flash[:notice] = "Member created successfully!"
+          format.html { redirect_to member_path(@member) }
+        else
+          flash[:error] = @member.errors.full_messages
+          format.html { render :new }
+        end
+      end
+    else
+      flash[:error] = I18n.t(:excced_limit_label)
+      redirect_to dashboard_company_path(@current_company)
     end
-  end
+  end   
 
-  def create
-    password = Devise.friendly_token.first(8)
-    @member.company = @current_company
-    @member.password = @member.password_confirmation = password
+  def show
     respond_to do |format|
       if @member.save
         flash[:notice] = I18n.t 'users.member_create_success'
@@ -36,6 +50,8 @@ class MembersController < ApplicationController
   end
 
   def edit
+    add_breadcrumb "Employees", members_path
+    add_breadcrumb "Update Employee", edit_member_path
     respond_to do |format|
       format.html
     end
