@@ -15,6 +15,10 @@ class ApplicationController < ActionController::Base
     render :file => "#{Rails.root}/public/404.html",  layout: false, status: :not_found
   end
 
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    render :file => "#{Rails.root}/public/404.html",  layout: false, status: :not_found
+  end
+
   before_action do
     if request.subdomain.present?
       @current_company = Company.find_by_subdomain(request.subdomain)
