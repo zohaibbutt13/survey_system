@@ -6,7 +6,6 @@ class CompaniesController < ApplicationController
   end
 
   def dashboard
-    flash[:error] = ["first error"]
     @activities = @current_company.activities.get_user_activities(current_user)
     @surveys_stats = [@current_company.surveys.expired_surveys.count,
                       @current_company.surveys.active_surveys.count]

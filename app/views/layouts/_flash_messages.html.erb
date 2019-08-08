@@ -1,5 +1,4 @@
 <% if flash.present? %>
-  <div class = "flash-margin" >
     <% flash.each do |key, value| %>
       <% if Array === value %>
       <% value.each do |val| %>
@@ -15,5 +14,4 @@
         </div>
       <% end %>
     <% end %>
-  </div>
 <% end %>
