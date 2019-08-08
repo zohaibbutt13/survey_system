@@ -8,6 +8,9 @@ class SurveysController < ApplicationController
   
   # GET  /surveys
   def index
+    add_breadcrumb "Surveys", surveys_path
+    @surveys = Survey.all
+    @survey = Survey.new
     respond_to do |format|
       format.html
     end
@@ -15,6 +18,9 @@ class SurveysController < ApplicationController
 
   # GET surveys/new
   def new
+    add_breadcrumb "Surveys", surveys_path
+    add_breadcrumb "New Survey", new_survey_path
+    @survey = Survey.new
     @question = @survey.questions.build 
     respond_to do |format|
       format.html
@@ -23,6 +29,9 @@ class SurveysController < ApplicationController
 
   # GET survey/:id
   def show
+    add_breadcrumb "Surveys", surveys_path
+    add_breadcrumb "Your Survey", survey_path
+    @survey = Survey.find(params[:id])
     respond_to do |format|
       format.html
     end
@@ -43,6 +52,9 @@ class SurveysController < ApplicationController
 
   # edit surveys/:id/edit
   def edit
+    add_breadcrumb "Surveys", surveys_path
+    add_breadcrumb "Edit Survey", edit_survey_path
+    @survey = Survey.find(params[:id])
     respond_to do |format|
       format.html
     end

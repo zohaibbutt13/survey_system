@@ -2,12 +2,15 @@ class MembersController < ApplicationController
   load_and_authorize_resource :member, class: 'User', parent: false
 
   def new
+    add_breadcrumb "Employees", members_path
+    add_breadcrumb "New Employee", new_member_path
     respond_to do |format|
       format.html
     end
   end
 
   def index
+    add_breadcrumb "Employees", members_path
     respond_to do |format|
       format.html { @members = @members.reject { |user| user.id == current_user.id } }
       format.json { render json: @members }
@@ -47,6 +50,8 @@ class MembersController < ApplicationController
   end
 
   def edit
+    add_breadcrumb "Employees", members_path
+    add_breadcrumb "Update Employee", edit_member_path
     respond_to do |format|
       format.html
     end
