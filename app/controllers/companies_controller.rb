@@ -49,6 +49,7 @@ class CompaniesController < ApplicationController
     end
   end
 
+  #move to surveys
   # get home/display_surveys
   def display_surveys
     if params[:filter_by] == 'expiry'

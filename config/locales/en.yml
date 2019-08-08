@@ -20,6 +20,53 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  groups:
+    group_create_success: "Group created successfully!"
+    group_update_success: "Group updated successfully!"
+    group_destroy_success: "Group destroyed successfully!"
+    update_group_heading: "Update Group"
+    create_group_heading: "Add a Group"
+    group_index_heading: "Add a Group"
+    name: "name"
+    description: "description"
+    members: "members"
+    add_group_button_label: "Add Group"
+    update_group_button_label: "Update Group"
+    group_show_heading: "Group Information"
+
+  links:
+    add_new_link: "Add new"
+    edit_link: "Edit"
+    delete_link: "Delete"
+    confirmation_message: "Are you sure?"
+    options: "options"
+  
+  users:
+    name: "name"
+    user_role: "role"
+    members: "members"
+    member_create_success: "Member created successfully!"
+    member_update_success: "Member updated successfully!"
+    member_destroy_success: "Member destroyed successfully!"
+    edit_member_heading: "Edit Member"
+    add_member_heading: "Add Member"
+    first_name: "first name"
+    last_name: "last name"
+    email: "email"
+    members_heading: "Members"
+    create_new_member_label: "Create new Member"
+    show_member_heading: "Member Information"
+    update_button_label: "Submit"
+    add_button_label: "Add"
+
+  home:
+    no_public_surveys_available: "There are currently no public surveys available!"
+    take_survey: "take this survey"
+    greeting_message: "Build and manage the next level surveys for your company!"
+    fill_surveys_message: "Fill any survey from our wide collection"
+    filter_label: "filter"
+    filter_all_label: "All"
+
   surveys_system_label: "Surveys System"
   serial_num_label: "#"
   question_label: "Question"
@@ -81,4 +128,7 @@ en:
     supervisors_survey_permission_label: "Can supervisor create surveys?"
     members_settings_permission_label: "Can members change my settings?"
   users:
-    excced_limit_label: "Exceeds from limit."  
+    excced_limit_label: "Exceeds from limit."
+
+  surveys:
+    index_heading: "Survey Index"

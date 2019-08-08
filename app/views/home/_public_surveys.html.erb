@@ -1,0 +1,23 @@
+<div class="row">
+  <% if surveys.blank? %>
+    <h4 class="text-muted"><%= t('home.no_public_surveys_available') %></h4>
+  <% else %> 
+    <% surveys.each do |survey| %>
+      <div class="col-lg-4">
+        <div class="mx-auto mt-4">
+          <div class="card">
+            <h5 class="card-header"><%= survey.name %></h5>
+            <div class="card-body">
+              <p class="card-text"><%= survey.description %></p>
+              <a href="#_" class="btn btn-primary"><%= t('home.take_survey') %></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="apple_pagination d-flex justify-content-center mt-4">
+    <%= will_paginate surveys %>
+  </div>
+<% end %>
+  
