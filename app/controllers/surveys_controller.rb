@@ -18,7 +18,7 @@ class SurveysController < ApplicationController
 
   # GET surveys/new
   def new
-    add_breadcrumb "Surveys", surveys_path
+    add_breadcrumb "Surveys", :display_surveys_company_path
     add_breadcrumb "New Survey", new_survey_path
     @survey = Survey.new
     @question = @survey.questions.build 
