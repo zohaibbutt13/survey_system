@@ -44,6 +44,7 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
+    breadcrumbs_on_rails (3.0.1)
     builder (3.2.3)
     cancancan (3.0.1)
     chosen-rails (1.8.7)
@@ -242,6 +243,7 @@ PLATFORMS
 
 DEPENDENCIES
   better_errors (= 2.1.1)
+  breadcrumbs_on_rails
   cancancan
   chosen-rails
   coffee-rails (~> 4.1.0)

@@ -1,30 +1,20 @@
 class CompanySettingsController < ApplicationController
   load_and_authorize_resource
-  #/company_settings/new
-  def new
-  end
 
   #/company_settings/id/edit
   def edit
-  end
-
-  def create
     respond_to do |format|
-      if @company_setting.save
-        flassh[:notice] = "Company settings was successfully created."
-        format.html { redirect_to @company_setting }
-      else
-        format.html { render :new }
-      end
+      format.html
     end
   end
 
   def update
     respond_to do |format|
       if @company_setting.update(company_setting_params)
-        flash[:notice] = "Company settings was successfully updated."
+        flash[:notice] = I18n.t 'company_settings.company_settings_update_success'
         format.html { redirect_to dashboard_company_path }
       else
+        flash[:error] = @company_setting.errors.full_messages
         format.html { render :edit }
       end
     end

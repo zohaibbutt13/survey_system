@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20190807113036) do
 
   create_table "activities", force: :cascade do |t|
@@ -102,6 +103,7 @@ ActiveRecord::Schema.define(version: 20190807113036) do
     t.integer  "company_id",    limit: 4
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.boolean  "required",      limit: 1
   end
 
   add_index "questions", ["company_id"], name: "index_questions_on_company_id", using: :btree

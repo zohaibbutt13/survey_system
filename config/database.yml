@@ -27,4 +27,4 @@ production:
   encoding: utf8
   database: survey_system_production
   username: root
-  password: root
+  password: test

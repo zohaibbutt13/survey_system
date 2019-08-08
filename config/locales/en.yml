@@ -97,6 +97,9 @@ en:
     max_members_label: "Max Members Limit"
     max_supervisors_label: "Max Supervisors Limit"
     subscribe_label: "Subscribe"
+    current_package_label: "Your current Package is: "
+    package_choose_label: "Choose from one of our best packages"
+    subscription_package_update_label: "Subscription Package is successfully updated."
 
   footer:
     home_label: "Home"
@@ -111,3 +114,18 @@ en:
     my_settings_label: "My Settings"
     company_settings_label: "Company Settings"
     logged_in_role_description: "You are logged in as "
+
+  company_settings:
+    company_settings_update_success: "Company settings is successfully updated."
+    company_settings_update_fail: "Company settings was not updated."
+    company_settings_heading: "Company Settings"
+
+  user_settings:
+    user_settings_update_success: "User settings is successfully updated."
+    user_settings_update_fail: "User settings was not updated."  
+    user_settings_heading: "User Settings"
+    supervisors_settings_permission_label: "Can supervisor change my settings?"
+    supervisors_survey_permission_label: "Can supervisor create surveys?"
+    members_settings_permission_label: "Can members change my settings?"
+  users:
+    excced_limit_label: "Exceeds from limit."  
