@@ -96,7 +96,7 @@ class SurveysController < ApplicationController
       :survey_type,
       :expiry,
       :group_id,
-      questions_attributes: [:id, :statement, :question_type,
+      questions_attributes: [:id, :statement, :question_type, :company_id,
       options_attributes: [:id, :detail]]
     )
   end

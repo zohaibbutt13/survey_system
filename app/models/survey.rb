@@ -4,14 +4,13 @@ require 'date'
 class Survey < ActiveRecord::Base
   has_many :activities, as: :trackable
   belongs_to :user
-  has_many :questions, dependent: :destroy, inverse_of: :survey, autosave: true
+  has_many :questions, dependent: :destroy, autosave: true
   has_many :options, through: :questions
   belongs_to :company
-  has_many :user_responses, dependent: :destroy, inverse_of: :survey
-  belongs_to :group, inverse_of: :survey
+  has_many :user_responses, dependent: :destroy
+  belongs_to :group
 
-  accepts_nested_attributes_for :questions
-  accepts_nested_attributes_for :options
+  accepts_nested_attributes_for :questions, :options
 
   validates :name, presence: true, length: { maximum: 100 }
   validates :description, presence: true, length: { maximum: 500 }

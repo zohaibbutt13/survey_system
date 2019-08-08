@@ -50,6 +50,7 @@
               <div id = "survey_questions" class = "pt-3" >
                 <% index = 0 %> 
                 <%= f.fields_for :questions, id: '' do |q| %>
+                <%= q.hidden_field :company_id, value: @current_company.id %>
                   <div id = "statement_<%= index %>" class="form-group">
                     <% unless q.object.statement == '-1' %>
                       <div class = "pt-3">

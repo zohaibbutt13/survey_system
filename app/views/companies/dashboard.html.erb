@@ -1,10 +1,12 @@
 <div class = "container">
   <h1>Welcome to your company <%= get_subdomain %></h1>
   <ul class = "mt-4">
-    <%= link_to members_path do %>
-      <li>Employees</li>
+    <% if can? :read, User %>
+      <%= link_to members_path do %>
+        <li>Employees</li>
+      <% end %>
     <% end %>
-    <% if can? :manage, Group %>
+    <% if can? :read, Group %>
       <%= link_to groups_path do %>
         <li>Groups</li>
       <% end %>
