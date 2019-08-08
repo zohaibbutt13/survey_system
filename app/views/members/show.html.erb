@@ -15,9 +15,18 @@
     </tr>
   </tbody>
 </table>
-<% if can? :update, @member %>
-  <%= link_to t('links.edit_link'), edit_member_path(@member), class: 'col-md-1 btn btn-outline-secondary' %>
-<% end %>
-<% if can? :destroy, @member %>
-  <%= link_to t('links.delete_link'), member_path(@member), method: :delete, data: { confirm: t('links.confirmation_message') }, class: 'col-md-1 btn btn-outline-secondary' %>
-<% end %>
+
+<div class="row no-gutters justify-content-start">
+  <div class="col-1">
+    <% if can? :update, @member %>
+      <%= link_to t('links.edit_link'), edit_member_path(@member), class: 'primary-btn' %>
+    <% end %>
+  </div>
+  <div class="col-1 ml-5">
+    <% if can? :destroy, @member %>
+      <%= link_to t('links.delete_link'), member_path(@member), method: :delete, data: { confirm: t('links.confirmation_message') }, class: 'primary-btn' %>
+    <% end %>
+  </div>
+</div>
+
+

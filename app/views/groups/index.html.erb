@@ -1,7 +1,11 @@
 <h1><%= t('groups.group_index_heading') %></h1>
 
 <% if can? :create, Group %>
-  <td><%= link_to t('links.add_new_link'), new_group_path, class: 'btn btn-outline-secondary' %></td>
+  <div class="row no-gutters justify-content-end">
+    <div class="col-1">
+      <td><%= link_to t('links.add_new_link'), new_group_path, class: 'primary-btn' %></td>
+    </div>
+  </div>
 <% end %>
 
 <table class="table">

@@ -1,7 +1,11 @@
 <h1><%= t('users.members_heading') %></h1>
 
 <% if can? :create, User %>
-  <%= link_to t('users.add_button_label'), new_member_path, class: 'btn btn-outline-secondary' %>
+  <div class="row no-gutters justify-content-end">
+    <div class="col-1">  
+      <%= link_to t('links.add_new_link'), new_member_path, class: 'primary-btn' %> 
+    </div>
+  </div>
 <% end %>
 
 <table class="table">

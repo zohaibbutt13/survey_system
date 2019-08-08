@@ -1,3 +1,4 @@
+<h1><%= t('groups.group_show_heading') %></h1>
 <table class="table">
   <tbody>
     <tr>
@@ -16,9 +17,18 @@
     </tr>
   </tbody>
 </table>
-<% if can? :update, @group %>
-  <%= link_to t('links.edit_link'), edit_group_path(@group), class: 'col-md-1 btn btn-outline-secondary' %>
-<% end %>
-<% if can? :destroy, @group %>
-  <%= link_to t('links.delete_link'), @group, method: :delete, data: { confirm: t('links.confirmation_message') }, class: 'col-md-1 btn btn-outline-secondary' %>
-<% end %>
+
+<div class="row no-gutters justify-content-start">
+  <div class="col-1">
+    <% if can? :update, @group %>
+      <%= link_to t('links.edit_link'), edit_group_path(@group), class: 'primary-btn' %>
+    <% end %>
+  </div>
+  <div class="col-1 ml-5">
+    <% if can? :destroy, @group %>
+      <%= link_to t('links.delete_link'), @group, method: :delete, data: { confirm: t('links.confirmation_message') }, class: 'primary-btn' %>
+    <% end %>
+  </div>
+</div>
+
+
