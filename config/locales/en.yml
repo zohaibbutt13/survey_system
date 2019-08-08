@@ -20,6 +20,11 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  login_label: "Log in"
+  password_label: "Password"
+  email_label: "Email"
+  remember_label: "Remember me"
+
   groups:
     group_heading_label: "All Groups"
     group_create_success: "Group created successfully!"
@@ -78,6 +83,7 @@ en:
   created_by_label: "Created By"
   created_on_label: "Created On"
   expiry_label: "Expiry"
+  already_have_an_account_label: 'Already have an account?'
 
   dashboard:
     graphs_label: "Graphs"

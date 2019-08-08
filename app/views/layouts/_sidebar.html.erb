@@ -1,17 +1,13 @@
-<div class="container-fluid">
-  <div class="row p-3">
-    <nav class="d-none d-md-block bg-light sidebar col-12">
-      <div class="sidebar-sticky">
-        <ul class="nav flex-column">
-          <% get_sidebar_menu = sidebar_menu %>
-          <% get_sidebar_menu.each do |content,value| %>
-            <li class="nav-item">
-              <i class=<%= value[:icon] %> ></i>
-              <%= link_to content, value[:url] %>
-            </li>
+<div class="sidebar-style bg-dark float-left h-100 col-3 col-md-2">
+  <div class="py-2 flex-grow-1">
+    <div class="nav flex-sm-column">
+        <% sidebar_menu.each do |content,value| %>
+          <%= link_to value[:url], class: "nav-link" do %>
+          <div class="row">
+            <span class="fa fa-<%= value[:icon] %> mt-2 icon"></span><%= content %>
+          </div>
           <% end %>
-        </ul>
-      </div>
-    </nav>
+        <% end %>
+    </div>
   </div>
 </div>

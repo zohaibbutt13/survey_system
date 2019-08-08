@@ -1,36 +1,45 @@
-<div class = "login-container">
-  <div class = "login-input boxed">
-    <h2 class = "login-header">Log In</h2>
-    <div class = "login-margin-top">
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class = "login-input-label-container">
-          <div class="form-group">
-            <label> Email: </label>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-          </div>
-        </div>
+<div class="row no-gutters d-flex justify-content-center">
+  <!-- Sign in form -->
+  <div class="col-md-6 mx-auto p-20">
+    <%= render partial:'layouts/flash_messages' %>
+    <div class=" row d-flex justify-content-center">
+      <div class="container col-8">
+        <h1><%= t(:login_label) %></h1>
+        <div class = "login-margin-top">
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+              <div class="form-group">
+                <label for="user_email"> <%= t(:email_label) %> </label>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+              </div>
 
-        <div class = "login-input-label-container">
-          <div class="form-group">
-            <label> Password: </label>
-            <%= f.password_field :password, autocomplete: "current-password" %>
-          </div>
-        </div>
-    
-        <% if devise_mapping.rememberable? %>
-          <div class="field">
-            <label> Remember Me: </label>
-            <%= f.check_box :remember_me %>
-            </br>
-          </div>
-        <% end %>
+              <div class="form-group">
+                <label for="user_password"> <%= t(:password_label) %> </label>
+                <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+              </div>
+            
+            <% if devise_mapping.rememberable? %>
+              <div class="field">
+                <%= f.check_box :remember_me%> &nbsp;&nbsp;&nbsp;
+                <label for="user_remember_me"> <%= t(:remember_label) %> </label>
+                </br>
+              </div>
+            <% end %>
 
-        <div class="actions">
-          <%= f.submit "Log in" , class: 'btn btn-primary' %>
-        </div>
+            <div class="actions">
+              <%= f.submit t(:login_label), class: 'btn btn-primary w-100 mt-2' %>
+            </div>
 
-      <% end %>
+          <% end %>
+        </div>
+        <div class="pt-2">
+          <%= link_to t(:already_have_an_account_label), '/users/sign_up', class: 'already-have-account' %>
+        </div>
+      </div>
     </div>
-    <%= render "devise/shared/links" %>
+    <%= render partial:'layouts/footer' %>
+  </div>
+  <!-- Side Image -->
+  <div class="col-md-6">
+    <img src="/assets/survey.jpeg" class = "img-fullsize"  alt="survey">
   </div>
 </div>

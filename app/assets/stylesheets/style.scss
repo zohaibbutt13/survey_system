@@ -103,7 +103,7 @@ $setting-side-bar-nav-text-weight: 600;
 // weights end
 
 // font-sizes start
-$text-size: 10px;
+$text-size: 12px;
 $h1-size: 3.0rem;
 $h2-size: 2.4rem;
 $h3-size: 2.0rem;
@@ -112,7 +112,7 @@ $h5-size: 1.6rem;
 $h6-size: 1.4rem;
 $nav-text-size: 1.5rem;
 $body-text-size: 1.3rem;
-$link-size: 1.3rem;
+$link-size: 1.4rem;
 $breadcrumbs-size: 1.2rem;
 $subtext-size: 1.2rem;
 $placeholder-size: 1.3rem;
@@ -132,12 +132,14 @@ $btn-small-min-width: 80px;
 
 html {
   font-size: $text-size;
+  height: 100vh;
 }
 
 body {
-  min-width: 1100px;
-  // overflow: hidden;
-  overflow-x: auto;
+  //min-width: 1100px;
+  overflow-x: hidden;
+  min-height: 100vh;
+  //overflow-x: auto;
 
   ::-webkit-scrollbar {
   width: 6px;
@@ -251,6 +253,14 @@ body {
   .disabled-link {
   pointer-events: none;
   }
+}
+
+.p-20 {
+  padding: 20px !important;
+}
+
+.p-t-20{
+  padding-top: 20px;
 }
 
 // start button css
@@ -444,11 +454,18 @@ cursor: not-allowed;
 }
 
 .nav-link{
-  font-size: 1rem;
-  color: white;
+  font-size: 1.1rem;
+  color: $secondary-color;
+  padding: 0 1rem;
+  line-height: 37px;
   &:hover{
-    color: $primary-color;
+    opacity: 0.7;
+    color: $secondary-color;
   }
+}
+
+.navbar-brand{
+  font-size: 1.7rem;
 }
 
 .dashboard_text{
@@ -484,10 +501,10 @@ header.master-head h1 {
   padding-bottom: 1rem;
 }
 
-footer {
+.footer{
   height: 50px;
   padding: 5px 30px;
-  background-color: $secondary-color;
+  background-color: $heading-background-color;
   margin-top: 20px;
 
   a {
@@ -528,4 +545,46 @@ footer {
 .custom-navbar {
   background-color: $primary-color;
   padding: 5px 30px;
+}
+
+.sidebar-style {
+  position: fixed;
+  margin-right: 1rem;
+  a {
+    line-height: 4rem;
+    font-size: $link-size;
+  }
+
+  a:hover {
+    text-decoration: none;
+    opacity: 0.7;
+    color: white
+  }
+
+  .icon{
+    font-size:1.5rem;
+    color:white;
+    padding: 10px 0;
+    margin-right: 2rem;
+  }
+}
+
+.main-style {
+  margin-left: 16.67%;
+  overflow: auto;
+  padding: 20px !important;
+}
+
+.heading-bg {
+  background-color: $heading-background-color;
+}
+
+.flash-messages-wrapper {
+  ul {
+    margin: 0;
+  }
+}
+
+.already-have-account {
+  font-size: $small-text-size;
 }
