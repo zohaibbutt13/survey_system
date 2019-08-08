@@ -17,12 +17,13 @@
     </div>
 
     <div class="label-input-item">
+      
       <%= f.label :role %><br />
-      <%= f.select :role, User::ROLE.reject { |key, value| key == :admin } %>
-      <br>
+      <%= f.select :role, User::ROLE.reject { |key, value| key == :admin }, {}, { class: "primary-btn dropdown-toggle"} %>
     </div>
-
-    <div class="label-input-item">
+  </div>
+  <div class="row no-gutters justify-content-start">
+    <div class="col-1 mt-4">
       <%= f.submit submit, class: 'primary-btn' %>
     </div>
   </div>

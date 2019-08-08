@@ -26,7 +26,7 @@ en:
     group_destroy_success: "Group destroyed successfully!"
     update_group_heading: "Update Group"
     create_group_heading: "Add a Group"
-    group_index_heading: "Add a Group"
+    group_index_heading: "Groups"
     name: "name"
     description: "description"
     members: "members"

@@ -1,6 +1,6 @@
-<h2><%= locals[:heading] %></h2>
+<h2><%= heading %></h2>
 
-<%= form_for locals[:group] do |f| %>
+<%= form_for group do |f| %>
   <div class='label-input-container'>
     <div class='label-input-item'>
       <%= f.label :name %><br />
@@ -14,11 +14,13 @@
 
     <div class='label-input-item'>
       <%= f.label :members %><br />
-      <%= f.collection_select :user_ids, locals[:employees], :id, :full_name, {}, { multiple: true, class: 'col-md-3'} %>
+      <%= f.collection_select :user_ids, employees, :id, :full_name, {}, { multiple: true, class: 'col-md-3'} %>
     </div>
-
-    <div class='label-input-item'>
-      <%= f.submit locals[:submit], class: 'primary-btn' %>
+  </div>
+  
+  <div class="row no-gutters justify-content-start">
+    <div class="col-1 mt-4">
+      <%= f.submit submit, class: 'primary-btn' %>
     </div>
   </div>
 <% end %>
