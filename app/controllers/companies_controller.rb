@@ -20,10 +20,14 @@ class CompaniesController < ApplicationController
 
   def update_subscription_package
     @current_company.subscription_package_id = params[:id]
-    @current_company.save
-    respond_to do |format|
-      flash[:notice] = "Subscription Package is successfully updated."  
-      format.html { redirect_to dashboard_company_path }
+    if @current_company.save
+      respond_to do |format|
+        flash[:notice] = "Subscription Package is successfully updated."  
+        format.html { redirect_to dashboard_company_path }
+      end
+    else
+      flash[:error] = "Subscription Package is not updated."
+      format.html { redirect_to subscription_packages_company_path(current_user) }
     end
   end
 

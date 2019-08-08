@@ -14,6 +14,7 @@ class CompanySettingsController < ApplicationController
         flash[:notice] = "Company settings was successfully updated."
         format.html { redirect_to dashboard_company_path }
       else
+        flash[:error] = "Company settings was not updated."
         format.html { render :edit }
       end
     end
