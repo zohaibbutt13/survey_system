@@ -33,6 +33,9 @@ class GroupsController < ApplicationController
   end
 
   def edit
+    respond_to do |format|
+      format.html
+    end
   end
 
   def update

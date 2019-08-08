@@ -16,6 +16,27 @@ class CompaniesController < ApplicationController
     end
   end
 
+  def subscription_packages
+    add_breadcrumb "Subscription Packages", subscription_packages_company_path
+    @subscription_packages = SubscriptionPackage.first(3)
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def update_subscription_package
+    @current_company.subscription_package_id = params[:id]
+    if @current_company.save
+      respond_to do |format|
+        flash[:notice] = I18n.t(:subscription_package_update_label)  
+        format.html { redirect_to dashboard_company_path }
+      end
+    else
+      flash[:error] = @current_company.errors.full_messages
+      format.html { redirect_to subscription_packages_company_path(current_user) }
+    end
+  end
+
   def filter
     @surveys = @surveys.where('name LIKE ?', "%#{params[:filters][:name]}%") unless params[:filters][:name].blank?
     @surveys = @surveys.where('expiry < ?', params[:filters][:expired_before]) unless params[:filters][:expired_before].blank?
