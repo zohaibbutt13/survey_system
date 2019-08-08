@@ -128,4 +128,7 @@ en:
     supervisors_survey_permission_label: "Can supervisor create surveys?"
     members_settings_permission_label: "Can members change my settings?"
   users:
-    excced_limit_label: "Exceeds from limit."  
+    excced_limit_label: "Exceeds from limit."
+
+  surveys:
+    index_heading: "Survey Index"
