@@ -255,6 +255,10 @@ body {
   }
 }
 
+.p-20 {
+  padding: 20px !important;
+}
+
 .p-t-20{
   padding-top: 20px;
 }
@@ -600,3 +604,12 @@ header.master-head h1 {
   background-color: $heading-background-color;
 }
 
+.flash-messages-wrapper {
+  ul {
+    margin: 0;
+  }
+}
+
+.already-have-account {
+  font-size: $small-text-size;
+}

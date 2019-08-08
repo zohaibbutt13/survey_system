@@ -20,7 +20,7 @@ module ApplicationHelper
       'alert alert-success'
     elsif key == 'warning'
       'alert alert-warning'
-    elsif key == 'error'
+    elsif key == 'error' || key == 'alert'
       'alert alert-danger'
     elsif key == 'notify'
       'alert alert-info'

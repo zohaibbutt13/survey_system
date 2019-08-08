@@ -30,6 +30,7 @@ class SurveysController < ApplicationController
 
   # POST /surveys
   def create
+    @survey.user_id = @current_user.id
     if @survey.save
       flash[:notice] = 'Survey Created'
       redirect_to @survey

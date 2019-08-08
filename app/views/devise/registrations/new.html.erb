@@ -72,14 +72,13 @@
         <%= f.submit "Sign up" , class: 'btn btn-primary w-100' %>
         </div>
       </div>
-      
     <% end %>
+    <div class = "input-label-container">
+      <%= render "devise/shared/links" %>
+    </div>
+    <%= render 'layouts/footer' %>
   </div>
   <div class="col-sm-6" >
     <img src="/assets/survey.jpeg" class = "img-fullsize"  alt="survey">
   </div>
-</div>
-
-<div class = "input-label-container">
-  <%= render "devise/shared/links" %>
 </div>
