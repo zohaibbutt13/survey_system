@@ -15,7 +15,6 @@ class SurveysController < ApplicationController
 
   # GET surveys/new
   def new
-
     @question = @survey.questions.build 
     respond_to do |format|
       format.html
