@@ -11,12 +11,15 @@
         </a>
         <div class="dropdown-menu">
           <%= link_to "My Dashboard", dashboard_company_path(current_user), class: "dropdown-item" %>
-          <% if can? :manage, @user_setting %>
+          <% if can? :edit, current_user.user_setting %>
             <%= link_to t('header.my_settings_label'), edit_user_setting_path(current_user.user_setting), class: "dropdown-item" %>
           <% end %>
-          <% if can? :manage, @company_setting %>
+          <% if can? :edit, @current_company.company_setting %>
             <%= link_to t('header.company_settings_label'), edit_company_setting_path(current_user.company.company_setting), class: "dropdown-item" %>
           <% end %>
+          <% if current_user.admin? %>
+              <%= link_to "Subscription Packages", subscription_packages_company_path(current_user), class: "dropdown-item" %>
+            <% end %>
           <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "dropdown-item" %>
         </div>
       </div>

@@ -1,0 +1,3 @@
+$("#public_surveys_container").fadeOut('slow', function(){
+  $("#public_surveys_container").html("<%= escape_javascript(render partial: 'public_surveys', locals: { surveys: @surveys, categories: @categories }) %>").fadeIn();
+});

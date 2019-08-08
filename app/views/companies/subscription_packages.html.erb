@@ -1,0 +1,12 @@
+<!-- Packages -->
+<section class="packages text-center bg-light">
+  <div class="container">
+    <h3>
+      <%= t 'package.current_package_label' %>
+      <%= current_user.company.subscription_package.subscription_package_name %></h3>
+    <h2 class="mb-5"><%= t 'package.package_choose_label' %></h2>
+    <div class="row">
+      <%= render :partial => "layouts/package", collection: @subscription_packages, as: :subscription_package %>
+    </div>
+  </div>
+</section>

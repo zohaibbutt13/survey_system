@@ -1,4 +1,5 @@
-<h2><%= locals[:heading] %></h2>
+<div class="col-10 p-3">
+  <h2><%= locals[:heading] %></h2>
 
 <%= form_for locals[:group] do |f| %>
   <div class="form-group">
@@ -17,6 +18,6 @@
   </div>
   <br />
   <div class="actions">
-    <%= f.submit locals[:submit], class: 'col-md-2 btn btn-dark' %>
+    <%= f.submit locals[:submit], class: 'primary-btn' %>
   </div>
 <% end %>

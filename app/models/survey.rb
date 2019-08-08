@@ -31,8 +31,12 @@ class Survey < ActiveRecord::Base
   scope :latest_surveys, -> { order('surveys.created_at desc') }
 
   # Returns array of all the public surveys
-  def self.get_public_surveys(page_params, per_page_limit)
-    Survey.public_surveys.paginate(page: page_params, per_page: per_page_limit)
+  def self.get_public_surveys(page_params, per_page_limit, category=nil)
+    if category.nil?
+      Survey.unscoped.public_surveys.paginate(page: page_params, per_page: per_page_limit)
+    else
+      Survey.unscoped.public_surveys.where(category: category).paginate(page: page_params, per_page: per_page_limit)
+    end
   end
 
   # Returns an array having surveys respones count
