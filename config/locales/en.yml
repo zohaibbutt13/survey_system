@@ -20,6 +20,54 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  groups:
+    group_heading_label: "All Groups"
+    group_create_success: "Group created successfully!"
+    group_update_success: "Group updated successfully!"
+    group_destroy_success: "Group destroyed successfully!"
+    update_group_heading: "Update Group"
+    create_group_heading: "Add a Group"
+    group_index_heading: "Add a Group"
+    name: "name"
+    description: "description"
+    members: "members"
+    add_group_button_label: "Add Group"
+    update_group_button_label: "Update Group"
+    group_show_heading: "Group Information"
+
+  links:
+    add_new_link: "Add new"
+    edit_link: "Edit"
+    delete_link: "Delete"
+    confirmation_message: "Are you sure?"
+    options: "options"
+  
+  users:
+    name: "name"
+    user_role: "role"
+    members: "members"
+    member_create_success: "Member created successfully!"
+    member_update_success: "Member updated successfully!"
+    member_destroy_success: "Member destroyed successfully!"
+    edit_member_heading: "Edit Member"
+    add_member_heading: "Add Member"
+    first_name: "first name"
+    last_name: "last name"
+    email: "email"
+    members_heading: "Members"
+    create_new_member_label: "Create new Member"
+    show_member_heading: "Member Information"
+    update_button_label: "Submit"
+    add_button_label: "Add"
+
+  home:
+    no_public_surveys_available: "There are currently no public surveys available!"
+    take_survey: "take this survey"
+    greeting_message: "Build and manage the next level surveys for your company!"
+    fill_surveys_message: "Fill any survey from our wide collection"
+    filter_label: "filter"
+    filter_all_label: "All"
+
   surveys_system_label: "Surveys System"
   serial_num_label: "#"
   question_label: "Question"
@@ -50,6 +98,9 @@ en:
     max_members_label: "Max Members Limit"
     max_supervisors_label: "Max Supervisors Limit"
     subscribe_label: "Subscribe"
+    current_package_label: "Your current Package is: "
+    package_choose_label: "Choose from one of our best packages"
+    subscription_package_update_label: "Subscription Package is successfully updated."
 
   footer:
     home_label: "Home"
@@ -64,3 +115,21 @@ en:
     my_settings_label: "My Settings"
     company_settings_label: "Company Settings"
     logged_in_role_description: "You are logged in as "
+
+  company_settings:
+    company_settings_update_success: "Company settings is successfully updated."
+    company_settings_update_fail: "Company settings was not updated."
+    company_settings_heading: "Company Settings"
+
+  user_settings:
+    user_settings_update_success: "User settings is successfully updated."
+    user_settings_update_fail: "User settings was not updated."  
+    user_settings_heading: "User Settings"
+    supervisors_settings_permission_label: "Can supervisor change my settings?"
+    supervisors_survey_permission_label: "Can supervisor create surveys?"
+    members_settings_permission_label: "Can members change my settings?"
+  users:
+    excced_limit_label: "Exceeds from limit."
+
+  surveys:
+    index_heading: "Survey Index"

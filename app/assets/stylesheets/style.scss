@@ -391,18 +391,6 @@ cursor: not-allowed;
       padding: 9px;
       line-height: 22px;
     }
-
-    .add-resource-element {
-      a {
-        line-height: 42px;
-
-        img {
-          width: 25px;
-          height: 25px;
-          line-height: 42px;
-        }
-      }
-    }
   }
 
   .label-input-item:first-child {
@@ -425,23 +413,11 @@ cursor: not-allowed;
 
   .modal-dialog {
     height: 100%;
-    max-width: 40%;
-    min-width: 40%;
-    margin: 0 auto;
-  }
-
-  .modal-dialog-xl {
-    height: 100%;
-    max-width: 80%;
-    min-width: 80%;
-  }
-
-  .modal-dialog-lg {
-    height: 100%;
     max-width: 60%;
     min-width: 60%;
+    margin: 0 auto;
   }
-
+  
   .modal-content {
     border-radius: 7px;
     max-height: 100%;

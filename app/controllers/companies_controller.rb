@@ -6,6 +6,7 @@ class CompaniesController < ApplicationController
   end
 
   def dashboard
+    add_breadcrumb "Dashboard", dashboard_company_path
     @activities = @current_company.activities.get_user_activities(current_user)
     @surveys_stats = [@current_company.surveys.expired_surveys.count,
                       @current_company.surveys.active_surveys.count]
@@ -13,6 +14,27 @@ class CompaniesController < ApplicationController
     @latest_surveys_responses_count = @current_company.surveys.latest_surveys_responses(3)
     respond_to do |format|
       format.html
+    end
+  end
+
+  def subscription_packages
+    add_breadcrumb "Subscription Packages", subscription_packages_company_path
+    @subscription_packages = SubscriptionPackage.first(3)
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def update_subscription_package
+    @current_company.subscription_package_id = params[:id]
+    if @current_company.save
+      respond_to do |format|
+        flash[:notice] = I18n.t(:subscription_package_update_label)  
+        format.html { redirect_to dashboard_company_path }
+      end
+    else
+      flash[:error] = @current_company.errors.full_messages
+      format.html { redirect_to subscription_packages_company_path(current_user) }
     end
   end
 
@@ -27,6 +49,7 @@ class CompaniesController < ApplicationController
     end
   end
 
+  #move to surveys
   # get home/display_surveys
   def display_surveys
     # if params[:filter_by] == 'expiry'

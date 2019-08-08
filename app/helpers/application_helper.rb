@@ -11,10 +11,6 @@ module ApplicationHelper
                        Groups: { url: groups_path, icon: 'user-plus' } }
   end
 
-  def get_current_user?
-    current_user
-  end
-
   def flash_type(key)
     if key == 'notice'
       'alert alert-success'
