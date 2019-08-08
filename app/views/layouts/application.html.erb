@@ -22,6 +22,9 @@
 
     <!-- Chart.js plugin datalabels -->
     <%= javascript_include_tag "https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels" %>
+
+     <!-- Fontawesome icons -->
+    <%= javascript_include_tag "https://use.fontawesome.com/22018efeea.js" %>
       
     <!-- application assets -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,11 +33,33 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <div style="min-height: 30rem">
-    <%= render 'layouts/header' %>
-    <%= render 'layouts/flash_messages' %>
+    <!-- for guest user -->
+    <% unless current_user.present? %>
       <%= yield %>
-    </div>
-    <%= render 'layouts/footer' %>
+      <%= render 'layouts/footer' %>
+    <!-- for logged in user -->
+    <% else %>
+      <div class="w-100 h-100">
+        <%= render 'layouts/header' %>
+        <div class="row no-gutters h-100 w-100 p-0">
+          <div class="sidebar-style float-left h-100 col-4 col-md-2">
+            <div>
+              <%= render 'layouts/sidebar' %>  
+            </div>
+          </div>
+          <div id="main" class="main-style my-auto float-left overflow-auto col col-md-10">
+            <div class="d-flex align-items-start flex-column">
+              <div class="w-100">
+                <%= render 'layouts/flash_messages' %>
+                <%= yield %>
+              </div>
+              <div class="mt-auto w-100">
+                <%= render 'layouts/footer' %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </body>
 </html>

@@ -1,6 +1,10 @@
 <footer class="footer">
   <div class="w-100 d-flex justify-content-center">
-    <%= link_to t('footer.home_label'), '/' %>
+  	<% if current_user.present? %>
+    	<%= link_to t('footer.home_label'), dashboard_company_path(current_user) %>
+    <% else %>
+    	<%= link_to t('footer.home_label'), root_path %>
+    <% end %>
     <%= link_to t('footer.about_label'), '#_' %>
     <%= link_to t('footer.packages_label'), '#_' %>
   </div>
