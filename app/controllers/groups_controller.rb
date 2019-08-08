@@ -55,7 +55,7 @@ class GroupsController < ApplicationController
   end
 
   def index
-    add_breadcrumb "Groups"
+    add_breadcrumb "Groups", groups_path
     respond_to do |format|
       format.html
     end

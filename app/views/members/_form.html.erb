@@ -1,5 +1,5 @@
-<h2><%= locals[:heading] %></h2>
-<%= form_for locals[:member], url: locals[:url], method: locals[:method] do |f| %>
+<h2><%= heading %></h2>
+<%= form_for member, url: url, method: method do |f| %>
   <div class="field">
     <%= f.label :first_name %><br />
     <%= f.text_field :first_name, autofocus: true, autocomplete: "first name" %>
@@ -22,6 +22,6 @@
   </div>
 
   <div class="actions">
-    <%= f.submit locals[:submit] %>
+    <%= f.submit submit %>
   </div>
 <% end %>

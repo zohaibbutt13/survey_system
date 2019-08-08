@@ -1,5 +1,5 @@
 <div class="col-10 p-3">
-  <h3>All Groups</h3>
+  <h3><%= t 'groups.group_heading_label'%></h3>
 
 <% if can? :create, Group %>
   <td><%= link_to "Add new", new_group_path, class: 'btn btn-outline-secondary' %></td>
