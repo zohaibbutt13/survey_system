@@ -26,6 +26,7 @@ en:
   remember_label: "Remember me"
 
   groups:
+    group_heading_label: "All Groups"
     group_create_success: "Group created successfully!"
     group_update_success: "Group updated successfully!"
     group_destroy_success: "Group destroyed successfully!"

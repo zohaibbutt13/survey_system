@@ -4,9 +4,12 @@ class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
-  # def new
-  #   super
-  # end
+  def new
+    add_breadcrumb "Home", root_path
+    add_breadcrumb "Sign in"
+    super
+  end
+
   def create
     super
   end

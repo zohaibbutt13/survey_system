@@ -3,6 +3,7 @@ class UserSettingsController < ApplicationController
 
   #/user_settings/id/edit
   def edit
+    add_breadcrumb "My Settings", edit_user_setting_path
     respond_to do |format|
       format.html
     end

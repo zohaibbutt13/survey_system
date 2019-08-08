@@ -35,7 +35,6 @@
   <body>
     <!-- for guest user -->
     <% unless current_user.present? %>
-    <div style="min-height: 30rem">
       <%= render_breadcrumbs :separator => ' / ' %>
       <%= yield %>
     <!-- for logged in user -->
@@ -52,6 +51,7 @@
             <div class="d-flex align-items-start flex-column">
               <div class="w-100">
                 <%= render partial:'layouts/flash_messages' %>
+                <%= render_breadcrumbs :separator => ' / ' %>
                 <%= yield %>
               </div>
               <div class="mt-auto w-100">
@@ -62,5 +62,4 @@
         </div>
       </div>
     <% end %>
-  </body>
 </html>
