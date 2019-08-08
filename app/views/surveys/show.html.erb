@@ -19,11 +19,7 @@
       <div class= "text-left survey-box container shadow p-3 mb-5 bg-white rounded">
         <% @survey.questions.each_with_index do |question , index| %>
           <br>
-          <% if question.required %>
-            <p class="font-weight-bold">Question <%= "#{index+1} : #{question.statement} *" %></p>
-          <% else %>
-            <p class="font-weight-bold">Question <%= "#{index+1} : #{question.statement}" %></p>
-          <% end %>
+            <p class="font-weight-bold">Question <%= "#{index+1} : #{question.statement} #{'*' if question.required? }" %></p>
           <% question.options.each_with_index do |option_value, option_index| %>
             <% if question.checkbox? %>
                 <%= check_box_tag :option, 1, false, disabled: true %>
