@@ -251,6 +251,29 @@ body {
   .disabled-link {
   pointer-events: none;
   }
+
+  .dropdown-menu {
+    background-color: $dropdown-background-color;
+    text-color: $dropdown-text-default-color;
+    &:hover{
+      color: $dropdown-text-hover-color;
+    }
+    &:focus{
+      color: $dropdown-text-focus-color;
+      border-color: $dropdown-border-focus-color;
+    } 
+  }
+
+  .dropdown-item {
+    background-color: $dropdown-item-background-default-color;
+    &:hover{
+      background-color: $dropdown-item-background-hover-color;
+    }
+  }
+
+  .text-muted{
+    font-size: $text-size;
+  }
 }
 
 // start button css
@@ -464,6 +487,44 @@ cursor: not-allowed;
       min-height: 60px;
       background-color: $heading-background-color;
     }
+  }
+}
+
+.dismiss-icon {
+  outline: none;
+  width: 16px;
+  line-height: 18px;
+  height: 18px;
+  text-align: center;
+
+  a {
+    height: 18px;
+    line-height: 18px;
+    color: $breadcrumb-color;
+    display: block;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  a:hover {
+    text-decoration: none;
+    color: $label-text-color;
+  }
+
+  i {
+    line-height: 18px;
+    font-size: $h5-size;
+    color: $breadcrumb-color;
+  }
+
+  i:hover {
+    color: $label-text-color;
+  }
+
+  :focus {
+    outline: none;
+    border: none;
   }
 }
 

@@ -1,20 +1,21 @@
-<div class="modal fade hide" id="expired-before-modal" tabindex="-1" role="dialog">
+<div class="modal fade hide" id="expired_before_modal" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <div class="row no-gutters w-100">
           <div class="col-11 heading">
-            <h3>Expired Before:</h3>
+            <h3>Surveys Expired Before</h3>
           </div>
           <div class="col-1 d-flex justify-content-end align-items-center">
             <div class="dismiss-icon">
-              <a href="#_" data-dismiss="modal"><i class="fas fa-times"></i></a>
+              <a href="#_" data-dismiss="modal"><i class="fa fa-times"></i></a>
             </div>
           </div>
         </div>
       </div>
-      <div class="modal-body">
-        <input type="date" id="expired-before"/>
+      <div class="modal-body row no-gutters">
+        <label class="col-5"> Select expiry date: </label>
+        <input type="date" class="col-7 form-control" id="expired-before"/>
       </div>
       <div class="modal-footer">
         <button type="button" class="tertiary-btn" data-dismiss="modal">Close</button>

@@ -1,16 +1,25 @@
-<div class="modal fade" id="created-by-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
+<div class="modal fade hide" id="created_by_modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Created By</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div class="row no-gutters w-100">
+          <div class="col-11 heading">
+            <h3>Surveys Created by</h3>
+          </div>
+          <div class="col-1 d-flex justify-content-end align-items-center">
+            <div class="dismiss-icon">
+              <a href="#_" data-dismiss="modal"><i class="fa fa-times"></i></a>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="modal-body">
-        <%#= collection_select :user_ids, employees, :id, :full_name, {}, { multiple: false, class: 'col-md-4 form-control'} %>
+      <div class="modal-body row no-gutters">
+        <label class="col-5"> Select employee: </label>
+        <%= collection_select :user, :user, employees, :id, :full_name, {}, { multiple: false, class: 'col-7 form-control', id: "created-by"} %>
       </div>
       <div class="modal-footer">
         <button type="button" class="tertiary-btn" data-dismiss="modal">Close</button>
-        <%= link_to "Filter", {controller: "companies", action: "filter"}, class: "primary-btn", id: "js-created-by-filter" %>
+        <%= link_to "Filter" , {controller: "companies", action: "filter"}, class: "primary-btn", id: "js-created-by-filter" %>
       </div>
     </div>
   </div>

@@ -1,12 +1,21 @@
-<div class="modal fade" id="created-on-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
+<div class="modal fade hide" id="created_on_modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Created on:</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div class="row no-gutters w-100">
+          <div class="col-11 heading">
+            <h3>Surveys Created on</h3>
+          </div>
+          <div class="col-1 d-flex justify-content-end align-items-center">
+            <div class="dismiss-icon">
+              <a href="#_" data-dismiss="modal"><i class="fa fa-times"></i></a>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="modal-body">
-        <input type="date" id="created-on"/>
+      <div class="modal-body row no-gutters">
+        <label class="col-5"> Select created on date: </label>
+        <input type="date" class="col-7 form-control" id="created-on"/>
       </div>
       <div class="modal-footer">
         <button type="button" class="tertiary-btn" data-dismiss="modal">Close</button>

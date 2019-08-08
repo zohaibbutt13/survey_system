@@ -1,12 +1,21 @@
-<div class="modal fade" id="survey-type-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
+<div class="modal fade hide" id="survey_type_modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Survey Type</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div class="row no-gutters w-100">
+          <div class="col-11 heading">
+            <h3>Survey Type</h3>
+          </div>
+          <div class="col-1 d-flex justify-content-end align-items-center">
+            <div class="dismiss-icon">
+              <a href="#_" data-dismiss="modal"><i class="fa fa-times"></i></a>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="modal-body">
-        <select id="survey-type-filter">
+      <div class="modal-body row no-gutters">
+        <label class="col-5"> Select survey type:</label>
+        <select class="col-7 form-control" id="survey-type-filter">
           <option value="Public">Public</option>
           <option value="Private">Private</option>
         </select>
