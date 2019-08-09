@@ -17,9 +17,9 @@
         <a href="#_" class="dropdown-item" data-toggle="modal" data-target="#expired_before_modal"><%= t('public_surveys.expired_before_label') %></a>
         <a href="#_" class="dropdown-item" data-toggle="modal" data-target="#created_on_modal"><%= t('public_surveys.created_on_label') %></a>
         <a href="#_" class="dropdown-item" data-toggle="modal" data-target="#created_by_modal"><%= t('public_surveys.created_by_label') %></a>
-        </div>
       </div>
     </div>
+  </div>
   <% if @surveys.count > 0 %>
     <%= render partial: 'shared/filters/name_filter' %>
     <%= render partial: 'shared/filters/survey_type_filter' %>

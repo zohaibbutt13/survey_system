@@ -35,6 +35,8 @@ en:
   user_not_found: "User not found!"
   visit_dashboard_label: "Visit Dashboard"
   visit_homepage_label: "Visit Home page"
+  update_label: "Update"
+  edit_survey_label: "Edit Survey"
 
   groups:
     group_heading_label: "All Groups"
