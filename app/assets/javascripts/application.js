@@ -16,5 +16,5 @@
 //= require_tree .
 
 $(document).ready( function () {
-    $('#history_table').DataTable();
+    $('.js-data-table').DataTable();
 } );
