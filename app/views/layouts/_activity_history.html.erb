@@ -15,8 +15,8 @@
           <tr>
             <td scope="row"><b><%= index %></b></td>
             <td>
-              <p> 
-                <%= activity.owner.full_name %> has <%= activity.action %> a <%= activity.trackable_type %> 
+              <p>
+                <%= activity.owner.full_name %> has <%= activity.action %> a <%= link_to activity.trackable_type %> 
               </p>
             </td>
             <td><%= activity.created_at.to_s(:long) %></td>

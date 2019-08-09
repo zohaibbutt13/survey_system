@@ -138,6 +138,7 @@ en:
     my_settings_label: "My Settings"
     company_settings_label: "Company Settings"
     logged_in_role_description: "You are logged in as "
+    my_profile_label: "My Profile"
 
   company_settings:
     company_settings_update_success: "Company settings is successfully updated."

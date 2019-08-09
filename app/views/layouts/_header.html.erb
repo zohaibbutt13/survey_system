@@ -21,6 +21,9 @@
           <% if can? :edit, @current_company.company_setting %>
             <%= link_to t('header.company_settings_label'), edit_company_setting_path(current_user.company.company_setting), class: "dropdown-item" %>
           <% end %>
+          <% if can? :update, current_user %>
+            <%= link_to t('header.my_profile_label'), edit_user_registration_path(current_user), class: "dropdown-item" %>
+          <% end %>
           <% if current_user.admin? %>
               <%= link_to "Subscription Packages", subscription_packages_company_path(current_user), class: "dropdown-item" %>
             <% end %>
