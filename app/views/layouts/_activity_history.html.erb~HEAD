@@ -1,5 +1,5 @@
 <div class="table-custom-scrollbar my-2">
-  <table class="table table-bordered table-striped mb-0">
+  <table class="table table-bordered table-striped mb-0 js-data-table">
     <thead>
       <tr>
         <th scope="col">#</th>
