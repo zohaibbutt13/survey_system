@@ -35,7 +35,11 @@
       </div>
       <div class="d-flex justify-content-end">
         <a class="nav-link" href="/users/sign_up"><%= t 'header.register_label' %></a>
-        <a class="nav-link" href="/users/sign_in"><%= t 'header.sign_in_label' %></a>
+        <% if @current_company.present? %>
+          <a class="nav-link" href="/users/sign_in"><%= t 'header.sign_in_label' %></a>
+        <% else %>
+          <%= link_to 'Sign In', sign_in_home_index_path, class: "nav-link" %>
+        <% end %>
       </div>
     </div> 
   <% end %>

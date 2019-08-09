@@ -31,6 +31,7 @@ en:
   company_subdomain_label: "Company Subdomain:"
   image_label: "Image:"
   sign_up_label: "Sign Up"
+  user_not_found: "User not found!"
 
 
   groups:
