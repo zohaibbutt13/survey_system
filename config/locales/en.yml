@@ -38,6 +38,7 @@ en:
   update_label: "Update"
   edit_survey_label: "Edit Survey"
   submit_label: "Submit"
+  response_graph_label: "View"
 
   groups:
     group_heading_label: "All Groups"
