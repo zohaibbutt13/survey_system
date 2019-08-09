@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row d-flex justify-content-between">
+    <h1>Surveys</h1>
+    <a class="btn btn-success my-auto" href="<%= new_survey_path %>">Add Survey</a>
+  </div>
+
+  <div class="row d-flex justify-content-start">
+    <div class="dropdown mx-2 mb-2">
+      <button class="primary-btn btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+        Filters
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a href="#_" class="dropdown-item" data-toggle="modal" data-target="#name_modal">Name</a><br>
+        <a href="#_" class="dropdown-item" data-toggle="modal" data-target="#survey_type_modal">Survey Type</a><br>
+        <a href="#_" class="dropdown-item" data-toggle="modal" data-target="#expired_before_modal">Expired Before</a><br>
+        <a href="#_" class="dropdown-item" data-toggle="modal" data-target="#created_on_modal">Created on</a><br>
+        <a href="#_" class="dropdown-item" data-toggle="modal" data-target="#created_by_modal">Created By</a>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <%= render partial: 'shared/filters/name_filter' %>
+  <%= render partial: 'shared/filters/survey_type_filter' %>
+  <%= render partial: 'shared/filters/expired_before_filter' %>
+  <%= render partial: 'shared/filters/created_on_filter' %>
+  <%= render partial: 'shared/filters/created_by_filter', locals: { employees: @employees} %>  
+  
+  <div id = "surveys_list">
+    <%= render partial: 'list_surveys', locals: { surveys: @surveys} %>
+  </div>
+</div>

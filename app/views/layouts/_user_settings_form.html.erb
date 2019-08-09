@@ -1,0 +1,19 @@
+<div class="col-10">
+  <h3><%= t 'user_settings.user_settings_heading' %></h3>
+  <%= form_for(@user_setting) do |u| %>
+
+    <div>
+      <%= u.label :show_graphs %>
+      <%= u.check_box :show_graphs %>
+    </div>    
+
+    <div>
+      <%= u.label :show_history %>
+      <%= u.check_box :show_history %>
+    </div>  
+
+    <div>
+      <%= u.submit class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

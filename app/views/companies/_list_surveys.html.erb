@@ -1,0 +1,28 @@
+<div class="row justify-content-center table-custom-scrollbar my-2">
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col"><%= t 'serial_num_label' %></th>
+        <th scope="col"><%= t 'title_label' %></th>
+        <th scope="col"><%= t 'description_label' %></th>
+        <th scope="col"><%= t 'category_label' %></th>
+        <th scope="col"><%= t 'created_by_label' %></th>
+        <th scope="col"><%= t 'created_on_label' %></th>
+        <th scope="col"><%= t 'expiry_label' %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @surveys.each_with_index do |survey, index| %>
+        <tr>
+        <th scope="row"><%= index+1 %></th>
+        <td><%= survey.name %></td>
+        <td><%= survey.description %></td>
+        <td><%= survey.category %></td>
+        <td><%= survey.user.full_name %></td> 
+        <td><%= survey.created_at.to_s(:long) %></td>
+        <td><%= survey.expiry.to_s(:long) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

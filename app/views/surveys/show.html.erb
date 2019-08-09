@@ -12,26 +12,25 @@
       </li>
     <% end %>
   </ul>
-
-  <!-- Tab panes -->
   <div class="tab-content container">
     <div id="home" class="container tab-pane active"><br>
       <h2>Survey Preview</h2>
       <div class= "text-left survey-box container shadow p-3 mb-5 bg-white rounded">
         <% @survey.questions.each_with_index do |question , index| %>
-        <br>
-          <p class="font-weight-bold">Question <%= "#{index+1} : #{question.statement}" %></p>
-          <% question.options.each_with_index do |option, option_index| %>
+          <br>
+            <p class="font-weight-bold">Question <%= "#{index+1} : #{question.statement} #{'*' if question.required? }" %></p>
+          <% question.options.each_with_index do |option_value, option_index| %>
             <% if question.checkbox? %>
                 <%= check_box_tag :option, 1, false, disabled: true %>
             <% elsif question.radiobutton? %>
                 <%= radio_button_tag "", nil, false, class: '', disabled: true %>
-            <% elsif question.commentbox? %>
-              <%= text_field_tag :option, "", class: '', readonly: true %>
             <% elsif question.boolean? %>
                <%= radio_button_tag "", nil, false, class: '', disabled: true %>
             <% end %>
-            <%= option.detail %><br>
+            <%= option_value.detail %><br>
+          <% end %>
+          <% if question.commentbox? %>
+            <%= text_field_tag :option, "", class: '', readonly: true %>
           <% end %>
         <% end %>
         <br>
@@ -41,7 +40,6 @@
         <% if can? :destroy, Survey %>
           <%= link_to 'Delete', @survey, method: :delete, data: { confirm: 'Are you sure?' } %><br>
         <% end %>
-        <%= link_to 'Fill it', new_survey_user_response_path(@survey) %>
       </div>
     </div>
     <div id="response" class="container tab-pane fade"><br>

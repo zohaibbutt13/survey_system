@@ -1,5 +1,3 @@
-<h2>Edit Member</h2>
-
-<%= form_for @member, url: member_path(@member), method: :patch do |f| %>
-  <%= render 'form', f: f, locals: {submit: 'Update', member: @member} %>
-<% end %>
+<div class="col-10 p-3">
+  <%= render partial: 'form', locals: { submit: t('users.update_button_label'), member: @member, url: member_path(@member), method: :patch, heading: t('users.edit_member_heading') } %>
+</div>

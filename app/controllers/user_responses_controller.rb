@@ -1,7 +1,7 @@
 class UserResponsesController < ApplicationController
   # load_and_authorize_resource :survey
   # load_and_authorize_resource :user_response, through: :survey
-  # GET list all the responses of a survey
+  # get surveys/:id/user_responses
   def index
     @survey = Survey.find(params[:survey_id])
     @user_responses = @survey.user_responses
@@ -11,20 +11,20 @@ class UserResponsesController < ApplicationController
     end
   end
 
-  # GET directs to the new action of user_response
+  # get surveys/:id/new
   def new
     @survey = Survey.find(params[:survey_id])
     @user_response = UserResponse.new
     @answer = @user_response.answers.build
   end
 
-  # GET shows the response with given id
+  # get surveys/:survey_id/user_response/:id
   def show
     @survey = Survey.find(params[:survey_id])
     @user_response = @survey.user_responses.find(params[:id])
   end
 
-  # POST creates a new user_response
+  # post surveys/:survey_id/user_responses      
   def create
     @survey = Survey.find(params[:survey_id])
     @user_response = UserResponse.new(response_params)
@@ -32,7 +32,7 @@ class UserResponsesController < ApplicationController
       flash[:notice] = 'Saved'
       redirect_to survey_user_response_path(@survey, @user_response)
     else
-      flash[:error] = 'Incomplete Information'
+      flash[:error] = @user_response.errors.full_messages
       render action: :new
     end
   end

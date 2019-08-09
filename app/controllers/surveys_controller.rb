@@ -6,80 +6,93 @@ class SurveysController < ApplicationController
     @groups = @current_company.groups.all
   end
   
-  # GET  shows all the surveys of a company
+  # GET  /surveys
   def index
+    add_breadcrumb "Surveys", surveys_path
+    @surveys = Survey.all
+    @survey = Survey.new
     respond_to do |format|
       format.html
     end
   end
 
-  # GET builds a new survey object
+  # GET surveys/new
   def new
+    add_breadcrumb "Surveys", :display_surveys_company_path
+    add_breadcrumb "New Survey", new_survey_path
+    @survey = Survey.new
     @question = @survey.questions.build 
     respond_to do |format|
       format.html
     end
   end
 
-  # GET displays survey based on the given id
+  # GET survey/:id
   def show
+    add_breadcrumb "Surveys", surveys_path
+    add_breadcrumb "Your Survey", survey_path
+    @survey = Survey.find(params[:id])
     respond_to do |format|
       format.html
     end
   end
 
-  # POST creates a new survey
+  # POST /surveys
   def create
+    @survey.user_id = @current_user.id
     if @survey.save
       flash[:notice] = 'Survey Created'
       redirect_to @survey
     else
-      flash[:error] = 'Incomplete information'
+      flash[:error] = @survey.errors.full_messages
       render action: :new
     
     end
   end
 
-  # edit form for a survey with given id
+  # edit surveys/:id/edit
   def edit
+    add_breadcrumb "Surveys", surveys_path
+    add_breadcrumb "Edit Survey", edit_survey_path
+    @survey = Survey.find(params[:id])
     respond_to do |format|
       format.html
     end
   end
 
-  # updates the survey
+  # patch surveys/:id
   def update
     if @survey.update(survey_params)
       flash[:notice] = 'Survey Updated!'
       redirect_to @survey
     else
-      flash[:error] = 'Not Updated!'
+      flash[:error] = @survey.errors.full_messages
       render action: :edit
     end
   end
 
-  # GET adds a new question to the surveycompany_id: user.company_id
+  # GET surveys/add_question
   def add_question
     respond_to do |format|
       format.js
     end
   end
 
-  # GET adds a new option
+  # GET surveys/add_option
   def add_option
     respond_to do |format|
       format.js
     end
   end
 
-  # GET deletes an option
+  # GET surveys/delete_option
   def delete_option
     respond_to do |format|
       format.js
     end
   end
 
-  # GET deletes a question
+  # GET surveys/delete_question
   def delete_question
     respond_to do |format|
       format.js
@@ -96,14 +109,26 @@ class SurveysController < ApplicationController
       :survey_type,
       :expiry,
       :group_id,
-      questions_attributes: [:id, :statement, :question_type, :company_id,
+      questions_attributes: [:id, :statement, :question_type, :required, :company_id,
       options_attributes: [:id, :detail]]
     )
   end
 
-  # deletes survey
+  # delete surveys/:id
   def destroy
-    @survey.destroy
-    redirect_to surveys_path, notice: 'Delete success'
+    if @survey.destroy
+      redirect_to surveys_path, notice: 'Delete success'
+    else
+      flash[:error] = @survey.errors.full_messages
+      render action: :show
+    end
+  end
+
+  # get survey/:id/survey_charts
+  def survey_charts
+    @survey.questions.includes(:answers)
+    respond_to do |format|
+      format.html
+    end
   end
 end

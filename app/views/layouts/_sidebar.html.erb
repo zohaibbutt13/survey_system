@@ -1,0 +1,13 @@
+<div class="sidebar-style bg-dark float-left h-100 col-3 col-md-2">
+  <div class="py-2 flex-grow-1">
+    <div class="nav flex-sm-column">
+        <% sidebar_menu.each do |content,value| %>
+          <%= link_to value[:url], class: "nav-link" do %>
+          <div class="row">
+            <span class="fa fa-<%= value[:icon] %> mt-2 icon"></span><%= content %>
+          </div>
+          <% end %>
+        <% end %>
+    </div>
+  </div>
+</div>

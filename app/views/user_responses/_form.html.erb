@@ -3,29 +3,32 @@
     <%= f.hidden_field :survey_id, value: @survey.id %>
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true %></br>
-    <% @survey.questions.each_with_index do |val , index| %>
+    <% @survey.questions.each_with_index do |question , index| %>
       <%= f.fields_for :answers do |answer| %>
-      <%= answer.hidden_field :question_id, value: val.id %>
+        <%= answer.hidden_field :question_id, value: question.id %>
         <br>
-        <p class="font-weight-bold">Question <%= "#{index+1} : #{val.statement}" %></p>
-          <% val.options.each_with_index do |option_value, option_index| %>
-            <% if (val.question_type == 'Checkbox') %>
-              <%= answer.check_box :option_id, {id: "user_response_answers_attributes_#{option_index}_option_id_#{option_value.id}" , multiple: true }, "#{option_value.id}", false %>
+        <p class="font-weight-bold">Question <%= "#{index+1} : #{question.statement} #{'*' if question.required? }" %></p>
+        <% question.options.each_with_index do |option_value, option_index| %>
+          <% if (question.question_type == 'Checkbox') %>
+            <%= answer.check_box :option_id, {id: "user_response_answers_attributes_#{option_index}_option_id_#{option_value.id}" , multiple: true }, "#{option_value.id}", false %>
               <%= answer.hidden_field :detail, value: option_value.detail %>
-            <% elsif (val.question_type == 'Radio Buttons') %>
-              <%= answer.radio_button(:option_id, option_value.id) %>
-              <%= answer.hidden_field :detail, value: option_value.detail %>
-            <% elsif (val.question_type == 'Comment Box') %>
-              <%= answer.text_area :detail  %>
-            <% elsif (val.question_type == 'True / False') %>
-              <%= answer.radio_button(:option_id, option_value.id) %>
-              <%= answer.hidden_field :detail, value: option_value.detail %>
-            <% end %>
-            <%= option_value.detail %>
-            <br />
+          <% elsif (question.question_type == 'Radio Buttons') %>
+            <%= answer.radio_button(:option_id, option_value.id, required: question.required) %>
+            <%= answer.hidden_field :detail, value: option_value.detail %>
+          <% elsif (question.question_type == 'True / False') %>
+            <%= answer.radio_button(:option_id, option_value.id, required: question.required) %>
+            <%= answer.hidden_field :detail, value: option_value.detail %>
           <% end %>
+          <%= option_value.detail %>
+          <br />
+        <% end %>
+        <% if (question.question_type == 'Comment Box' ) %>
+          <%= answer.text_area :detail, required: question.required %>
+        <% end %>
       <% end %>
     <% end %>
-    <%= f.submit "Submit", class: "btn btn-primary mt-3"%>
+    <div>
+      <%= f.submit "Submit", class: "btn btn-primary mt-3"%>
+    </div>
   <% end %> 
 </div>

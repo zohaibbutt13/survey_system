@@ -59,9 +59,13 @@
                           <%= q.select :question_type, options_for_select(QUESTION_OPTIONS, q.object.question_type) %><br>
                         </div>
                       </div>
-                      <div class = "pt-3">
-                        <label> Statement: </label>
+                     <div class = "pt-3">
+                        <label> Statement *: </label>
                         <%= q.text_field :statement %>
+                        <div class = "pt-3">
+                          <label> Required: </label>
+                          <%= q.check_box :required, checked: q.object.required %>
+                        </div>
                       </div>
                       <div id = "statement_<%= index %>_option_container" class = "pt-3">
                         <% option_index = 0 %>
@@ -82,11 +86,11 @@
                       </div>
                       <% if q.object.question_type == "Checkbox" || q.object.question_type == "Radio Buttons" || q.object.question_type.nil? %>
                         <div id = "statement_<%= index %>_add_option">
-                          <a href = "#_" data-qid = "<%= index %>" data-oid = "<%= index-1 %>" data-divid = "<%= index-1 %>" class = "js-addoption">Add Option </a>
+                          <a href = "#_" data-qid = "<%= index %>" data-oid = "<%= option_index %>" data-divid = "<%= option_index %>" class = "js-addoption">Add Option </a>
                         </div>
                       <% end %>
                       <a href = "#_" data-qid = "<%= index %>" class = "js-deletequestion">Delete Question </a>
-                        <% index += 1 %>  
+                      <% index += 1 %>  
                     <% end %>  
                   </div>
                 <% end %>

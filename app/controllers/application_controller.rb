@@ -1,12 +1,12 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :null_session
+  protect_from_forgery with: :exception
 
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
       # format.json { head :forbidden, content_type: 'text/html' }
-      format.html { redirect_to main_app.root_url, notice: exception.message }
+      format.html { redirect_to main_app.root_url, error: exception.message }
       # format.js   { head :forbidden, content_type: 'text/html' }
     end
   end
@@ -16,12 +16,20 @@ class ApplicationController < ActionController::Base
   end
 
   before_action do
-    unless request.subdomain.empty?
+    if request.subdomain.present?
       @current_company = Company.find_by_subdomain(request.subdomain)
 
-      if @current_company == nil
+      if @current_company.nil?
         page_not_found
+      else
+        Company.current_id = @current_company.id
       end
+    else
+      Company.current_id = nil
+    end
+
+    if @current_company.present? && user_signed_in?
+      @company_setting, @user_setting = @current_company.dashboard_resources(current_user)
     end
   end
 

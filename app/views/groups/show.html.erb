@@ -1,0 +1,34 @@
+<h1><%= t('groups.group_show_heading') %></h1>
+<table class="table">
+  <tbody>
+    <tr>
+      <th scope="row"><%= t('groups.name') %></th>
+      <td class="col-md-9"><%= @group.name %></td>
+    </tr>
+    <tr>
+      <th scope="row"><%= t('groups.description') %></th>
+      <td class="col-md-9"><%= @group.description %></td>
+    </tr>
+    <tr>
+      <th scope="row"><%= t('groups.members') %></th>
+      <td class="col-md-9">
+        <%= @group_members %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="row no-gutters justify-content-start">
+  <div class="col-1">
+    <% if can? :update, @group %>
+      <%= link_to t('links.edit_link'), edit_group_path(@group), class: 'primary-btn' %>
+    <% end %>
+  </div>
+  <div class="col-1 ml-5">
+    <% if can? :destroy, @group %>
+      <%= link_to t('links.delete_link'), @group, method: :delete, data: { confirm: t('links.confirmation_message') }, class: 'primary-btn' %>
+    <% end %>
+  </div>
+</div>
+
+

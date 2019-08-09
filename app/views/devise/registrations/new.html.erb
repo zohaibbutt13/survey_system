@@ -1,8 +1,10 @@
+<%= render partial:'layouts/header' %>
+<%= render partial:'layouts/flash_messages' %>
 <div class="row">
   <div class="col-sm-6" >
     <h1 class = "header">Sign Up</h1>
 
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
       
       <%= f.fields_for :company do |builder| %>
@@ -51,7 +53,6 @@
         </div>
       </div>
 
-
       <div class = "input-label-container">
         <div class="form-group">
           <label>Password_confirmation: </label>
@@ -59,19 +60,25 @@
         </div>
       </div>
 
-      <div class = "input-label-container signup-button">
-        <div class="actions">
-        <%= f.submit "Sign up" , class: 'btn btn-primary' %>
+      <div class = "input-label-container">
+        <div class="form-group">
+          <label>Image: </label><br>
+          <%= f.file_field :image, autocomplete: "off" %>
         </div>
       </div>
-      
+
+      <div class = "input-label-container signup-button mb-2">
+        <div class="actions">
+        <%= f.submit "Sign up" , class: 'btn btn-primary w-100' %>
+        </div>
+      </div>
     <% end %>
+    <div class = "input-label-container">
+      <%= render "devise/shared/links" %>
+    </div>
+    <%= render partial:'layouts/footer' %>
   </div>
   <div class="col-sm-6" >
     <img src="/assets/survey.jpeg" class = "img-fullsize"  alt="survey">
   </div>
-</div>
-
-<div class = "input-label-container">
-  <%= render "devise/shared/links" %>
 </div>

@@ -1,9 +1,11 @@
+<%= render partial:'layouts/header' %>
+<%= render partial:'layouts/flash_messages' %>
 <!-- Master Head -->
 <header class="master-head text-white text-center">
   <div class="container">
     <div class="row">
       <div class="col-xl-9 mx-auto">
-        <h1 class="mb-5">Build and manage the next level surveys for your company!</h1>
+        <h1 class="mb-5"><%= t('home.greeting_message') %></h1>
       </div>
     </div>
   </div>
@@ -12,28 +14,19 @@
 <!-- Public Surveys -->
 <section class="packages text-center bg-light">
   <div class="container">
-    <h2 class="mb-5">Fill any survey from our wide collection</h2>
-    <div class="row">
-      <% if @surveys.blank? %>
-        <h4 class="text-muted"> We will be adding public surveys soon! </h4>
-      <% else %> 
-        <% @surveys.each do |survey| %>
-          <div class="col-lg-4">
-            <div class="mx-auto mt-4">
-              <div class="card">
-                <h5 class="card-header"> Survey Name <%= survey[:name] %> </h5>
-                <div class="card-body">
-                  <p class="card-text"> <%= survey[:description] %> </p>
-                  <%= link_to 'Fill it', new_survey_user_response_path(survey) %>
-                </div>
-              </div>
-            </div>
-          </div>
+    <h2 class="mb-5"><%= t('home.fill_surveys_message') %></h2>
+    <div class="dropdown mx-2 mb-2">
+      <button class="primary-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"><%= t('home.filter_label') %></button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <%= link_to t('home.filter_all_label'), filter_category_home_index_path(filter_by: nil), class: "dropdown-item", remote: true %>
+        <% @categories.each do |category| %>
+          <%= link_to category, filter_category_home_index_path(filter_by: category), class: "dropdown-item", remote: true %>
         <% end %>
       </div>
-      <div class="apple_pagination d-flex justify-content-center mt-4">
-        <%= will_paginate @surveys %>
-      </div>
-    <% end %>
+    </div>
+    <div id = "public_surveys_container">
+      <%= render partial: 'public_surveys', locals: { surveys: @surveys, categories: @categories } %>
+    </div>
   </div>
 </section>
+<%= render partial:'layouts/footer' %>

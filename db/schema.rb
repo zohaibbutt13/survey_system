@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190801103821) do
+ActiveRecord::Schema.define(version: 20190807113036) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "company_id",     limit: 4
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 20190801103821) do
     t.boolean  "supervisors_survey_permission",   limit: 1
     t.boolean  "supervisors_settings_permission", limit: 1
     t.boolean  "members_settings_permission",     limit: 1
-    t.integer  "survey_expiry",                   limit: 4
+    t.integer  "survey_expiry_days",              limit: 4
     t.integer  "company_id",                      limit: 4
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
@@ -66,11 +66,12 @@ ActiveRecord::Schema.define(version: 20190801103821) do
   add_index "company_settings", ["company_id"], name: "index_company_settings_on_company_id", using: :btree
 
   create_table "groups", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.text     "description", limit: 65535
-    t.integer  "company_id",  limit: 4
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "name",          limit: 255
+    t.text     "description",   limit: 65535
+    t.integer  "company_id",    limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "created_by_id", limit: 4
   end
 
   add_index "groups", ["company_id"], name: "index_groups_on_company_id", using: :btree
@@ -101,6 +102,7 @@ ActiveRecord::Schema.define(version: 20190801103821) do
     t.integer  "company_id",    limit: 4
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.boolean  "required",      limit: 1
   end
 
   add_index "questions", ["company_id"], name: "index_questions_on_company_id", using: :btree
@@ -138,6 +140,7 @@ ActiveRecord::Schema.define(version: 20190801103821) do
     t.string   "email",      limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.integer  "company_id", limit: 4
   end
 
   create_table "user_settings", force: :cascade do |t|
@@ -175,6 +178,10 @@ ActiveRecord::Schema.define(version: 20190801103821) do
     t.string   "last_name",              limit: 255
     t.string   "role",                   limit: 255
     t.string   "initial_password",       limit: 255
+    t.string   "image_file_name",        limit: 255
+    t.string   "image_content_type",     limit: 255
+    t.integer  "image_file_size",        limit: 4
+    t.datetime "image_updated_at"
   end
 
   add_index "users", ["company_id"], name: "index_users_on_company_id", using: :btree
