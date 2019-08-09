@@ -21,9 +21,17 @@
 
 en:
   login_label: "Log in"
-  password_label: "Password"
-  email_label: "Email"
+  password_label: "Password:"
+  password_confirmation_label: "Password Confirmation:"
+  email_label: "Email:"
   remember_label: "Remember me"
+  first_name_label: "First Name:"
+  last_name_label: "Last Name:"
+  company_name_label: "Company Name:"
+  company_subdomain_label: "Company Subdomain:"
+  image_label: "Image:"
+  sign_up_label: "Sign Up"
+
 
   groups:
     group_heading_label: "All Groups"
