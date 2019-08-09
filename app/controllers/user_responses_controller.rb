@@ -13,20 +13,33 @@ class UserResponsesController < ApplicationController
 
   # get surveys/:id/new
   def new
-    @survey = Survey.find(params[:survey_id])
+    if @current_company.nil?
+      @survey = Survey.unscoped.find(params[:survey_id])
+    else
+      @survey = Survey.find(params[:survey_id])
+    end
+    
     @user_response = UserResponse.new
     @answer = @user_response.answers.build
   end
 
   # get surveys/:survey_id/user_response/:id
   def show
-    @survey = Survey.find(params[:survey_id])
+    if @current_company.nil?
+      @survey = Survey.unscoped.find(params[:survey_id])
+    else
+      @survey = Survey.find(params[:survey_id])
+    end
     @user_response = @survey.user_responses.find(params[:id])
   end
 
   # post surveys/:survey_id/user_responses      
   def create
-    @survey = Survey.find(params[:survey_id])
+    if @current_company.nil?
+      @survey = Survey.unscoped.find(params[:survey_id])
+    else
+      @survey = Survey.find(params[:survey_id])
+    end
     @user_response = UserResponse.new(response_params)
     if @user_response.save
       flash[:notice] = 'Saved'
