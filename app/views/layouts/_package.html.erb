@@ -11,7 +11,7 @@
           <dt><%= t 'package.max_members_label' %></dt>
           <dd> <%= subscription_package.max_members %> </dd>
         </dl>
-        <%= link_to t('package.subscribe_label'), update_subscription_package_company_path(subscription_package.id) %> 
+        <%= link_to t('package.subscribe_label'), update_subscription_package_company_path(subscription_package.id), class: "primary-btn" %> 
       </div>
     </div>
   </div>
