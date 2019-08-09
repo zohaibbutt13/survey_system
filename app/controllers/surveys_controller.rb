@@ -18,7 +18,7 @@ class SurveysController < ApplicationController
 
   # GET surveys/new
   def new
-    add_breadcrumb "Surveys", :display_surveys_company_path
+    add_breadcrumb "Surveys", display_surveys_company_path(@current_company)
     add_breadcrumb "New Survey", new_survey_path
     @survey = Survey.new
     @question = @survey.questions.build 
@@ -109,8 +109,8 @@ class SurveysController < ApplicationController
       :survey_type,
       :expiry,
       :group_id,
-      questions_attributes: [:id, :statement, :question_type, :required,
-      options_attributes: [:id, :detail]]
+      questions_attributes: [:id, :statement, :question_type, :required, :company_id,
+      options_attributes: [:id, :detail, :company_id]]
     )
   end
 
