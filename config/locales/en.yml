@@ -179,4 +179,12 @@ en:
     option_label: "Option"
     commentbox_label: "Comment Box"
 
+  public_surveys:
+    expired_before_label: "Expired Before"
+    created_on_label: "Created on"
+    created_by_label: "Created by"
+    filter_label: "Filters"
+    surveys_label: "Surveys"
+    name_label: "Name"
+    type_label: "Type"
 
