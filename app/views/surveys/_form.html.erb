@@ -38,7 +38,7 @@
           <% index = 0 %> 
           <%= f.fields_for :questions, id: '' do |q| %>
             <%= q.hidden_field :company_id, value: @current_company.id %>
-            <div id = "statement_<%= index %>" class="form-group">
+            <div id = "statement_<%= index %>" class="form-group question-box">
               <% unless q.object.statement == '-1' %>
                 <div class = "pt-3 label-input-item row no-gutters">
                   <label class="col-4"> Question Type: </label>
