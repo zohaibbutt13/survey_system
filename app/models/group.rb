@@ -12,7 +12,7 @@ class Group < ActiveRecord::Base
             length: { maximum: 500, message: 'must not have more than 500 characters.' } 
   validates :users, length: {
     minimum: 1,
-    message: 'in a group must be more than 1.'
+    message: 'in a group must be at least 1.'
   }
 
   after_create :create_group_activity
