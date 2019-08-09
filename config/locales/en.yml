@@ -99,6 +99,7 @@ en:
   activity_history:
     activity_label: "Activity"
     time_label: "Time"
+    no_activity_label: "Currently there is no user activity history to display"
 
   package:
     description_label: "With this package you will get:"

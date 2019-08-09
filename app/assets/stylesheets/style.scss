@@ -662,3 +662,10 @@ header.master-head h1 {
   -webkit-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
 }
+
+.empty-resource-box {
+  padding: 30px 0;
+  text-align: center;
+  border: 1px solid $primary-border-color;
+  border-radius: $primary-radius;
+}
