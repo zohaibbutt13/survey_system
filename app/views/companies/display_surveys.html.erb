@@ -2,7 +2,9 @@
 
   <div class="d-flex justify-content-between heading-bg mb-2">
     <h1><%= t('public_surveys.surveys_label') %></h1>
+    <% if can? :create, Survey %>
     <a class="btn primary-btn my-auto" href="<%= new_survey_path %>"><%= t('surveys.new_survey_link') %></a>
+    <% end %>
   </div>
 
   <div class="row d-flex justify-content-start">
