@@ -14,3 +14,7 @@
 //= require jquery_ujs
 //= require chosen-jquery
 //= require_tree .
+
+$(document).ready( function () {
+  $('.js-data-table').DataTable();
+} );

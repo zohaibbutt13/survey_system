@@ -29,7 +29,7 @@ class CompaniesController < ApplicationController
     @current_company.subscription_package_id = params[:id]
     if @current_company.save
       respond_to do |format|
-        flash[:notice] = I18n.t(:subscription_package_update_label)  
+        flash[:notice] = I18n.t 'package.subscription_package_update_label'  
         format.html { redirect_to dashboard_company_path }
       end
     else
@@ -58,6 +58,7 @@ class CompaniesController < ApplicationController
     #   @surveys = @surveys.active_surveys
     # end
     @employees = User.all
+    add_breadcrumb "Surveys", surveys_path
     respond_to do |format|
       format.html
       format.js

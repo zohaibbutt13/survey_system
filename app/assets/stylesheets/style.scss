@@ -653,3 +653,19 @@ header.master-head h1 {
 .already-have-account {
   font-size: $small-text-size;
 }
+
+.vertical-horizontal-center-align {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.empty-resource-box {
+  padding: 30px 0;
+  text-align: center;
+  border: 1px solid $primary-border-color;
+  border-radius: $primary-radius;
+}
