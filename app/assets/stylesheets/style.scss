@@ -623,7 +623,7 @@ header.master-head h1 {
   a:hover {
     text-decoration: none;
     opacity: 0.7;
-    color: white
+    color: white;
   }
 
   .icon{
@@ -668,4 +668,46 @@ header.master-head h1 {
   text-align: center;
   border: 1px solid $primary-border-color;
   border-radius: $primary-radius;
+}
+
+.link-text{
+  a{
+    color: black !important;
+    text-decoration: none !important;
+    font-size: 1rem !important; 
+  }
+   a:hover {
+    text-decoration: none;
+    opacity: 0.7;
+  }
+}
+
+.surveys-count {
+  font-size: $small-text-size;
+  position: relative;
+  padding: 10px;
+  padding-right: 18px;
+  border: none;
+  background-color: $primary-color;
+}
+
+.surveys-count:hover {
+  border: none;
+  background-color: $primary-color;
+  opacity: 0.7;
+}
+
+.surveys-count-notification {
+  position: absolute;
+  content: ' ';
+  top: 0;
+  right: 0;
+  padding: 0 4px;
+  background-color: red;
+  border-radius: $primary-radius;
+  font-size: $text-size;
+}
+
+.surveys-count::after {
+  display: none;
 }

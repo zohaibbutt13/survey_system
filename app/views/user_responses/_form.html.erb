@@ -1,8 +1,10 @@
 <div id = "user-response">
   <%= form_for [@survey,@user_response] do |f| %>
     <%= f.hidden_field :survey_id, value: @survey.id %>
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true %></br>
+    <% if current_user.nil? %>
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true %></br>
+    <% end %>
     <% @survey.questions.each_with_index do |question , index| %>
       <%= f.fields_for :answers do |answer| %>
         <%= answer.hidden_field :question_id, value: question.id %>

@@ -1,5 +1,5 @@
 <h1><%= t('users.show_member_heading') %></h1>
-<table class="table">
+<table class="table js-data-table">
   <tbody>
     <tr>
       <th scope="row"><%= t('users.name') %></th>
@@ -24,7 +24,7 @@
   </div>
   <div class="col-1 ml-5">
     <% if can? :destroy, @member %>
-      <%= link_to t('links.delete_link'), member_path(@member), method: :delete, data: { confirm: t('links.confirmation_message') }, class: 'primary-btn' %>
+      <%= link_to t('links.delete_link'), member_path(@member), method: :delete, data: { confirm: t('links.confirmation_message') }, class: 'primary-btn ml-4' %>
     <% end %>
   </div>
 </div>

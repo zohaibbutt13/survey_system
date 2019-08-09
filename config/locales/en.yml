@@ -21,18 +21,22 @@
 
 en:
   login_label: "Log in"
-  password_label: "Password:"
-  password_confirmation_label: "Password Confirmation:"
-  email_label: "Email:"
+  password_label: "Password"
+  password_confirmation_label: "Password Confirmation"
+  email_label: "Email"
   remember_label: "Remember me"
-  first_name_label: "First Name:"
-  last_name_label: "Last Name:"
-  company_name_label: "Company Name:"
-  company_subdomain_label: "Company Subdomain:"
-  image_label: "Image:"
+  first_name_label: "First Name"
+  last_name_label: "Last Name"
+  company_name_label: "Company Name"
+  company_subdomain_label: "Company Subdomain"
+  image_label: "Image"
   sign_up_label: "Sign Up"
+  options_label: "Options"
   user_not_found: "User not found!"
-
+  visit_dashboard_label: "Visit Dashboard"
+  visit_homepage_label: "Visit Home page"
+  update_label: "Update"
+  edit_survey_label: "Edit Survey"
 
   groups:
     group_heading_label: "All Groups"
@@ -45,8 +49,8 @@ en:
     name: "name"
     description: "description"
     members: "members"
-    add_group_button_label: "Add Group"
-    update_group_button_label: "Update Group"
+    add_group_button_label: "Create"
+    update_group_button_label: "Update"
     group_show_heading: "Group Information"
 
   links:
@@ -112,7 +116,7 @@ en:
     no_activity_label: "Currently there is no user activity history to display"
 
   package:
-    description_label: "With this package you will get:"
+    description_label: "With this package you will get"
     max_members_label: "Max Members Limit"
     max_supervisors_label: "Max Supervisors Limit"
     subscribe_label: "Subscribe"
@@ -187,4 +191,3 @@ en:
     surveys_label: "Surveys"
     name_label: "Name"
     type_label: "Type"
-

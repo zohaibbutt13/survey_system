@@ -1,0 +1,4 @@
+$('#survey_links').html("<%= @surveys.length %>");
+<% @surveys.each do |survey| %>
+  $('#surveys_detail').append("<%= escape_javascript(render partial: 'survey_link', locals: { survey: survey }) %>");
+<% end %>

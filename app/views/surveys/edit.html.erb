@@ -1,1 +1,3 @@
-<%= render 'form', locals: {submit: 'Edit', heading: 'Edit Survey', subheading: "#{@survey.name}"} %>
+<div class="col-10 offset-1">
+  <%= render partial: 'form', locals: {submit: t(:update_label), heading: t(:edit_survey_label), subheading: "#{@survey.name}"} %>
+</div>

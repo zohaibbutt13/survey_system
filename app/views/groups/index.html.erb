@@ -1,13 +1,15 @@
-<h1><%= t('groups.group_index_heading') %></h1>
+<div class="d-flex justify-content-center heading-bg mb-2">
+  <h1><%= t('groups.group_index_heading') %></h1>
+</div>
 <% if can? :create, Group %>
   <div class="row no-gutters justify-content-end">
-    <div class="col-1">
+    <div class="col-2 mb-2">
       <td><%= link_to t('links.add_new_link'), new_group_path, class: 'primary-btn' %></td>
     </div>
   </div>
 <% end %>
 
-<table class="table">
+<table class="table js-data-table">
   <thead>
     <tr>
       <th scope="col">#</th>

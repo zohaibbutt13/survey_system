@@ -1,26 +1,27 @@
-<h2><%= heading %></h2>
-
+<div class="heading-bg mb-2">
+  <h2><%= heading %></h2>
+</div>
 <%= form_for group do |f| %>
   <div class='label-input-container'>
-    <div class='label-input-item'>
-      <%= f.label :name %><br />
-      <%= f.text_field :name, autofocus: true %>
+    <div class='label-input-item row no-gutters'>
+      <%= f.label :name, class: "col-4" %><br />
+      <%= f.text_field :name, autofocus: true, class: "col-8" %>
     </div>
 
-    <div class='label-input-item'>
-      <%= f.label :description %><br />
-      <%= f.text_area :description, autofocus: true %>
+    <div class='label-input-item row no-gutters'>
+      <%= f.label :description, class: "col-4" %><br />
+      <%= f.text_area :description, autofocus: true, class: "col-8" %>
     </div>
 
-    <div class='label-input-item'>
-      <%= f.label :members %><br />
-      <%= f.collection_select :user_ids, employees, :id, :full_name, {}, { multiple: true, class: 'col-md-3'} %>
+    <div class='label-input-item row no-gutters'>
+      <%= f.label :members, class: "col-4" %><br />
+      <%= f.collection_select :user_ids, employees, :id, :full_name, {}, { multiple: true, class: 'col-8 m-0'} %>
     </div>
   </div>
   
   <div class="row no-gutters justify-content-start">
-    <div class="col-1 mt-4">
-      <%= f.submit submit, class: 'primary-btn' %>
+    <div class="col-12 mt-4">
+      <%= f.submit submit, class: 'primary-btn w-100' %>
     </div>
   </div>
 <% end %>
