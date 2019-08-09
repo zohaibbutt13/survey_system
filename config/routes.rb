@@ -46,5 +46,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get "*path", to: 'application#page_not_found'
+
   get :dashboard, to: 'companies#dashboard'
 end
