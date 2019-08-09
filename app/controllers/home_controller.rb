@@ -1,5 +1,10 @@
 class HomeController < ApplicationController
 
+  before_action do
+    if user_signed_in?
+      redirect_to dashboard_company_path(@current_company)
+    end
+  end
 
   # get home/index
   def index

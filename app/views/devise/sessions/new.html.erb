@@ -33,8 +33,9 @@
           <% end %>
         </div>
         <div class="pt-2">
-          <%= link_to t(:already_have_an_account_label), '/users/sign_up', class: 'already-have-account' %>
+          <%= render "devise/shared/links" %>
         </div>
+        
       </div>
     </div>
     <%= render partial:'layouts/footer' %>
