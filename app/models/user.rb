@@ -66,7 +66,6 @@ class User < ActiveRecord::Base
     count = User.joins(groups: :surveys)
     .select("surveys.id as id, surveys.name as name")
     .where("groups_users.user_id = ? and surveys.expiry > ?", id, DateTime.now )
-    # .map { |s| { id: s.id, name: s.name } }
   end
 
   def admin_user_id
