@@ -8,11 +8,11 @@ class Survey < ActiveRecord::Base
 
   has_many :activities, as: :trackable
   belongs_to :user
-  has_many :questions, dependent: :destroy, inverse_of: :survey, autosave: true
+  has_many :questions, dependent: :destroy, autosave: true
   has_many :options, through: :questions
   belongs_to :company
-  has_many :user_responses, dependent: :destroy, inverse_of: :survey
-  belongs_to :group, inverse_of: :survey
+  has_many :user_responses, dependent: :destroy
+  belongs_to :group
 
   accepts_nested_attributes_for :questions, :options
 
@@ -32,10 +32,18 @@ class Survey < ActiveRecord::Base
 
   # Returns array of all the public surveys
   def self.get_public_surveys(page_params, per_page_limit, category=nil)
-    if category.nil?
-      Survey.unscoped.public_surveys.paginate(page: page_params, per_page: per_page_limit)
+    if Company.current_id.nil?
+      if category.nil?
+        Survey.unscoped.public_surveys.paginate(page: page_params, per_page: per_page_limit)
+      else
+        Survey.unscoped.public_surveys.where(category: category).paginate(page: page_params, per_page: per_page_limit)
+      end
     else
-      Survey.unscoped.public_surveys.where(category: category).paginate(page: page_params, per_page: per_page_limit)
+      if category.nil?
+        Survey.public_surveys.paginate(page: page_params, per_page: per_page_limit)
+      else
+        Survey.public_surveys.where(category: category).paginate(page: page_params, per_page: per_page_limit)
+      end
     end
   end
 

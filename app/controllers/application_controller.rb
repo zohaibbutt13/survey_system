@@ -15,6 +15,10 @@ class ApplicationController < ActionController::Base
     render :file => "#{Rails.root}/public/404.html",  layout: false, status: :not_found
   end
 
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    render :file => "#{Rails.root}/public/404.html",  layout: false, status: :not_found
+  end
+
   before_action do
     if request.subdomain.present?
       @current_company = Company.find_by_subdomain(request.subdomain)
@@ -34,7 +38,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    dashboard_company_path(current_user.company)
+    dashboard_company_path(@current_company)
   end
  
   def authenticate_admin!

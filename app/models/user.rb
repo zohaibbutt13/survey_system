@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
   after_update :update_user_activity
   after_destroy :destroy_user_activity
 
-  has_attached_file :image, styles: { thumb: "50x50>" }
+  has_attached_file :image, styles: { thumb: "50x50>" }  
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
   def self.count_of_members_and_supervisors?(company, user)
