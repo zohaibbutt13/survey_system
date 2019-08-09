@@ -40,7 +40,7 @@ en:
     group_destroy_success: "Group destroyed successfully!"
     update_group_heading: "Update Group"
     create_group_heading: "Add a Group"
-    group_index_heading: "Add a Group"
+    group_index_heading: "Groups"
     name: "name"
     description: "description"
     members: "members"
@@ -67,11 +67,12 @@ en:
     first_name: "first name"
     last_name: "last name"
     email: "email"
-    members_heading: "Members"
+    members_index_heading: "Members"
     create_new_member_label: "Create new Member"
     show_member_heading: "Member Information"
     update_button_label: "Submit"
     add_button_label: "Add"
+    excced_limit_label: "Exceeds from limit."
 
   home:
     no_public_surveys_available: "There are currently no public surveys available!"
@@ -142,8 +143,6 @@ en:
     supervisors_settings_permission_label: "Can supervisor change my settings?"
     supervisors_survey_permission_label: "Can supervisor create surveys?"
     members_settings_permission_label: "Can members change my settings?"
-  users:
-    excced_limit_label: "Exceeds from limit."
 
   surveys:
     index_heading: "Survey Index"

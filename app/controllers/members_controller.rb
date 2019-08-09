@@ -39,13 +39,7 @@ class MembersController < ApplicationController
 
   def show
     respond_to do |format|
-      if @member.save
-        flash[:notice] = I18n.t 'users.member_create_success'
-        format.html { redirect_to member_path(@member) }
-      else
-        flash[:error] = @member.errors.full_messages
-        format.html { render :new }
-      end
+        format.html
     end
   end
 
