@@ -18,6 +18,7 @@ class Survey < ActiveRecord::Base
 
   validates :name, presence: true, length: { maximum: 255 }
   validates :description, presence: true, length: { maximum: 500 }
+  validates :expiry, presence: true
 
   before_save :mark_question_for_removal
   after_create :create_survey_activity

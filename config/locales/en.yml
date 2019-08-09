@@ -32,7 +32,7 @@ en:
   image_label: "Image"
   sign_up_label: "Sign Up"
   options_label: "Options"
-
+  user_not_found: "User not found!"
 
   groups:
     group_heading_label: "All Groups"
@@ -93,7 +93,7 @@ en:
   created_by_label: "Created By"
   created_on_label: "Created On"
   expiry_label: "Expiry"
-  already_have_an_account_label: 'Already have an account?'
+  dont_have_an_account_label: "Don't have an account? Register here."
 
   dashboard:
     graphs_label: "Graphs"
@@ -187,4 +187,3 @@ en:
     surveys_label: "Surveys"
     name_label: "Name"
     type_label: "Type"
-
