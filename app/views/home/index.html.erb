@@ -16,7 +16,7 @@
   <div class="container">
     <h2 class="mb-5"><%= t('home.fill_surveys_message') %></h2>
     <div class="dropdown mx-2 mb-2">
-      <button class="primary-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"><%= t('home.filter_label') %></button>
+      <button class="secondary-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"><%= t('home.filter_label') %></button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <%= link_to t('home.filter_all_label'), filter_category_home_index_path(filter_by: nil), class: "dropdown-item", remote: true %>
         <% @categories.each do |category| %>

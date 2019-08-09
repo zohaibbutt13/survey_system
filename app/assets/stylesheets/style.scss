@@ -654,6 +654,16 @@ header.master-head h1 {
   font-size: $small-text-size;
 }
 
+
 .activity-container {
   min-height: 20rem;
+}
+
+.vertical-horizontal-center-align {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
 }

@@ -94,6 +94,7 @@ en:
     surveys_stats_description: "Expired Vs Active Surveys"
     latest_surveys_label: "Latest Surveys"
     latest_surveys_description: "Responses of latest surveys"
+    no_chart_data_label: "Currently there is no data available to draw this chart"
 
   activity_history:
     activity_label: "Activity"

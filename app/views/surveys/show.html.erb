@@ -4,11 +4,11 @@
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active" data-toggle="tab" href="#home">Survey</a>
+      <a class="nav-link text-muted active" data-toggle="tab" href="#home">Survey</a>
     </li>
     <% if can? :read, UserResponse %>
       <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#response">Responses</a>
+        <a class="nav-link text-muted" data-toggle="tab" href="#response">Responses</a>
       </li>
     <% end %>
   </ul>
