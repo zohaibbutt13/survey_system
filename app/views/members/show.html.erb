@@ -1,0 +1,32 @@
+<h1><%= t('users.show_member_heading') %></h1>
+<table class="table">
+  <tbody>
+    <tr>
+      <th scope="row"><%= t('users.name') %></th>
+      <td class="col-md-8"><%= @member.full_name %></td>
+    </tr>
+    <tr>
+      <th scope="row"><%= t('users.email') %></th>
+      <td class="col-md-8"><%= @member.email %></td>
+    </tr>
+    <tr>
+      <th scope="row"><%= t('users.user_role') %></th>
+      <td class="col-md-8"><%= @member.role %></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="row no-gutters justify-content-start">
+  <div class="col-1">
+    <% if can? :update, @member %>
+      <%= link_to t('links.edit_link'), edit_member_path(@member), class: 'primary-btn' %>
+    <% end %>
+  </div>
+  <div class="col-1 ml-5">
+    <% if can? :destroy, @member %>
+      <%= link_to t('links.delete_link'), member_path(@member), method: :delete, data: { confirm: t('links.confirmation_message') }, class: 'primary-btn' %>
+    <% end %>
+  </div>
+</div>
+
+

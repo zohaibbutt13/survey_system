@@ -8,6 +8,9 @@ class SurveysController < ApplicationController
   
   # GET  /surveys
   def index
+    add_breadcrumb "Surveys", surveys_path
+    @surveys = Survey.all
+    @survey = Survey.new
     respond_to do |format|
       format.html
     end
@@ -15,6 +18,9 @@ class SurveysController < ApplicationController
 
   # GET surveys/new
   def new
+    add_breadcrumb "Surveys", display_surveys_company_path(@current_company)
+    add_breadcrumb "New Survey", new_survey_path
+    @survey = Survey.new
     @question = @survey.questions.build 
     respond_to do |format|
       format.html
@@ -23,6 +29,9 @@ class SurveysController < ApplicationController
 
   # GET survey/:id
   def show
+    add_breadcrumb "Surveys", surveys_path
+    add_breadcrumb "Your Survey", survey_path
+    @survey = Survey.find(params[:id])
     respond_to do |format|
       format.html
     end
@@ -30,6 +39,7 @@ class SurveysController < ApplicationController
 
   # POST /surveys
   def create
+    @survey.user_id = @current_user.id
     if @survey.save
       flash[:notice] = 'Survey Created'
       redirect_to @survey
@@ -42,6 +52,9 @@ class SurveysController < ApplicationController
 
   # edit surveys/:id/edit
   def edit
+    add_breadcrumb "Surveys", surveys_path
+    add_breadcrumb "Edit Survey", edit_survey_path
+    @survey = Survey.find(params[:id])
     respond_to do |format|
       format.html
     end
@@ -96,8 +109,8 @@ class SurveysController < ApplicationController
       :survey_type,
       :expiry,
       :group_id,
-      questions_attributes: [:id, :statement, :question_type, :required,
-      options_attributes: [:id, :detail]]
+      questions_attributes: [:id, :statement, :question_type, :required, :company_id,
+      options_attributes: [:id, :detail, :company_id]]
     )
   end
 
@@ -108,6 +121,14 @@ class SurveysController < ApplicationController
     else
       flash[:error] = @survey.errors.full_messages
       render action: :show
+    end
+  end
+
+  # get survey/:id/survey_charts
+  def survey_charts
+    @survey.questions.includes(:answers)
+    respond_to do |format|
+      format.html
     end
   end
 end

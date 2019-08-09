@@ -2,17 +2,20 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  protect_from_forgery with: :null_session
 
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
       # format.json { head :forbidden, content_type: 'text/html' }
-      format.html { redirect_to main_app.root_url, notice: exception.message }
+      format.html { redirect_to main_app.root_url, error: exception.message }
       # format.js   { head :forbidden, content_type: 'text/html' }
     end
   end
 
   rescue_from ActionController::RoutingError do |exception|
+    render :file => "#{Rails.root}/public/404.html",  layout: false, status: :not_found
+  end
+
+  rescue_from ActiveRecord::RecordNotFound do |exception|
     render :file => "#{Rails.root}/public/404.html",  layout: false, status: :not_found
   end
 
@@ -35,7 +38,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    dashboard_company_path(current_user.company)
+    dashboard_company_path(@current_company)
   end
  
   def authenticate_admin!

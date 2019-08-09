@@ -9,7 +9,7 @@
       <%= f.fields_for :answers do |answer| %>
         <%= answer.hidden_field :question_id, value: question.id %>
         <br>
-        <p class="font-weight-bold">Question <%= "#{index+1} : #{question.statement} #{'*' if question.required? }" %></p>
+        <p class="font-weight-bold"><%= t('user_responses.question_label') %><%= " #{index+1} : #{question.statement} #{'*' if question.required? }" %></p>
         <% question.options.each_with_index do |option_value, option_index| %>
           <% if (question.question_type == 'Checkbox') %>
             <%= answer.check_box :option_id, {id: "user_response_answers_attributes_#{option_index}_option_id_#{option_value.id}" , multiple: true }, "#{option_value.id}", false %>
@@ -30,7 +30,7 @@
       <% end %>
     <% end %>
     <div>
-      <%= f.submit "Submit", class: "btn btn-primary mt-3"%>
+      <%= f.submit "Submit", class: "primary-btn mt-3"%>
     </div>
   <% end %> 
 </div>

@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <div class='js-survey-chart col card mx-auto mb-2 p-0'>
+      <div class="card-header"><b><%= t 'main_charts.surveys_stats_label' %></b></div>
+      <div class="card-body">
+        <!-- if there is data available for chart -->
+        <% unless @surveys_stats.blank? %>
+          <%= content_tag :canvas, "", id: 'surveys_stats', data: { chart_data: @surveys_stats, chart_labels:SURVEY_STATS_LABELS, chart_type: 'pie', chart_colors: GRAPH_COLORS } %>
+          <div class="d-flex justify-content-center mt-1">
+            <p><%= t 'main_charts.surveys_stats_description' %></p>
+          </div>
+        <!-- if no data is available for chart -->
+        <% else %>
+          <div class="vertical-horizontal-center-align">
+            <h3 class="text-muted"><%= t 'main_charts.no_chart_data_label' %></h3>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+    <div class='js-survey-chart col card mx-auto mb-2 p-0'>
+      <div class="card-header"><b><%= t 'main_charts.latest_surveys_label' %></b></div>
+      <div class="card-body">
+        <!-- if there is data available for chart -->
+        <% unless @latest_surveys_responses_count.blank? %>
+          <%= content_tag :canvas, "", id: 'latest_surveys', data: { chart_data: @latest_surveys_responses_count, chart_labels: @latest_surveys_labels, chart_type: 'bar', chart_label: 'Responses', chart_colors: GRAPH_COLORS } %>
+          <div class="d-flex justify-content-center mt-1">
+            <p><%= t 'main_charts.latest_surveys_description' %></p>
+          </div>
+          <!-- if no data is available for chart -->
+        <% else %>
+          <div class="vertical-horizontal-center-align">
+            <h3 class="text-muted"><%= t 'main_charts.no_chart_data_label' %></h3>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

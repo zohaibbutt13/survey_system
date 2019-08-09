@@ -8,11 +8,11 @@ class Survey < ActiveRecord::Base
 
   has_many :activities, as: :trackable
   belongs_to :user
-  has_many :questions, dependent: :destroy, inverse_of: :survey, autosave: true
+  has_many :questions, dependent: :destroy, autosave: true
   has_many :options, through: :questions
   belongs_to :company
-  has_many :user_responses, dependent: :destroy, inverse_of: :survey
-  belongs_to :group, inverse_of: :survey
+  has_many :user_responses, dependent: :destroy
+  belongs_to :group
 
   accepts_nested_attributes_for :questions, :options
 
@@ -20,23 +20,40 @@ class Survey < ActiveRecord::Base
   validates :description, presence: true, length: { maximum: 500 }
 
   before_save :mark_question_for_removal
+  after_create :create_survey_activity
+  after_update :update_survey_activity
+  after_destroy :destroy_survey_activity
 
   default_scope { where(company_id: Company.current_id) }
   scope :public_surveys, -> { where(survey_type: 'public') }
   scope :expired_surveys, -> { where('expiry < ?', DateTime.now) }
   scope :active_surveys, -> { where('expiry > ?', DateTime.now) }
+  scope :latest_surveys, -> { order('surveys.created_at desc') }
 
   # Returns array of all the public surveys
-  def self.get_public_surveys(page_params, per_page_limit)
-    Survey.public_surveys.paginate(page: page_params, per_page: per_page_limit)
+  def self.get_public_surveys(page_params, per_page_limit, category=nil)
+    if Company.current_id.nil?
+      if category.nil?
+        Survey.unscoped.public_surveys.paginate(page: page_params, per_page: per_page_limit)
+      else
+        Survey.unscoped.public_surveys.where(category: category).paginate(page: page_params, per_page: per_page_limit)
+      end
+    else
+      if category.nil?
+        Survey.public_surveys.paginate(page: page_params, per_page: per_page_limit)
+      else
+        Survey.public_surveys.where(category: category).paginate(page: page_params, per_page: per_page_limit)
+      end
+    end
   end
 
-  def self.get_expired_surveys
-    Survey.expired_surveys
-  end
-
-  def self.get_active_surveys
-    Survey.active_surveys
+  # Returns an array having surveys respones count
+  def self.latest_surveys_responses(count)
+    latest_surveys.limit(count)
+                  .joins('LEFT OUTER JOIN user_responses on surveys.id = user_responses.survey_id')
+                  .select('COUNT(user_responses.id) AS responses_count')
+                  .group('surveys.id')
+                  .map { |survey| survey.responses_count }
   end
 
   def mark_question_for_removal
@@ -44,8 +61,16 @@ class Survey < ActiveRecord::Base
       question.mark_for_destruction if question.statement == '-1'
     end
   end
-  
-  def self.save?(survey)
-    survey.save
+
+  def create_survey_activity
+    Activity.create(trackable: self, action: 'created', owner_id: user_id, company_id: company_id)
+  end
+
+  def update_survey_activity
+    Activity.create(trackable: self, action: 'updated', owner_id: user_id, company_id: company_id)
+  end
+
+  def destroy_survey_activity
+    Activity.create(trackable: self, action: 'deleted', owner_id: user_id, company_id: company_id)
   end
 end

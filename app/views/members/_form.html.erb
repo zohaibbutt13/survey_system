@@ -1,24 +1,29 @@
-<div class="form-group">
-  <%= f.label :first_name, class: 'control-label' %><br />
-  <%= f.text_field :first_name, class: 'col-md-2 form-control', autofocus: true, autocomplete: 'first name' %>
-</div>
+<h2><%= heading %></h2>
+<%= form_for member, url: url, method: method do |f| %>
+  <div class='label-input-container'>
+    <div class="label-input-item">
+      <%= f.label :first_name %><br />
+      <%= f.text_field :first_name, autofocus: true, autocomplete: t('users.first_name') %>
+    </div>
 
-<div class='form-group'>
-  <%= f.label :last_name, class: 'control-label' %><br />
-  <%= f.text_field :last_name, autofocus: true, autocomplete: 'last name', class: 'col-md-2 form-control' %>
-</div>
+    <div class="label-input-item">
+      <%= f.label :last_name %><br />
+      <%= f.text_field :last_name, autofocus: true, autocomplete: t('users.last_name') %>
+    </div>
 
-<div class='form-group'>
-  <%= f.label :email, class: 'control-label' %><br />
-  <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'col-md-2 form-control', type: 'email' %>
-</div>
+    <div class="label-input-item">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: t('users.email') %>
+    </div>
 
-<div class='form-group'>
-  <%= f.label :role, class: 'control-label' %><br />
-  <%= f.select :role, User::ROLE.reject { |key, value| key == :admin }, {}, class: 'col-md-2 btn btn-outline-secondary dropdown-toggle' %>
-  <br>
-</div>
-
-<div class='actions'>
-  <%= f.submit locals[:submit], class: 'col-md-2 btn btn-dark' %>
-</div>
+    <div class="label-input-item">
+      <%= f.label :role %><br />
+      <%= f.select :role, User::ROLE.reject { |key, value| key == :admin }, {}, { class: "primary-btn dropdown-toggle"} %>
+    </div>
+  </div>
+  <div class="row no-gutters justify-content-start">
+    <div class="col-1 mt-4">
+      <%= f.submit submit, class: 'primary-btn' %>
+    </div>
+  </div>
+<% end %>

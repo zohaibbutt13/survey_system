@@ -4,26 +4,21 @@
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active" data-toggle="tab" href="#home">Survey</a>
+      <a class="nav-link text-muted active" data-toggle="tab" href="#home"><%= t('surveys.survey_label') %></a>
     </li>
     <% if can? :read, UserResponse %>
       <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#response">Responses</a>
+        <a class="nav-link text-muted" data-toggle="tab" href="#response"><%= t('surveys.responses_label') %></a>
       </li>
     <% end %>
   </ul>
-
   <div class="tab-content container">
     <div id="home" class="container tab-pane active"><br>
-      <h2>Survey Preview</h2>
+      <h2><%= t('surveys.survey_preview_label') %></h2>
       <div class= "text-left survey-box container shadow p-3 mb-5 bg-white rounded">
         <% @survey.questions.each_with_index do |question , index| %>
           <br>
-          <% if question.required %>
-            <p class="font-weight-bold">Question <%= "#{index+1} : #{question.statement} *" %></p>
-          <% else %>
-            <p class="font-weight-bold">Question <%= "#{index+1} : #{question.statement}" %></p>
-          <% end %>
+            <p class="font-weight-bold">Question <%= "#{index+1} : #{question.statement} #{'*' if question.required? }" %></p>
           <% question.options.each_with_index do |option_value, option_index| %>
             <% if question.checkbox? %>
                 <%= check_box_tag :option, 1, false, disabled: true %>
@@ -40,19 +35,18 @@
         <% end %>
         <br>
         <% if (can? :edit, Survey) && (@survey.expiry > DateTime.now) %>
-          <%= link_to 'Edit Survey', edit_survey_path(@survey) %><br>
+          <%= link_to t('surveys.edit_survey_link'), edit_survey_path(@survey) %><br>
         <% end %>
         <% if can? :destroy, Survey %>
-          <%= link_to 'Delete', @survey, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+          <%= link_to t('surveys.delete_survey_link'), @survey, method: :delete, data: { confirm: 'Are you sure?' } %><br>
         <% end %>
-        <%= link_to 'Fill it', new_survey_user_response_path(@survey) %>
       </div>
     </div>
     <div id="response" class="container tab-pane fade"><br>
-      <h3>Responses</h3>
+      <h3><%= t('surveys.response_label') %></h3>
       <div id = "responses">
       </div>
-      <a href = "#_" data-survey_id = "<%= @survey.id %>" id = "see_responses" class = "js-responses">See Responses</a>
+      <a href = "#_" data-survey_id = "<%= @survey.id %>" id = "see_responses" class = "js-responses"><%= t('surveys.see_responses_label') %></a>
     </div>
   </div>
 </div>
