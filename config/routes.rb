@@ -17,7 +17,11 @@ Rails.application.routes.draw do
 
   resources :company_settings
   resources :user_settings
-  resources :members
+  resources :members do
+    member do
+      get 'calculate_surveys'
+    end
+  end
 
   resources :surveys do
     member do

@@ -669,3 +669,33 @@ header.master-head h1 {
   border: 1px solid $primary-border-color;
   border-radius: $primary-radius;
 }
+
+.surveys-count {
+  font-size: $small-text-size;
+  position: relative;
+  padding: 10px;
+  padding-right: 18px;
+  border: none;
+  background-color: $primary-color;
+}
+
+.surveys-count:hover {
+  border: none;
+  background-color: $primary-color;
+  opacity: 0.7;
+}
+
+.surveys-count-notification {
+  position: absolute;
+  content: ' ';
+  top: 0;
+  right: 0;
+  padding: 0 4px;
+  background-color: red;
+  border-radius: $primary-radius;
+  font-size: $text-size;
+}
+
+.surveys-count::after {
+  display: none;
+}

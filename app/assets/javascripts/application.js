@@ -14,7 +14,22 @@
 //= require jquery_ujs
 //= require chosen-jquery
 //= require_tree .
+globalData = {};
+
+function setGlobalData(key, value){
+  globalData[key] = value;
+}
+
+function getGlobalData(key){
+  return globalData[key];
+}
 
 $(document).ready( function () {
   $('.js-data-table').DataTable();
+  var userId = getGlobalData('userId');
+  $.ajax({
+    type: 'GET',
+    url: '/members/' + userId + '/calculate_surveys',
+    data: {}
+  });
 } );
