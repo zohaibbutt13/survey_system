@@ -44,7 +44,7 @@
               <div class = "pt-3">
                 <label><%= t('surveys.assign_group_label') %></label>
                 <div class = "d-flex justify-content-end">
-                  <%= f.select :group_id, options_for_select(@groups.collect {|group| [group.name, group.id ]}.insert(0, "None"), @survey.group_id ) %>
+                  <%= f.select :group_id, options_for_select(@groups.collect {|group| [group.name, group.id ]}, @survey.group_id ), { include_blank: true } %>
                 </div>
               </div>
               <div id = "survey_questions" class = "pt-3" >
