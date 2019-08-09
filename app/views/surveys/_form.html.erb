@@ -18,31 +18,31 @@
             <%= form_for @survey, id: "form" do |f| %>
               <%= render "devise/shared/error_messages", resource: @survey %>
               <div class = "pt-3 ">
-                <label> Name of Survey: </label>
+                <label><%= t('surveys.name_label') %></label>
                 <%= f.text_field :name %><br>
               </div>
               <div class = "pt-3">
-                <label> Description of Survey: </label>
+                <label><%= t('surveys.description_label') %></label>
                 <%= f.text_field :description %></br>
               </div>
               <div class = "pt-3">
-                <label> Category of Survey: </label>
+                <label><%= t('surveys.category_label') %></label>
                 <div class = "d-flex justify-content-end">
                   <%= f.select :category, options_for_select(CATEGORIES, @survey.category ) %>
                 </div>
               </div>
               <div class = "pt-3">
-                <label> Type of Survey: </label>
+                <label><%= t('surveys.type_label') %></label>
                 <div class = "d-flex justify-content-end">
                   <%= f.select :survey_type , options_for_select(SURVEY_TYPE) %> 
                 </div>
               </div> 
               <div class = "pt-3">
-                <label> Expiry of Survey: </label>
+                <label><%= t('surveys.expiry_label') %></label>
                 <%= f.date_field :expiry %></br>
               </div>
               <div class = "pt-3">
-                <label> Assign a group to survey: </label>
+                <label><%= t('surveys.assign_group_label') %></label>
                 <div class = "d-flex justify-content-end">
                   <%= f.select :group_id, options_for_select(@groups.collect {|group| [group.name, group.id ]}, @survey.group_id ) %>
                 </div>
@@ -60,10 +60,10 @@
                         </div>
                       </div>
                      <div class = "pt-3">
-                        <label> Statement *: </label>
+                        <label><%= t('surveys.statement_label') %></label>
                         <%= q.text_field :statement %>
                         <div class = "pt-3">
-                          <label> Required: </label>
+                          <label><%= t('surveys.required_label') %></label>
                           <%= q.check_box :required, checked: q.object.required %>
                         </div>
                       </div>
@@ -78,7 +78,7 @@
                             <% end %>
                             <% if q.object.question_type == "Checkbox" || q.object.question_type == "Radio Buttons" %>
                               <a href = "#" data-qid = "<%= index %>" data-oid = "<%= option_index %>"
-                                data-divid = "<%= option_index %>" class = "js-deleteoption">Delete Option </a>
+                                data-divid = "<%= option_index %>" class = "js-deleteoption"><%= t('surveys.delete_option_label') %></a>
                             <% end %>
                             <% option_index += 1 %>
                           </div> 
@@ -86,16 +86,16 @@
                       </div>
                       <% if q.object.question_type == "Checkbox" || q.object.question_type == "Radio Buttons" || q.object.question_type.nil? %>
                         <div id = "statement_<%= index %>_add_option">
-                          <a href = "#_" data-qid = "<%= index %>" data-oid = "<%= option_index %>" data-divid = "<%= option_index %>" class = "js-addoption">Add Option </a>
+                          <a href = "#_" data-qid = "<%= index %>" data-oid = "<%= option_index %>" data-divid = "<%= option_index %>" class = "js-addoption"><%= t('surveys.add_option_label') %></a>
                         </div>
                       <% end %>
-                      <a href = "#_" data-qid = "<%= index %>" class = "js-deletequestion">Delete Question </a>
+                      <a href = "#_" data-qid = "<%= index %>" class = "js-deletequestion"><%= t('surveys.delete_question_label') %></a>
                       <% index += 1 %>  
                     <% end %>  
                   </div>
                 <% end %>
               </div>
-              <a href = "#_" data-option_count = "<%= index-1 %>" data-count = "<%= index %>" class = "js-addquestion">Add Question </a>
+              <a href = "#_" data-option_count = "<%= index-1 %>" data-count = "<%= index %>" class = "js-addquestion"><%= t('surveys.add_question_label') %></a>
               <%= f.submit locals[:submit], class: "btn btn-primary" %>
             <% end %>    
           </div>  

@@ -2,7 +2,7 @@
 <div class="row no-gutters justify-content-start">
   <div class="col-1">
     <% if can? :create, Survey %>
-      <%= link_to 'New Survey', new_survey_path, class: 'primary-btn' %>
+      <%= link_to t('surveys.new_survey_link'), new_survey_path, class: 'primary-btn' %>
     <% end %>
   </div>
 </div>
