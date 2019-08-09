@@ -27,9 +27,11 @@ function getGlobalData(key){
 $(document).ready( function () {
   $('.js-data-table').DataTable();
   var userId = getGlobalData('userId');
-  $.ajax({
-    type: 'GET',
-    url: '/members/' + userId + '/calculate_surveys',
-    data: {}
-  });
-} );
+  if(userId) {
+    $.ajax({
+      type: 'GET',
+      url: '/members/' + userId + '/calculate_surveys',
+      data: {}
+    });
+  }
+});

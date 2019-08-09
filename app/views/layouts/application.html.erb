@@ -40,7 +40,7 @@
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
     <%= javascript_tag do %>
-      setGlobalData('userId', <%= @current_user.id %>);
+      setGlobalData('userId', <%= @current_user.id if @current_user.present? %>);
     <% end %>
   </head>
   <body>
