@@ -58,7 +58,7 @@ class CompaniesController < ApplicationController
     #   @surveys = @surveys.active_surveys
     # end
     @employees = User.all
-    add_breadcrumb "Surveys", surveys_path
+    add_breadcrumb "Surveys", display_surveys_company_path(@current_company)
     respond_to do |format|
       format.html
       format.js
