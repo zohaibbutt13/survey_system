@@ -33,6 +33,8 @@ en:
   sign_up_label: "Sign Up"
   options_label: "Options"
   user_not_found: "User not found!"
+  visit_dashboard_label: "Visit Dashboard"
+  visit_homepage_label: "Visit Home page"
 
   groups:
     group_heading_label: "All Groups"
