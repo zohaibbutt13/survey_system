@@ -1,14 +1,23 @@
 <div class="container">
   <div class="row">
-    <div class='js-survey-chart col-md-6'>
-      <h3><%= t 'main_charts.surveys_stats_label' %></h3>
-      <h2 class="text-muted"><%= t 'main_charts.surveys_stats_description' %></h2>
-      <%= content_tag :canvas, "", id: 'surveys_stats', data: { chart_data: @surveys_stats, chart_labels:SURVEY_STATS_LABELS, chart_type: 'pie', chart_colors: GRAPH_COLORS } %>
+    <div class='js-survey-chart col card mx-auto mb-2 p-0'>
+      <div class="card-header"><b><%= t 'main_charts.surveys_stats_label' %></b></div>
+      <div class="card-body">
+        <%= content_tag :canvas, "", id: 'surveys_stats', data: { chart_data: @surveys_stats, chart_labels:SURVEY_STATS_LABELS, chart_type: 'pie', chart_colors: GRAPH_COLORS } %>
+        <div class="d-flex justify-content-center mt-1">
+          <p><%= t 'main_charts.surveys_stats_description' %></p>
+        </div>
+      </div>
     </div>
-    <div class='js-survey-chart col-md-6'>
-      <h3><%= t 'main_charts.latest_surveys_label' %></h3>
-      <h2 class="text-muted"><%= t 'main_charts.latest_surveys_description' %></h2>
-      <%= content_tag :canvas, "", id: 'latest_surveys', data: { chart_data: @latest_surveys_responses_count, chart_labels: @latest_surveys_labels, chart_type: 'bar', chart_label: 'Responses', chart_colors: GRAPH_COLORS } %>
+    <div class="col-md-1"></div>
+    <div class='js-survey-chart col card mx-auto mb-2 p-0'>
+      <div class="card-header"><b><%= t 'main_charts.latest_surveys_label' %></b></div>
+      <div class="card-body">
+        <%= content_tag :canvas, "", id: 'latest_surveys', data: { chart_data: @latest_surveys_responses_count, chart_labels: @latest_surveys_labels, chart_type: 'bar', chart_label: 'Responses', chart_colors: GRAPH_COLORS } %>
+        <div class="d-flex justify-content-center mt-1">
+          <p><%= t 'main_charts.surveys_stats_description' %></p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
