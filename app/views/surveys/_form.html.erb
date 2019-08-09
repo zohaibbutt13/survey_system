@@ -50,7 +50,7 @@
               <div id = "survey_questions" class = "pt-3" >
                 <% index = 0 %> 
                 <%= f.fields_for :questions, id: '' do |q| %>
-                <%= q.hidden_field :company_id, value: @current_company.id %>
+                  <%= q.hidden_field :company_id, value: @current_company.id %>
                   <div id = "statement_<%= index %>" class="form-group">
                     <% unless q.object.statement == '-1' %>
                       <div class = "pt-3">
@@ -70,6 +70,7 @@
                       <div id = "statement_<%= index %>_option_container" class = "pt-3">
                         <% option_index = 0 %>
                         <%= q.fields_for :options, id: '' do |option| %> 
+                          <%= option.hidden_field :company_id, value: @current_company.id %>
                           <div id= "statement_<%= index %>_option_divid_<%= option_index %>">
                             <% if q.object.question_type == "True / False" || q.object.question_type == "Comment Box" %>
                               <br><%= text_field_tag "text", "#{option.object.detail}", class: 'form-control', readonly: true %> 

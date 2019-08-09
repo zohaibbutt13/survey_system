@@ -52,7 +52,7 @@
             <div class="d-flex align-items-start flex-column">
               <div class="w-100">
                 <%= render partial:'layouts/flash_messages' %>
-                
+                <%= render_breadcrumbs :separator => ' / ' %>
                 <%= yield %>
               </div>
               <div class="mt-auto w-100">

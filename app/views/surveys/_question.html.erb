@@ -6,6 +6,7 @@
   <div class = "pt-3">
     <label><%= t('surveys.statement_label') %></label>
     <%= text_field_tag "survey[questions_attributes][#{params["question_count"]}][statement]" , nil , class: 'form-control', required: true %>
+    <%= hidden_field_tag "survey_questions_attributes_#{params["question_count"]}_company_id", @current_company.id %>
     <div class="pt-3">
       <%= check_box_tag "survey[questions_attributes][#{params["question_count"]}][required]", 1, 0 %>
       <label><%= t('surveys.required_label') %></label>
