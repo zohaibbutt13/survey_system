@@ -36,7 +36,6 @@
   <body>
     <!-- for guest user -->
     <% unless current_user.present? %>
-      <%= render_breadcrumbs :separator => ' / ' %>
       <%= yield %>
     <!-- for logged in user -->
     <% else %>
