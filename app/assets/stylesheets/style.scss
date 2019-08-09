@@ -623,7 +623,7 @@ header.master-head h1 {
   a:hover {
     text-decoration: none;
     opacity: 0.7;
-    color: white
+    color: white;
   }
 
   .icon{
@@ -668,4 +668,16 @@ header.master-head h1 {
   text-align: center;
   border: 1px solid $primary-border-color;
   border-radius: $primary-radius;
+}
+
+.link-text{
+  a{
+    color: black !important;
+    text-decoration: none !important;
+    font-size: 1rem !important; 
+  }
+   a:hover {
+    text-decoration: none;
+    opacity: 0.7;
+  }
 }

@@ -13,9 +13,9 @@
     </thead>
     <tbody>
       <% @surveys.each_with_index do |survey, index| %>
-        <tr>
+        <tr class="link-text">
         <th scope="row"><%= index+1 %></th>
-        <td><%= survey.name %></td>
+        <td><%= link_to survey.name, new_survey_user_response_path(survey), class: "text-small" %></td>
         <td><%= survey.description %></td>
         <td><%= survey.category %></td>
         <td><%= survey.user.full_name %></td> 
