@@ -22,7 +22,11 @@
 
     <!-- Chart.js plugin datalabels -->
     <%= javascript_include_tag "https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels" %>
+
+     <!-- Fontawesome icons -->
+    <%= javascript_include_tag "https://use.fontawesome.com/22018efeea.js" %>
       
+    <%= javascript_include_tag "https://use.fontawesome.com/22018efeea.js" %>  
     <!-- application assets -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag 'application', media: 'all' %>
@@ -30,12 +34,32 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <div style="min-height: 30rem">
-      <%= render partial:'layouts/header' %>
-      <%= render partial:'layouts/flash_messages' %>
-      <%= render_breadcrumbs :separator => ' / ' %>
+    <!-- for guest user -->
+    <% unless current_user.present? %>
       <%= yield %>
-    </div>
-    <%= render partial:'layouts/footer' %>
-  </body>
+    <!-- for logged in user -->
+    <% else %>
+      <div class="w-100 h-100">
+        <%= render partial:'layouts/header' %>
+        <div class="row no-gutters h-100 w-100 p-0">
+          <div class="sidebar-style float-left h-100 col-4 col-md-2">
+            <div>
+              <%= render partial:'layouts/sidebar' %>  
+            </div>
+          </div>
+          <div id="main" class="main-style my-auto float-left overflow-auto col col-md-10">
+            <div class="d-flex align-items-start flex-column">
+              <div class="w-100">
+                <%= render partial:'layouts/flash_messages' %>
+                <%= render_breadcrumbs :separator => ' / ' %>
+                <%= yield %>
+              </div>
+              <div class="mt-auto w-100">
+                <%= render partial:'layouts/footer' %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
 </html>

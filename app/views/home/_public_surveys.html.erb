@@ -9,6 +9,7 @@
             <h5 class="card-header"><%= survey.name %></h5>
             <div class="card-body">
               <p class="card-text"><%= survey.description %></p>
+              <%= link_to t('user_responses.response_label'), new_survey_user_response_path(survey) %>
               <a href="#_" class="btn btn-primary"><%= t('home.take_survey') %></a>
             </div>
           </div>

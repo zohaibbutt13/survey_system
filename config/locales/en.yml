@@ -20,6 +20,19 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  login_label: "Log in"
+  password_label: "Password:"
+  password_confirmation_label: "Password Confirmation:"
+  email_label: "Email:"
+  remember_label: "Remember me"
+  first_name_label: "First Name:"
+  last_name_label: "Last Name:"
+  company_name_label: "Company Name:"
+  company_subdomain_label: "Company Subdomain:"
+  image_label: "Image:"
+  sign_up_label: "Sign Up"
+
+
   groups:
     group_heading_label: "All Groups"
     group_create_success: "Group created successfully!"
@@ -79,6 +92,7 @@ en:
   created_by_label: "Created By"
   created_on_label: "Created On"
   expiry_label: "Expiry"
+  already_have_an_account_label: 'Already have an account?'
 
   dashboard:
     graphs_label: "Graphs"
@@ -132,3 +146,34 @@ en:
 
   surveys:
     index_heading: "Survey Index"
+    new_survey_link: "Add Survey"
+    name_label: "Name of Survey : "
+    description_label: "Description of Survey : "
+    type_label: "Type of Survey : "
+    expiry_label: "Expiry of Survey : "
+    assign_group_label: "Assign a group to survey : "
+    question_type_label: "Question Type : "
+    statement_label: " Statement *: "
+    required_label: " Required: "
+    add_option_label: "Add Option"
+    delete_option_label: "Delete Option"
+    add_question_label: "Add Question"
+    delete_question_label: "Delete Question"
+    survey_label: "Survey"
+    responses_label: "Responses"
+    survey_preview_label: "Survey Preview"
+    see_responses_label: "See Responses"
+    edit_survey_link: "Edit Survey"
+    delete_survey_link: "Delete Survey"
+
+  user_responses:
+    question_label: "Question"
+    fill_in_response_label: "Fill in your response"
+    response_success_label: "Your response has been recorded ! :)"
+    response_label: "Response"
+
+  options:
+    option_label: "Option"
+    commentbox_label: "Comment Box"
+
+

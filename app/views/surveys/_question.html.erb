@@ -1,20 +1,21 @@
 <div id = "statement_<%= params["question_count"] %>" class="form-group pt-3">
   <div class = "pt-3">
-    <label> Question Type: </label>
+    <label><%= t('surveys.question_type_label') %></label>
     <%= select_tag "survey[questions_attributes][#{params["question_count"]}][question_type]", raw("<option>Checkbox</option><option>Radio Buttons</option><option>Comment Box</option><option>True / False</option>") %><br>
   </div>
   <div class = "pt-3">
-    <label> Statement *: </label>
+    <label><%= t('surveys.statement_label') %></label>
     <%= text_field_tag "survey[questions_attributes][#{params["question_count"]}][statement]" , nil , class: 'form-control', required: true %>
+    <%= hidden_field_tag "survey_questions_attributes_#{params["question_count"]}_company_id", @current_company.id %>
     <div class="pt-3">
       <%= check_box_tag "survey[questions_attributes][#{params["question_count"]}][required]", 1, 0 %>
-      <label>Required </label>
+      <label><%= t('surveys.required_label') %></label>
     </div>
   </div>
   <div id = "statement_<%= params["question_count"] %>_option_container" class="form-group pt-3">
   </div>
   <div id = "statement_<%= params["question_count"] %>_add_option">
-    <a href = "#_" data-qid = "<%= params["question_count"] %>" data-oid = "-1" data-divid = "-1" class = "js-addoption">Add Option</a>
+    <a href = "#_" data-qid = "<%= params["question_count"] %>" data-oid = "-1" data-divid = "-1" class = "js-addoption"><%= t('surveys.add_option_label') %></a>
   </div>
-  <a href = "#" data-qid = "<%= params["question_count"] %>" class = "js-deletequestion">Delete Question</a>
+  <a href = "#" data-qid = "<%= params["question_count"] %>" class = "js-deletequestion"><%= t('surveys.delete_question_label') %></a>
 </div>

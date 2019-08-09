@@ -40,11 +40,10 @@ class CompaniesController < ApplicationController
 
   def filter
     @surveys = @surveys.where('name LIKE ?', "%#{params[:filters][:name]}%") unless params[:filters][:name].blank?
-    @surveys = @surveys.where('expiry < ?', params[:filters][:expired_before]) unless params[:filters][:expired_before].blank?
-    @surveys = @surveys.where('expiry > ?', params[:filters][:expired_after]) unless params[:filters][:expired_after].blank?
-    @surveys = @surveys.where('created_at > ?', params[:filters][:created_after]) unless params[:filters][:created_after].blank?
-    @surveys = @surveys.where('created_at < ?', params[:filters][:created_before]) unless params[:filters][:created_before].blank?
-
+    @surveys = @surveys.where('expiry < ?', params[:filters][:expired_before]) unless params[:filters][:expired_before].blank? 
+    @surveys = @surveys.where('survey_type = ?', params[:filters][:survey_type]) unless params[:filters][:survey_type].blank?
+    @surveys = @surveys.where('Date(created_at) = ?', params[:filters][:created_on]) unless params[:filters][:created_on].blank? 
+    @surveys = @surveys.where('user_id = ?', params[:filters][:created_by_id]) unless params[:filters][:created_by_id].blank?  
     respond_to do |format|
       format.js
     end
@@ -53,12 +52,12 @@ class CompaniesController < ApplicationController
   #move to surveys
   # get home/display_surveys
   def display_surveys
-    if params[:filter_by] == 'expiry'
-      @surveys = @surveys.expired_surveys
-    elsif params[:filter_by] == 'active'
-      @surveys = @surveys.active_surveys
-    end
-
+    # if params[:filter_by] == 'expiry'
+    #   @surveys = @surveys.expired_surveys
+    # elsif params[:filter_by] == 'active'
+    #   @surveys = @surveys.active_surveys
+    # end
+    @employees = User.all
     respond_to do |format|
       format.html
       format.js

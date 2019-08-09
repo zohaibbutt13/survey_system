@@ -1,7 +1,7 @@
 require 'date'
 
-desc 'To create trial package'
-task add_packages: :environment do
+desc 'To create subscription packages'
+task add_subscription_packages: :environment do
   SubscriptionPackage.create(subscription_package_name: 'Platinum',
                          max_supervisors: 100, max_members: 1000)
   SubscriptionPackage.create(subscription_package_name: 'Gold',

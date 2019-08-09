@@ -5,10 +5,10 @@ module ApplicationHelper
   end
 
   def sidebar_menu
-      sidebar_menu = { Menu: { url: dashboard_company_path(current_user), icon: 'home' },
-                       Employees: { url: members_path, icon: 'users' },
-                       Surveys: { url: display_surveys_company_path, icon: 'book-open' },
-                       Groups: { url: groups_path, icon: 'user-plus' } }
+      sidebar_menu = { Dashboard: { url: dashboard_company_path(current_user), icon: 'tachometer' },
+                       Employees: { url: members_path, icon: 'vcard-o' },
+                       Surveys: { url: display_surveys_company_path(current_user.company_id), icon: 'file-text-o' },
+                       Groups: { url: groups_path, icon: 'group' } }
   end
 
   def flash_type(key)
@@ -16,7 +16,7 @@ module ApplicationHelper
       'alert alert-success'
     elsif key == 'warning'
       'alert alert-warning'
-    elsif key == 'error'
+    elsif key == 'error' || key == 'alert'
       'alert alert-danger'
     elsif key == 'notify'
       'alert alert-info'
