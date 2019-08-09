@@ -103,10 +103,12 @@ en:
     surveys_stats_description: "Expired Vs Active Surveys"
     latest_surveys_label: "Latest Surveys"
     latest_surveys_description: "Responses of latest surveys"
+    no_chart_data_label: "Currently there is no data available to draw this chart"
 
   activity_history:
     activity_label: "Activity"
     time_label: "Time"
+    no_activity_label: "Currently there is no user activity history to display"
 
   package:
     description_label: "With this package you will get:"

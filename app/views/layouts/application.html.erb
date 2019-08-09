@@ -57,7 +57,9 @@
               <div class="w-100">
                 <%= render partial:'layouts/flash_messages' %>
                 <%= render_breadcrumbs :separator => ' / ' %>
-                <%= yield %>
+                <div class="p-20">
+                  <%= yield %>
+                </div>
               </div>
               <div class="mt-auto w-100">
                 <%= render partial:'layouts/footer' %>
