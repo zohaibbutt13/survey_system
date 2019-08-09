@@ -1,33 +1,33 @@
 <div>
 
   <div class="d-flex justify-content-between heading-bg mb-2">
-    <h1>Surveys</h1>
-    <a class="btn btn-primary my-auto" href="<%= new_survey_path %>"><%= t('surveys.new_survey_link') %></a>
+    <h1><%= t('public_surveys.surveys_label') %></h1>
+    <a class="btn primary-btn my-auto" href="<%= new_survey_path %>"><%= t('surveys.new_survey_link') %></a>
   </div>
 
   <div class="row d-flex justify-content-start">
     <div class="dropdown">
       <button class="primary-btn btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
-        Filters
+        <%= t('public_surveys.filter_label') %>
       </button>
-      <% if @surveys.count > 0 %>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a href="#_" class="dropdown-item" data-toggle="modal" data-target="#name_modal">Name</a><br>
-          <a href="#_" class="dropdown-item" data-toggle="modal" data-target="#survey_type_modal">Survey Type</a><br>
-          <a href="#_" class="dropdown-item" data-toggle="modal" data-target="#expired_before_modal">Expired Before</a><br>
-          <a href="#_" class="dropdown-item" data-toggle="modal" data-target="#created_on_modal">Created on</a><br>
-          <a href="#_" class="dropdown-item" data-toggle="modal" data-target="#created_by_modal">Created By</a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a href="#_" class="dropdown-item" data-toggle="modal" data-target="#name_modal"><%= t('public_surveys.name_label') %></a><br>
+          <a href="#_" class="dropdown-item" data-toggle="modal" data-target="#survey_type_modal"><%= t('public_surveys.type_label') %></a><br>
+        <a href="#_" class="dropdown-item" data-toggle="modal" data-target="#expired_before_modal"><%= t('public_surveys.expired_before_label') %></a><br>
+        <a href="#_" class="dropdown-item" data-toggle="modal" data-target="#created_on_modal"><%= t('public_surveys.created_on_label') %></a><br>
+        <a href="#_" class="dropdown-item" data-toggle="modal" data-target="#created_by_modal"><%= t('public_surveys.created_by_label') %></a>
         </div>
-      <% end %>
       </div>
     </div>
   </div>
 
-  <%= render partial: 'shared/filters/name_filter' %>
-  <%= render partial: 'shared/filters/survey_type_filter' %>
-  <%= render partial: 'shared/filters/expired_before_filter' %>
-  <%= render partial: 'shared/filters/created_on_filter' %>
-  <%= render partial: 'shared/filters/created_by_filter', locals: { employees: @employees} %>  
+  <% if @surveys.count > 0 %>
+    <%= render partial: 'shared/filters/name_filter' %>
+    <%= render partial: 'shared/filters/survey_type_filter' %>
+    <%= render partial: 'shared/filters/expired_before_filter' %>
+    <%= render partial: 'shared/filters/created_on_filter' %>
+    <%= render partial: 'shared/filters/created_by_filter', locals: { employees: @employees} %>  
+  <% end %>
   
   <div id = "surveys_list">
     <%= render partial: 'list_surveys', locals: { surveys: @surveys} %>
