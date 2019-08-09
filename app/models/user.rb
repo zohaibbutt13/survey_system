@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
   has_one :user_setting
   has_many :surveys
   has_and_belongs_to_many :groups
+  has_many :user_responses
 
   accepts_nested_attributes_for :company
 
@@ -47,5 +48,12 @@ class User < ActiveRecord::Base
 
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  def count_surveys
+    count = User.joins(groups: :surveys)
+    .select("surveys.id as id, surveys.name as name")
+    .where("groups_users.user_id = ? and surveys.expiry > ?", id, DateTime.now )
+    .map { |s| { id: s.id, name: s.name } }
   end
 end

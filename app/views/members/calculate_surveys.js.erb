@@ -1,0 +1,4 @@
+$('#pending_surveys').html("<%= @survey_count.count %>");
+<% @survey_count.each do |survey| %>
+  $('#survey_links').append("<%= escape_javascript render 'surveys_links', locals: {id: survey[:id], name: survey[:name]} %>");
+<% end %>

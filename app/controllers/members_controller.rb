@@ -42,6 +42,13 @@ class MembersController < ApplicationController
     redirect_to members_path
   end
 
+  def calculate_surveys
+    @survey_count = @member.count_surveys
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
   def member_params

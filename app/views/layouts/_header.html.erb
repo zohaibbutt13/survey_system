@@ -29,6 +29,14 @@
             <% end %>
           </div>
         </div>
+        <div class="dropdown">
+          <!-- <a href = "#_" data-user_id = "<%= current_user.id %>" class = "js-survey_count btn btn-primary dropdown-toggle m-1" data-toggle="dropdown" id = "pending_surveys" type = "button"><i class="fa fa-bell"></i></a> -->
+          <button type="button" data-user_id = "<%= current_user.id %>" class="btn btn-primary dropdown-toggle m-1 js-survey_count" data-toggle="dropdown" id = "pending_surveys">
+          <i class="fa fa-bell"></i>
+          </button>
+          <div id = "survey_links" class="dropdown-menu">
+          </div>
+        </div>
       </div>
     <% else %>  
       <a class="navbar-brand" href="/">Survey System</a>

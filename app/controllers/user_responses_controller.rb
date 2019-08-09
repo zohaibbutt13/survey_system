@@ -28,6 +28,7 @@ class UserResponsesController < ApplicationController
   def create
     @survey = Survey.find(params[:survey_id])
     @user_response = UserResponse.new(response_params)
+    @user_response.user_id = current_user.id
     if @user_response.save
       flash[:notice] = 'Saved'
       redirect_to survey_user_response_path(@survey, @user_response)

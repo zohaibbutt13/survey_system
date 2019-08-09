@@ -1,17 +1,15 @@
 <div id = "user-response">
   <%= form_for [@survey,@user_response] do |f| %>
     <%= f.hidden_field :survey_id, value: @survey.id %>
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true %></br>
+    <% if current_user.nil? %>
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true %></br>
+    <% end %>
     <% @survey.questions.each_with_index do |question , index| %>
       <%= f.fields_for :answers do |answer| %>
         <%= answer.hidden_field :question_id, value: question.id %>
         <br>
-        <% if question.required %>
-          <p class="font-weight-bold">Question <%= "#{index+1} : #{question.statement} *" %></p>
-        <% else %>
-          <p class="font-weight-bold">Question <%= "#{index+1} : #{question.statement}" %></p>
-        <% end %>
+        <p class="font-weight-bold">Question <%= "#{index+1} : #{question.statement} #{'*' if question.required? }" %></p>
         <% question.options.each_with_index do |option_value, option_index| %>
           <% if (question.question_type == 'Checkbox') %>
             <%= answer.check_box :option_id, {id: "user_response_answers_attributes_#{option_index}_option_id_#{option_value.id}" , multiple: true }, "#{option_value.id}", false %>
