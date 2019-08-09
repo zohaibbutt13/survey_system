@@ -46,7 +46,10 @@
   <body>
     <!-- for guest user -->
     <% unless current_user.present? %>
-      <%= yield %>
+      <%= render partial:'layouts/header' %>
+      <div class="body-container">
+        <%= yield %>
+      </div>
     <!-- for logged in user -->
     <% else %>
       <div class="w-100 h-100">
