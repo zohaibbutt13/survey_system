@@ -3,7 +3,7 @@
   <% if current_user.present? %>
     <a class="navbar-brand" href="<%= dashboard_company_path(current_user) %>">Survey System</a>
     <div class="d-flex flex-row-reverse">
-      <div class="dropdown text-white">
+      <div class="dropdown text-white d-flex align-items-center">
         <a data-toggle="dropdown">
           <b class="text-white"><%= full_name %></b> 
           <span class="badge badge-pill badge-secondary"><%= current_user.role %></span>
@@ -28,10 +28,12 @@
         </div>
       </div>
       <div class="dropdown pr-2">
-        <button type="button" data-user_id = "<%= current_user.id %>" class="btn btn-primary dropdown-toggle m-1 js-survey_count" data-toggle="dropdown" id = "pending_surveys">
+        <button type="button" data-user_id = "<%= current_user.id %>" class="btn btn-primary dropdown-toggle js-survey_count surveys-count" data-toggle="dropdown" id="pending_surveys">
           <i class="fa fa-bell"></i>
+          <span id="survey_links" class="surveys-count-notification"></span>
         </button>
-        <div id = "survey_links" class="dropdown-menu">
+        <div id="surveys_detail" class="dropdown-menu">
+        </div>
         </div>
       </div>
     </div>

@@ -75,7 +75,7 @@ class MembersController < ApplicationController
   end
 
   def calculate_surveys
-    @survey_count = @member.count_surveys
+    @surveys = @member.count_surveys
     respond_to do |format|
       format.js
     end
