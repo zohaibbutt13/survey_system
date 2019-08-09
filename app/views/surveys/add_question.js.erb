@@ -1,5 +1,8 @@
 $('#survey_questions').append("<%= escape_javascript render(:partial => 'surveys/question') %>");
 var val = $("#qtype_dropdown").val();
+<% if params["question_count"].to_i >= @current_company.company_setting.max_questions %>
+  $('#Add_question').hide();
+<% end %>
 if (val == "Checkbox") {
   $('#statement_<%= params["question_count"] %>_option_container').append("<%= escape_javascript render(:partial => 'options/checkbox') %>");
 } 

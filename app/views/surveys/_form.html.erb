@@ -81,7 +81,9 @@
             </div>
           <% end %>
         </div>
-        <a href = "#_" data-option_count = "<%= index-1 %>" data-count = "<%= index %>" class = "js-addquestion float-right secondary-btn mb-2"><%= t('surveys.add_question_label') %></a>
+        <% if index < @current_company.company_setting.max_questions %>
+          <a href = "#_" data-option_count = "<%= index-1 %>" data-count = "<%= index %>" class = "js-addquestion float-right secondary-btn mb-2" id = "Add_question"><%= t('surveys.add_question_label') %></a>
+        <% end %>
         <%= f.submit submit, class: "primary-btn mt-2 w-100" %>
       <% end %>    
     </div>  
