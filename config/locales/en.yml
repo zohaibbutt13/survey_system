@@ -147,3 +147,34 @@ en:
 
   surveys:
     index_heading: "Survey Index"
+    new_survey_link: "Add Survey"
+    name_label: "Name of Survey : "
+    description_label: "Description of Survey : "
+    type_label: "Type of Survey : "
+    expiry_label: "Expiry of Survey : "
+    assign_group_label: "Assign a group to survey : "
+    question_type_label: "Question Type : "
+    statement_label: " Statement *: "
+    required_label: " Required: "
+    add_option_label: "Add Option"
+    delete_option_label: "Delete Option"
+    add_question_label: "Add Question"
+    delete_question_label: "Delete Question"
+    survey_label: "Survey"
+    responses_label: "Responses"
+    survey_preview_label: "Survey Preview"
+    see_responses_label: "See Responses"
+    edit_survey_link: "Edit Survey"
+    delete_survey_link: "Delete Survey"
+
+  user_responses:
+    question_label: "Question"
+    fill_in_response_label: "Fill in your response"
+    response_success_label: "Your response has been recorded ! :)"
+    response_label: "Response"
+
+  options:
+    option_label: "Option"
+    commentbox_label: "Comment Box"
+
+

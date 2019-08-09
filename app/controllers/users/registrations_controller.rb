@@ -12,7 +12,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def sign_up_params
     params[:user][:role] = User::ROLE[:admin]
-    params[:user][:company_attributes][:subscription_package_id] = 4
+    subscription_package = SubscriptionPackage.find_by_subscription_package_name('Trial')
+    params[:user][:company_attributes][:subscription_package_id] = subscription_package.id
     params.require(:user).permit(:role, :first_name, :last_name, :email, :password, :password_confirmation,
                                  :image, company_attributes: [:name, :subdomain, :subscription_package_id])
   end
