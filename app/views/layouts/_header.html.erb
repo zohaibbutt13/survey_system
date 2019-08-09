@@ -7,7 +7,11 @@
         <a data-toggle="dropdown">
           <b><%= full_name %></b> 
           <span class="badge badge-pill badge-secondary"><%= current_user.role %></span>
-          <%= image_tag current_user.image.url(:thumb), class: 'rounded-circle z-depth-0 mx-2' %>
+          <% if current_user.image_file_name.present? %>
+            <%= image_tag current_user.image.url(:thumb), class: 'rounded-circle z-depth-0 mx-2' %>
+          <% else %>
+            <img src="/assets/icon.jpg" class= "rounded-circle z-depth-0 mx-2" />
+          <% end %>
         </a>
         <div class="dropdown-menu">
           <%= link_to "My Dashboard", dashboard_company_path(current_user), class: "dropdown-item" %>
