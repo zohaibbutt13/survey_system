@@ -41,6 +41,8 @@ Rails.application.routes.draw do
       get 'index'
       get 'packages'
       get 'filter_category'
+      get 'sign_in'
+      post 'sign_in_redirect'
     end
   end
 
