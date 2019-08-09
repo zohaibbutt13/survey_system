@@ -21,16 +21,17 @@
 
 en:
   login_label: "Log in"
-  password_label: "Password:"
-  password_confirmation_label: "Password Confirmation:"
-  email_label: "Email:"
+  password_label: "Password"
+  password_confirmation_label: "Password Confirmation"
+  email_label: "Email"
   remember_label: "Remember me"
-  first_name_label: "First Name:"
-  last_name_label: "Last Name:"
-  company_name_label: "Company Name:"
-  company_subdomain_label: "Company Subdomain:"
-  image_label: "Image:"
+  first_name_label: "First Name"
+  last_name_label: "Last Name"
+  company_name_label: "Company Name"
+  company_subdomain_label: "Company Subdomain"
+  image_label: "Image"
   sign_up_label: "Sign Up"
+  options_label: "Options"
 
 
   groups:
@@ -111,7 +112,7 @@ en:
     no_activity_label: "Currently there is no user activity history to display"
 
   package:
-    description_label: "With this package you will get:"
+    description_label: "With this package you will get"
     max_members_label: "Max Members Limit"
     max_supervisors_label: "Max Supervisors Limit"
     subscribe_label: "Subscribe"

@@ -9,6 +9,7 @@
         <th scope="col"><%= t 'created_by_label' %></th>
         <th scope="col"><%= t 'created_on_label' %></th>
         <th scope="col"><%= t 'expiry_label' %></th>
+        <th scope="col"><%= t 'options_label' %></th>
       </tr>
     </thead>
     <tbody>
@@ -21,6 +22,14 @@
         <td><%= survey.user.full_name %></td> 
         <td><%= survey.created_at.to_s(:long) %></td>
         <td><%= survey.expiry.to_s(:long) %></td>
+        <td>
+          <% if can? :update, survey %>
+            <%= link_to t('links.edit_link'), edit_survey_path(survey) %>
+          <% end %>
+          <% if can? :destroy, survey %>
+            <%= link_to t('links.delete_link'), survey_path(survey), method: :delete, data: { confirm: t('links.confirmation_message') } %>
+          <% end %>
+        </td>
       </tr>
       <% end %>
     </tbody>
