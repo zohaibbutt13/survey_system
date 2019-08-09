@@ -1,4 +1,4 @@
-<div id = "statement_<%= params["question_count"] %>" class="form-group pt-3">
+<div id = "statement_<%= params["question_count"] %>" class="form-group pt-3 question-box">
   <div class = "pt-3">
     <label><%= t('surveys.question_type_label') %></label>
     <%= select_tag "survey[questions_attributes][#{params["question_count"]}][question_type]", raw("<option>Checkbox</option><option>Radio Buttons</option><option>Comment Box</option><option>True / False</option>") %><br>
