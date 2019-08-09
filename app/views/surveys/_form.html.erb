@@ -1,107 +1,89 @@
-<div class="container">
-  <h2><%= locals[:heading] %></h2>
-  <br>
-  <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
-    <li class="nav-item">
-      <a class="nav-link active" data-toggle="tab" href="#edit">Survey</a>
-    </li>
-  </ul>
+<div class="heading-bg mb-2">
+  <h2><%= heading %></h2>
+</div>
 
-  <!-- Tab panes -->
-  <div class="tab-content">
-    <div id="edit" class="container tab-pane active"><br>
-      <h3><%= locals[:subheading] %></h3>
-      <div class = "text-left survey-box container mt-3 shadow p-3 mb-5 bg-white rounded">
-        <div class = "survey">
-          <div class = "container">
-            <%= form_for @survey, id: "form" do |f| %>
-              <%= render "devise/shared/error_messages", resource: @survey %>
-              <div class = "pt-3 ">
-                <label><%= t('surveys.name_label') %></label>
-                <%= f.text_field :name %><br>
+<!-- Tab panes -->
+<div class="tab-content">
+  <div id="edit" class="container tab-pane active"><br>
+        <div class = "container">
+          <%= form_for @survey, id: "form" do |f| %>
+            <%= render "devise/shared/error_messages", resource: @survey %>
+            <div class='label-input-container'>
+              <div class='label-input-item row no-gutters'>
+                <label class="col-4"><%= t('surveys.name_label') %></label>
+                <%= f.text_field :name, class: "col-8" %>
               </div>
-              <div class = "pt-3">
-                <label><%= t('surveys.description_label') %></label>
-                <%= f.text_field :description %></br>
+              <div class='label-input-item row no-gutters'>
+                <label class="col-4"><%= t('surveys.description_label') %></label>
+                <%= f.text_field :description, class: "col-8" %>
               </div>
-              <div class = "pt-3">
-                <label><%= t('surveys.category_label') %></label>
-                <div class = "d-flex justify-content-end">
-                  <%= f.select :category, options_for_select(CATEGORIES, @survey.category ) %>
-                </div>
+              <div class='label-input-item row no-gutters'>
+                <label class="col-4"><%= t('surveys.category_label') %></label>
+                <%= f.select :category, options_for_select(CATEGORIES, @survey.category ), {}, { class: "col-8" } %>
               </div>
-              <div class = "pt-3">
-                <label><%= t('surveys.type_label') %></label>
-                <div class = "d-flex justify-content-end">
-                  <%= f.select :survey_type , options_for_select(SURVEY_TYPE) %> 
-                </div>
-              </div> 
-              <div class = "pt-3">
-                <label><%= t('surveys.expiry_label') %></label>
-                <%= f.date_field :expiry %></br>
+              <div class='label-input-item row no-gutters'>
+                <label class="col-4"><%= t('surveys.type_label') %></label>
+                <%= f.select :survey_type , options_for_select(SURVEY_TYPE), {}, { class: "col-8" } %> 
               </div>
-              <div class = "pt-3">
-                <label><%= t('surveys.assign_group_label') %></label>
-                <div class = "d-flex justify-content-end">
-                  <%= f.select :group_id, options_for_select(@groups.collect {|group| [group.name, group.id ]}, @survey.group_id ) %>
-                </div>
+              <div class='label-input-item row no-gutters'>
+                <label class="col-4"><%= t('surveys.expiry_label') %></label>
+                <%= f.date_field :expiry, class: "col-8" %>
               </div>
-              <div id = "survey_questions" class = "pt-3" >
-                <% index = 0 %> 
-                <%= f.fields_for :questions, id: '' do |q| %>
-                  <%= q.hidden_field :company_id, value: @current_company.id %>
-                  <div id = "statement_<%= index %>" class="form-group">
-                    <% unless q.object.statement == '-1' %>
-                      <div class = "pt-3">
-                        <label> Question Type: </label>
-                        <div class = "d-flex justify-content-end">
-                          <%= q.select :question_type, options_for_select(QUESTION_OPTIONS, q.object.question_type) %><br>
-                        </div>
-                      </div>
-                     <div class = "pt-3">
-                        <label><%= t('surveys.statement_label') %></label>
-                        <%= q.text_field :statement %>
-                        <div class = "pt-3">
-                          <label><%= t('surveys.required_label') %></label>
-                          <%= q.check_box :required, checked: q.object.required %>
-                        </div>
-                      </div>
-                      <div id = "statement_<%= index %>_option_container" class = "pt-3">
-                        <% option_index = 0 %>
-                        <%= q.fields_for :options, id: '' do |option| %> 
-                          <%= option.hidden_field :company_id, value: @current_company.id %>
-                          <div id= "statement_<%= index %>_option_divid_<%= option_index %>">
-                            <% if q.object.question_type == "True / False" || q.object.question_type == "Comment Box" %>
-                              <br><%= text_field_tag "text", "#{option.object.detail}", class: 'form-control', readonly: true %> 
-                            <% else %>
-                              <br><%= option.text_field :detail %> 
-                            <% end %>
-                            <% if q.object.question_type == "Checkbox" || q.object.question_type == "Radio Buttons" %>
-                              <a href = "#" data-qid = "<%= index %>" data-oid = "<%= option_index %>"
-                                data-divid = "<%= option_index %>" class = "js-deleteoption"><%= t('surveys.delete_option_label') %></a>
-                            <% end %>
-                            <% option_index += 1 %>
-                          </div> 
-                        <% end %>
-                      </div>
-                      <% if q.object.question_type == "Checkbox" || q.object.question_type == "Radio Buttons" || q.object.question_type.nil? %>
-                        <div id = "statement_<%= index %>_add_option">
-                          <a href = "#_" data-qid = "<%= index %>" data-oid = "<%= option_index %>" data-divid = "<%= option_index %>" class = "js-addoption"><%= t('surveys.add_option_label') %></a>
-                        </div>
+              <div class='label-input-item row no-gutters'>
+                <label class="col-4"><%= t('surveys.assign_group_label') %></label>
+                <%= f.select :group_id, options_for_select(@groups.collect {|group| [group.name, group.id ]}, @survey.group_id), { include_blank: '' }, { class: "col-8" } %>
+              </div>
+            </div>
+            <div id = "survey_questions" class = "pt-3" >
+              <% index = 0 %> 
+              <%= f.fields_for :questions, id: '' do |q| %>
+                <%= q.hidden_field :company_id, value: @current_company.id %>
+                <div id = "statement_<%= index %>" class="form-group">
+                  <% unless q.object.statement == '-1' %>
+                    <div class = "pt-3 label-input-item row no-gutters">
+                      <label class="col-4"> Question Type: </label>
+                      <%= q.select :question_type, options_for_select(QUESTION_OPTIONS, q.object.question_type), {}, { class: "col-8" } %><br>
+                    </div>
+                   <div class = "pt-3 label-input-item row no-gutters">
+                      <label class="col-4"><%= t('surveys.statement_label') %></label>
+                      <%= q.text_field :statement, class: "col-8" %>
+                    </div>
+                    <div class = "pt-1 float-right">
+                      <label><%= t('surveys.required_label') %></label>
+                      <%= q.check_box :required, checked: q.object.required %>
+                    </div>
+                    <div id = "statement_<%= index %>_option_container" class = "pt-3">
+                      <% option_index = 0 %>
+                      <%= q.fields_for :options, id: '' do |option| %> 
+                        <%= option.hidden_field :company_id, value: @current_company.id %>
+                        <div id= "statement_<%= index %>_option_divid_<%= option_index %>">
+                          <% if q.object.question_type == "True / False" || q.object.question_type == "Comment Box" %>
+                            <br><%= text_field_tag "text", "#{option.object.detail}", class: 'form-control', readonly: true %> 
+                          <% else %>
+                            <br><%= option.text_field :detail %> 
+                          <% end %>
+                          <% if q.object.question_type == "Checkbox" || q.object.question_type == "Radio Buttons" %>
+                            <a href = "#" data-qid = "<%= index %>" data-oid = "<%= option_index %>"
+                              data-divid = "<%= option_index %>" class = "js-deleteoption"><%= t('surveys.delete_option_label') %></a>
+                          <% end %>
+                          <% option_index += 1 %>
+                        </div> 
                       <% end %>
-                      <a href = "#_" data-qid = "<%= index %>" class = "js-deletequestion"><%= t('surveys.delete_question_label') %></a>
-                      <% index += 1 %>  
-                    <% end %>  
-                  </div>
-                <% end %>
-              </div>
-              <a href = "#_" data-option_count = "<%= index-1 %>" data-count = "<%= index %>" class = "js-addquestion"><%= t('surveys.add_question_label') %></a>
-              <%= f.submit locals[:submit], class: "btn btn-primary" %>
-            <% end %>    
-          </div>  
-        </div>
-      </div>
-    </div>
+                    </div>
+                    <% if q.object.question_type == "Checkbox" || q.object.question_type == "Radio Buttons" || q.object.question_type.nil? %>
+                      <div id = "statement_<%= index %>_add_option">
+                        <a href = "#_" data-qid = "<%= index %>" data-oid = "<%= option_index %>" data-divid = "<%= option_index %>" class = "js-addoption"><%= t('surveys.add_option_label') %></a>
+                      </div>
+                    <% end %>
+                    <a href = "#_" data-qid = "<%= index %>" class = "js-deletequestion"><%= t('surveys.delete_question_label') %></a>
+                    <% index += 1 %>  
+                  <% end %>  
+                </div>
+              <% end %>
+            </div>
+            <a href = "#_" data-option_count = "<%= index-1 %>" data-count = "<%= index %>" class = "js-addquestion float-right secondary-btn mb-2"><%= t('surveys.add_question_label') %></a>
+            <%= f.submit submit, class: "primary-btn mt-2 w-100" %>
+          <% end %>    
+        </div>  
   </div>
 </div>

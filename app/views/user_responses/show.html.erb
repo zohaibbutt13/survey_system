@@ -1,6 +1,11 @@
 <div class = "container">
   <h2><%= @user_response.email %></h2>
-  <div class = "text-center">
-    <p class = "font-weight-bold">Your response has been recorded ! :)</p>
+  <div class = "text-center empty-resource-box">
+    <p class = "font-weight-bold">Your response has been recorded. Thank you!</p>
+    <% if current_user.present? %>
+    	<%= link_to "Visit Dashboard", dashboard_company_path(current_user) %>
+    <% else %>
+    	<%= link_to "Visit home page", root_path %>
+    <% end %>
   </div>
 </div>

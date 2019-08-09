@@ -44,8 +44,8 @@ en:
     name: "name"
     description: "description"
     members: "members"
-    add_group_button_label: "Add Group"
-    update_group_button_label: "Update Group"
+    add_group_button_label: "Create"
+    update_group_button_label: "Update"
     group_show_heading: "Group Information"
 
   links:

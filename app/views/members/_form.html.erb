@@ -1,29 +1,31 @@
-<h2><%= heading %></h2>
+<div class="heading-bg mb-2">
+  <h2><%= heading %></h2>
+</div>
 <%= form_for member, url: url, method: method do |f| %>
   <div class='label-input-container'>
-    <div class="label-input-item">
-      <%= f.label :first_name %><br />
-      <%= f.text_field :first_name, autofocus: true, autocomplete: t('users.first_name') %>
+    <div class="label-input-item row no-gutters">
+      <%= f.label :first_name, class: "col-4" %><br />
+      <%= f.text_field :first_name, autofocus: true, autocomplete: t('users.first_name'), class: "col-8" %>
     </div>
 
-    <div class="label-input-item">
-      <%= f.label :last_name %><br />
-      <%= f.text_field :last_name, autofocus: true, autocomplete: t('users.last_name') %>
+    <div class="label-input-item row no-gutters">
+      <%= f.label :last_name, class: "col-4" %><br />
+      <%= f.text_field :last_name, autofocus: true, autocomplete: t('users.last_name'), class: "col-8" %>
     </div>
 
-    <div class="label-input-item">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: t('users.email') %>
+    <div class="label-input-item row no-gutters">
+      <%= f.label :email, class: "col-4" %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: t('users.email'), class: "col-8" %>
     </div>
 
-    <div class="label-input-item">
-      <%= f.label :role %><br />
-      <%= f.select :role, User::ROLE.reject { |key, value| key == :admin }, {}, { class: "primary-btn dropdown-toggle"} %>
+    <div class="label-input-item row no-gutters">
+      <%= f.label :role, class: "col-4" %><br />
+      <%= f.select :role, User::ROLE.reject { |key, value| key == :admin }, {}, { class: "secondary-btn dropdown-toggle col-8"} %>
     </div>
   </div>
   <div class="row no-gutters justify-content-start">
-    <div class="col-1 mt-4">
-      <%= f.submit submit, class: 'primary-btn' %>
+    <div class="col-12 mt-4">
+      <%= f.submit submit, class: 'primary-btn w-100' %>
     </div>
   </div>
 <% end %>
