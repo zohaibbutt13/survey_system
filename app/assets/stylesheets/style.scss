@@ -566,7 +566,7 @@ header.master-head h1 {
   padding-bottom: 1rem;
 }
 
-.footer{
+.footer {
   height: 50px;
   padding: 5px 30px;
   background-color: $heading-background-color;
@@ -724,4 +724,14 @@ header.master-head h1 {
   margin-top: 10px;
   margin-bottom: 10px;
   padding: 10px 20px;
+}
+
+.table-icon {
+  a{
+    text-decoration: none !important;
+  }
+   a:hover {
+    text-decoration: none;
+    opacity: 0.7;
+  }
 }

@@ -99,6 +99,7 @@ en:
   created_by_label: "Created By"
   created_on_label: "Created On"
   expiry_label: "Expiry"
+  survey_type_label: "Survey Type"
   dont_have_an_account_label: "Don't have an account? Register here."
 
   dashboard:
