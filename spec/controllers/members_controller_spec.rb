@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe MembersController, type: :controller do
-
   before(:each) do
     @user = FactoryGirl.create(:user)
     @company = FactoryGirl.create(:company)

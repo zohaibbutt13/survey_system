@@ -13,7 +13,7 @@ FactoryGirl.define do
   factory :company, class: Company do
     id { 1 }
     name { Faker::Name.name }
-    subdomain { "7vals" }
+    subdomain { "abc" }
   end
 
   factory :group, class: Group do
