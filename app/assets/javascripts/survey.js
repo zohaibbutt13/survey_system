@@ -32,13 +32,6 @@ $(document).ready(function() {
   });
 
   $('#survey_survey_type').on('change', function() {
-    if ( this.value == 'Private')
-    {
-      $("#group").show();
-    }
-    else
-    {
-      $("#group").hide();
-    }
+    this.value == 'Private' ? $('#group').show() : $('#group').hide(); 
   });
 });

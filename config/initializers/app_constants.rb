@@ -7,3 +7,4 @@ CATEGORIES = ['Community', 'Customer Feedback', 'Customer Satisfaction', 'Demogr
 'Education', 'Events', 'Healthcare', 'Human Resources', 'Just for Fun',
 'Political', 'Quiz', 'Other']
 SURVEY_STATS_LABELS = ['Expired', 'Active']
+RESPONSE_PER_PAGE = 1

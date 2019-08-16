@@ -3,7 +3,7 @@ class UserResponsesController < ApplicationController
   load_and_authorize_resource :user_response, through: :survey
   # get surveys/:id/user_responses
   def index
-    @response_per_page = @user_responses.paginate(page: params[:page], per_page: 1)
+    @response_per_page = @user_responses.paginate(page: params[:page], per_page: RESPONSE_PER_PAGE)
     respond_to do |format|
       format.js
     end
