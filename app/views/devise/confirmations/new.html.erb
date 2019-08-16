@@ -1,19 +1,24 @@
-<h2>Resend confirmation instructions</h2>
-
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <div class='label-input-container'>
-    <div class="label-input-item">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
-    </div>
-
-    <div class="label-input-item">
-      <%= f.submit "Resend confirmation instructions", class: 'primary-btn' %>
+<div class="row no-gutters">
+  <div class="col"></div>
+  <div class="col-8 col-md-6  content-window p-20">
+    <h2><%= t(:resend_confirmation_instructions_label) %></h2>
+    <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <div class='label-input-container p-t-20'>
+        <div class="label-input-item row no-gutters">
+          <%= f.label :email, class: "col-4" %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: "col-8" %>
+        </div>
+        <div class="label-input-item">
+          <%= f.submit t(:resend_confirmation_instructions_label), class: 'primary-btn float-right' %>
+        </div>
+      </div>
+    <% end %>
+    <div class="p-t-20">
+      <%= render "devise/shared/links" %>
     </div>
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+  <div class="col"></div>
+</div>
 
 <%= render partial:'layouts/footer' %>
