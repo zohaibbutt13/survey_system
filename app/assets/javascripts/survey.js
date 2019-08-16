@@ -30,4 +30,15 @@ $(document).ready(function() {
       data: { survey_id: sid }
     });
   });
+
+  $('#survey_survey_type').on('change', function() {
+    if ( this.value == 'Private')
+    {
+      $("#group").show();
+    }
+    else
+    {
+      $("#group").hide();
+    }
+  });
 });
