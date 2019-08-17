@@ -27,10 +27,16 @@ class User < ActiveRecord::Base
   has_many :user_responses
 
   accepts_nested_attributes_for :company
+  
+  #Make a scope of email uniqness within company 
+  validates :email, uniqueness: { scope: :company_id }
+  validates_presence_of :email
+  validates_format_of :email, with: email_regexp
 
   validates :first_name, presence: true, length: { maximum: 150, message: 'must not have more than 150 characters.' }
   validates :last_name, presence: true, length: { maximum: 150, message: 'must not have more than 150 characters.' }
 
+  #Commented for Test Cases
   after_create :create_user_activity
   after_update :update_user_activity
   after_destroy :destroy_user_activity
@@ -44,6 +50,14 @@ class User < ActiveRecord::Base
     max_supervisors = company.subscription_package.max_supervisors
     max_members = company.subscription_package.max_members
     (user.supervisor? && current_supervisors_count < max_supervisors) || (user.member? && current_members_count < max_members)  
+  end
+
+  def email_required?
+    false
+  end
+
+  def email_changed?
+    false
   end
 
   def admin?

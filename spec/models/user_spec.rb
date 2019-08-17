@@ -3,6 +3,9 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   before(:each) do
     @user = FactoryGirl.build(:user)
+    @company = FactoryGirl.create(:company)
+    @subscription_package = FactoryGirl.create(:subscription_package)
+    @company.subscription_package = @subscription_package
   end
 
   describe 'validations' do
@@ -28,6 +31,42 @@ RSpec.describe User, type: :model do
     it "is not valid without a password" do
       @user.password = @user.password_confirmation = nil
       expect(@user).to_not be_valid
+    end
+  end
+
+  context 'methods' do
+    it 'should return true when calls user.admin?' do
+      user = User.create(first_name: 'alex', role: 'admin')
+      expect(user.admin?).to eq true
+    end
+
+    it 'should return true when calls user.member?' do
+      user = User.create(first_name: 'alex', role: 'member')
+      expect(user.member?).to eq true
+    end
+
+    it 'should return true when calls user.supervisor?' do
+      user = User.create(first_name: 'alex', role: 'supervisor')
+      expect(user.supervisor?).to eq true
+    end
+
+    it 'should return full name' do
+      user = User.create(first_name: 'alex', last_name: 'bell')
+      expect(user.full_name) == (user.first_name + '' + user.last_name)
+    end
+
+    it 'should return count of supervisors' do
+      current_supervisors_count = @company.users.where(role: 'supervisor').count
+      max_supervisors = @company.subscription_package.max_supervisors
+      @user.role = "supervisor";
+      expect(@user.supervisor? && current_supervisors_count < max_supervisors).to eq true
+    end
+
+    it 'should return count of members' do
+      current_members_count = @company.users.where(role: 'member').count
+      max_members = @company.subscription_package.max_members
+      @user.role = "member";
+      expect(@user.member? && current_members_count < max_members).to eq true
     end
   end
 end

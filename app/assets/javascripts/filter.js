@@ -84,4 +84,28 @@ $(document).ready(function() {
       return false;
     }
   });
+
+  $('#js-created-between-filter').click(function (event) {
+    event.preventDefault();
+    var created_between_st = $(':input[id="created-between-st"]').val();
+    var created_between_end = $(':input[id="created-between-end"]').val();
+    if(created_between_st && created_between_end) {
+      if(created_between_st > created_between_end) {
+        alert("Select correct duration.");
+        return false;
+      }
+      else {
+        $.ajax({
+          type: 'GET',
+          url: '/companies/filter',
+          data: { filters: { created_between_st: created_between_st, created_between_end: created_between_end } }
+        });
+        $('#created_between_modal').modal('toggle');
+        return true;
+      }
+    } else {
+      alert("Select date first.");
+      return false;
+    }
+  });
 });

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190807113036) do
+ActiveRecord::Schema.define(version: 20190816135053) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "company_id",     limit: 4
@@ -186,7 +186,7 @@ ActiveRecord::Schema.define(version: 20190807113036) do
 
   add_index "users", ["company_id"], name: "index_users_on_company_id", using: :btree
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["email", "company_id"], name: "index_users_on_email_and_company_id", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

@@ -1,16 +1,15 @@
 class MembersController < ApplicationController
   load_and_authorize_resource :member, class: 'User', parent: false
-
+  before_action :breadcrumb_path_add
+  
   def new
-    add_breadcrumb "Employees", members_path
-    add_breadcrumb "New Employee", new_member_path
+    add_breadcrumb "<a>New Employee</a>".html_safe, new_member_path
     respond_to do |format|
       format.html
     end
   end
 
   def index
-    add_breadcrumb "Employees", members_path
     respond_to do |format|
       format.html { @members = @members.reject { |user| user.id == current_user.id } }
       format.json { render json: @members }
@@ -24,7 +23,7 @@ class MembersController < ApplicationController
       @member.password = @member.password_confirmation = password
       respond_to do |format|
         if @member.save
-          flash[:notice] = "Member created successfully!"
+          flash[:notice] = I18n.t 'users.member_create_success'
           format.html { redirect_to member_path(@member) }
         else
           flash[:error] = @member.errors.full_messages
@@ -44,8 +43,7 @@ class MembersController < ApplicationController
   end
 
   def edit
-    add_breadcrumb "Employees", members_path
-    add_breadcrumb "Update Employee", edit_member_path
+    add_breadcrumb "<a>Update Employee</a>".html_safe, edit_member_path
     respond_to do |format|
       format.html
     end
@@ -85,5 +83,9 @@ class MembersController < ApplicationController
 
   def member_params
     params.require(:user).permit(:first_name, :last_name, :email, :role)
+  end
+
+  def breadcrumb_path_add
+    add_breadcrumb "<b>Employees</b>".html_safe, members_path
   end
 end
