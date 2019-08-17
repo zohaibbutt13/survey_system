@@ -20,9 +20,9 @@ class UserResponsesController < ApplicationController
 
   # post surveys/:survey_id/user_responses      
   def create
-    if (user_signed_in?)
+    if user_signed_in?
       @user_response.user_id = current_user.id
-      @user_response.user_id = current_user.company_id
+      @user_response.company_id = current_user.company_id
     end
     if @user_response.save
       flash[:notice] = 'Saved'
