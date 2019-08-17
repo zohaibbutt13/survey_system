@@ -26,7 +26,6 @@ RSpec.describe Group, type: :model do
   end
 
   it "is not valid without a unique name within the same company" do
-    @group.save
     group2 = FactoryGirl.build(:group)
     group2.name = @group.name
     expect(group2).to_not be_valid

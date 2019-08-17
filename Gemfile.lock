@@ -63,6 +63,7 @@ GEM
     concurrent-ruby (1.1.5)
     crass (1.0.4)
     daemons (1.3.1)
+    database_cleaner (1.7.0)
     debug_inspector (0.0.3)
     devise (4.6.2)
       bcrypt (~> 3.0)
@@ -247,6 +248,7 @@ DEPENDENCIES
   cancancan
   chosen-rails
   coffee-rails (~> 4.1.0)
+  database_cleaner
   devise
   factory_girl_rails
   faker
