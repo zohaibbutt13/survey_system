@@ -20,9 +20,7 @@ class Question < ActiveRecord::Base
   # was selected as a answer for a given question
   def answer_stats
     options.joins('LEFT OUTER JOIN answers on options.id = answers.option_id')
-           .select('COUNT(answers.id) AS answers_count')
-           .group('options.id')
-           .map { |option| option.answers_count }
+           .group('options.id').pluck('count(answers.id)')
   end
 
   # Returns an array having labels of options corresponding to a question

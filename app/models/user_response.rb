@@ -16,6 +16,10 @@ class UserResponse < ActiveRecord::Base
   end
 
   def create_response_activity
-    Activity.create(trackable: self, action: 'created', owner_id: user_id, company_id: company_id)
+    if user_id.nil?
+      false
+    else
+      Activity.create(trackable: self, action: 'submitted', owner_id: user_id, company_id: company_id)
+    end
   end
 end
