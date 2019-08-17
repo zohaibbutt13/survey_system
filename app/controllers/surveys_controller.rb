@@ -99,8 +99,13 @@ class SurveysController < ApplicationController
     end
   end
 
+  def set_expiry
+    params[:survey][:expiry] = Time.zone.parse(params[:survey][:expiry].to_s)
+  end
+
   # whitelists parameters
   def survey_params
+    set_expiry
     params.require(:survey).permit(
       :id,
       :name,
