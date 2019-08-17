@@ -1,10 +1,6 @@
 class HomeController < ApplicationController
 
-  before_action do
-    if user_signed_in?
-      redirect_to dashboard_company_path(@current_company)
-    end
-  end
+  before_action :user_signed_in_redirect?
 
   # get home/index
   def index
@@ -55,6 +51,12 @@ class HomeController < ApplicationController
           @email = params[:email]
         }
       end
+    end
+  end
+
+  def user_signed_in_redirect?
+    if user_signed_in?
+      redirect_to dashboard_company_path(@current_company)
     end
   end
 end

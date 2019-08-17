@@ -1,12 +1,4 @@
 class User < ActiveRecord::Base
-  after_create do
-    UserSetting.create(
-      :emails_subscription => '1',
-      :show_graphs => '1',
-      :show_history => '1',
-      :company_id => self.company_id,
-      :user_id => self.id)    
-  end
 
   ROLE = { admin: 'admin', supervisor: 'supervisor', member: 'member' }
 
@@ -36,7 +28,8 @@ class User < ActiveRecord::Base
   validates :first_name, presence: true, length: { maximum: 150, message: 'must not have more than 150 characters.' }
   validates :last_name, presence: true, length: { maximum: 150, message: 'must not have more than 150 characters.' }
 
-  #Commented for Test Cases
+  after_create :create_user_settings
+  
   after_create :create_user_activity
   after_update :update_user_activity
   after_destroy :destroy_user_activity
@@ -99,5 +92,14 @@ class User < ActiveRecord::Base
 
   def destroy_user_activity
     Activity.create(trackable: self, action: 'deleted', owner_id: admin_user_id, company_id: company_id)
+  end
+
+  def create_user_settings
+    UserSetting.create(
+      emails_subscription: true,
+      show_graphs: true,
+      show_history: true,
+      company_id: self.company_id,
+      user_id: self.id)
   end
 end

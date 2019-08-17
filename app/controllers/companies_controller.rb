@@ -1,7 +1,8 @@
 class CompaniesController < ApplicationController
   before_action :authenticate_user!
-
-  before_action only: [:filter, :display_surveys] do
+  before_action :get_surveys, only: [:filter, :display_surveys]
+  
+  def get_surveys
     @surveys = Survey.all
   end
 

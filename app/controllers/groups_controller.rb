@@ -2,7 +2,9 @@ class GroupsController < ApplicationController
   load_and_authorize_resource
 
   before_action :breadcrumb_path_add
-  before_action only: [:new, :edit, :create, :update] do
+  before_action :get_employees, only: [:new, :edit, :create, :update]
+
+  def get_employees
     @employees = User.all
   end
 
