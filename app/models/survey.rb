@@ -19,6 +19,7 @@ class Survey < ActiveRecord::Base
   validates :name, presence: true, length: { maximum: 255 }
   validates :description, presence: true, length: { maximum: 500 }
   validates :expiry, presence: true
+  validate :type_of_survey, :group
 
   before_save :mark_question_for_removal
   after_create :create_survey_activity
@@ -30,6 +31,25 @@ class Survey < ActiveRecord::Base
   scope :expired_surveys, -> { where('expiry < ?', DateTime.now) }
   scope :active_surveys, -> { where('expiry > ?', DateTime.now) }
   scope :latest_surveys, -> { order('surveys.created_at desc') }
+
+
+  def type_of_survey
+    type = ['Private', 'Public']
+    if (!type.include? survey_type)
+      errors.add(:survey_type, 'Incorrect')
+    end
+  end
+
+  def group
+    groups = Group.all
+    g_id = []
+    groups.each do |group|
+      g_id << group.id
+    end
+    if !g_id.include? group_id
+      errors.add(:group_id, 'incorrect')
+    end
+  end
 
   # Returns array of all the public surveys
   def self.get_public_surveys(page_params, per_page_limit, category=nil)
