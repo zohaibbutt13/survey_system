@@ -6,7 +6,7 @@ class CompaniesController < ApplicationController
   end
 
   def dashboard
-    add_breadcrumb "Dashboard", dashboard_company_path
+    add_breadcrumb "<a>Dashboard</a>".html_safe, dashboard_company_path
     @activities = @current_company.activities.get_user_activities(current_user)
     @surveys_stats = [@current_company.surveys.expired_surveys.count,
                       @current_company.surveys.active_surveys.count]
@@ -18,7 +18,7 @@ class CompaniesController < ApplicationController
   end
 
   def subscription_packages
-    add_breadcrumb "Subscription Packages", subscription_packages_company_path
+    add_breadcrumb "<a>Subscription Packages</a>".html_safe, subscription_packages_company_path
     @subscription_packages = SubscriptionPackage.first(3)
     respond_to do |format|
       format.html
@@ -55,13 +55,8 @@ class CompaniesController < ApplicationController
   #move to surveys
   # get home/display_surveys
   def display_surveys
-    # if params[:filter_by] == 'expiry'
-    #   @surveys = @surveys.expired_surveys
-    # elsif params[:filter_by] == 'active'
-    #   @surveys = @surveys.active_surveys
-    # end
     @employees = User.all
-    add_breadcrumb "Surveys", display_surveys_company_path(@current_company)
+    add_breadcrumb "<a>Surveys</a>".html_safe, display_surveys_company_path(@current_company)
     respond_to do |format|
       format.html
       format.js

@@ -1,9 +1,8 @@
 class UserSettingsController < ApplicationController
   load_and_authorize_resource
-
+  before_action :breadcrumb_path_add
   #/user_settings/id/edit
   def edit
-    add_breadcrumb "My Settings", edit_user_setting_path
     respond_to do |format|
       format.html
     end
@@ -24,5 +23,9 @@ class UserSettingsController < ApplicationController
   private 
     def user_setting_params
       params.require(:user_setting).permit(:emails_subscription, :show_graphs, :show_history)
+    end
+
+    def breadcrumb_path_add
+      add_breadcrumb "<b>My Settings</b>".html_safe, edit_user_setting_path
     end
 end

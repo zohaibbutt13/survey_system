@@ -149,7 +149,7 @@ en:
   user_settings:
     user_settings_update_success: "User settings is successfully updated."
     user_settings_update_fail: "User settings was not updated."  
-    user_settings_heading: "User Settings"
+    user_settings_heading: "My Settings"
     supervisors_settings_permission_label: "Can supervisor change my settings?"
     supervisors_survey_permission_label: "Can supervisor create surveys?"
     members_settings_permission_label: "Can members change my settings?"
@@ -175,6 +175,9 @@ en:
     see_responses_label: "See Responses"
     edit_survey_link: "Edit Survey"
     delete_survey_link: "Delete Survey"
+    survey_create_success: "Survey created successfully."
+    survey_update_success: "Survey updated successfully."
+    survey_destroy_success: "Survey destroyed successfully."
 
   user_responses:
     question_label: "Question"

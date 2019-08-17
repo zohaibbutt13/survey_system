@@ -5,8 +5,6 @@ class Users::SessionsController < Devise::SessionsController
 
   # GET /resource/sign_in
   def new
-    add_breadcrumb "Home", root_path
-    add_breadcrumb "Sign in"
     @email = params[:email]
     super
   end
