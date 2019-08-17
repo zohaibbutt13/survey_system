@@ -1,12 +1,4 @@
 class User < ActiveRecord::Base
-  after_create do
-    UserSetting.create(
-      :emails_subscription => '1',
-      :show_graphs => '1',
-      :show_history => '1',
-      :company_id => self.company_id,
-      :user_id => self.id)    
-  end
 
   ROLE = { admin: 'admin', supervisor: 'supervisor', member: 'member' }
 
@@ -27,10 +19,17 @@ class User < ActiveRecord::Base
   has_many :user_responses
 
   accepts_nested_attributes_for :company
+  
+  #Make a scope of email uniqness within company 
+  validates :email, uniqueness: { scope: :company_id }
+  validates_presence_of :email
+  validates_format_of :email, with: email_regexp
 
   validates :first_name, presence: true, length: { maximum: 150, message: 'must not have more than 150 characters.' }
   validates :last_name, presence: true, length: { maximum: 150, message: 'must not have more than 150 characters.' }
 
+  after_create :create_user_settings
+  
   after_create :create_user_activity
   after_update :update_user_activity
   after_destroy :destroy_user_activity
@@ -44,6 +43,14 @@ class User < ActiveRecord::Base
     max_supervisors = company.subscription_package.max_supervisors
     max_members = company.subscription_package.max_members
     (user.supervisor? && current_supervisors_count < max_supervisors) || (user.member? && current_members_count < max_members)  
+  end
+
+  def email_required?
+    false
+  end
+
+  def email_changed?
+    false
   end
 
   def admin?
@@ -85,5 +92,14 @@ class User < ActiveRecord::Base
 
   def destroy_user_activity
     Activity.create(trackable: self, action: 'deleted', owner_id: admin_user_id, company_id: company_id)
+  end
+
+  def create_user_settings
+    UserSetting.create(
+      emails_subscription: true,
+      show_graphs: true,
+      show_history: true,
+      company_id: self.company_id,
+      user_id: self.id)
   end
 end

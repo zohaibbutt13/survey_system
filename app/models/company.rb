@@ -12,15 +12,7 @@ class Company < ActiveRecord::Base
   has_many :user_settings, dependent: :destroy
   has_many :activities, dependent: :destroy
 
-  after_create do
-    CompanySetting.create(
-      :max_questions => 100,
-      :supervisors_survey_permission => '1',
-      :supervisors_settings_permission => '1',
-      :members_settings_permission => '1',
-      :survey_expiry_days => 5,
-      :company_id => self.id)    
-  end
+  after_create :create_company_settings
 
   def dashboard_resources(user)
     user_setting = user.user_setting
@@ -39,8 +31,13 @@ class Company < ActiveRecord::Base
     Thread.current[:tenant_id]
   end
 
-  # def create_company(Params)
-  #   company = Company.new(params)
-  #   company.save
-  # end
+  def create_company_settings
+    CompanySetting.create(
+      max_questions: 100,
+      supervisors_survey_permission: true,
+      supervisors_settings_permission: true,
+      members_settings_permission: true,
+      survey_expiry_days: 5,
+      company_id: self.id)
+  end
 end

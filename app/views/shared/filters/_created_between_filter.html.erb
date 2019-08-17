@@ -1,0 +1,30 @@
+<div class="modal fade hide" id="created_between_modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="row no-gutters w-100">
+          <div class="col-11 heading">
+            <h3><%= t 'survey_filters.created_between_heading_label' %></h3>
+          </div>
+          <div class="col-1 d-flex justify-content-end align-items-center">
+            <div class="dismiss-icon">
+              <a href="#_" data-dismiss="modal"><i class="fa fa-times"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body row no-gutters">
+        <label class="col-3"><%= t 'survey_filters.created_between_label' %></label>
+        <label class="col-1"><%= t 'survey_filters.created_between_st_label' %></label>
+        <input type="date" class="col-3 form-control" id="created-between-st"/>
+        <i class="col-1"></i>
+        <label class="col-1"><%= t 'survey_filters.created_between_end_label' %></label>
+        <input type="date" class="col-3 form-control" id="created-between-end"/>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="tertiary-btn" data-dismiss="modal">Close</button>
+        <%= link_to "Filter", companies_filter_path, class: "primary-btn", id: "js-created-between-filter" %>
+      </div>
+    </div>
+  </div>
+</div>

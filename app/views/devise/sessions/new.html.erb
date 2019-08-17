@@ -9,9 +9,8 @@
           <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
               <div class="label-input-item row no-gutters">
                 <label for="user_email" class="col-4"> <%= t(:email_label) %> </label>
-                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-8" %>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", value: @email, class: "col-8" %>
               </div>
-
               <div class="label-input-item row no-gutters">
                 <label for="user_password" class="col-4"> <%= t(:password_label) %> </label>
                 <%= f.password_field :password, autocomplete: "current-password", class: "col-8" %>

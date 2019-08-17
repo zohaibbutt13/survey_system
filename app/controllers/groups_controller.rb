@@ -1,12 +1,15 @@
 class GroupsController < ApplicationController
   load_and_authorize_resource
 
-  before_action only: [:new, :edit, :create, :update] do
+  before_action :breadcrumb_path_add
+  before_action :get_employees, only: [:new, :edit, :create, :update]
+
+  def get_employees
     @employees = User.all
   end
 
   def show
-    add_breadcrumb "Group", group_path
+    add_breadcrumb "<a>Group</a>".html_safe, group_path
     @group_members = @group.users.map(&:full_name).join(', ')
     respond_to do |format|
       format.html
@@ -14,8 +17,7 @@ class GroupsController < ApplicationController
   end
 
   def new
-    add_breadcrumb "Groups", groups_path
-    add_breadcrumb "New Group", new_group_path
+    add_breadcrumb "<a>New Group</a>".html_safe, new_group_path
     respond_to do |format|
       format.html
     end
@@ -36,8 +38,7 @@ class GroupsController < ApplicationController
   end
 
   def edit
-    add_breadcrumb "Groups", groups_path 
-    add_breadcrumb "Update Group", edit_group_path 
+    add_breadcrumb "<a>Update Group</a>".html_safe, edit_group_path 
     respond_to do |format|
       format.html
     end
@@ -56,7 +57,6 @@ class GroupsController < ApplicationController
   end
 
   def index
-    add_breadcrumb "Groups", groups_path
     respond_to do |format|
       format.html
     end
@@ -75,5 +75,9 @@ class GroupsController < ApplicationController
 
   def group_params
     params.require(:group).permit(:name, :description, :user_ids => [])
+  end
+
+  def breadcrumb_path_add
+    add_breadcrumb "<b>Groups</b>".html_safe, groups_path
   end
 end

@@ -1,11 +1,14 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/sign_up
   def new
-    add_breadcrumb "Home", root_path
-    add_breadcrumb "Sign up"
     super do
       resource.company = Company.new
     end
+  end
+
+  def edit
+    add_breadcrumb "<a>Your Account</a>".html_safe, edit_user_registration_path
+    super
   end
 
   private
