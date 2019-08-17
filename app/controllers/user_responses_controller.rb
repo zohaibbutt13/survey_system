@@ -22,14 +22,14 @@ class UserResponsesController < ApplicationController
   def create
     if (user_signed_in?)
       @user_response.user_id = current_user.id
-      @user_response.user_id = current_user.company_id
+      @user_response.company_id = current_user.company_id
     end
     if @user_response.save
       flash[:notice] = 'Saved'
       redirect_to survey_user_response_path(@survey, @user_response)
     else
       flash[:error] = @user_response.errors.full_messages
-      render action: :new
+      redirect_to new_survey_user_response_path
     end
   end
 

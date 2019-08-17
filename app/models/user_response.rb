@@ -10,6 +10,22 @@ class UserResponse < ActiveRecord::Base
   accepts_nested_attributes_for :answers
 
   after_create :create_response_activity
+  validate :required_question
+
+  def required_question
+    answers.each do |answer|
+      question = Question.find(answer.question_id)
+      if question.question_type == 'Comment Box'
+        if question.required && answer.detail.blank?
+          errors.add(:detail, 'can not be blank')
+        end
+      else
+        if question.required && answer.option_id.blank?
+          errors.add(:detail, 'can not be blank')
+        end
+      end
+    end
+  end
 
   def create_response_activity
     Activity.create(trackable: self, action: 'created', owner_id: user_id, company_id: company_id)

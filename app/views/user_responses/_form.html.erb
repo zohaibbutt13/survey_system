@@ -36,12 +36,12 @@
                   <% elsif (question.question_type == 'True / False') %>
                     <%= answer.radio_button(:option_id, option_value.id, required: question.required) %>
                     <%= answer.hidden_field :detail, value: option_value.detail %>
+                  <% elsif (question.question_type == 'Comment Box' ) %>
+                    <%= answer.text_area :detail, required: question.required %>
+                    <%= answer.hidden_field :option_id, value: nil %>
                   <% end %>
                   <%= option_value.detail %>
                   <br />
-                <% end %>
-                <% if (question.question_type == 'Comment Box' ) %>
-                  <%= answer.text_area :detail, required: question.required %>
                 <% end %>
               <% end %>
             <% end %>
