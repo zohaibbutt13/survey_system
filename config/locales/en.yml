@@ -186,7 +186,7 @@ en:
     option_label: "Option"
     commentbox_label: "Comment Box"
 
-  public_surveys:
+  user_surveys:
     expired_before_label: "Expired Before"
     created_on_label: "Created on"
     created_by_label: "Created by"
@@ -194,3 +194,22 @@ en:
     surveys_label: "Surveys"
     name_label: "Name"
     type_label: "Type"
+    created_between_label: "Created between"
+
+  survey_filters:
+    created_between_heading_label: "Surveys Created Between"
+    created_by_heading_label: "Surveys Created by"
+    created_on_heading_label: "Surveys Created on"
+    expired_before_heading_label: "Surveys Expired Before"
+    name_heading_label: "Surveys Name"
+    survey_type_heading_label: "Survey Type"
+    created_between_label: "Created between:"  
+    created_by_label: "Select employee:"
+    created_on_label: "Select created on date:"
+    expired_before_label: "Select expiry date:"
+    name_label: "Enter survey name:"
+    survey_type_label: "Select survey type:"
+    survey_type_private_label: "Private"
+    survey_type_public_label: "Public"
+    created_between_st_label: "From:"
+    created_between_end_label: "To:"

@@ -43,7 +43,10 @@ class CompaniesController < ApplicationController
     @surveys = @surveys.where('expiry < ?', params[:filters][:expired_before]) unless params[:filters][:expired_before].blank? 
     @surveys = @surveys.where('survey_type = ?', params[:filters][:survey_type]) unless params[:filters][:survey_type].blank?
     @surveys = @surveys.where('Date(created_at) = ?', params[:filters][:created_on]) unless params[:filters][:created_on].blank? 
-    @surveys = @surveys.where('user_id = ?', params[:filters][:created_by_id]) unless params[:filters][:created_by_id].blank?  
+    @surveys = @surveys.where('user_id = ?', params[:filters][:created_by_id]) unless params[:filters][:created_by_id].blank?
+    @surveys = @surveys.where('Date(created_at) > ?', params[:filters][:created_between_st]) unless params[:filters][:created_between_st].blank?
+    @surveys = @surveys.where('Date(created_at) < ?', params[:filters][:created_between_end]) unless params[:filters][:created_between_end].blank?    
+    
     respond_to do |format|
       format.js
     end
