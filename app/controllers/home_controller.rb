@@ -41,14 +41,19 @@ class HomeController < ApplicationController
     end
   end
 
-  def sign_in_redirect
-    user = User.unscoped.find_by_email(params[:email])
+  def companies_list
     respond_to do |format|
-      if user.present?
-        format.html { redirect_to subdomain: user.company.subdomain, controller: 'users/sessions', action: 'new' }
+      if User.unscoped.find_by(email: params[:email]).nil?
+        format.html { redirect_to sign_in_home_index_path }
       else
-        flash[:error] = I18n.t 'user_not_found'
-        format.html { render :sign_in }
+        format.html { 
+          @users=User.unscoped.where(email:params[:email])
+          @companies = []
+          @users.each do |user|
+            @companies << user.company
+          end
+          @email = params[:email]
+        }
       end
     end
   end
