@@ -1,0 +1,6 @@
+<h1>Your companies</h1>
+<% @companies.each do |company| %>
+  <%= link_to new_user_session_url(subdomain: company.subdomain, email: @email) do %>
+    <div class="primary-btn float-left"><%= company.name %></div>
+  <% end %>
+<% end %>

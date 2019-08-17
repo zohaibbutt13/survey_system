@@ -20,4 +20,26 @@ FactoryGirl.define do
     name { Faker::Name.name }
     description { Faker::Lorem.sentence }
   end
+
+  factory :subscription_package, class: SubscriptionPackage do
+    id { 1 }
+    subscription_package_name { "Trial" }
+    max_supervisors { 100 }
+    max_members { 1000 }
+  end
+
+  factory :company_setting, class: CompanySetting do
+    id { 1 }
+    max_questions { 100 }
+    supervisors_survey_permission { true }
+    supervisors_settings_permission { true }
+    members_settings_permission { true }
+    survey_expiry_days { 5 }
+  end
+
+  factory :user_setting, class: UserSetting do
+    id { 1 }
+    show_graphs { true }
+    show_history { true }
+  end
 end

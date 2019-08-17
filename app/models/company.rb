@@ -38,9 +38,4 @@ class Company < ActiveRecord::Base
   def self.current_id
     Thread.current[:tenant_id]
   end
-
-  # def create_company(Params)
-  #   company = Company.new(params)
-  #   company.save
-  # end
 end
