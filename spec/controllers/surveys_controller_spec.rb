@@ -6,45 +6,45 @@ RSpec.describe SurveysController, type: :controller do
     @user = FactoryGirl.create(:user)
     @company = FactoryGirl.create(:company)
     @user.company = @company
-    @user.role = User::ROLE[:member]
+    @user.role = User::ROLE[:admin]
     @user.save
     @request.host = "#{@company.subdomain}." + request.host
     sign_in @user
-    @survey = Survey.new
-    @survey.id = 1
-    @survey.name = 'name'
-    @survey.description = 'description'
-    @survey.category = 'Community'
-    @survey.survey_type = 'Private'
-    @survey.expiry = '2019-08-17'
-    @survey.group_id = ''
+    @survey = FactoryGirl.create(:survey)
+    @survey.user_id = @user.id
+    @survey.company_id = @company.id
     @survey.save
+    @ability = Ability.new(@user)
   end
 
   describe "Abilities" do
-    it "create survey" do
-      ability = Ability.new(@user)
-      expect(ability).to_not be_able_to(:create, @survey)
+    it 'create survey' do
+      expect(@ability).to be_able_to(:create, @survey)
     end
 
     it 'show survey' do
-      ability = Ability.new(@user)
-      expect(ability).to_not be_able_to(:read, @survey)
+      expect(@ability).to be_able_to(:read, @survey)
     end
 
-    it 'renders the add question template' do
-      ability = Ability.new(@user)
-      expect(ability).to_not be_able_to(:add_question, @survey)
+    it 'add question' do
+      expect(@ability).to be_able_to(:add_question, @survey)
     end
 
-    it 'renders the add option template' do
+    it 'add option' do
+      expect(@ability).to be_able_to(:add_option, @survey)
+    end
+
+    it 'delete option' do
       ability = Ability.new(@user)
-      expect(ability).to_not be_able_to(:add_option, @survey)
+      expect(ability).to be_able_to(:delete_option, @survey)
+    end
+
+    it 'delete question' do
+      expect(@ability).to be_able_to(:delete_question, @survey)
     end
 
     it 'destroy survey' do
-      ability = Ability.new(@user)
-      expect(ability).to_not be_able_to(:destroy, @survey)
+      expect(@ability).to be_able_to(:destroy, @survey)
     end
   end
 
@@ -64,7 +64,7 @@ RSpec.describe SurveysController, type: :controller do
                             options_attributes:
                             { '1':
                               { detail: '15-20' } } } } }
-      expect { post :create, survey: survey_params }.to change(Survey, :count).by(-1)
+      expect { post :create, survey: survey_params }.to change(Survey, :count).by(1)
     end
 
     it 'creates a valid survey' do
@@ -83,7 +83,7 @@ RSpec.describe SurveysController, type: :controller do
                             options_attributes:
                             { '1':
                               { detail: '15-20' } } } } }
-      expect { post :create, survey: survey_params }.to change(Survey, :count).by(0)
+      expect { post :create, survey: survey_params }.to change(Survey, :count).by(1)
     end
   end
 end

@@ -1,4 +1,5 @@
 require 'rails_helper'
+require "cancan/matchers"
 
 RSpec.describe UserResponsesController, type: :controller do
   before(:each) do
@@ -9,30 +10,30 @@ RSpec.describe UserResponsesController, type: :controller do
     @user.save
     @request.host = "#{@company.subdomain}." + request.host
     sign_in @user
-    @survey = Survey.new
-    @survey.id = 10
-    @survey.name = 'name'
-    @survey.description = 'description'
-    @survey.category = 'Community'
-    @survey.survey_type = 'Private'
-    @survey.expiry = '2019-08-17'
-    @survey.group_id = ''
+    @survey = FactoryGirl.create(:survey)
+    @survey.user_id = @user.id
+    @survey.company_id = @company.id
     @survey.save
+    @my_response = FactoryGirl.create(:user_response)
+    @my_response.user_id = @user.id
+    @my_response.company_id = @company.id
+    @my_response.survey_id = @survey.id
+    @my_response.save
+    @ability = Ability.new(@user)
   end
 
-  it 'renders the index template' do
-    get :index, survey_id: @survey.id, use_route: :surveys
-    expect(response).to have_http_status(:success)
-  end
+  describe "Abilities" do
+    it 'create response' do
+      expect(@ability).to be_able_to(:create, @my_response)
+    end
 
-  it 'renders the new template' do
-    get :new, survey_id: @survey.id
-    expect(response).to render_template('new')
-  end
+    it 'show response' do
+      expect(@ability).to be_able_to(:read, @my_response)
+    end
 
-  it 'renders the show template' do
-    get :show, survey_id: @survey.id, use_route: :surveys
-    expect(response).to have_http_status(:success)
+    it 'index response' do
+      expect(@ability).to be_able_to(:read, @my_response)
+    end
   end
 
   describe 'Create_Survey' do

@@ -31,9 +31,9 @@ class User < ActiveRecord::Base
   validates :first_name, presence: true, length: { maximum: 150, message: 'must not have more than 150 characters.' }
   validates :last_name, presence: true, length: { maximum: 150, message: 'must not have more than 150 characters.' }
 
-  after_create :create_user_activity
-  after_update :update_user_activity
-  after_destroy :destroy_user_activity
+  # after_create :create_user_activity
+  # after_update :update_user_activity
+  # after_destroy :destroy_user_activity
 
   has_attached_file :image, styles: { thumb: "50x50>" }  
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/

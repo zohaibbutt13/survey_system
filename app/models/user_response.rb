@@ -5,11 +5,18 @@ class UserResponse < ActiveRecord::Base
   belongs_to :user
   belongs_to :survey
   belongs_to :company
-  has_many :answers, inverse_of: :user_response, dependent: :destroy
+  has_many :answers, dependent: :destroy
 
   accepts_nested_attributes_for :answers
 
   after_create :create_response_activity
+  validate :check_email
+
+  def check_email
+    if (user_id.nil? && email.blank?)
+      errors.add(:email, 'can not be empty')
+    end
+  end
 
   def create_response_activity
     Activity.create(trackable: self, action: 'created', owner_id: user_id, company_id: company_id)
