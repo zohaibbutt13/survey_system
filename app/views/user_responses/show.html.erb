@@ -1,7 +1,7 @@
 <div class = "container">
   <h2><%= @user_response.email %></h2>
   <div class = "text-center empty-resource-box">
-    <p class = "font-weight-bold">Your response has been recorded. Thank you!</p>
+    <p class = "font-weight-bold"><%= t('user_responses.response_success_label') %></p>
     <% if current_user.present? %>
     	<%= link_to t(:visit_dashboard_label), dashboard_company_path(current_user) %>
     <% else %>
