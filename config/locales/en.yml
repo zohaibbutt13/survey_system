@@ -37,6 +37,8 @@ en:
   visit_homepage_label: "Visit Home page"
   update_label: "Update"
   edit_survey_label: "Edit Survey"
+  submit_label: "Submit"
+  response_graph_label: "View"
 
   groups:
     group_heading_label: "All Groups"
@@ -137,6 +139,7 @@ en:
     my_settings_label: "My Settings"
     company_settings_label: "Company Settings"
     logged_in_role_description: "You are logged in as "
+    my_profile_label: "My Profile"
 
   company_settings:
     company_settings_update_success: "Company settings is successfully updated."
@@ -179,6 +182,7 @@ en:
     response_success_label: "Your response has been recorded ! :)"
     response_label: "Response"
     email_empty_error: "can not be empty"
+    submit_button_label: "Submit"
 
   options:
     option_label: "Option"

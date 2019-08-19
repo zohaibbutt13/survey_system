@@ -3,7 +3,7 @@ class UserResponsesController < ApplicationController
   load_and_authorize_resource :user_response, through: :survey
   # get surveys/:id/user_responses
   def index
-    @response_per_page = @user_responses.paginate(page: params[:page], per_page: 1)
+    @response_per_page = @user_responses.paginate(page: params[:page], per_page: RESPONSE_PER_PAGE)
     respond_to do |format|
       format.js
     end
@@ -20,9 +20,10 @@ class UserResponsesController < ApplicationController
 
   # post surveys/:survey_id/user_responses      
   def create
-    if (user_signed_in?)
+    if user_signed_in?
       @user_response.user_id = current_user.id
-      @user_response.user_id = current_user.company_id
+      @user_response.company_id = current_user.company_id
+      @user_response.email = current_user.email
     end
     if @user_response.save
       flash[:notice] = 'Saved'

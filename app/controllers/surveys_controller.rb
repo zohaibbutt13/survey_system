@@ -118,7 +118,7 @@ class SurveysController < ApplicationController
   # delete surveys/:id
   def destroy
     if @survey.destroy
-      redirect_to surveys_path, notice: 'Delete success'
+      redirect_to display_surveys_company_path(@current_company), notice: 'Delete success'
     else
       flash[:error] = @survey.errors.full_messages
       render action: :show

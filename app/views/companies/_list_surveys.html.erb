@@ -23,6 +23,7 @@
         <td><%= survey.created_at.to_s(:long) %></td>
         <td><%= survey.expiry.to_s(:long) %></td>
         <td>
+          <%= link_to t(:response_graph_label), survey_charts_survey_path(survey) %>
           <% if (can? :edit, survey) && (survey.expiry > DateTime.now) %>
             <%= link_to t('links.edit_link'), edit_survey_path(survey) %>
           <% end %>
