@@ -25,9 +25,9 @@
             <%= link_to t('header.my_profile_label'), edit_user_registration_path(current_user), class: "dropdown-item" %>
           <% end %>
           <% if current_user.admin? %>
-              <%= link_to "Subscription Packages", subscription_packages_company_path(current_user), class: "dropdown-item" %>
+              <%= link_to t('subscription_package_label'), subscription_packages_company_path(current_user), class: "dropdown-item" %>
             <% end %>
-          <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+          <%= link_to t('header.log_out_label'), destroy_user_session_path, method: :delete, class: "dropdown-item" %>
         </div>
       </div>
       <div class="dropdown pr-2">
@@ -50,7 +50,7 @@
         <% if @current_company.present? %>
           <a class="nav-link" href="/users/sign_in"><%= t 'header.sign_in_label' %></a>
         <% else %>
-          <%= link_to 'Sign In', sign_in_home_index_path, class: "nav-link" %>
+          <%= link_to t('header.sign_in_label'), sign_in_home_index_path, class: "nav-link" %>
         <% end %>
       </div>
     </div> 

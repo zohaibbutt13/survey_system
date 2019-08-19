@@ -39,6 +39,8 @@ en:
   edit_survey_label: "Edit Survey"
   submit_label: "Submit"
   response_graph_label: "View"
+  saved_label: "Saved"
+  subscription_package_label: "Subscription Packages"
 
   groups:
     group_heading_label: "All Groups"
@@ -135,7 +137,7 @@ en:
   header:
     register_label: "Register"
     sign_in_label: "Sign In"
-    log_out_label: "Log Out"
+    log_out_label: "Log out"
     my_settings_label: "My Settings"
     company_settings_label: "Company Settings"
     logged_in_role_description: "You are logged in as "
@@ -175,6 +177,9 @@ en:
     see_responses_label: "See Responses"
     edit_survey_link: "Edit Survey"
     delete_survey_link: "Delete Survey"
+    survey_create_success: "Survey created successfully!"
+    survey_update_success: "Survey updated successfully!"
+    survey_destroy_success: "Survey deleted successfully!"
 
   user_responses:
     question_label: "Question"

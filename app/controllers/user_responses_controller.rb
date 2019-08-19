@@ -18,7 +18,7 @@ class UserResponsesController < ApplicationController
     else
       @survey = Survey.find(params[:survey_id])
     end
-    
+  
     @user_response = UserResponse.new
     @answer = @user_response.answers.build
   end
@@ -33,7 +33,7 @@ class UserResponsesController < ApplicationController
     @user_response = @survey.user_responses.find(params[:id])
   end
 
-  # post surveys/:survey_id/user_responses      
+  # post surveys/:survey_id/user_responses  
   def create
     if @current_company.nil?
       @survey = Survey.unscoped.find(params[:survey_id])
@@ -43,7 +43,7 @@ class UserResponsesController < ApplicationController
     @user_response = UserResponse.new(response_params)
     @user_response.user_id = current_user.id
     if @user_response.save
-      flash[:notice] = 'Saved'
+      flash[:notice] = I18n.t 'saved_label'
       redirect_to survey_user_response_path(@survey, @user_response)
     else
       flash[:error] = @user_response.errors.full_messages
