@@ -1,11 +1,9 @@
 class UserResponsesController < ApplicationController
-  # load_and_authorize_resource :survey
-  # load_and_authorize_resource :user_response, through: :survey
+  load_and_authorize_resource :survey
+  load_and_authorize_resource :user_response, through: :survey
   # get surveys/:id/user_responses
   def index
-    @survey = Survey.find(params[:survey_id])
-    @user_responses = @survey.user_responses
-    @response_per_page = UserResponse.response_per_page(@user_responses, params[:page], 1)
+    @response_per_page = @user_responses.paginate(page: params[:page], per_page: RESPONSE_PER_PAGE)
     respond_to do |format|
       format.js
     end
@@ -13,35 +11,20 @@ class UserResponsesController < ApplicationController
 
   # get surveys/:id/new
   def new
-    if @current_company.nil?
-      @survey = Survey.unscoped.find(params[:survey_id])
-    else
-      @survey = Survey.find(params[:survey_id])
-    end
-  
-    @user_response = UserResponse.new
     @answer = @user_response.answers.build
   end
 
   # get surveys/:survey_id/user_response/:id
   def show
-    if @current_company.nil?
-      @survey = Survey.unscoped.find(params[:survey_id])
-    else
-      @survey = Survey.find(params[:survey_id])
-    end
-    @user_response = @survey.user_responses.find(params[:id])
   end
 
   # post surveys/:survey_id/user_responses  
   def create
-    if @current_company.nil?
-      @survey = Survey.unscoped.find(params[:survey_id])
-    else
-      @survey = Survey.find(params[:survey_id])
+    if user_signed_in?
+      @user_response.user_id = current_user.id
+      @user_response.company_id = current_user.company_id
+      @user_response.email = current_user.email
     end
-    @user_response = UserResponse.new(response_params)
-    @user_response.user_id = current_user.id
     if @user_response.save
       flash[:notice] = I18n.t 'saved_label'
       redirect_to survey_user_response_path(@survey, @user_response)
@@ -73,7 +56,7 @@ class UserResponsesController < ApplicationController
   end
 
   # whitelists parameters
-  def response_params
+  def user_response_params
     set_response_params
     params.require(:user_response).permit(
       :id,

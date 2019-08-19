@@ -1,36 +1,49 @@
-<div id = "user-response">
-  <%= form_for [@survey,@user_response] do |f| %>
-    <%= f.hidden_field :survey_id, value: @survey.id %>
-    <% if current_user.nil? %>
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true %></br>
-    <% end %>
-    <% @survey.questions.each_with_index do |question , index| %>
-      <%= f.fields_for :answers do |answer| %>
-        <%= answer.hidden_field :question_id, value: question.id %>
-        <br>
-        <p class="font-weight-bold"><%= t('user_responses.question_label') %><%= " #{index+1} : #{question.statement} #{'*' if question.required? }" %></p>
-        <% question.options.each_with_index do |option_value, option_index| %>
-          <% if (question.question_type == 'Checkbox') %>
-            <%= answer.check_box :option_id, {id: "user_response_answers_attributes_#{option_index}_option_id_#{option_value.id}" , multiple: true }, "#{option_value.id}", false %>
-              <%= answer.hidden_field :detail, value: option_value.detail %>
-          <% elsif (question.question_type == 'Radio Buttons') %>
-            <%= answer.radio_button(:option_id, option_value.id, required: question.required) %>
-            <%= answer.hidden_field :detail, value: option_value.detail %>
-          <% elsif (question.question_type == 'True / False') %>
-            <%= answer.radio_button(:option_id, option_value.id, required: question.required) %>
-            <%= answer.hidden_field :detail, value: option_value.detail %>
-          <% end %>
-          <%= option_value.detail %>
-          <br />
-        <% end %>
-        <% if (question.question_type == 'Comment Box' ) %>
-          <%= answer.text_area :detail, required: question.required %>
-        <% end %>
-      <% end %>
-    <% end %>
-    <div>
-      <%= f.submit t('submit_label'), class: "primary-btn mt-3"%>
+<div class="container">
+  <h2><%= t('user_responses.fill_in_response_label') %></h2>
+  <br>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#home"><%= t('user_responses.response_label') %></a>
+    </li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div id="home" class="container tab-pane active"><br>
+      <h3><%= @survey.name %></h3>
+      <h5><%= @survey.description %></h5>
+      <div class = "text-left survey-box container mt-3 shadow p-3 mb-5 bg-white rounded">
+        <div id = "user-response">
+          <%= form_for [@survey,@user_response] do |f| %>
+            <%= f.hidden_field :survey_id, value: @survey.id %>
+            <% if current_user.nil? %>
+              <%= f.label :email %><br />
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true %></br>
+            <% end %>
+            <% @survey.questions.each_with_index do |question , index| %>
+              <%= f.fields_for :answers do |answer| %>
+                  <%= answer.hidden_field :question_id, value: question.id %>
+                <br>
+                <p class="font-weight-bold"><%= t('user_responses.question_label') %><%= " #{index+1} : #{question.statement} #{'*' if question.required? }" %></p>
+                <% if (question.question_type == 'Checkbox') %>
+                  <%= render partial: 'checkbox', collection: question.options, as: :option_value, locals: { question: question, answer: answer } %>
+                <% elsif (question.question_type == 'Radio Buttons') %>
+                  <%= render partial: 'radio_button', collection: question.options, as: :option_value, locals: { question: question, answer: answer } %>
+                <% elsif (question.question_type == 'True / False') %>
+                  <%= render partial: 'truefalse', collection: question.options, as: :option_value, locals: { question: question, answer: answer } %>
+                <% end %>
+                <% if (question.question_type == 'Comment Box' ) %>
+                  <%= answer.text_area :detail, required: question.required %>
+                <% end %>
+              <% end %>
+            <% end %>
+            <div>
+              <%= f.submit t('user_responses.submit_button_label'), class: "primary-btn mt-3"%>
+            </div>
+          <% end %> 
+        </div>
+      </div>
     </div>
-  <% end %> 
+  </div>
 </div>
