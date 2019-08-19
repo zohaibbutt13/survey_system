@@ -31,14 +31,7 @@ $(document).ready(function() {
     });
   });
 
-  $('#survey_survey_type').on('change', function() {
-    if ( this.value == 'Private')
-    {
-      $("#group").show();
-    }
-    else
-    {
-      $("#group").hide();
-    }
+  $('body').on('click', '#survey_survey_type', function(event){
+    $("#group").toggle(this.value == 'Private');
   });
 });
