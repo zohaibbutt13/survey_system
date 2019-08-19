@@ -1,4 +1,4 @@
-<div class="row no-gutters d-flex justify-content-center">
+<div class="row no-gutters d-flex justify-content-center vh-100">
   <!-- Sign in form -->
   <div class="col-md-6 mx-auto p-20">
     <%= render partial:'layouts/flash_messages' %>
@@ -37,7 +37,9 @@
         
       </div>
     </div>
-    <%= render partial:'layouts/footer' %>
+    <div class="fixed-footer w-50">
+      <%= render partial:'layouts/footer' %>
+    </div>
   </div>
   <!-- Side Image -->
   <div class="col-md-6">

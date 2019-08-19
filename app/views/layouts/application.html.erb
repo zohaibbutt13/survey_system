@@ -43,7 +43,7 @@
       setGlobalData('userId', <%= @current_user.id if @current_user.present? %>);
     <% end %>
   </head>
-  <body>
+  <body class="d-flex flex-column">
     <!-- for guest user -->
     <% unless current_user.present? %>
       <%= render partial:'layouts/header' %>
@@ -62,7 +62,7 @@
           </div>
           <div id="main" class="main-style my-auto float-left overflow-auto col col-md-10">
             <div class="d-flex align-items-start flex-column">
-              <div class="w-100">
+              <div class="w-100 vh-75">
                 <%= render partial:'layouts/flash_messages' %>
                 <%= render_breadcrumbs :separator => ' / ' %>
                 <div class="p-20">
