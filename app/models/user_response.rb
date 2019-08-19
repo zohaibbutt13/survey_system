@@ -10,9 +10,9 @@ class UserResponse < ActiveRecord::Base
   accepts_nested_attributes_for :answers
 
   after_create :create_response_activity
-  validate :check_email
+  validate :check_guest_user_email
 
-  def check_email
+  def check_guest_user_email
     if (user_id.nil? && email.blank?)
       errors.add(:email, 'can not be empty')
     end
