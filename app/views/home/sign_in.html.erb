@@ -1,13 +1,12 @@
-<div class="row">
+<div class="row vh-100">
   <div class="col-sm-6 p-20" >
-    <%= render partial:'layouts/flash_messages' %>
-    <div class="d-flex justify-content-center">
-      <h1><%= t('login_label') %></h1>
-    </div>
+    <div class="content-window ml-5 p-20">
+      <%= render partial:'layouts/flash_messages' %>
+      <div class="d-flex justify-content-center">
+        <h1><%= t('login_label') %></h1>
+      </div>
 
-    <div class="p-l-30">
       <%= form_tag({controller: 'home', action: 'sign_in_redirect'}, method: "post", class: "nifty_form") do %>
-
         <div class = "label-input-container mt-4">
           <div class="label-input-item row no-gutters">
             <%= label_tag :email, nil, class: "col-4" %> <br />
@@ -21,8 +20,11 @@
           </div>
         </div>
       <% end %>
+      
     </div>
-    <%= render partial:'layouts/footer' %>
+    <div class="fixed-footer w-50">
+      <%= render partial:'layouts/footer' %>
+    </div>
   </div>
   <div class="col-sm-6" >
     <img src="/assets/survey.jpeg" class = "img-fullsize"  alt="survey">

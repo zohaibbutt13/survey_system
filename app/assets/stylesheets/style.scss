@@ -619,6 +619,19 @@ header.master-head h1 {
   margin-top: 60px;
 }
 
+.fixed-footer{
+  position: fixed;
+  bottom: 0;
+}
+
+.vh-100 {
+  min-height: 100vh;
+}
+
+.vh-75 {
+  min-height: 75vh;
+}
+
 .sidebar-style {
   position: fixed;
   margin-right: 1rem;
@@ -724,4 +737,10 @@ header.master-head h1 {
   margin-top: 10px;
   margin-bottom: 10px;
   padding: 10px 20px;
+}
+
+.content-window {
+  border: 1px solid $primary-border-color;
+  border-radius: $primary-radius;
+  margin: 50px 0;
 }
