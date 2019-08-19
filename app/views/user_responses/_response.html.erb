@@ -5,8 +5,7 @@
     <% comments_detail = [] %>
     <% user_response.answers.each do |answer| %>
       <% selected_option_ids << answer.option_id %>
-      <% question = Question.find(answer.question_id) %>
-      <% if question.question_type == 'Comment Box' %>
+      <% if answer.question.question_type == 'Comment Box' %>
         <% comments_detail << answer.detail %>
       <% end %>
     <% end %>
