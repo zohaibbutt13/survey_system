@@ -26,19 +26,12 @@
                   <%= answer.hidden_field :question_id, value: question.id %>
                 <br>
                 <p class="font-weight-bold"><%= t('user_responses.question_label') %><%= " #{index+1} : #{question.statement} #{'*' if question.required? }" %></p>
-                <% question.options.each_with_index do |option_value, option_index| %>
-                  <% if (question.question_type == 'Checkbox') %>
-                    <%= answer.check_box :option_id, { multiple: true, required: question.required }, "#{option_value.id}", false %>
-                      <%= answer.hidden_field :detail, value: option_value.detail %>
-                  <% elsif (question.question_type == 'Radio Buttons') %>
-                    <%= answer.radio_button(:option_id, option_value.id, required: question.required) %>
-                    <%= answer.hidden_field :detail, value: option_value.detail %>
-                  <% elsif (question.question_type == 'True / False') %>
-                    <%= answer.radio_button(:option_id, option_value.id, required: question.required) %>
-                    <%= answer.hidden_field :detail, value: option_value.detail %>
-                  <% end %>
-                  <%= option_value.detail %>
-                  <br />
+                <% if (question.question_type == 'Checkbox') %>
+                  <%= render partial: 'checkbox', collection: question.options, as: :option_value, locals: { question: question, answer: answer } %>
+                <% elsif (question.question_type == 'Radio Buttons') %>
+                  <%= render partial: 'radio_button', collection: question.options, as: :option_value, locals: { question: question, answer: answer } %>
+                <% elsif (question.question_type == 'True / False') %>
+                  <%= render partial: 'truefalse', collection: question.options, as: :option_value, locals: { question: question, answer: answer } %>
                 <% end %>
                 <% if (question.question_type == 'Comment Box' ) %>
                   <%= answer.text_area :detail, required: question.required %>

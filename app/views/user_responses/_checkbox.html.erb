@@ -1,0 +1,4 @@
+<%= answer.check_box :option_id, { multiple: true, required: question.required }, "#{option_value.id}", false %>
+<%= answer.hidden_field :detail, value: option_value.detail %>
+<%= option_value.detail %>
+<br>
