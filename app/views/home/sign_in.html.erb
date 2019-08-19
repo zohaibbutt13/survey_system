@@ -8,16 +8,16 @@
     <div class="p-l-30">
       <%= form_tag({controller: 'home', action: 'sign_in_redirect'}, method: "post", class: "nifty_form") do %>
 
-        <div class = "input-label-container mt-4">
-          <div class="label-input-item">
-            <%= label_tag :email %> <br />
-            <%= text_field_tag :email, params[:email] %>
+        <div class = "label-input-container mt-4">
+          <div class="label-input-item row no-gutters">
+            <%= label_tag :email, nil, class: "col-4" %> <br />
+            <%= text_field_tag :email, params[:email], class: "col-8", required: true %>
           </div>
         </div>
 
         <div class = "input-label-container my-4">
           <div class="actions">
-            <%= submit_tag("Search", class: 'primary-btn') %>
+            <%= submit_tag(t(:submit_label), class: 'primary-btn w-100') %>
           </div>
         </div>
       <% end %>

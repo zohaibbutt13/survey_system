@@ -31,7 +31,7 @@
           </div>
           <div id = "group" class='label-input-item row no-gutters'>
             <label class="col-4"><%= t('surveys.assign_group_label') %></label>
-            <%= f.select :group_id, options_for_select(@groups.collect {|group| [group.name, group.id ]}, @survey.group_id), {},{ class: "col-8" } %>
+            <%= f.select :group_id, options_for_select(@groups.collect {|group| [group.name, group.id ]}, @survey.group_id), {}, { class: "col-8" } %>
           </div>
         </div>
         <div id = "survey_questions" class = "pt-3" >

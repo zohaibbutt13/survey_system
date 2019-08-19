@@ -5,16 +5,16 @@
     <div class=" row d-flex justify-content-center">
       <div class="container col-8">
         <h1><%= t(:login_label) %></h1>
-        <div class = "login-margin-top">
+        <div class = "login-margin-top label-input-container">
           <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-              <div class="form-group">
-                <label for="user_email"> <%= t(:email_label) %> </label>
-                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+              <div class="label-input-item row no-gutters">
+                <label for="user_email" class="col-4"> <%= t(:email_label) %> </label>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-8" %>
               </div>
 
-              <div class="form-group">
-                <label for="user_password"> <%= t(:password_label) %> </label>
-                <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+              <div class="label-input-item row no-gutters">
+                <label for="user_password" class="col-4"> <%= t(:password_label) %> </label>
+                <%= f.password_field :password, autocomplete: "current-password", class: "col-8" %>
               </div>
             
             <% if devise_mapping.rememberable? %>
@@ -26,7 +26,7 @@
             <% end %>
 
             <div class="actions">
-              <%= f.submit t(:login_label), class: 'btn btn-primary w-100 mt-2' %>
+              <%= f.submit t(:login_label), class: 'primary-btn w-100 mt-2' %>
             </div>
 
           <% end %>
