@@ -23,6 +23,7 @@ class UserResponsesController < ApplicationController
     if user_signed_in?
       @user_response.user_id = current_user.id
       @user_response.company_id = current_user.company_id
+      @user_response.email = current_user.email
     end
     if @user_response.save
       flash[:notice] = 'Saved'
