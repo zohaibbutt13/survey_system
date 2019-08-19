@@ -182,6 +182,7 @@ en:
     fill_in_response_label: "Fill in your response"
     response_success_label: "Your response has been recorded ! :)"
     response_label: "Response"
+    submit_button_label: "Submit"
 
   options:
     option_label: "Option"

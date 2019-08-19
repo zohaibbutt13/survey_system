@@ -1,42 +1,42 @@
 <table class="table js-data-table w-100">
   <thead>
     <tr>
-      <th scope="col"><%= t 'serial_num_label' %></th>
-      <th scope="col"><%= t 'title_label' %></th>
-      <th scope="col"><%= t 'survey_type_label' %></th>
-      <th scope="col"><%= t 'category_label' %></th>
-      <th scope="col"><%= t 'created_by_label' %></th>
-      <th scope="col"><%= t 'created_on_label' %></th>
-      <th scope="col"><%= t 'expiry_label' %></th>
-      <th scope="col"><%= t 'options_label' %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @surveys.each.with_index(1) do |survey, index| %>
-      <tr>
-      <td scope="row"><%= index %></td>
-      <td class="link-text"><%= link_to survey.name, new_survey_user_response_path(survey), class: "text-small" %></td>
-      <td><%= survey.survey_type %></td>
-      <td><%= survey.category %></td>
-      <td><%= survey.user.full_name %></td> 
-      <td><%= survey.created_at.to_s(:long) %></td>
-      <td><%= survey.expiry.to_s(:long) %></td>
-      <td class="table-icon">
-        <% if can? :survey_charts, survey %>
-          <%= link_to survey_charts_survey_path(survey) do %>
-            <i class="fa fa-line-chart mr-2"></i>
+        <th scope="col"><%= t 'serial_num_label' %></th>
+        <th scope="col"><%= t 'title_label' %></th>
+        <th scope="col"><%= t 'survey_type_label' %></th>
+        <th scope="col"><%= t 'category_label' %></th>
+        <th scope="col"><%= t 'created_by_label' %></th>
+        <th scope="col"><%= t 'created_on_label' %></th>
+        <th scope="col"><%= t 'expiry_label' %></th>
+        <th scope="col"><%= t 'options_label' %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @surveys.each.with_index(1) do |survey, index| %>
+        <tr>
+        <td scope="row"><%= index %></th>
+        <td class="link-text"><%= link_to survey.name, survey_path(survey.id), class: "text-small" %></td>
+        <td><%= survey.survey_type %></td>
+        <td><%= survey.category %></td>
+        <td><%= survey.user.full_name %></td> 
+        <td><%= survey.created_at.to_s(:long) %></td>
+        <td><%= survey.expiry.to_s(:long) %></td>
+        <td class="table-icon">
+          <% if can? :survey_charts, survey %>
+            <%= link_to survey_charts_survey_path(survey) do %>
+              <i class="fa fa-line-chart mr-2"></i>
+            <% end %>
           <% end %>
-        <% end %>
-        <% if (can? :edit, survey) && (survey.expiry > DateTime.now) %>
-          <%= link_to edit_survey_path(survey) do %>
-            <i class="fa fa-pencil mr-2"></i>
+          <% if (can? :edit, survey) && (survey.expiry > DateTime.now) %>
+            <%= link_to edit_survey_path(survey) do %>
+              <i class="fa fa-pencil mr-2"></i>
+            <% end %>
           <% end %>
-        <% end %>
-        <% if can? :destroy, survey %>
-          <%= link_to survey_path(survey), method: :delete, data: { confirm: t('links.confirmation_message') } do %>
-            <i class="fa fa-trash"></i>
+          <% if can? :destroy, survey %>
+            <%= link_to survey_path(survey), method: :delete, data: { confirm: t('links.confirmation_message') } do %>
+              <i class="fa fa-trash"></i>
+            <% end %>
           <% end %>
-        <% end %>
       </td>
     </tr>
     <% end %>
