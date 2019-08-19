@@ -28,7 +28,7 @@
                 <p class="font-weight-bold"><%= t('user_responses.question_label') %><%= " #{index+1} : #{question.statement} #{'*' if question.required? }" %></p>
                 <% question.options.each_with_index do |option_value, option_index| %>
                   <% if (question.question_type == 'Checkbox') %>
-                    <%= answer.check_box :option_id, {id: "user_response_answers_attributes_#{option_index}_option_id_#{option_value.id}" , multiple: true }, "#{option_value.id}", false %>
+                    <%= answer.check_box :option_id, { multiple: true, required: question.required }, "#{option_value.id}", false %>
                       <%= answer.hidden_field :detail, value: option_value.detail %>
                   <% elsif (question.question_type == 'Radio Buttons') %>
                     <%= answer.radio_button(:option_id, option_value.id, required: question.required) %>

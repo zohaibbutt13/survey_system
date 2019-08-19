@@ -31,7 +31,7 @@ $(document).ready(function() {
     });
   });
 
-  $('#survey_survey_type').on('change', function() {
+  $('body').on('click', '#survey_survey_type', function(event){
     $("#group").toggle(this.value == 'Private');
   });
 });
