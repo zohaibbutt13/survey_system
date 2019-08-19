@@ -178,6 +178,7 @@ en:
     fill_in_response_label: "Fill in your response"
     response_success_label: "Your response has been recorded ! :)"
     response_label: "Response"
+    email_empty_error: "can not be empty"
 
   options:
     option_label: "Option"

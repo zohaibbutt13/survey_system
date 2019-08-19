@@ -14,7 +14,7 @@ class UserResponse < ActiveRecord::Base
 
   def check_guest_user_email
     if (user_id.nil? && email.blank?)
-      errors.add(:email, 'can not be empty')
+      errors.add(:email, I18n.t('user_responses.email_empty_error'))
     end
   end
 
