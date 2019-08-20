@@ -35,6 +35,11 @@ RSpec.describe Survey, type: :model do
     expect(survey).to_not be_valid
   end
 
+  it 'is not valid without a expiry' do
+    survey.expiry = nil
+    expect(survey).to_not be_valid
+  end
+
   describe 'Associations' do
     it 'has many questions' do
       assc = described_class.reflect_on_association(:questions)
