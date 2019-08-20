@@ -194,3 +194,6 @@ en:
     surveys_label: "Surveys"
     name_label: "Name"
     type_label: "Type"
+  
+  companies:
+    companies_list_label: "Your companies"  

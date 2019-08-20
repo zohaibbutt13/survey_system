@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
          :confirmable, :trackable
 
   default_scope { where(company_id: Company.current_id) }
-  
+
   has_many :activities, foreign_key: :owner_id, dependent: :destroy
   has_many :activities, as: :trackable
   belongs_to :company

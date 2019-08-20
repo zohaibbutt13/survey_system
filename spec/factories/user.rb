@@ -14,6 +14,7 @@ FactoryGirl.define do
     id { 1 }
     name { Faker::Name.name }
     subdomain { "7vals" }
+    subscription_package_id { 1 }
   end
 
   factory :group, class: Group do

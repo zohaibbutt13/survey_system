@@ -12,6 +12,24 @@ RSpec.describe CompanySettingsController, type: :controller do
     @user.save
     @request.host = "#{@company.subdomain}." + request.host
     sign_in @user
+    @ability = Ability.new(@user)
+  end
+
+  describe 'GET edit' do
+    it 'has a 200 status code' do
+      render_template :edit
+      expect(response.status).to eq(200)
+    end
+  end
+
+  describe "Abilities" do
+    it 'update company settings' do
+      expect(@ability).to be_able_to(:update, @company_setting)
+    end
+
+    it 'edit company settings' do
+      expect(@ability).to be_able_to(:edit, @company_setting)
+    end
   end
 
   describe 'PUT update' do
@@ -36,6 +54,8 @@ RSpec.describe CompanySettingsController, type: :controller do
       end
     end
   end
+
+
 end
 
 RSpec.describe CompanySettingsController, type: :routing do

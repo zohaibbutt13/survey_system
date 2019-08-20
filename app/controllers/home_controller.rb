@@ -46,12 +46,8 @@ class HomeController < ApplicationController
       if User.unscoped.find_by(email: params[:email]).nil?
         format.html { redirect_to sign_in_home_index_path }
       else
-        format.html { 
-          @users=User.unscoped.where(email:params[:email])
-          @companies = []
-          @users.each do |user|
-            @companies << user.company
-          end
+        format.html {
+          @companies = Company.joins('INNER JOIN users on users.company_id = companies.id').where("users.email = ?", params[:email])
           @email = params[:email]
         }
       end

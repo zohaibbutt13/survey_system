@@ -14,6 +14,13 @@ RSpec.describe UserSettingsController, type: :controller do
     sign_in @user
   end
   
+  describe 'GET edit' do
+    it 'has a 200 status code' do
+      render_template :edit
+      expect(response.status).to eq(200)
+    end
+  end
+  
   describe 'PUT update' do
     context 'valid attributes' do
       it 'locates the requested @user_setting' do
@@ -36,6 +43,17 @@ RSpec.describe UserSettingsController, type: :controller do
       end
     end
   end
+
+  describe "Abilities" do
+    it 'update user settings' do
+      expect(@ability).to be_able_to(:update, @user_setting)
+    end
+
+    it 'edit user settings' do
+      expect(@ability).to be_able_to(:edit, @user_setting)
+    end
+  end
+
 end
 
 RSpec.describe UserSettingsController, type: :routing do
