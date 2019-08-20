@@ -23,14 +23,6 @@ class HomeController < ApplicationController
     end
   end
 
-  # get home/packages
-  def packages
-    @packages = SubscriptionPackage.get_packages
-    respond_to do |format|
-      format.html
-    end
-  end
-
   def company_redirect
     @companies = Company.unscoped.all
   end

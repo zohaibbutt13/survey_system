@@ -42,7 +42,6 @@ Rails.application.routes.draw do
       get 'packages'
       get 'filter_category'
       get 'sign_in'
-      post 'sign_in_redirect'
       post 'companies_list'
     end
   end
