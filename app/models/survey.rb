@@ -46,6 +46,7 @@ class Survey < ActiveRecord::Base
     groups.each do |group|
       g_id << group.id
     end
+    g_id << 0
     if !g_id.include? group_id
       errors.add(:group_id, 'incorrect')
     end

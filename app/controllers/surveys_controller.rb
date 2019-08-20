@@ -99,8 +99,15 @@ class SurveysController < ApplicationController
     end
   end
 
+  def set_survey_params
+    if params[:survey][:survey_type] == 'Public'
+      params[:survey][:group_id] = 0
+    end
+  end
+
   # whitelists parameters
   def survey_params
+    set_survey_params
     params.require(:survey).permit(
       :id,
       :name,

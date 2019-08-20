@@ -12,7 +12,8 @@
     <% end %>
     <div class = "text-left survey-box container mt-3 shadow p-3 mb-5 bg-white rounded">
       <% @survey.questions.each_with_index do |question , index| %>
-        <p><%= question.statement %></p>
+        <br>
+        <p class="font-weight-bold"><%= t('user_responses.question_label') %><%= " #{index+1} : #{question.statement} #{'*' if question.required? }" %></p>
         <% comments_index = 0 %>
         <% question.options.each_with_index do |option, option_index| %>
           <% if question.question_type == 'Checkbox' %>
@@ -27,10 +28,11 @@
             <%= radio_button_tag "option #{radio_button_id}", nil,(selected_option_ids.include? option.id), class: '', disabled: true %>
           <% end %>
           <%= option.detail %>
+          <br>
         <% end %>
       <% end %>
       <div class="apple_pagination d-flex justify-content-center mt-4">
-        <%= js_will_paginate @response_per_page %>
+        <%= js_will_paginate user_response %>
       </div>
     </div>
 </div>
