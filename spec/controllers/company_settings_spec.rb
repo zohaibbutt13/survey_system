@@ -53,9 +53,27 @@ RSpec.describe CompanySettingsController, type: :controller do
         response.should redirect_to dashboard_company_path
       end
     end
+
+    context 'invalid attributes' do
+      it 'locates the requested @company_setting' do
+        put :update, id: @company_setting, company_setting: @company_setting_params
+        assigns(:company_setting).should eq(@company_setting)
+      end
+
+      it 'does not change @company_setting attributes' do
+        @company_setting_params[:max_questions] = nil
+        put :update, id: @company_setting, company_setting: @company_setting_params
+        @company_setting.reload
+        @company_setting.max_questions.should_not eq(200)
+      end
+
+      it 're-renders the edit method' do
+        @company_setting_params[:max_questions] = nil
+        put :update, id: @company_setting, company_setting: @company_setting_params
+        response.should render_template :edit
+      end
+    end
   end
-
-
 end
 
 RSpec.describe CompanySettingsController, type: :routing do

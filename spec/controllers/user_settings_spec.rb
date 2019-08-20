@@ -42,6 +42,26 @@ RSpec.describe UserSettingsController, type: :controller do
         response.should redirect_to dashboard_company_path
       end
     end
+
+    context 'invalid attributes' do
+      it 'locates the requested @user_setting' do
+        put :update, id: @user_setting, user_setting: @user_setting_params
+        assigns(:user_setting).should eq(@user_setting)
+      end
+
+      it 'does not change @user_setting attributes' do
+        @user_setting_params[:show_graphs] = nil
+        put :update, id: @user_setting, user_setting: @user_setting_params
+        @user_setting.reload
+        @user_setting.show_graphs.should_not eq(false)
+      end
+
+      it 're-renders the edit method' do
+        @user_setting_params[:show_graphs] = nil
+        put :update, id: @user_setting, user_setting: @user_setting_params
+        response.should render_template :edit
+      end
+    end
   end
 
   describe "Abilities" do
