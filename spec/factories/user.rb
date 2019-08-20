@@ -27,7 +27,16 @@ FactoryGirl.define do
     category { 'Community' }
     survey_type { 'Private' }
     expiry { '2019-08-20' }
-    group_id { '1' }
+  end
+
+  factory :question, class: Question do
+    statement { Faker::Name.name }
+    question_type { 'Radio Buttons' }
+    required  { true }
+  end
+
+  factory :option, class: Option do
+    detail { Faker::Name.name }
   end
 
   factory :user_response, class: UserResponse do
@@ -35,8 +44,6 @@ FactoryGirl.define do
   end
 
   factory :answer, class: Answer do
-    question_id { '1' }
     detail { Faker::Lorem.sentence }
-    option_id { '1' }
   end
 end
