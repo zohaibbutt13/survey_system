@@ -9,8 +9,8 @@
           <%= f.label :email, class: "col-4" %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-8" %>
         </div>
-        <div class="label-input-item">
-          <%= f.submit t(:resend_unlock_instructions_label), class: "float-right" %>
+        <div class="label-input-item d-flex justify-content-end">
+          <%= f.submit t(:resend_unlock_instructions_label), class: "primary-btn" %>
         </div>
       </div>
     <% end %>

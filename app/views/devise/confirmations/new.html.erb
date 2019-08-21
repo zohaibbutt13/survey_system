@@ -9,8 +9,8 @@
           <%= f.label :email, class: "col-4" %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: "col-8" %>
         </div>
-        <div class="label-input-item">
-          <%= f.submit t(:resend_confirmation_instructions_label), class: 'primary-btn float-right' %>
+        <div class="label-input-item d-flex justify-content-end">
+          <%= f.submit t(:resend_confirmation_instructions_label), class: 'primary-btn' %>
         </div>
       </div>
     <% end %>
