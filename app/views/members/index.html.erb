@@ -2,6 +2,13 @@
   <h1><%= t('users.members_index_heading') %></h1>
 </div>
 
+<%= form_tag members_path, method: :get do %>
+  <div class="field">
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search" ,name: nil%>
+  </div>
+<% end %>
+
 <% if can? :create, User %>
   <div class="row no-gutters justify-content-end">
     <div class="col-2 mb-2">  

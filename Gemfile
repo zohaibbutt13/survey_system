@@ -5,6 +5,8 @@ gem 'rails', '4.2.0'
 # Database
 gem 'mysql2', '~> 0.3.18'
 # Use SCSS for stylesheets
+gem 'thinking-sphinx', '~> 4.3'
+
 gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
