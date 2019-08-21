@@ -35,7 +35,7 @@ RSpec.describe Company, type: :model do
     end
 
     it 'has many responses' do
-      assc = described_class.reflect_on_association(:responses)
+      assc = described_class.reflect_on_association(:user_responses)
       expect(assc.macro).to eq :has_many
     end
 
@@ -52,6 +52,7 @@ RSpec.describe Company, type: :model do
 
   it 'is valid with these kind of attributes' do
     company.name = 'abc'
+    company.subdomain = 'abc'
     company.status = 'active'
     company.cancelled_on = DateTime.now
     expect(company).to be_valid

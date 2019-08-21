@@ -26,8 +26,8 @@ RSpec.describe Question, type: :model do
       expect(assc.macro).to eq :has_many
     end
 
-    it 'has many responses' do
-      assc = described_class.reflect_on_association(:responses)
+    it 'has many answers' do
+      assc = described_class.reflect_on_association(:answers)
       expect(assc.macro).to eq :has_many
     end
 

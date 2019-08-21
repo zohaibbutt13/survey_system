@@ -20,7 +20,7 @@ class Activity < ActiveRecord::Base
         activities = admin_activities(user)
       end
     end
-    activities ||= []
+    activities
   end
 
   def self.member_activities(user)

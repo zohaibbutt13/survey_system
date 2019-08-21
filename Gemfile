@@ -32,8 +32,6 @@ gem "paperclip", "~> 6.0.0"
 
 gem 'devise'
 
-gem "breadcrumbs_on_rails"
-
 gem 'chosen-rails'
 
 # Use Unicorn as the app server
@@ -53,6 +51,7 @@ group :development, :test do
   gem 'pry-rails', '=0.3.3' 
   gem "better_errors", '=2.1.1'
   gem 'mailcatcher', '=0.6.1'
+  gem 'database_cleaner'
   # Access an IRB console on exception pages or by using <%= console %> in views
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
