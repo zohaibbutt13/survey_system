@@ -6,7 +6,7 @@
     <% unless question.question_type == 'Comment Box' %>
       <div class='js-survey-chart'>
         <h3><%= t 'question_label' %> <%= index %>: <%= question.statement %></h3>
-        <%= content_tag :canvas, "", id: question.id, data: { chart_data: question.answer_stats., chart_labels: question.options_labels, chart_type: 'pie', chart_colors: GRAPH_COLORS }, class: 'container col-12 col-md-7' %>
+        <%= content_tag :canvas, "", id: question.id, data: { chart_data: question.answer_stats, chart_labels: question.options_labels, chart_type: 'pie', chart_colors: GRAPH_COLORS }, class: 'container col-12 col-md-7' %>
       </div>
     <% else %>
       <h3><%= t 'question_label' %> <%= index %>: <%= question.statement %></h3>
