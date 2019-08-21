@@ -26,7 +26,7 @@ class UserResponse < ActiveRecord::Base
           errors.add(:detail, 'can not be blank')
         end
       else
-        if question.required && answer.option_id.blank?
+        if question.required && answer.option_id.nil?
           errors.add(:detail, 'can not be blank')
         end
       end
