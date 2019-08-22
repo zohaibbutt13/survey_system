@@ -23,7 +23,7 @@
     </div>
   </div>
 
-  <% if @surveys.count > 0 %>
+  <% if @surveys.size > 0 %>
     <%= render partial: 'shared/filters/name_filter' %>
     <%= render partial: 'shared/filters/survey_type_filter' %>
     <%= render partial: 'shared/filters/expired_before_filter' %>
