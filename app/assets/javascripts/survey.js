@@ -32,6 +32,6 @@ $(document).ready(function() {
   });
 
   $('#survey_survey_type').on('change', function() {
-    this.value == 'Private' ? $('#group').show() : $('#group').hide(); 
+    this.value == 'Private' ? $('#group_id').show() : $('#group_id').hide(); 
   });
 });

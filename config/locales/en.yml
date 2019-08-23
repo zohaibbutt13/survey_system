@@ -172,6 +172,7 @@ en:
     see_responses_label: "See Responses"
     edit_survey_link: "Edit Survey"
     delete_survey_link: "Delete Survey"
+    delete_success_message: "Survey deleted successfully"
 
   user_responses:
     question_label: "Question"
@@ -179,6 +180,8 @@ en:
     response_success_label: "Your response has been recorded ! :)"
     response_label: "Response"
     email_empty_error: "can not be empty"
+    create_success_message: "User response created successfully"
+    detail_empty_error: "can not be blank"
 
   options:
     option_label: "Option"

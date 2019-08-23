@@ -15,10 +15,10 @@
       <h5><%= @survey.description %></h5>
       <div class = "text-left survey-box container mt-3 shadow p-3 mb-5 bg-white rounded">
         <div id = "user-response">
-          <%= form_for [@survey,@user_response] do |f| %>
+          <%= form_for [ @survey, @user_response ] do |f| %>
             <%= f.hidden_field :survey_id, value: @survey.id %>
             <% if current_user.nil? %>
-              <%= f.label :email %><br />
+              <%= f.label :email %><br/>
               <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true %></br>
             <% end %>
             <% @survey.questions.each_with_index do |question , index| %>
@@ -27,16 +27,16 @@
                 <br/>
                 <p class="font-weight-bold"><%= t('user_responses.question_label') %><%= " #{index+1} : #{question.statement} #{'*' if question.required? }" %></p>
                 <% question.options.each_with_index do |option_value, option_index| %>
-                  <% if (question.question_type == 'Checkbox') %>
+                  <% if question.checkbox? %>
                     <%= answer.check_box :option_id, {id: "user_response_answers_attributes_#{option_index}_option_id_#{option_value.id}" , multiple: true }, "#{option_value.id}", false %>
                       <%= answer.hidden_field :detail, value: option_value.detail %>
-                  <% elsif (question.question_type == 'Radio Buttons') %>
+                  <% elsif question.radiobutton? %>
                     <%= answer.radio_button(:option_id, option_value.id, required: question.required) %>
                     <%= answer.hidden_field :detail, value: option_value.detail %>
-                  <% elsif (question.question_type == 'True / False') %>
+                  <% elsif question.boolean? %>
                     <%= answer.radio_button(:option_id, option_value.id, required: question.required) %>
                     <%= answer.hidden_field :detail, value: option_value.detail %>
-                  <% elsif (question.question_type == 'Comment Box' ) %>
+                  <% elsif question.commentbox? %>
                     <%= answer.text_area :detail, required: question.required %>
                     <%= answer.hidden_field :option_id, value: nil %>
                   <% end %>
@@ -46,7 +46,7 @@
               <% end %>
             <% end %>
             <div>
-              <%= f.submit t('users.update_button_label'), class: "primary-btn mt-3"%>
+              <%= f.submit t('users.update_button_label'), :disable_with => "Saving...", class: "primary-btn mt-3"%>
             </div>
           <% end %> 
         </div>

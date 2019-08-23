@@ -7,20 +7,13 @@ class Question < ActiveRecord::Base
   belongs_to :company
 
   validates :statement, presence: true, length: { maximum: 500 }
-  validate :type_of_question
+  validates_inclusion_of :question_type, in: ['Checkbox', 'Radio Buttons', 'Comment Box', 'True / False'], message: "Question type %s is incorrect"
 
   before_save :mark_option_for_removal
 
   def mark_option_for_removal
     options.each do |option|
       option.mark_for_destruction if option.detail == 'nill'
-    end
-  end
-
-  def type_of_question
-    type = ['Checkbox', 'Radio Buttons', 'Comment Box', 'True / False']
-    if !type.include? question_type
-      errors.add(:question_type, "incorrect")
     end
   end
 

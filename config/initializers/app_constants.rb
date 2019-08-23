@@ -8,3 +8,6 @@ CATEGORIES = ['Community', 'Customer Feedback', 'Customer Satisfaction', 'Demogr
 'Political', 'Quiz', 'Other']
 SURVEY_STATS_LABELS = ['Expired', 'Active']
 RESPONSE_PER_PAGE = 1
+PUBLIC = 'Public'
+PRIVATE = 'Private'
+COMMENTBOX = 'Comment box'

@@ -50,7 +50,7 @@ class SurveysController < ApplicationController
     end
   end
 
-  # edit surveys/:id/edit
+  # EDIT surveys/:id/edit
   def edit
     add_breadcrumb "Surveys", display_surveys_company_path(@current_company)
     add_breadcrumb "Edit Survey", edit_survey_path
@@ -60,7 +60,7 @@ class SurveysController < ApplicationController
     end
   end
 
-  # patch surveys/:id
+  # PATCH surveys/:id
   def update
     if @survey.update(survey_params)
       flash[:notice] = 'Survey Updated!'
@@ -100,7 +100,7 @@ class SurveysController < ApplicationController
   end
 
   def set_survey_params
-    if params[:survey][:survey_type] == 'Public'
+    if params[:survey][:survey_type] == PUBLIC
       params[:survey][:group_id] = 0
     end
   end
@@ -121,17 +121,19 @@ class SurveysController < ApplicationController
     )
   end
 
-  # delete surveys/:id
+  # DELETE surveys/:id
   def destroy
-    if @survey.destroy
-      redirect_to display_surveys_company_path(@current_company), notice: 'Delete success'
+    @survey.destroy
+    if @survey.destroyed?
+      redirect_to display_surveys_company_path(@current_company) 
+      flash[:notice] = I18n.t('surveys.delete_success_message')
     else
       flash[:error] = @survey.errors.full_messages
       render action: :show
     end
   end
 
-  # get survey/:id/survey_charts
+  # GET survey/:id/survey_charts
   def survey_charts
     @survey.questions.includes(:answers)
     respond_to do |format|

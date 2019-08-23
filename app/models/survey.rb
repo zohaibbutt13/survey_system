@@ -19,7 +19,8 @@ class Survey < ActiveRecord::Base
   validates :name, presence: true, length: { maximum: 255 }
   validates :description, presence: true, length: { maximum: 500 }
   validates :expiry, presence: true
-  validate :type_of_survey, :group
+  validate :verify_group
+  validates_inclusion_of :survey_type, in: [ 'Private', 'Public'], message: "Survey type %s is incorrect"
 
   before_save :mark_question_for_removal
   after_create :create_survey_activity
@@ -32,23 +33,11 @@ class Survey < ActiveRecord::Base
   scope :active_surveys, -> { where('expiry > ?', DateTime.now) }
   scope :latest_surveys, -> { order('surveys.created_at desc') }
 
-
-  def type_of_survey
-    type = ['Private', 'Public']
-    if (!type.include? survey_type)
-      errors.add(:survey_type, 'Incorrect')
-    end
-  end
-
-  def group
-    groups = Group.all
-    g_id = []
-    groups.each do |group|
-      g_id << group.id
-    end
-    g_id << 0
-    if !g_id.include? group_id
-      errors.add(:group_id, 'incorrect')
+  def verify_group
+    groups_id = Group.all.collect{ |g| g.id }
+    groups_id << 0
+    if !groups_id.include? group_id
+      errors.add(:group_id, 'value is incorrect')
     end
   end
 

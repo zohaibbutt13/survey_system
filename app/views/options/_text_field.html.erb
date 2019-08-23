@@ -1,2 +1,2 @@
 <%= text_field_tag "survey[questions_attributes][#{locals[:question_id]}][options_attributes][#{locals[:option_id]}][detail]" , nil , class: 'form-control', required: locals[:required], readonly: locals[:readonly] %>
-<%= hidden_field_tag "survey_questions_attributes_#{locals[:question_id]}_options_attributes_#{locals[:option_id]}_company_id", @current_company.id %> 
+<%= hidden_field_tag "survey[questions_attributes][#{locals[:question_id]}][options_attributes][#{locals[:option_id]}][company_id]", @current_company.id %> 

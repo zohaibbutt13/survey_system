@@ -1,31 +1,35 @@
 class UserResponsesController < ApplicationController
   load_and_authorize_resource :survey
   load_and_authorize_resource :user_response, through: :survey
-  # get surveys/:id/user_responses
+  # GET surveys/:id/user_responses
   def index
-    @response_per_page = @user_responses.paginate(page: params[:page], per_page: RESPONSE_PER_PAGE)
+    if (@survey.survey_type == PUBLIC)
+      @user_responses = UserResponse.get_public_responses(params[:survey_id], params[:page], RESPONSE_PER_PAGE)
+    else
+      @user_responses = @user_responses.paginate(page: params[:page], per_page: RESPONSE_PER_PAGE)
+    end
     respond_to do |format|
       format.js
     end
   end
 
-  # get surveys/:id/new
+  # GET surveys/:id/new
   def new
     @answer = @user_response.answers.build
   end
 
-  # get surveys/:survey_id/user_response/:id
+  # GET surveys/:survey_id/user_response/:id
   def show
   end
 
-  # post surveys/:survey_id/user_responses      
+  # POST surveys/:survey_id/user_responses      
   def create
-    if (user_signed_in?)
+    if user_signed_in?
       @user_response.user_id = current_user.id
       @user_response.company_id = current_user.company_id
     end
     if @user_response.save
-      flash[:notice] = 'Saved'
+      flash[:notice] = I18n.t('user_responses.create_success_message')
       redirect_to survey_user_response_path(@survey, @user_response)
     else
       flash[:error] = @user_response.errors.full_messages

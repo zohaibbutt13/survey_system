@@ -1,4 +1,1 @@
-<% if @survey.survey_type == 'Public' %>
-	<% @response_per_page = @response_per_page.unscoped.where(survey_id: @survey.id) %>
-<% end %>
-<%= render partial: "response", collection: @response_per_page, as: :user_response %>
+<%= render partial: "response", collection: @user_responses, as: :user_response %>
