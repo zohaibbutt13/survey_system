@@ -34,15 +34,13 @@ class HomeController < ApplicationController
   end
 
   def companies_list
-    respond_to do |format|
-      if User.unscoped.find_by(email: params[:email]).nil?
+    if User.unscoped.find_by(email: params[:email]).nil?
+      respond_to do |format|
         format.html { redirect_to sign_in_home_index_path }
-      else
-        format.html {
-          @companies = Company.joins('INNER JOIN users on users.company_id = companies.id').where("users.email = ?", params[:email])
-          @email = params[:email]
-        }
       end
+    else
+      @companies = Company.user_companies(params[:email])
+      @email = params[:email]
     end
   end
 end

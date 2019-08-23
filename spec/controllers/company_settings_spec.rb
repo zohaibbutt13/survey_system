@@ -1,4 +1,5 @@
 require 'rails_helper'
+require "cancan/matchers"
 
 RSpec.describe CompanySettingsController, type: :controller do
   before(:each) do
@@ -10,15 +11,33 @@ RSpec.describe CompanySettingsController, type: :controller do
     @company_setting_params = FactoryGirl.attributes_for(:company_setting)
     @user.role = User::ROLE[:admin]
     @user.save
-    @request.host = "#{@company.subdomain}." + request.host
+    @request.host = "#{@company.subdomain}.#{request.host}"
     sign_in @user
     @ability = Ability.new(@user)
   end
 
+  let(:create_supervisor) {
+    @supervisor = FactoryGirl.create(:user)
+    @supervisor.company = @company
+    @supervisor.role = User::ROLE[:supervisor]
+    @supervisor.save
+    sign_in @supervisor
+    @supervisor_ability = Ability.new(@supervisor) 
+  }
+
+  let(:create_member) {
+    @member = FactoryGirl.create(:user)
+    @member.company = @company
+    @member.role = User::ROLE[:member]
+    @member.save
+    sign_in @member
+    @member_ability = Ability.new(@member) 
+  }
+
   describe 'GET edit' do
-    it 'has a 200 status code' do
+    it 'returns http success' do
       render_template :edit
-      expect(response.status).to eq(200)
+      expect(response).to have_http_status(:success)
     end
   end
 
@@ -29,6 +48,26 @@ RSpec.describe CompanySettingsController, type: :controller do
 
     it 'edit company settings' do
       expect(@ability).to be_able_to(:edit, @company_setting)
+    end
+
+    it 'should not edit company settings' do
+      create_supervisor
+      expect(@supervisor_ability).to_not be_able_to(:edit, @company_setting)
+    end
+
+    it 'should not updtae company settings' do
+      create_supervisor
+      expect(@supervisor_ability).to_not be_able_to(:update, @company_setting)
+    end
+
+    it 'should not edit company settings' do
+      create_member
+      expect(@member_ability).to_not be_able_to(:edit, @company_setting)
+    end
+
+    it 'should not updtae company settings' do
+      create_member
+      expect(@member_ability).to_not be_able_to(:update, @company_setting)
     end
   end
 

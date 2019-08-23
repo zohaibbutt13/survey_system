@@ -22,11 +22,24 @@ class Company < ActiveRecord::Base
       :company_id => self.id)    
   end
 
+  scope :user_companies, -> (email) { Company.joins('INNER JOIN users on users.company_id = companies.id').where("users.email = ?", email) }
+
   def dashboard_resources(user)
     user_setting = user.user_setting
     company_setting = user.company.company_setting
     [company_setting, user_setting]
   end 
+
+  def self.filter_surveys(name, expired_before, survey_type, created_on, created_by_id)
+    @surveys = Survey.all
+    @surveys = @surveys.where('name LIKE ?', "%#{name}%") unless name.blank?
+    @surveys = @surveys.where('expiry < ?', expired_before) unless expired_before.blank? 
+    @surveys = @surveys.where('survey_type = ?', survey_type) unless survey_type.blank?
+    @surveys = @surveys.where('Date(created_at) = ?', created_on) unless created_on.blank? 
+    @surveys = @surveys.where('user_id = ?', created_by_id) unless created_by_id.blank?
+    
+    @surveys  
+  end
 
   validates :name, presence: true, uniqueness: true, length: { maximum: 30 } 
   validates :subdomain, presence: true, uniqueness: true, length: { maximum: 30 }
@@ -38,4 +51,5 @@ class Company < ActiveRecord::Base
   def self.current_id
     Thread.current[:tenant_id]
   end
+
 end

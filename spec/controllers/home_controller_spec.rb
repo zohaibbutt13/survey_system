@@ -24,7 +24,7 @@ RSpec.describe HomeController, type: :controller do
 
     it "should render companies_list" do
       post :companies_list, @email= 'ali.ahmad@7vals.com'
-      @companies = Company.joins('INNER JOIN users on users.company_id = companies.id').where("users.email = ?", @email)
+      @companies = Company.user_companies(@email)
       expect(response).to_not render_template('companies_list')
     end
   end

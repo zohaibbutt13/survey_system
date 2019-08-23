@@ -26,7 +26,7 @@ class Survey < ActiveRecord::Base
   after_destroy :destroy_survey_activity
 
   default_scope { where(company_id: Company.current_id) }
-  scope :public_surveys, -> { where(survey_type: 'public') }
+  scope :public_surveys, -> { where(survey_type: 'Public') }
   scope :expired_surveys, -> { where('expiry < ?', DateTime.now) }
   scope :active_surveys, -> { where('expiry > ?', DateTime.now) }
   scope :latest_surveys, -> { order('surveys.created_at desc') }

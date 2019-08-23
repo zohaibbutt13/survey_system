@@ -9,7 +9,7 @@ RSpec.describe CompaniesController, type: :controller do
     @user.role = User::ROLE[:admin]
     @user.save
     @company_params = FactoryGirl.attributes_for(:company)
-    @request.host = "#{@company.subdomain}." + request.host
+    @request.host = "#{@company.subdomain}.#{request.host}"
     sign_in @user
   end
 
@@ -54,5 +54,4 @@ RSpec.describe CompaniesController, type: :controller do
       end
     end
   end
-
 end

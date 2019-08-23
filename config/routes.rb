@@ -10,8 +10,8 @@ Rails.application.routes.draw do
     member do
       get 'dashboard'
       get 'subscription_packages'
-      get 'update_subscription_package'
       get 'display_surveys'
+      get 'update_subscription_package'
     end
   end
 

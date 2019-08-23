@@ -6,7 +6,7 @@ class CompaniesController < ApplicationController
   end
 
   def dashboard
-    add_breadcrumb "Dashboard", dashboard_company_path
+    add_breadcrumb "Dashboard", dashboard_company_path(@current_company)
     @activities = @current_company.activities.get_user_activities(current_user)
     @surveys_stats = [@current_company.surveys.expired_surveys.count,
                       @current_company.surveys.active_surveys.count]
@@ -18,7 +18,7 @@ class CompaniesController < ApplicationController
   end
 
   def subscription_packages
-    add_breadcrumb "Subscription Packages", subscription_packages_company_path
+    add_breadcrumb "Subscription Packages", subscription_packages_company_path(@current_company)
     @subscription_packages = SubscriptionPackage.first(3)
     respond_to do |format|
       format.html
@@ -28,7 +28,7 @@ class CompaniesController < ApplicationController
   def update_subscription_package
     @current_company.subscription_package_id = params[:id]
     if @current_company.save
-      respond_to do |format|
+      respond_to do |format|@surveys = Survey.all
         flash[:notice] = I18n.t 'package.subscription_package_update_label'  
         format.html { redirect_to dashboard_company_path }
       end
@@ -39,24 +39,13 @@ class CompaniesController < ApplicationController
   end
 
   def filter
-    @surveys = @surveys.where('name LIKE ?', "%#{params[:filters][:name]}%") unless params[:filters][:name].blank?
-    @surveys = @surveys.where('expiry < ?', params[:filters][:expired_before]) unless params[:filters][:expired_before].blank? 
-    @surveys = @surveys.where('survey_type = ?', params[:filters][:survey_type]) unless params[:filters][:survey_type].blank?
-    @surveys = @surveys.where('Date(created_at) = ?', params[:filters][:created_on]) unless params[:filters][:created_on].blank? 
-    @surveys = @surveys.where('user_id = ?', params[:filters][:created_by_id]) unless params[:filters][:created_by_id].blank?  
+    @surveys = Company.filter_surveys(params[:filters][:name], params[:filters][:expired_before], params[:filters][:survey_type], params[:filters][:created_on], params[:filters][:created_by_id])
     respond_to do |format|
       format.js
     end
   end
 
-  #move to surveys
-  # get home/display_surveys
   def display_surveys
-    # if params[:filter_by] == 'expiry'
-    #   @surveys = @surveys.expired_surveys
-    # elsif params[:filter_by] == 'active'
-    #   @surveys = @surveys.active_surveys
-    # end
     @employees = User.all
     add_breadcrumb "Surveys", display_surveys_company_path(@current_company)
     respond_to do |format|
