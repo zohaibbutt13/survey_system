@@ -739,3 +739,9 @@ header.master-head h1 {
 .paginate_button {
   padding: 0.1em 0.5em !important;
 }
+
+.content-window {
+  border: 1px solid $primary-border-color;
+  border-radius: $primary-radius;
+  margin: 50px 0;
+}
