@@ -25,7 +25,10 @@ function getGlobalData(key){
 }
 
 $(document).ready( function () {
-  $('.js-data-table').DataTable();
+  $('.js-data-table').DataTable({
+    fixedHeader: true, 
+    scrollY: 400
+  });
   var userId = getGlobalData('userId');
   if(userId) {
     $.ajax({
