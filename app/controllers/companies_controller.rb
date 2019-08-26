@@ -28,7 +28,7 @@ class CompaniesController < ApplicationController
   def update_subscription_package
     @current_company.subscription_package_id = params[:id]
     if @current_company.save
-      respond_to do |format|@surveys = Survey.all
+      respond_to do |format|
         flash[:notice] = I18n.t 'package.subscription_package_update_label'  
         format.html { redirect_to dashboard_company_path }
       end
@@ -39,7 +39,7 @@ class CompaniesController < ApplicationController
   end
 
   def filter
-    @surveys = Company.filter_surveys(params[:filters][:name], params[:filters][:expired_before], params[:filters][:survey_type], params[:filters][:created_on], params[:filters][:created_by_id])
+    @surveys = Company.filter_surveys(@current_company.surveys, params[:filters])
     respond_to do |format|
       format.js
     end

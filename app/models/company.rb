@@ -30,13 +30,12 @@ class Company < ActiveRecord::Base
     [company_setting, user_setting]
   end 
 
-  def self.filter_surveys(name, expired_before, survey_type, created_on, created_by_id)
-    @surveys = Survey.all
-    @surveys = @surveys.where('name LIKE ?', "%#{name}%") unless name.blank?
-    @surveys = @surveys.where('expiry < ?', expired_before) unless expired_before.blank? 
-    @surveys = @surveys.where('survey_type = ?', survey_type) unless survey_type.blank?
-    @surveys = @surveys.where('Date(created_at) = ?', created_on) unless created_on.blank? 
-    @surveys = @surveys.where('user_id = ?', created_by_id) unless created_by_id.blank?
+  def self.filter_surveys(surveys, filters)
+    @surveys = surveys.where('name LIKE ?', "%#{filters[:name]}%") unless filters[:name].blank?
+    @surveys = surveys.where('expiry < ?', filters[:expired_before]) unless filters[:expired_before].blank? 
+    @surveys = surveys.where('survey_type = ?', filters[:survey_type]) unless filters[:survey_type].blank?
+    @surveys = surveys.where('Date(created_at) = ?', filters[:created_on]) unless filters[:created_on].blank? 
+    @surveys = surveys.where('user_id = ?', filters[:created_by_id]) unless filters[:created_by_id].blank?
     
     @surveys  
   end
