@@ -725,3 +725,9 @@ header.master-head h1 {
   margin-bottom: 10px;
   padding: 10px 20px;
 }
+
+.content-window {
+  border: 1px solid $primary-border-color;
+  border-radius: $primary-radius;
+  margin: 50px 0;
+}
