@@ -1,4 +1,6 @@
 class Company < ActiveRecord::Base
+  FILTER_TYPE = { name: 'name', survey_type: 'survey_type', created_on: 'created_on', created_by: 'created_by', expired_before: 'expired_before' }
+
   belongs_to :subscription_package
   has_one :company_setting, dependent: :destroy
   has_many :groups, dependent: :destroy
@@ -22,11 +24,27 @@ class Company < ActiveRecord::Base
       :company_id => self.id)    
   end
 
+  scope :user_companies, -> (email) { Company.joins('INNER JOIN users on users.company_id = companies.id').where("users.email = ?", email) }
+
   def dashboard_resources(user)
     user_setting = user.user_setting
     company_setting = user.company.company_setting
     [company_setting, user_setting]
   end 
+
+  def filter_surveys(filter_name, options)
+    if filter_name == FILTER_TYPE[:name]
+      @surveys = surveys.filter_by_name(options[:value])
+    elsif filter_name == FILTER_TYPE[:expired_before]
+      @surveys = surveys.filter_by_expiry(options[:value])
+    elsif filter_name == FILTER_TYPE[:survey_type]
+      @surveys = surveys.filter_by_survey_type(options[:value])
+    elsif filter_name == FILTER_TYPE[:created_on]
+      @surveys = surveys.filter_by_created_at(options[:value])
+    elsif filter_name == FILTER_TYPE[:created_by]
+      @surveys = surveys.filter_by_created_by(options[:value])
+    end
+  end
 
   validates :name, presence: true, uniqueness: true, length: { maximum: 30 } 
   validates :subdomain, presence: true, uniqueness: true, length: { maximum: 30 }
@@ -39,8 +57,4 @@ class Company < ActiveRecord::Base
     Thread.current[:tenant_id]
   end
 
-  # def create_company(Params)
-  #   company = Company.new(params)
-  #   company.save
-  # end
 end

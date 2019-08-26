@@ -1,17 +1,79 @@
 require 'rails_helper'
+require "cancan/matchers"
 
 RSpec.describe UserSettingsController, type: :controller do 
-
   before(:each) do
-    @user = FactoryGirl.build(:user)
+    @user = FactoryGirl.create(:user)
+    @company = FactoryGirl.create(:company)
+    @user_setting = FactoryGirl.create(:user_setting)
+    @user.company = @company
+    @user.user_setting = @user_setting
+    @user_setting_params = FactoryGirl.attributes_for(:user_setting)
     @user.role = User::ROLE[:admin]
     @user.save
+    @request.host = "#{@company.subdomain}.#{request.host}"
     sign_in @user
+    @ability = Ability.new(@user)
+  end
+
+  describe 'GET edit' do
+    it 'returns http success' do
+      render_template :edit
+      expect(response).to have_http_status(:success)
+    end
   end
   
-  it 'renders the new template' do
-    get :new
-    expect(response).to render_template('new')
+  describe 'PUT update' do
+    context 'valid attributes' do
+      it 'locates the requested @user_setting' do
+        put :update, id: @user_setting, user_setting: @user_setting_params
+        assigns(:user_setting).should eq(@user_setting)
+      end
+
+      it 'changes @user_setting attributes' do
+        @user_setting_params[:show_graphs] = false
+        @user_setting_params[:show_history] = false
+        put :update, id: @user_setting, user_setting: @user_setting_params
+        @user_setting.reload
+        @user_setting.show_graphs.should eq(false)
+        @user_setting.show_history.should eq(false)
+      end
+
+      it 'redirects to the dashboard' do
+        put :update, id: @user_setting, user_setting: @user_setting_params
+        response.should redirect_to dashboard_company_path
+      end
+    end
+
+    context 'invalid attributes' do
+      it 'locates the requested @user_setting' do
+        put :update, id: @user_setting, user_setting: @user_setting_params
+        assigns(:user_setting).should eq(@user_setting)
+      end
+
+      it 'does not change @user_setting attributes' do
+        @user_setting_params[:show_history] = nil
+        put :update, id: @user_setting, user_setting: @user_setting_params
+        @user_setting.reload
+        @user_setting.show_history.should_not eq(false)
+      end
+
+      it 're-renders the edit method' do
+        @user_setting_params[:show_history] = nil
+        put :update, id: @user_setting, user_setting: @user_setting_params
+        response.should render_template :edit
+      end
+    end
+  end
+
+  describe "Abilities" do
+    it 'update user settings' do
+      expect(@ability).to be_able_to(:update, @user_setting)
+    end
+
+    it 'edit user settings' do
+      expect(@ability).to be_able_to(:edit, @user_setting)
+    end
   end
 end
 

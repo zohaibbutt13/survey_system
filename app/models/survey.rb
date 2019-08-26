@@ -26,10 +26,15 @@ class Survey < ActiveRecord::Base
   after_destroy :destroy_survey_activity
 
   default_scope { where(company_id: Company.current_id) }
-  scope :public_surveys, -> { where(survey_type: 'public') }
+  scope :public_surveys, -> { where(survey_type: 'Public') }
   scope :expired_surveys, -> { where('expiry < ?', DateTime.now) }
   scope :active_surveys, -> { where('expiry > ?', DateTime.now) }
   scope :latest_surveys, -> { order('surveys.created_at desc') }
+  scope :filter_by_name, -> (value) { where('name LIKE ?', "%#{value}%") }
+  scope :filter_by_expiry, -> (value) { where('expiry < ?', value) }
+  scope :filter_by_survey_type, -> (value) { where('survey_type = ?', value) }
+  scope :filter_by_created_at, -> (value) { where('Date(created_at) = ?', value) }
+  scope :filter_by_created_by, -> (value) { where('user_id = ?', value) }
 
   # Returns array of all the public surveys
   def self.get_public_surveys(page_params, per_page_limit, category=nil)

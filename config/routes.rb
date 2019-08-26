@@ -10,8 +10,8 @@ Rails.application.routes.draw do
     member do
       get 'dashboard'
       get 'subscription_packages'
-      get 'update_subscription_package'
       get 'display_surveys'
+      get 'update_subscription_package'
     end
   end
 
@@ -42,7 +42,7 @@ Rails.application.routes.draw do
       get 'packages'
       get 'filter_category'
       get 'sign_in'
-      post 'sign_in_redirect'
+      post 'companies_list'
     end
   end
 

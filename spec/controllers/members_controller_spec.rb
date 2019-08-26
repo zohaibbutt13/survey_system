@@ -7,7 +7,7 @@ RSpec.describe MembersController, type: :controller do
     @user.company = @company
     @user.role = User::ROLE[:admin]
     @user.save
-    @request.host = "#{@company.subdomain}." + request.host
+    @request.host = "#{@company.subdomain}.#{request.host}"
     sign_in @user
   end
 

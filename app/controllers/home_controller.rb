@@ -23,14 +23,6 @@ class HomeController < ApplicationController
     end
   end
 
-  # get home/packages
-  def packages
-    @packages = SubscriptionPackage.get_packages
-    respond_to do |format|
-      format.html
-    end
-  end
-
   def company_redirect
     @companies = Company.unscoped.all
   end
@@ -41,15 +33,14 @@ class HomeController < ApplicationController
     end
   end
 
-  def sign_in_redirect
-    user = User.unscoped.find_by_email(params[:email])
-    respond_to do |format|
-      if user.present?
-        format.html { redirect_to subdomain: user.company.subdomain, controller: 'users/sessions', action: 'new' }
-      else
-        flash[:error] = I18n.t 'user_not_found'
-        format.html { render :sign_in }
+  def companies_list
+    if User.unscoped.find_by(email: params[:email]).nil?
+      respond_to do |format|
+        format.html { redirect_to sign_in_home_index_path }
       end
+    else
+      @companies = Company.user_companies(params[:email])
+      @email = params[:email]
     end
   end
 end

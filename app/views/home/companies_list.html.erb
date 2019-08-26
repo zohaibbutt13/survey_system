@@ -1,0 +1,16 @@
+<div class="row no-gutters">
+  <div class="col"></div>
+  <div class="col-8 col-md-6 content-window p-20 d-flex align-items-center flex-column">
+    <h2><%= t 'companies.companies_list_label' %></h2><br>
+    <% @companies.each do |company| %>
+      <%= link_to new_user_session_url(subdomain: company.subdomain, email: @email) do %>
+        <div class="primary-btn w-50">
+          <%= company.name %>      
+          </div>
+      <% end %><br>
+    <% end %>                
+  </div>
+  <div class="col"></div>
+</div>
+
+<%= render partial:'layouts/footer' %>
