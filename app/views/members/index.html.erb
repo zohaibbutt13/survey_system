@@ -23,16 +23,20 @@
   <tbody>
     <% @members.each.with_index(1) do |member, index| %>
       <tr>
-        <th scope="row"><%= index %></th>
+        <td scope="row"><%= index %></td>
         <td><%= member.full_name %></td>
         <td><%= member.email %></td>
         <td><%= member.role %></td>
-        <td>
+        <td class="table-icon">
           <% if can? :update, member %>
-            <%= link_to t('links.edit_link'), edit_member_path(member) %>
+            <%= link_to edit_member_path(member) do %>
+              <i class="fa fa-pencil mr-2"></i>
+            <% end %>
           <% end %>
           <% if can? :destroy, member %>
-            <%= link_to t('links.delete_link'), member_path(member), method: :delete, data: { confirm: t('links.confirmation_message') } %>
+            <%= link_to member_path(member), method: :delete, data: { confirm: t('links.confirmation_message') } do %>
+              <i class="fa fa-trash"></i>
+            <% end %>
           <% end %>
         </td>
       </tr>

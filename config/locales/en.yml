@@ -22,7 +22,14 @@
 en:
   login_label: "Log in"
   password_label: "Password"
+  forgot_password_label: "Forgot your password?"
+  send_reset_pass_instructions_label: "Send me reset password instructions"
+  change_password_label: "Change Password"
+  new_password_label: "New password"
+  confirm_new_pass_label: "Confirm new password"
   password_confirmation_label: "Password Confirmation"
+  resend_confirmation_instructions_label: "Resend confirmation instructions"
+  resend_unlock_instructions_label: "Resend unlock instructions"
   email_label: "Email"
   remember_label: "Remember me"
   first_name_label: "First Name"
@@ -99,6 +106,7 @@ en:
   created_by_label: "Created By"
   created_on_label: "Created On"
   expiry_label: "Expiry"
+  survey_type_label: "Survey Type"
   dont_have_an_account_label: "Don't have an account? Register here."
 
   dashboard:
@@ -181,6 +189,7 @@ en:
     fill_in_response_label: "Fill in your response"
     response_success_label: "Your response has been recorded ! :)"
     response_label: "Response"
+    email_empty_error: "can not be empty"
     submit_button_label: "Submit"
 
   options:

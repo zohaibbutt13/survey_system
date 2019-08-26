@@ -1,4 +1,5 @@
 class SurveysController < ApplicationController
+  protect_from_forgery except: [:add_question, :add_option]
   load_and_authorize_resource
   before_action :set_group, only: [:new, :edit, :create, :update]
 
