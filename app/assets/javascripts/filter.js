@@ -18,12 +18,12 @@ $(document).ready(function() {
 
   $('#js-expired-before-filter').click(function (event) {
     event.preventDefault();
-    var expired_before = $(':input[id="expired-before"]').val();
+    var expired_before = $('#expired_before').val();
     if(expired_before) {
       $.ajax({
         type: 'GET',
         url: '/companies/filter',
-        data: { filters: { expired_before: expired_before } }
+        data: { filters: 'expired_before', options: { value: expired_before } }
       });
       $('#expired_before_modal').modal('toggle');
       return true;
@@ -35,13 +35,13 @@ $(document).ready(function() {
 
   $('#js-survey-type-filter').click(function (event) {
     event.preventDefault();
-    var e = document.getElementById("survey-type-filter");
+    var e = document.getElementById("survey_type_filter");
     var survey_type = e.options[e.selectedIndex].value;
     if(survey_type) {
       $.ajax({
         type: 'GET',
         url: '/companies/filter',
-        data: { filters: { survey_type: survey_type } }
+        data: { filters: 'survey_type', options: { value: survey_type } }
       });
       $('#survey_type_modal').modal('toggle');
       return true;
@@ -53,12 +53,12 @@ $(document).ready(function() {
 
   $('#js-created-on-filter').click(function (event) {
     event.preventDefault();
-    var created_on = $(':input[id="created-on"]').val();
+    var created_on = $('#created_on').val();
     if(created_on) {
       $.ajax({
         type: 'GET',
         url: '/companies/filter',
-        data: { filters: { created_on: created_on } }
+        data: { filters: 'created_on', options: { value: created_on } }
       });
       $('#created_on_modal').modal('toggle');
       return true;
@@ -70,12 +70,12 @@ $(document).ready(function() {
 
   $('#js-created-by-filter').click(function (event) {
     event.preventDefault();
-    var created_by_id = $("#created-by option:selected").val();
+    var created_by_id = $('#created_by option:selected').val();
     if(created_by_id) {
       $.ajax({
         type: 'GET',
         url: '/companies/filter',
-        data: { filters: { created_by_id: created_by_id } }
+        data: { filters: 'created_by', options: { value: created_by_id } }
       });
       $('#created_by_modal').modal('toggle');
       return true;

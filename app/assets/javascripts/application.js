@@ -34,4 +34,39 @@ $(document).ready( function () {
       data: {}
     });
   }
+
+  // Override the default confirm dialog by rails
+  $.rails.allowAction = function(link){
+    if (link.data("confirm") == undefined){
+      return true;
+    }
+    $.rails.showConfirmationDialog(link);
+    return false;
+  }
+
+  // User click confirm button
+  $.rails.confirmed = function(link){
+    link.data("confirm", null);
+    link.trigger("click.rails");
+  }
+
+  // Display the confirmation dialog
+  $.rails.showConfirmationDialog = function(link){
+    swal({
+      title: "Are you sure to delete it?",
+      text: "This will permanently remove data from system.",
+      icon: "warning",
+      dangerMode: true,
+      buttons: ["Cancel", "Confirm"]
+    })
+    .then(willDelete => {
+      if (willDelete) {
+        $.rails.confirmed(link);
+      }
+    });
+  }
 });
+
+
+
+

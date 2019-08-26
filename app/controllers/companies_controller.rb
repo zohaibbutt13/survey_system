@@ -39,15 +39,20 @@ class CompaniesController < ApplicationController
   end
 
   def filter
-    binding.pry
-    @surveys = @current_company.filter_surveys(params[:filters], params[:options])
-    respond_to do |format|
-      format.js
+    if params[:filters].present? && params[:options].present?
+      @surveys = @current_company.filter_surveys(params[:filters], params[:options])
+      respond_to do |format|
+        format.js
+      end
+    else
+      respond_to do |format|  
+        format.html { redirect_to display_surveys_company_path(current_user) }
+      end
     end
   end
 
   def display_surveys
-    @employees = User.all
+    @employees = @current_company.users
     add_breadcrumb "Surveys", display_surveys_company_path(@current_company)
     respond_to do |format|
       format.html

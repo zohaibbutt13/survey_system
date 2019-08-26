@@ -42,5 +42,23 @@ FactoryGirl.define do
     id { 1 }
     show_graphs { true }
     show_history { true }
+
+  factory :survey, class: Survey do
+    name { Faker::Name.name }
+    description { Faker::Lorem.sentence }
+    category { 'Community' }
+    survey_type { 'Private' }
+    expiry { '2019-08-20' }
+    group_id { '1' }
+  end
+
+  factory :user_response, class: UserResponse do
+    email { Faker::Internet.email }
+  end
+
+  factory :answer, class: Answer do
+    question_id { '1' }
+    detail { Faker::Lorem.sentence }
+    option_id { '1' }
   end
 end

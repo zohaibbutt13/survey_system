@@ -5,14 +5,17 @@ class UserResponse < ActiveRecord::Base
   belongs_to :user
   belongs_to :survey
   belongs_to :company
-  has_many :answers, inverse_of: :user_response, dependent: :destroy
+  has_many :answers, dependent: :destroy
 
   accepts_nested_attributes_for :answers
 
   after_create :create_response_activity
+  validate :check_guest_user_email
 
-  def self.response_per_page(user_responses, page_params, per_page_limit)
-    user_responses.paginate(page: page_params, per_page: per_page_limit)
+  def check_guest_user_email
+    if (user_id.nil? && email.blank?)
+      errors.add(:email, I18n.t('user_responses.email_empty_error'))
+    end
   end
 
   def create_response_activity

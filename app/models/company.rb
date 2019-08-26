@@ -1,4 +1,6 @@
 class Company < ActiveRecord::Base
+  FILTER_TYPE = { name: 'name', survey_type: 'survey_type', created_on: 'created_on', created_by: 'created_by', expired_before: 'expired_before' }
+
   belongs_to :subscription_package
   has_one :company_setting, dependent: :destroy
   has_many :groups, dependent: :destroy
@@ -31,16 +33,17 @@ class Company < ActiveRecord::Base
   end 
 
   def filter_surveys(filter_name, options)
-    if filter_name == 'name'
+    if filter_name == FILTER_TYPE[:name]
       @surveys = surveys.filter_by_name(options[:value])
+    elsif filter_name == FILTER_TYPE[:expired_before]
+      @surveys = surveys.filter_by_expiry(options[:value])
+    elsif filter_name == FILTER_TYPE[:survey_type]
+      @surveys = surveys.filter_by_survey_type(options[:value])
+    elsif filter_name == FILTER_TYPE[:created_on]
+      @surveys = surveys.filter_by_created_at(options[:value])
+    elsif filter_name == FILTER_TYPE[:created_by]
+      @surveys = surveys.filter_by_created_by(options[:value])
     end
-    @surveys = surveys.where('name LIKE ?', "%#{filters[:name]}%") unless filters[:name].blank?
-    @surveys = surveys.where('expiry < ?', filters[:expired_before]) unless filters[:expired_before].blank? 
-    @surveys = surveys.where('survey_type = ?', filters[:survey_type]) unless filters[:survey_type].blank?
-    @surveys = surveys.where('Date(created_at) = ?', filters[:created_on]) unless filters[:created_on].blank? 
-    @surveys = surveys.where('user_id = ?', filters[:created_by_id]) unless filters[:created_by_id].blank?
-    
-    @surveys  
   end
 
   validates :name, presence: true, uniqueness: true, length: { maximum: 30 } 
