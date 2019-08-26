@@ -18,7 +18,7 @@ class UserResponsesController < ApplicationController
   def show
   end
 
-  # post surveys/:survey_id/user_responses      
+  # post surveys/:survey_id/user_responses  
   def create
     if user_signed_in?
       @user_response.user_id = current_user.id
@@ -26,7 +26,7 @@ class UserResponsesController < ApplicationController
       @user_response.email = current_user.email
     end
     if @user_response.save
-      flash[:notice] = 'Saved'
+      flash[:notice] = I18n.t 'saved_label'
       redirect_to survey_user_response_path(@survey, @user_response)
     else
       flash[:error] = @user_response.errors.full_messages

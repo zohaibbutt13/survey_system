@@ -42,7 +42,7 @@ class SurveysController < ApplicationController
   def create
     @survey.user_id = @current_user.id
     if @survey.save
-      flash[:notice] = 'Survey Created'
+      flash[:notice] = I18n.t 'surveys.survey_create_success'
       redirect_to @survey
     else
       flash[:error] = @survey.errors.full_messages
@@ -64,7 +64,7 @@ class SurveysController < ApplicationController
   # patch surveys/:id
   def update
     if @survey.update(survey_params)
-      flash[:notice] = 'Survey Updated!'
+      flash[:notice] = I18n.t 'surveys.survey_update_success'
       redirect_to @survey
     else
       flash[:error] = @survey.errors.full_messages
@@ -118,7 +118,7 @@ class SurveysController < ApplicationController
   # delete surveys/:id
   def destroy
     if @survey.destroy
-      redirect_to display_surveys_company_path(@current_company), notice: 'Delete success'
+      redirect_to display_surveys_company_path(@current_company), notice: (I18n.t 'surveys.survey_destroy_success')
     else
       flash[:error] = @survey.errors.full_messages
       render action: :show
