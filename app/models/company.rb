@@ -30,7 +30,10 @@ class Company < ActiveRecord::Base
     [company_setting, user_setting]
   end 
 
-  def self.filter_surveys(surveys, filters)
+  def filter_surveys(filter_name, options)
+    if filter_name == 'name'
+      @surveys = surveys.filter_by_name(options[:value])
+    end
     @surveys = surveys.where('name LIKE ?', "%#{filters[:name]}%") unless filters[:name].blank?
     @surveys = surveys.where('expiry < ?', filters[:expired_before]) unless filters[:expired_before].blank? 
     @surveys = surveys.where('survey_type = ?', filters[:survey_type]) unless filters[:survey_type].blank?

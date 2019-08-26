@@ -39,7 +39,8 @@ class CompaniesController < ApplicationController
   end
 
   def filter
-    @surveys = Company.filter_surveys(@current_company.surveys, params[:filters])
+    binding.pry
+    @surveys = @current_company.filter_surveys(params[:filters], params[:options])
     respond_to do |format|
       format.js
     end

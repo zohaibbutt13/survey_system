@@ -1,12 +1,12 @@
 $(document).ready(function() {
   $('#js-name-filter').click(function (event) {
     event.preventDefault();
-    var name = $(':input[id="survey-name"]').val();
+    var name = $('#survey_name').val();
     if(name) {
       $.ajax({
         type: 'GET',
         url: '/companies/filter',
-        data: { filters: { name: name } }
+        data: { filters: 'name', options: { value: name } }
       });
       $('#name_modal').modal('toggle');
       return true;
