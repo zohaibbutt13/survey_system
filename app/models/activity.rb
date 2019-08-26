@@ -4,7 +4,7 @@ class Activity < ActiveRecord::Base
   belongs_to :trackable, polymorphic: true
   belongs_to :owner, class_name: 'User', foreign_key: :owner_id
 
-  validates_presence_of :action, :company_id, :owner_id,
+  validates_presence_of :action, :company_id,
                         :trackable_id, :trackable_type
 
   scope :user_activities, -> (user_id) { where("owner_id = ?", user_id) }
