@@ -4,11 +4,14 @@ class Activity < ActiveRecord::Base
   belongs_to :trackable, polymorphic: true
   belongs_to :owner, class_name: 'User', foreign_key: :owner_id
 
-  validates_presence_of :action, :company_id, :owner_id,
+  validates_presence_of :action, :company_id,
                         :trackable_id, :trackable_type
 
   scope :user_activities, -> (user_id) { where("owner_id = ?", user_id) }
   scope :company_activities, -> (company_id) { where("company_id = ?", company_id) }
+
+  TRACKABLE_TYPE = { user: 'User', group: 'Group', survey: 'Survey',
+                     user_response: 'UserResponse' }
 
   def self.get_user_activities(user)
     if user.present?
@@ -20,7 +23,7 @@ class Activity < ActiveRecord::Base
         activities = admin_activities(user)
       end
     end
-    activities ||= []
+    activities
   end
 
   def self.member_activities(user)
@@ -33,5 +36,22 @@ class Activity < ActiveRecord::Base
 
   def self.admin_activities(user)
     Activity.company_activities(user.company_id)
+  end
+
+  # Following methods are for checking activity trackable type
+  def trackable_survey?
+    trackable_type == TRACKABLE_TYPE[:survey]
+  end
+
+  def trackable_group?
+    trackable_type == TRACKABLE_TYPE[:group]
+  end
+
+  def trackable_user?
+    trackable_type == TRACKABLE_TYPE[:user]
+  end
+
+  def trackable_user_response?
+    trackable_type == TRACKABLE_TYPE[:user_response]
   end
 end

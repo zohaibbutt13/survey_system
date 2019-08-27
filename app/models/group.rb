@@ -20,14 +20,14 @@ class Group < ActiveRecord::Base
   after_destroy :destroy_group_activity
 
   def create_group_activity
-    Activity.create(trackable: self, action: 'created', owner_id: created_by_id, company_id: company_id)
+    Activity.create(trackable: self, action: 'created', owner_id: created_by_id, company_id: company_id, parameters: { trackable_name: name })
   end
 
   def update_group_activity
-    Activity.create(trackable: self, action: 'updated', owner_id: created_by_id, company_id: company_id)
+    Activity.create(trackable: self, action: 'updated', owner_id: created_by_id, company_id: company_id, parameters: { trackable_name: name })
   end
 
   def destroy_group_activity
-    Activity.create(trackable: self, action: 'deleted', owner_id: created_by_id, company_id: company_id)
+    Activity.create(trackable: self, action: 'deleted', owner_id: created_by_id, company_id: company_id, parameters: { trackable_name: name })
   end
 end

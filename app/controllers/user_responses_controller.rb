@@ -20,6 +20,7 @@ class UserResponsesController < ApplicationController
 
   # post surveys/:survey_id/user_responses      
   def create
+    @user_response.company_id = @survey.company_id
     if user_signed_in?
       @user_response.user_id = current_user.id
       @user_response.company_id = current_user.company_id

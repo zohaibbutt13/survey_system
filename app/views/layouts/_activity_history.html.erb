@@ -16,7 +16,37 @@
             <td scope="row"><b><%= index %></b></td>
             <td>
               <p>
-                <%= activity.owner.full_name %> has <%= activity.action %> a <%= link_to activity.trackable_type %> 
+                <!-- Following if else block displays owner's name or email and action of activity -->
+                <% if activity.owner_id.present? %>
+                  <%= activity.owner.full_name %> <%= activity.action %>
+                <% else %>
+                  <span class="badge badge-info"> Guest User </span>
+                  <%= activity.parameters[:email] %> <%= activity.action %> 
+                <% end %>
+                <!-- Following if elsif block displays trackable object and its link if available -->
+                <% if activity.trackable_survey? %>
+                  <% if activity.trackable.present? %>
+                    <%= link_to activity.trackable.name, survey_path(activity.trackable.id) %>
+                  <% else %>
+                    <%= activity.parameters[:trackable_name] %>
+                  <% end %>
+                <% elsif activity.trackable_group? %>
+                  <% if activity.trackable.present? %>
+                    <%= link_to activity.trackable.name, group_path(activity.trackable.id) %>
+                  <% else %>
+                    <%= activity.parameters[:trackable_name] %>
+                  <% end %>
+                <% elsif activity.trackable_user? %>
+                  <% if activity.trackable.present? %>
+                    <%= link_to activity.trackable.full_name, member_path(activity.trackable.id) %>
+                  <% else %>
+                    <%= activity.parameters[:trackable_name] %>
+                  <% end %>
+                <% elsif activity.trackable_user_response? %>
+                  <%= link_to activity.trackable_type, survey_path(activity.trackable.survey_id) %>
+                <% end %>
+                <!-- Displays trackable object's type in a badge -->
+                <span class="badge badge-primary"> <%= activity.trackable_type %> </span>
               </p>
             </td>
             <td><%= activity.created_at.to_s(:long) %></td>
