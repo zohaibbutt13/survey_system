@@ -64,14 +64,14 @@ class Survey < ActiveRecord::Base
   end
 
   def create_survey_activity
-    Activity.create(trackable: self, action: 'created', owner_id: user_id, company_id: company_id)
+    Activity.create(trackable: self, action: 'created', owner_id: user_id, company_id: company_id, parameters: { trackable_name: name })
   end
 
   def update_survey_activity
-    Activity.create(trackable: self, action: 'updated', owner_id: user_id, company_id: company_id)
+    Activity.create(trackable: self, action: 'updated', owner_id: user_id, company_id: company_id, parameters: { trackable_name: name })
   end
 
   def destroy_survey_activity
-    Activity.create(trackable: self, action: 'deleted', owner_id: user_id, company_id: company_id)
+    Activity.create(trackable: self, action: 'deleted', owner_id: user_id, company_id: company_id, parameters: { trackable_name: name })
   end
 end

@@ -75,15 +75,15 @@ class User < ActiveRecord::Base
   def create_user_activity
     # Admin is created only at time of registration so activity is not created
     unless admin?
-      Activity.create(trackable: self, action: 'created', owner_id: admin_user_id, company_id: company_id)
+      Activity.create(trackable: self, action: 'created', owner_id: admin_user_id, company_id: company_id, parameters: { trackable_name: full_name })
     end
   end
 
   def update_user_activity
-    Activity.create(trackable: self, action: 'updated', owner_id: admin_user_id, company_id: company_id)
+    Activity.create(trackable: self, action: 'updated', owner_id: admin_user_id, company_id: company_id, parameters: { trackable_name: full_name })
   end
 
   def destroy_user_activity
-    Activity.create(trackable: self, action: 'deleted', owner_id: admin_user_id, company_id: company_id)
+    Activity.create(trackable: self, action: 'deleted', owner_id: admin_user_id, company_id: company_id, parameters: { trackable_name: full_name })
   end
 end
