@@ -20,7 +20,7 @@
                 <% if activity.owner_id.present? %>
                   <%= activity.owner.full_name %> <%= activity.action %>
                 <% else %>
-                  <span class="badge badge-info"> Guest User </span>
+                  <span class="badge badge-info"> <%= t('guest_user_label') %> </span>
                   <%= activity.parameters[:email] %> <%= activity.action %> 
                 <% end %>
                 <!-- Following if elsif block displays trackable object and its link if available -->

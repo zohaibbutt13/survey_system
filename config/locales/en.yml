@@ -46,6 +46,7 @@ en:
   edit_survey_label: "Edit Survey"
   submit_label: "Submit"
   response_graph_label: "View"
+  guest_user_label: "Guest User"
 
   groups:
     group_heading_label: "All Groups"
