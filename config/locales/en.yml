@@ -137,7 +137,7 @@ en:
   footer:
     home_label: "Home"
     about_label: "About"
-    packages_label: "Packages"
+    contact_label: "Contact Us"
     license_description: "Surveys System 2019. All Rights Reserved."
 
   header:
