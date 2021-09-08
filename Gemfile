@@ -36,7 +36,7 @@ gem 'cancancan'
 group :development, :test do
   gem 'pry', '=0.10.1'
   gem 'pry-rails', '=0.3.3' 
-  gem "better_errors", '=2.1.1'
+  gem "better_errors", '2.8.0'
   gem 'mailcatcher', '=0.6.1'
   # Access an IRB console on exception pages or by using <%= console %> in views
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
